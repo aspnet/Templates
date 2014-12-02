@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <!-- If you build the project from the command prompt, use the TemplatesVSVersion environment variable. -->
+        <TemplatesTargetVersion Condition=" '$(TemplatesTargetVersion)' == '' ">$(TemplatesVSVersion)</TemplatesTargetVersion>
+
+        <!-- If you open VS directly from the Windows shell, use the VS version as the target version. -->
+        <TemplatesTargetVersion Condition=" '$(TemplatesTargetVersion)' == '' ">$(VisualStudioVersion)</TemplatesTargetVersion>
+
+        <!-- Usually these are environment variables, but they aren't set when running VS -->
+        <TemplatesRoot Condition=" '$(TemplatesRoot)' == '' ">$(MSBuildThisFileDirectory)</TemplatesRoot>
+        <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)\bin</TemplatesBin>
+        <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)\intermediate</TemplatesIntermediate>
+        <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)\references</TemplatesReferences>
+        <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)\src</TemplatesSource>
+        <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)\test</TemplatesTest>
+        <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)\tools</TemplatesTools>
+        <TemplatesSetup Condition=" '$(TemplatesSetup)' == '' ">$(TemplatesRoot)\setup</TemplatesSetup>
+        <TemplatesTestResults Condition=" '$(TemplatesTestResults)' == '' ">$(TemplatesRoot)\TestResults</TemplatesTestResults>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
+        <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
+        <KREFolder>\\projectk-tc\drops\latest-dev\KRuntime\KRE-CLR-x86\bin</KREFolder>
+        <PackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</PackageSource>
+        <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
+        <!-- Visual Studio 14 properties -->
+        <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
+        <VersionedReferencePath>Dev14</VersionedReferencePath>
+        <TargetVsVersion>VS14</TargetVsVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- Output -->
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <OutputPath>$(TemplatesBin)$(TemplatesTargetVersionPath)\$(Configuration)\</OutputPath>
+        <IntermediateOutputPath>$(TemplatesIntermediate)$(TemplatesTargetVersionPath)\$(Configuration)\</IntermediateOutputPath>
+        <BaseIntermediateOutputPath>$(TemplatesIntermediate)$(TemplatesTargetVersionPath)</BaseIntermediateOutputPath>
+    </PropertyGroup>
+</Project>

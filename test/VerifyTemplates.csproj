@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="UnitTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\tools\Verify.tasks" />
+
+  <PropertyGroup>
+    <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
+    <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
+    <KpmBuildCommand>$(KREFolder)\kpm build</KpmBuildCommand>
+    <KpmRestoreCommand>$(KREFolder)\kpm restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</KpmRestoreCommand>
+    <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
+  </PropertyGroup>
+  <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  <ItemGroup>
+    <TemplatesToVerify Include="$(OutputPath)ProjectTemplates\StarterWeb.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)ProjectTemplates\EmptyWeb.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)ProjectTemplates\ConsoleApp.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)ProjectTemplates\ClassLibrary.zip"/>
+  </ItemGroup>
+
+  <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
+    <PropertyGroup>
+      <TargetName>%(TemplatesToVerify.Filename)</TargetName>
+      <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
+    </PropertyGroup>
+    <RemoveDir Directories="$(TestPath)" />
+    <MakeDir Directories="$(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)ProjectTemplates\$(TargetName).zip * &gt; nul" />
+
+    <ItemGroup>
+      <ExtractedFiles Include="$(TestPath)\**\*.*"/>
+    </ItemGroup>
+
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.json' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="MyApplication" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.json' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.json' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="src" />
+  </Target>
+  
+  <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+    <PropertyGroup>
+      <TargetName>%(TemplatesToVerify.Filename)</TargetName>
+      <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
+    </PropertyGroup>
+
+    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(KpmRestoreCommand)" />
+    <Message Text="Running $(KpmBuildCommand) on $(TestPath)"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(KpmBuildCommand)" />
+  </Target>
+  
+  <Target Name="UnitTestTemplates">
+    <MakeDir Directories="$(TemplatesTestPath)" />
+    <CallTarget Targets="ExtractAllTemplates" />
+    <CallTarget Targets="CompileTemplates" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(TemplatesTestPath)" />
+  </Target>
+  <Target Name="UnitTest" DependsOnTargets="UnitTestTemplates" />
+</Project>

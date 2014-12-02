@@ -1,0 +1,19 @@
+<Project DefaultTargets="UnitTest" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Templates.Settings.targets" />
+  <Target Name="UnitTest" DependsOnTargets="Build">
+    <ItemGroup>
+      <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
+    </ItemGroup>
+
+    <MSBuild Projects="@(ProjectsToTest)" Targets="UnitTest" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
+  </Target>
+  <Target Name="Build">
+    <ItemGroup>
+      <ProjectsToBuild Include="dirs.proj"/>
+    </ItemGroup>
+
+    <MakeDir Directories="$(TemplatesBin)$(TemplatesTargetVersionPath)\$(Configuration)"/>
+
+    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
+  </Target>
+</Project>

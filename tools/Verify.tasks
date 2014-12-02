@@ -1,0 +1,51 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask
+        TaskName="GetKREFolder"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <KREPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    string defaultAlias = Path.Combine(userProfile, ".kre", "alias", "default.txt");
+
+                    if (!File.Exists(defaultAlias))
+                    {
+                        Log.LogError("Unable to locate default alias {0}.", defaultAlias);
+                    }
+                    else 
+                    {
+                        using (var file = File.OpenText(defaultAlias))
+                        {
+                            string runtime = file.ReadToEnd();
+                            var runtimeBin = Path.Combine(userProfile, ".kre", "packages", runtime, "bin");
+                            if (!Directory.Exists(runtimeBin))
+                            {
+                                Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
+                            }
+                            else
+                            {
+                                KREPath = new TaskItem(runtimeBin);
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>    
+</Project>     

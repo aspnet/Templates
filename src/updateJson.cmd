@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy RemoteSigned -File %~dp0\updateJson.ps1

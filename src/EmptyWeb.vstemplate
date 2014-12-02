@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>ASP.NET 5 Empty Web Application</Name>
+    <Description>A project for creating an empty ASP.NET 5 web application</Description>
+    <Icon>WebProject.png</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Web</ProjectSubType>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+    <SortOrder>16</SortOrder>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <TemplateID>Microsoft.Visualstudio.ProjectK.EmptyWeb</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <CreateInPlace>true</CreateInPlace>
+    <DefaultName>WebApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="EmptyWeb.kproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot" />
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.ProjectSystem.Wizard, Version=__VSVER__.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.Web.ProjectSystem.Wizard.WebProjectSystemTemplateWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

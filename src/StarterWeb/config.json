@@ -1,0 +1,12 @@
+﻿{
+    "data": {
+        "defaultConnection": { 
+            "connectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-$safeprojectname$-$guid2$;Trusted_Connection=True;MultipleActiveResultSets=true"
+        }
+    },
+    "entityFramework": {
+        "applicationDbContext": {
+            "connectionStringKey": "data:defaultConnection:connectionString"
+        }
+    }
+}
