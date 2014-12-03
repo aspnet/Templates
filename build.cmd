@@ -1,0 +1,1 @@
+call tools\BuildAndVerify.cmd /t:%*

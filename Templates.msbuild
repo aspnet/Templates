@@ -1,11 +1,11 @@
-<Project DefaultTargets="UnitTest" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Verify" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="Templates.Settings.targets" />
-  <Target Name="UnitTest" DependsOnTargets="Build">
+  <Target Name="Verify" DependsOnTargets="Build">
     <ItemGroup>
       <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
     </ItemGroup>
 
-    <MSBuild Projects="@(ProjectsToTest)" Targets="UnitTest" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
   </Target>
   <Target Name="Build">
     <ItemGroup>

@@ -9,7 +9,7 @@ if defined ProgramFiles(x86) (
 set "TemplatesVSVersion=14.0"
 set "TemplatesRoot=%~dp0"
 set "TemplatesRoot=%TemplatesRoot:~0,-7%"
-set "TemplatesBin=%TemplatesRoot%\bin"
+set "TemplatesBin=%TemplatesRoot%\artifacts\build"
 set "TemplatesIntermediate=%TemplatesRoot%\intermediate"
 set "TemplatesReferences=%TemplatesRoot%\references"
 set "TemplatesSource=%TemplatesRoot%\src"
