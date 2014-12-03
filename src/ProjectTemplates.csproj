@@ -116,7 +116,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate' or '%(Extension)' == '.json')" Replace="$(TemplatesTargetVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand)" />  
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />  
     
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />

@@ -19,10 +19,11 @@
     </PropertyGroup>
     
     <PropertyGroup>
+        <UseLatestSigned Condition="'$(UseLatestSigned)' == ''">false</UseLatestSigned>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
-        <PackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</PackageSource>
+        <PackageSource Condition="'$(PackageSource)' == '' or '$(UseLatestSigned)' == 'true'">\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</PackageSource>
         <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
     </PropertyGroup>
 

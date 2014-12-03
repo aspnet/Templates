@@ -86,11 +86,12 @@ LogMessage "--------------------------------------------------------------------
 
 #Global variables for the script
 $PackageNameVersionHash = @{}
+$coherencePath = $args[0]
 
 $ScriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 $TemplatesRootDir = $ScriptDir | Split-Path -Parent
 
-dir \\projectk-tc\Drops\Coherence-Signed\dev\Latest\Packages | % { ProcessFile $_; }
+dir $coherencePath | % { ProcessFile $_; }
 
 #Edit the template project files
 $templateFolder = Get-Location

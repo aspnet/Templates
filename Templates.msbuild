@@ -12,7 +12,7 @@
       <ProjectsToBuild Include="dirs.proj"/>
     </ItemGroup>
 
-    <MakeDir Directories="$(TemplatesBin)$(TemplatesTargetVersionPath)\$(Configuration)"/>
+    <MakeDir Directories="$(TemplatesBin)"/>
 
     <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
   </Target>
