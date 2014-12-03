@@ -49,9 +49,9 @@
     </GetKREFolder>
 
     <Message Text="Running $(KpmRestoreCommand) on $(TestPath)"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(KREFolder)\$(KpmRestoreCommand)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(KREFolder)$(KpmRestoreCommand)" />
     <Message Text="Running $(KpmBuildCommand) on $(TestPath)"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(KREFolder)\$(KpmBuildCommand)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(KREFolder)$(KpmBuildCommand)" />
   </Target>
   
   <Target Name="VerifyTemplates">
