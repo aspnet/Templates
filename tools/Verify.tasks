@@ -27,6 +27,7 @@
                         {
                             string runtime = file.ReadToEnd();
                             var runtimeBin = Path.Combine(userProfile, ".kre", "packages", runtime, "bin");
+                            runtimeBin += @"\";
                             if (!Directory.Exists(runtimeBin))
                             {
                                 Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);

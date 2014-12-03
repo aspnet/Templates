@@ -44,7 +44,7 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <GetKREFolder>
+    <GetKREFolder Condition="'$(TEAMCITY_VERSION)' == ''">
       <Output PropertyName="KREFolder" TaskParameter="KREPath"/>
     </GetKREFolder>
 
