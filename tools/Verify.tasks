@@ -1,4 +1,4 @@
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <UsingTask
         TaskName="GetKREFolder"
         TaskFactory="CodeTaskFactory"
@@ -26,14 +26,15 @@
                         using (var file = File.OpenText(defaultAlias))
                         {
                             string runtime = file.ReadToEnd();
+                            Log.LogMessage(@"Checking for runtime folder at {0}\.kre\packages\{1}\bin", userProfile, runtime);
                             var runtimeBin = Path.Combine(userProfile, ".kre", "packages", runtime, "bin");
-                            runtimeBin += @"\";
                             if (!Directory.Exists(runtimeBin))
                             {
                                 Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
                             }
                             else
                             {
+                                runtimeBin += @"\";
                                 KREPath = new TaskItem(runtimeBin);
                             }
                         }
@@ -41,6 +42,7 @@
                 }
                 catch(Exception ex)
                 {
+                    Log.LogError("Error getting KRE folder");
                     Log.LogErrorFromException(ex);
                 }
                 
