@@ -25,7 +25,7 @@
                     {
                         using (var file = File.OpenText(defaultAlias))
                         {
-                            string runtime = file.ReadToEnd();
+                            string runtime = file.ReadToEnd().Trim();
                             Log.LogMessage(@"Checking for runtime folder at {0}\.kre\packages\{1}\bin", userProfile, runtime);
                             var runtimeBin = Path.Combine(userProfile, ".kre", "packages", runtime, "bin");
                             if (!Directory.Exists(runtimeBin))
