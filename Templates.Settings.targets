@@ -19,6 +19,7 @@
     </PropertyGroup>
     
     <PropertyGroup>
+        <KREFolderInPath Condition="'$(KREFolderInPath)' == ''">false</KREFolderInPath>
         <UseLatestSigned Condition="'$(UseLatestSigned)' == ''">false</UseLatestSigned>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
