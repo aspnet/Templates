@@ -6,7 +6,7 @@ using $safeprojectname$.Models;
 
 namespace $safeprojectname$.Migrations
 {
-    [ContextType(typeof(ApplicationDbContext))]
+    [ContextType(typeof($safeprojectname$.Models.ApplicationDbContext))]
     public class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         public override IModel Model
@@ -70,7 +70,7 @@ namespace $safeprojectname$.Migrations
                     b.Property<bool>("EmailConfirmed");
                     b.Property<string>("Id");
                     b.Property<bool>("LockoutEnabled");
-                    b.Property<DateTimeOffset>("LockoutEnd");
+                    b.Property<DateTimeOffset?>("LockoutEnd");
                     b.Property<string>("NormalizedUserName");
                     b.Property<string>("PasswordHash");
                     b.Property<string>("PhoneNumber");

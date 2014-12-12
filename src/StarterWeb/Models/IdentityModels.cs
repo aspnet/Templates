@@ -24,7 +24,7 @@ namespace $safeprojectname$.Models
             // are supported in ASP.NET 5
             if (!_created)
             {
-                Database.AsRelational().AsMigrationsEnabled();
+                Database.AsMigrationsEnabled().ApplyMigrations();
                 _created = true;
             }
         }
