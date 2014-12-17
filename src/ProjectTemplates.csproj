@@ -112,8 +112,9 @@
       <FilesToReplace Include="@(CopiedVsTemplateFiles)" />
     </ItemGroup>
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Replace="$(TemplatesTargetVersion).0-beta1" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate' or '%(Extension)' == '.json')" Replace="$(TemplatesTargetVersion)" />
+   <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Replace="$(TemplatesTargetVersion).0-beta1" />
+
+   <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />  
