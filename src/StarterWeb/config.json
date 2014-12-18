@@ -6,7 +6,7 @@
     },
     "EntityFramework": {
         "ApplicationDbContext": {
-            "ConnectionStringKey": "Data:DefaultConnectionConnectionString"
+            "ConnectionStringKey": "Data:DefaultConnection:ConnectionString"
         }
     }
 }
