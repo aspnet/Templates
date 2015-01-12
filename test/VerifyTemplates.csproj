@@ -14,10 +14,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <ItemGroup>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
   </ItemGroup>
 
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">

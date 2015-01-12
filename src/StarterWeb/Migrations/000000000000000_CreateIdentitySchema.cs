@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Migrations.Builders;
-using Microsoft.Data.Entity.Migrations.Infrastructure;
+using Microsoft.Data.Entity.Relational.Migrations;
+using Microsoft.Data.Entity.Relational.Migrations.Builders;
+using Microsoft.Data.Entity.Relational.Migrations.Infrastructure;
 
 namespace $safeprojectname$.Migrations
 {
