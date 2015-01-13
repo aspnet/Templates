@@ -10,6 +10,7 @@
     <EmptyWebTemplateName>EmptyWeb</EmptyWebTemplateName>
     <Rules>Rules</Rules>
     <StarterWebTemplateName>StarterWeb</StarterWebTemplateName>
+    <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
     <UpdateJsonCommand>$(MSBuildThisFileDirectory)\updateJson.cmd</UpdateJsonCommand>
@@ -52,6 +53,10 @@
       <TargetName>$(StarterWebTemplateName)</TargetName>
       <SearchPath>StarterWeb\;Resources\</SearchPath>
     </VSTemplate>
+    <VSTemplate Include="WebAPI.vstemplate">
+      <TargetName>$(WebAPITemplateName)</TargetName>
+      <SearchPath>WebAPI\;Resources\</SearchPath>
+    </VSTemplate>
   </ItemGroup>
   
   <ItemGroup>
@@ -59,6 +64,7 @@
               Templates.xml;
               KStarterWeb.vstemplate;
               KEmptyWeb.vstemplate;
+              KWebAPI.vstemplate;
               Resources\WebProject.png">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
