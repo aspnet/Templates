@@ -9,8 +9,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>$guid1$</ProjectGuid>
     <RootNamespace>$safeprojectname$</RootNamespace>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' "">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' "">$baseoutputlocation$\bin\$(MSBuildProjectName)\</OutputPath>
+     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   
   <PropertyGroup>
