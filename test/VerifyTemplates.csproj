@@ -17,6 +17,7 @@
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
   </ItemGroup>
 
