@@ -62,10 +62,12 @@ namespace $safeprojectname$.Migrations
                     {
                         Id = c.String(),
                         AccessFailedCount = c.Int(nullable: false),
+                        ConcurrencyStamp = c.String(),
                         Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         LockoutEnabled = c.Boolean(nullable: false),
                         LockoutEnd = c.DateTimeOffset(),
+                        NormalizedEmail = c.String(),
                         NormalizedUserName = c.String(),
                         PasswordHash = c.String(),
                         PhoneNumber = c.String(),
@@ -198,11 +200,13 @@ namespace $safeprojectname$.Migrations
                 builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("AccessFailedCount");
+                    b.Property<string>("ConcurrencyStamp");
                     b.Property<string>("Email");
                     b.Property<bool>("EmailConfirmed");
                     b.Property<string>("Id");
                     b.Property<bool>("LockoutEnabled");
                     b.Property<DateTimeOffset?>("LockoutEnd");
+                    b.Property<string>("NormalizedEmail");
                     b.Property<string>("NormalizedUserName");
                     b.Property<string>("PasswordHash");
                     b.Property<string>("PhoneNumber");

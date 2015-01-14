@@ -66,11 +66,13 @@ namespace $safeprojectname$.Migrations
                 builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("AccessFailedCount");
+                    b.Property<string>("ConcurrencyStamp");
                     b.Property<string>("Email");
                     b.Property<bool>("EmailConfirmed");
                     b.Property<string>("Id");
                     b.Property<bool>("LockoutEnabled");
                     b.Property<DateTimeOffset?>("LockoutEnd");
+                    b.Property<string>("NormalizedEmail-");
                     b.Property<string>("NormalizedUserName");
                     b.Property<string>("PasswordHash");
                     b.Property<string>("PhoneNumber");
