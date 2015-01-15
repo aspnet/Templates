@@ -1,9 +1,13 @@
 ﻿{
     "webroot": "wwwroot",
     "version": "1.0.0-*",
-    "exclude": [
-        "wwwroot"
-    ],
+    "dependencies": {
+        "Microsoft.AspNet.Server.IIS": "1.0.0-beta2-*"
+    },
+    "frameworks": {
+        "aspnet50": { },
+        "aspnetcore50": { }
+    },
     "packExclude": [
         "node_modules",
         "bower_components",
@@ -11,11 +15,9 @@
         "**.user",
         "**.vspscc"
     ],
-    "dependencies": {
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta2-*"
-    },
-    "frameworks" : {
-        "aspnet50" : { },
-        "aspnetcore50" : { }
-    }
+    "exclude": [
+        "wwwroot",
+        "node_modules",
+        "bower_components"
+    ]
 }
