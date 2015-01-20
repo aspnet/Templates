@@ -56,6 +56,11 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
         </Folder>
       </Folder>
+      <Folder Name="Compiler" TargetFolderName="Compiler">        
+        <Folder Name="Preprocess" TargetFolderName="Preprocess">
+          <ProjectItem ReplaceParameters="true" TargetFileName="RazorPreCompilation.cs">RazorPreCompilation.cs</ProjectItem>
+        </Folder>       
+      </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
         <Folder Name="css" TargetFolderName="css">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.css">site.css</ProjectItem>
