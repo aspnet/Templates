@@ -2,9 +2,9 @@
     /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
     "webroot": "wwwroot",
     "version": "1.0.0-*",
-   "dependencies": {
-	    "Microsoft.AspNet.Server.IIS": "1.0.0-rc1-*",
-	    "Microsoft.AspNet.Mvc": "6.0.0-rc1-*",
+    "dependencies": {
+	"Microsoft.AspNet.Server.IIS": "1.0.0-rc1-*",
+	"Microsoft.AspNet.Mvc": "6.0.0-rc1-*",
         "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-*",
         "Microsoft.AspNet.Server.WebListener": "1.0.0-rc1-*"
     },
@@ -13,7 +13,9 @@
         "aspnetcore50": { }
     },
     "exclude": [
-        "wwwroot"
+        "wwwroot",
+        "node_modules",
+        "bower_components"
     ],
     "packExclude": [
         "node_modules",
@@ -21,5 +23,5 @@
         "**.kproj",
         "**.user",
         "**.vspscc"
-    ],
+    ]
 }

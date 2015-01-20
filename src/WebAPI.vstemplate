@@ -25,6 +25,8 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ValuesController">ValuesController.cs</ProjectItem>
       </Folder>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot">
+      </Folder>
       <Folder Name="Views" TargetFolderName="Views">
         <Folder Name="Home" TargetFolderName="Home">
           <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
