@@ -26,8 +26,8 @@
                         using (var file = File.OpenText(defaultAlias))
                         {
                             string runtime = file.ReadToEnd().Trim();
-                            Log.LogMessage(@"Checking for runtime folder at {0}\.dotnet\packages\{1}\bin", userProfile, runtime);
-                            var runtimeBin = Path.Combine(userProfile, ".dotnet", "packages", runtime, "bin");
+                            Log.LogMessage(@"Checking for runtime folder at {0}\.dotnet\runtimes\{1}\bin", userProfile, runtime);
+                            var runtimeBin = Path.Combine(userProfile, ".dotnet", "runtimes", runtime, "bin");
                             if (!Directory.Exists(runtimeBin))
                             {
                                 Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
