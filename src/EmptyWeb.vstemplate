@@ -17,7 +17,7 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="EmptyWeb.kproj" ReplaceParameters="true">
+    <Project File="EmptyWeb.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
