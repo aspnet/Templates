@@ -1,10 +1,10 @@
 ﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <UsingTask
-        TaskName="GetKREFolder"
+        TaskName="GetDotNetFolder"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
         <ParameterGroup>
-            <KREPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+            <DotNetPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -15,7 +15,7 @@
                 try
                 {
                     string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    string defaultAlias = Path.Combine(userProfile, ".kre", "alias", "default.txt");
+                    string defaultAlias = Path.Combine(userProfile, ".dotnet", "alias", "default.txt");
 
                     if (!File.Exists(defaultAlias))
                     {
@@ -26,8 +26,8 @@
                         using (var file = File.OpenText(defaultAlias))
                         {
                             string runtime = file.ReadToEnd().Trim();
-                            Log.LogMessage(@"Checking for runtime folder at {0}\.kre\packages\{1}\bin", userProfile, runtime);
-                            var runtimeBin = Path.Combine(userProfile, ".kre", "packages", runtime, "bin");
+                            Log.LogMessage(@"Checking for runtime folder at {0}\.dotnet\packages\{1}\bin", userProfile, runtime);
+                            var runtimeBin = Path.Combine(userProfile, ".dotnet", "packages", runtime, "bin");
                             if (!Directory.Exists(runtimeBin))
                             {
                                 Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
@@ -35,14 +35,14 @@
                             else
                             {
                                 runtimeBin += @"\";
-                                KREPath = new TaskItem(runtimeBin);
+                                DotNetPath = new TaskItem(runtimeBin);
                             }
                         }
                     }
                 }
                 catch(Exception ex)
                 {
-                    Log.LogError("Error getting KRE folder");
+                    Log.LogError("Error getting DotNet folder");
                     Log.LogErrorFromException(ex);
                 }
                 
