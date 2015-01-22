@@ -19,7 +19,7 @@
     </PropertyGroup>
     
     <PropertyGroup>
-        <KREFolderInPath Condition="'$(KREFolderInPath)' == ''">false</KREFolderInPath>
+        <DotNetFolderInPath Condition="'$(DotNetFolderInPath)' == ''">false</DotNetFolderInPath>
         <UseLatestSigned Condition="'$(UseLatestSigned)' == ''">false</UseLatestSigned>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>

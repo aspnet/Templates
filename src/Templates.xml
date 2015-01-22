@@ -26,6 +26,19 @@
         </Authentication>
       </Options>
     </Template>
+
+    <Template Name="ASP.NET 5 Web API" BaseTemplateID="Microsoft.ProjectK.CSharp.WebAPI" Order="8030">
+      <Icon>Resources\WebProject.png</Icon>
+      <PreviewImage>Resources\WebProject.png</PreviewImage>
+      <Summary>A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Summary>
+      <Description>A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Description>
+      <UIFilters>ProjectK</UIFilters>
+      <Options>
+        <Authentication Default="NoAuth">
+          <NoAuth />
+        </Authentication>
+      </Options>
+    </Template>
   </UI>
 
   <BaseTemplates>
@@ -35,6 +48,10 @@
 
     <BaseTemplate ID="Microsoft.ProjectK.CSharp.StarterWeb"
               VSTemplatePath="KStarterWeb.vstemplate">
+    </BaseTemplate>
+
+    <BaseTemplate ID="Microsoft.ProjectK.CSharp.WebAPI"
+              VSTemplatePath="KWebAPI.vstemplate">
     </BaseTemplate>
   </BaseTemplates>
 </TemplateDefinition>

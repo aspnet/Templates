@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET 5 Empty Web Application</Name>
-    <Description>A project for creating an empty ASP.NET 5 web application</Description>
+    <Name>ASP.NET 5 Web API</Name>
+    <Description>A project for creating an ASP.NET 5 Web API</Description>
     <Icon>WebProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
-    <SortOrder>16</SortOrder>
+    <SortOrder>18</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.ProjectK.EmptyWeb</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.ProjectK.WebAPI</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>WebApplication</DefaultName>
@@ -17,11 +17,21 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="EmptyWeb.xproj" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
+    <Project File="WebAPI.xproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="project.json">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
-      <Folder Name="wwwroot" TargetFolderName="wwwroot" />
+      <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ValuesController.cs">ValuesController.cs</ProjectItem>
+      </Folder>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot">
+      </Folder>
+      <Folder Name="Views" TargetFolderName="Views">
+        <Folder Name="Home" TargetFolderName="Home">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+        </Folder>
+      </Folder>
     </Project>
   </TemplateContent>
   <WizardExtension>

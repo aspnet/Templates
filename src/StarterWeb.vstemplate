@@ -17,7 +17,7 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="StarterWeb.kproj" ReplaceParameters="true">
+    <Project File="StarterWeb.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="bower.json">bower.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="config.json">config.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="gruntfile.js">gruntfile.js</ProjectItem>
@@ -55,6 +55,11 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_LoginPartial.cshtml">_LoginPartial.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
         </Folder>
+      </Folder>
+      <Folder Name="Compiler" TargetFolderName="Compiler">        
+        <Folder Name="Preprocess" TargetFolderName="Preprocess">
+          <ProjectItem ReplaceParameters="true" TargetFileName="RazorPreCompilation.cs">RazorPreCompilation.cs</ProjectItem>
+        </Folder>       
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
         <Folder Name="css" TargetFolderName="css">
