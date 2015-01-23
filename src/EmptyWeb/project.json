@@ -8,7 +8,7 @@
         "aspnet50": { },
         "aspnetcore50": { }
     },
-    "packExclude": [
+    "bundleExclude": [
         "node_modules",
         "bower_components",
         "**.xproj",

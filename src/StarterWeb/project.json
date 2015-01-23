@@ -35,7 +35,7 @@
         "node_modules",
         "bower_components"
     ],
-    "packExclude": [
+    "bundleExclude": [
         "node_modules",
         "bower_components",
         "**.xproj",
