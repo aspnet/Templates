@@ -1,5 +1,5 @@
 {
-    "name": "",
+    "name": "WebApplication",
     "private": true,
     "dependencies": {
         "bootstrap": "3.0.0",
