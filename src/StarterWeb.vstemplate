@@ -65,6 +65,12 @@
         <Folder Name="css" TargetFolderName="css">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.css">site.css</ProjectItem>
         </Folder>
+        <Folder Name="images" TargetFolderName="images">
+          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-01-Azure.png">Banner-01-Azure.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-02-VS.png">Banner-02-VS.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-03-ASP.png">Banner-03-ASP.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-04-Packages.png">Banner-04-Packages.png</ProjectItem>
+        </Folder>
         <Folder Name="lib" TargetFolderName="lib">
           <Folder Name="bootstrap" TargetFolderName="bootstrap">
             <Folder Name="css" TargetFolderName="css">
@@ -84,12 +90,23 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.min.js">bootstrap.min.js</ProjectItem>
             </Folder>
           </Folder>
+          <Folder Name="bootstrap-touch-carousel" TargetFolderName="bootstrap-touch-carousel">
+            <Folder Name="css" TargetFolderName="css">
+              <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-touch-carousel.css">bootstrap-touch-carousel.css</ProjectItem>
+            </Folder>
+            <Folder Name="js" TargetFolderName="js">
+              <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-touch-carousel.js">bootstrap-touch-carousel.js</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="hammer.js" TargetFolderName="hammer.js">
+            <ProjectItem ReplaceParameters="false" TargetFileName="hammer.js">hammer.js</ProjectItem>
+          </Folder>
           <Folder Name="jquery" TargetFolderName="jquery">
             <Folder Name="js" TargetFolderName="js">
-              <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.map">jquery.min.map</ProjectItem>
             </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.map">jquery.min.map</ProjectItem>
           </Folder>
           <Folder Name="jquery-validation" TargetFolderName="jquery-validation">
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.js">jquery.validate.js</ProjectItem>
@@ -349,6 +366,58 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="_config.yml">_config.yml</ProjectItem>
         </Folder>
+        <Folder Name="bootstrap-touch-carousel" TargetFolderName="bootstrap-touch-carousel">
+          <Folder Name="dist" TargetFolderName="dist">
+            <Folder Name="css" TargetFolderName="css">
+              <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-touch-carousel.css">bootstrap-touch-carousel.css</ProjectItem>
+            </Folder>
+            <Folder Name="js" TargetFolderName="js">
+              <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-touch-carousel.js">bootstrap-touch-carousel.js</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="src" TargetFolderName="src">
+            <Folder Name="js" TargetFolderName="js">
+              <ProjectItem ReplaceParameters="false" TargetFileName="touch-carousel.js">touch-carousel.js</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="transition.js">transition.js</ProjectItem>
+            </Folder>
+            <Folder Name="less" TargetFolderName="less">
+              <ProjectItem ReplaceParameters="false" TargetFileName="carousel.less">carousel.less</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="elements.less">elements.less</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="vendor" TargetFolderName="vendor">
+            <Folder Name="bootstrap" TargetFolderName="bootstrap">
+            </Folder>
+            <Folder Name="hammerjs" TargetFolderName="hammerjs">
+            </Folder>
+          </Folder>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="bower.json">bower.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="CHANGELOG.md">CHANGELOG.md</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Gruntfile.js">Gruntfile.js</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE-MIT">LICENSE-MIT</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+        </Folder>
+        <Folder Name="hammer.js" TargetFolderName="hammer.js">
+          <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".bowerrc">.bowerrc</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".gitignore">.gitignore</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".jscsrc">.jscsrc</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".jshintrc">.jshintrc</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName=".travis.yml">.travis.yml</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="bower.json">bower.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="CHANGELOG.md">CHANGELOG.md</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="component.json">component.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="CONTRIBUTING.md">CONTRIBUTING.md</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Gruntfile.coffee">Gruntfile.coffee</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="hammer.js">hammer.js</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="hammer.min.js">hammer.min.js</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="hammer.min.map">hammer.min.map</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE.md">LICENSE.md</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+        </Folder>
         <Folder Name="jquery" TargetFolderName="jquery">
           <Folder Name="build" TargetFolderName="build">
             <ProjectItem ReplaceParameters="false" TargetFileName="release-notes.js">release-notes.js</ProjectItem>
@@ -372,8 +441,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="jsonp.js">jsonp.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="script.js">script.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="xhr.js">xhr.js</ProjectItem>
-            </Folder>
-            <Folder Name="sizzle" TargetFolderName="sizzle">
             </Folder>
             <ProjectItem ReplaceParameters="false" TargetFileName=".jshintrc">.jshintrc</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ajax.js">ajax.js</ProjectItem>
@@ -481,8 +548,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="ua.txt">ua.txt</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="with_fries.xml">with_fries.xml</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="with_fries_over_jsonp.php">with_fries_over_jsonp.php</ProjectItem>
-            </Folder>
-            <Folder Name="qunit" TargetFolderName="qunit">
             </Folder>
             <Folder Name="unit" TargetFolderName="unit">
               <ProjectItem ReplaceParameters="false" TargetFileName="ajax.js">ajax.js</ProjectItem>
@@ -1346,8 +1411,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
             </Folder>
             <Folder Name="boom" TargetFolderName="boom">
-              <Folder Name="images" TargetFolderName="images">
-              </Folder>
               <Folder Name="lib" TargetFolderName="lib">
                 <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               </Folder>
@@ -2327,16 +2390,6 @@
               </Folder>
               <Folder Name="coverage" TargetFolderName="coverage">
                 <Folder Name="lcov-report" TargetFolderName="lcov-report">
-                  <Folder Name="dist" TargetFolderName="dist">
-                    <Folder Name="cjs" TargetFolderName="cjs">
-                      <Folder Name="handlebars" TargetFolderName="handlebars">
-                        <Folder Name="compiler" TargetFolderName="compiler">
-                        </Folder>
-                      </Folder>
-                    </Folder>
-                  </Folder>
-                  <Folder Name="lib" TargetFolderName="lib">
-                  </Folder>
                   <ProjectItem ReplaceParameters="false" TargetFileName="prettify.css">prettify.css</ProjectItem>
                   <ProjectItem ReplaceParameters="false" TargetFileName="prettify.js">prettify.js</ProjectItem>
                 </Folder>
@@ -2435,8 +2488,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
             </Folder>
             <Folder Name="hawk" TargetFolderName="hawk">
-              <Folder Name="images" TargetFolderName="images">
-              </Folder>
               <Folder Name="lib" TargetFolderName="lib">
                 <ProjectItem ReplaceParameters="false" TargetFileName="browser.js">browser.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="client.js">client.js</ProjectItem>
@@ -2450,8 +2501,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
             </Folder>
             <Folder Name="hoek" TargetFolderName="hoek">
-              <Folder Name="images" TargetFolderName="images">
-              </Folder>
               <Folder Name="lib" TargetFolderName="lib">
                 <ProjectItem ReplaceParameters="false" TargetFileName="escape.js">escape.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -2821,8 +2870,6 @@
                 <ProjectItem ReplaceParameters="false" TargetFileName="totalDaysInMonth.js">totalDaysInMonth.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="totalDaysInYear.js">totalDaysInYear.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="weekOfTheYear.js">weekOfTheYear.js</ProjectItem>
-              </Folder>
-              <Folder Name="doc" TargetFolderName="doc">
               </Folder>
               <Folder Name="function" TargetFolderName="function">
                 <ProjectItem ReplaceParameters="false" TargetFileName="awaitDelay.js">awaitDelay.js</ProjectItem>
