@@ -102,8 +102,6 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="hammer.js">hammer.js</ProjectItem>
           </Folder>
           <Folder Name="jquery" TargetFolderName="jquery">
-            <Folder Name="js" TargetFolderName="js">
-            </Folder>
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.map">jquery.min.map</ProjectItem>
