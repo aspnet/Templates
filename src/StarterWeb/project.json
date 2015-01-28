@@ -38,7 +38,7 @@
     "bundleExclude": [
         "node_modules",
         "bower_components",
-        "**.xproj",
+        "**.kproj",
         "**.user",
         "**.vspscc"
     ],

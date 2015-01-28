@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET 5 Web Application</Name>
-    <Description>A project for creating an ASP.NET 5 Starter Web Application</Description>
+    <Name>ASP.NET 5 Preview Web Application</Name>
+    <Description>A project for creating an ASP.NET 5 Preview Starter Web Application</Description>
     <Icon>WebProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
@@ -17,8 +17,9 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="StarterWeb.xproj" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="false" TargetFileName="bower.json">bower.json</ProjectItem>
+    <Project File="StarterWeb.kproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="bower.json">bower.json</ProjectItem>
+
       <ProjectItem ReplaceParameters="true" TargetFileName="config.json">config.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="gruntfile.js">gruntfile.js</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
@@ -36,7 +37,7 @@
       <Folder Name="Migrations" TargetFolderName="Migrations">
         <ProjectItem ReplaceParameters="true" TargetFileName="000000000000000_CreateIdentitySchema.cs">000000000000000_CreateIdentitySchema.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationDbContextModelSnapshot.cs">ApplicationDbContextModelSnapshot.cs</ProjectItem>
-      </Folder>      
+      </Folder>
       <Folder Name="Views" TargetFolderName="Views">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Account" TargetFolderName="Account">
@@ -56,10 +57,10 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
         </Folder>
       </Folder>
-      <Folder Name="Compiler" TargetFolderName="Compiler">        
+      <Folder Name="Compiler" TargetFolderName="Compiler">
         <Folder Name="Preprocess" TargetFolderName="Preprocess">
           <ProjectItem ReplaceParameters="true" TargetFileName="RazorPreCompilation.cs">RazorPreCompilation.cs</ProjectItem>
-        </Folder>       
+        </Folder>
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
         <Folder Name="css" TargetFolderName="css">
