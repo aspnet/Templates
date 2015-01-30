@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TemplateDefinition Name="ProjectK" Order="8000">
   <UI>
-    <Template Name="ASP.NET 5 Empty" BaseTemplateID="Microsoft.ProjectK.CSharp.EmptyWeb" Order="8010">
+    <Template Name="ASP.NET 5 Preview Empty" BaseTemplateID="Microsoft.ProjectK.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Summary>
-      <Description>An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Description>
+      <Summary>An empty project template for creating ASP.NET 5 Preview application. This template does not have any content in it.</Summary>
+      <Description>An empty project template for creating ASP.NET 5 Preview application. This template does not have any content in it.</Description>
       <UIFilters>ProjectK</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
@@ -14,11 +14,11 @@
       </Options>
     </Template>
 
-    <Template Name="ASP.NET 5 Starter Web" BaseTemplateID="Microsoft.ProjectK.CSharp.StarterWeb" Order="8020">
+    <Template Name="ASP.NET 5 Preview Starter Web" BaseTemplateID="Microsoft.ProjectK.CSharp.StarterWeb" Order="8020">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
-      <Description>A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
+      <Summary>A project template for creating an ASP.NET 5 Preview application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
+      <Description>A project template for creating an ASP.NET 5 Preview application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
       <UIFilters>ProjectK</UIFilters>
       <Options>
         <Authentication Default="IndividualAuth">
@@ -27,7 +27,7 @@
       </Options>
     </Template>
 
-    <Template Name="ASP.NET 5 Web API" BaseTemplateID="Microsoft.ProjectK.CSharp.WebAPI" Order="8030">
+    <Template Name="ASP.NET 5 Preview Web API" BaseTemplateID="Microsoft.ProjectK.CSharp.WebAPI" Order="8030">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
       <Summary>A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Summary>

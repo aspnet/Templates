@@ -3,7 +3,7 @@
     "dependencies": {
     },
     "commands": { 
-        "run" : "$safeprojectname$"
+        "$safeprojectname$" : "run"
     },
     "frameworks" : {
         "aspnet50" : { },
