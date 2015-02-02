@@ -69,8 +69,8 @@
         <Folder Name="images" TargetFolderName="images">
           <ProjectItem ReplaceParameters="false" TargetFileName="Banner-01-Azure.png">Banner-01-Azure.png</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="Banner-02-VS.png">Banner-02-VS.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-03-ASP.png">Banner-03-ASP.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-04-Packages.png">Banner-04-Packages.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ASP-NET-Banners-01.png">ASP-NET-Banners-01.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ASP-NET-Banners-02.png">ASP-NET-Banners-02.png</ProjectItem>
         </Folder>
         <Folder Name="lib" TargetFolderName="lib">
           <Folder Name="bootstrap" TargetFolderName="bootstrap">
