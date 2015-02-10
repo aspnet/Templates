@@ -38,6 +38,6 @@ call tools\BuildAndVerify.cmd /t:%SCRIPTARGS%
 
 CALL packages\KoreBuild\build\kvm use default -runtime CLR -x86
 pushd test
-..\packages\Sake\tools\Sake.exe -I ..\packages\KoreBuild\build -f makefile.shade
+REM ..\packages\Sake\tools\Sake.exe -I ..\packages\KoreBuild\build -f makefile.shade
 popd
 
