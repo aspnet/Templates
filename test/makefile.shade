@@ -20,9 +20,10 @@ use-standard-lifecycle
 
 #repo-initialize target='initialize'
 default restore_options='${E("KPM_restore_options")}'
+default package_source='${E("PackageSource")}'
 
-exec program='cmd' commandline='/C kpm restore${restore_options}' if='!IsMono'
-exec program='kpm' commandline='restore${restore_options}' if='IsMono'
+exec program='cmd' commandline='/C kpm restore${restore_options} -f ${package_source}' if='!IsMono'
+exec program='kpm' commandline='restore${restore_options} -f ${package_source}' if='IsMono'
 
 #xunit-test target='test'
   k-test each='var projectFile in Files.Include("**/project.json")'

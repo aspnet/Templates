@@ -34,10 +34,5 @@ CALL packages\KoreBuild\build\kvm upgrade -runtime CLR -x86
 CALL packages\KoreBuild\build\kvm install default -runtime CoreCLR -x86 
  
 :run 
-call tools\BuildAndVerify.cmd /t:%SCRIPTARGS%
-
 CALL packages\KoreBuild\build\kvm use default -runtime CLR -x86
-pushd test
-REM ..\packages\Sake\tools\Sake.exe -I ..\packages\KoreBuild\build -f makefile.shade
-popd
-
+CALL tools\BuildAndVerify.cmd /t:%SCRIPTARGS%
