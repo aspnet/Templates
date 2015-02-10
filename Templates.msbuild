@@ -31,6 +31,7 @@
     <ItemGroup>
       <ProjectsToBuild Include="dirs.proj"/>
     </ItemGroup>
+    <Message Text="Coherence Build = '$(CoherenceBuildNumber)'"/>
     <MakeDir Directories="$(TemplatesBin)"/>
     <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
   </Target>
