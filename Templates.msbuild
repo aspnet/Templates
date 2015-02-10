@@ -10,7 +10,7 @@
   </Target> 
 
   <Target Name="UnitTest">
-    <Exec Command="SET PackageSource=$(PackageSource) &amp; test\runTests.cmd"/>
+    <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>
   </Target>
 
   <Target Name="Build">

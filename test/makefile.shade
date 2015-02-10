@@ -22,8 +22,8 @@ use-standard-lifecycle
 default restore_options='${E("KPM_restore_options")}'
 default package_source='${E("PackageSource")}'
 
-exec program='cmd' commandline='/C kpm restore${restore_options} -f ${package_source}' if='!IsMono'
-exec program='kpm' commandline='restore${restore_options} -f ${package_source}' if='IsMono'
+exec program='cmd' commandline='/C kpm restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='!IsMono'
+exec program='kpm' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono'
 
 #xunit-test target='test'
   k-test each='var projectFile in Files.Include("**/project.json")'
