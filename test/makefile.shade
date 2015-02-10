@@ -1,0 +1,33 @@
+use assembly="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+use namespace="System"
+use namespace="System.IO"
+use import="Files"
+use import="BuildEnv"
+use import="Environment"
+
+default BASE_DIR='${Directory.GetCurrentDirectory()}\..'
+default TARGET_DIR='${Path.Combine(BASE_DIR, "artifacts")}'
+default BUILD_DIR='${Path.Combine(TARGET_DIR, "build")}'
+default TEST_DIR='${Path.Combine(TARGET_DIR, "test")}'
+default TEMPLATE_DIR='${Path.Combine(BUILD_DIR, "test")}'
+default Configuration='${E("Configuration")}'
+
+var VERSION='0.1' 
+var FULL_VERSION='0.1' 
+var AUTHORS='Microsoft Open Technologies, Inc.' 
+ 
+use-standard-lifecycle
+
+#repo-initialize target='initialize'
+default restore_options='${E("KPM_restore_options")}'
+
+exec program='cmd' commandline='/C kpm restore${restore_options}' if='!IsMono'
+exec program='kpm' commandline='restore${restore_options}' if='IsMono'
+
+#xunit-test target='test'
+  k-test each='var projectFile in Files.Include("**/project.json")'
+
+functions @{
+    string E(string key) { return Environment.GetEnvironmentVariable(key); }
+    void E(string key, string value) { Environment.SetEnvironmentVariable(key, value); }
+}

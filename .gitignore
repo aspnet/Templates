@@ -1,3 +1,7 @@
-intermediate/**
-bin/**
-artifacts/**
+**/intermediate/**
+**/bin/**
+**/artifacts/**
+packages/**
+.nuget/**
+**/.vs/**
+*.user

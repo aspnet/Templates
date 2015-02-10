@@ -20,7 +20,7 @@
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
   </ItemGroup>
-
+  
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
     <PropertyGroup>
       <TargetName>%(TemplatesToVerify.Filename)</TargetName>
@@ -58,7 +58,7 @@
     <Message Text="Running $(KpmBuildCommand) on $(TestPath)"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" />
   </Target>
-  
+
   <Target Name="VerifyTemplates">
     <MakeDir Directories="$(TemplatesTestPath)" />
     <CallTarget Targets="ExtractAllTemplates" />
