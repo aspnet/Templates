@@ -10,6 +10,10 @@ IF "%*"=="" (
   SET SCRIPTARGS=%*
 )
 
+IF "%BUILD_BRANCH%"=="" (
+  SET BUILD_BRANCH=dev
+)
+
 IF EXIST %CACHED_NUGET% goto copynuget 
 echo Downloading latest version of NuGet.exe... 
 IF NOT EXIST %LocalAppData%\NuGet md %LocalAppData%\NuGet 
@@ -22,7 +26,7 @@ copy %CACHED_NUGET% .nuget\nuget.exe > nul
  
 :restore 
 IF EXIST packages\KoreBuild goto run 
-.nuget\NuGet.exe install KoreBuild -ExcludeVersion -o packages -nocache -pre 
+.nuget\NuGet.exe install KoreBuild -ExcludeVersion -o packages -nocache -pre -Source \\projectk-tc\Drops\Universe\%BUILD_BRANCH%\Latest\build
 .nuget\NuGet.exe install Sake -version 0.2 -o packages -ExcludeVersion
  
 IF "%SKIP_KRE_INSTALL%"=="1" goto run 

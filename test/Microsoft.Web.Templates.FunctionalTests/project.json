@@ -5,7 +5,6 @@
     },
     "dependencies": {
         "Microsoft.AspNet.TestHost": "1.0.0-*",
-        "Microsoft.AspNet.PipelineCore": "1.0.0-*",
         "Microsoft.AspNet.Mvc": "6.0.0-*",
         "Microsoft.AspNet.Mvc.Razor": "6.0.0-*",
         "Microsoft.AspNet.Hosting": "1.0.0-*",
