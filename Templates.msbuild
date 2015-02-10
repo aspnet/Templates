@@ -1,6 +1,9 @@
 <Project DefaultTargets="Verify" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="Templates.Settings.targets" />
-  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest"/>
+  <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
+
+
+  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList"/>
 
   <Target Name="VerifyTemplates" DependsOnTargets="Build">
      <ItemGroup>
@@ -11,6 +14,17 @@
 
   <Target Name="UnitTest">
     <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>
+  </Target>
+  
+  <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)">
+    <Exec Command="kpm list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
+  </Target>
+  
+  <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList">
+    <ItemGroup>
+      <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
+    </ItemGroup>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" ExcludedPackagesList="$(ExcludedPackages)"/>
   </Target>
 
   <Target Name="Build">

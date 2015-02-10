@@ -1,0 +1,5 @@
+-ClassLibrary
+-StarterWeb
+-ConsoleApp
+-EmptyWeb
+-WebAPI

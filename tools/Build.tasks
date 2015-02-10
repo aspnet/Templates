@@ -1,0 +1,97 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask
+        TaskName="GetDependencyListForTemplates"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <DependencyList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <MergedDependencyList ParameterType="System.String" Required="True" />
+            <ExcludedPackagesList ParameterType="System.String" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {   
+                    List<string> packages = new List<string>();
+                    List<string> excludedPackages = new List<string>();
+                    
+                    if (!string.IsNullOrEmpty(ExcludedPackagesList))
+                    {
+                        Log.LogMessage("Using ExludedPackagesList: {0}", ExcludedPackagesList);
+                        using (var packageReference = File.OpenText(ExcludedPackagesList))
+                        {
+                            while (!packageReference.EndOfStream)
+                            {
+                                string line = packageReference.ReadLine();
+                                string packageName = line.Substring(1);
+                                if (line.StartsWith("+"))
+                                {
+                                    packages.Add(packageName);
+                                }
+                                else if (line.StartsWith("-"))
+                                {
+                                    excludedPackages.Add(packageName);
+                                }
+                            }
+                        }
+                    }
+                    
+                    foreach(var list in DependencyList)
+                    {
+                        string fileName = list.ItemSpec;
+                        Log.LogMessage("Opening {0}", fileName);
+
+                        using (var file = File.OpenText(fileName))
+                        {
+                            while (!file.EndOfStream)
+                            {
+                                string line = file.ReadLine().Trim();
+                                if (line.StartsWith("[") || line.StartsWith("->") || line.EndsWith(")"))
+                                {
+                                    continue;
+                                }
+                                string[] parts = line.Trim().Split();
+                                string packageName = parts[0].Trim();
+                                
+                                Log.LogMessage("Evaluating {0}", packageName);
+
+                                if (parts.Length == 2 && !excludedPackages.Contains(packageName)
+                                    && !packageName.StartsWith("framework/"))
+                                {
+                                    Log.LogMessage("--> Added {0}", packageName);
+                                    packages.Add(packageName);
+                                }
+                            }
+                        }
+                    }
+
+                    Log.LogMessage("Writing {0}", MergedDependencyList);
+
+                    using (var outFile = System.IO.File.CreateText(MergedDependencyList))
+                    {
+                        foreach (var package in packages.Distinct())
+                        {
+                            outFile.WriteLine(package);
+                        }
+                        outFile.Flush();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Generating Dependency List");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>    
+</Project>     

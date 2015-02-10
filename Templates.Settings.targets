@@ -28,6 +28,12 @@
         <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ExcludedPackages>$(MSBuildThisFileDirectory)\ExcludedPackages.txt</ExcludedPackages>
+        <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
+        <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
+    </PropertyGroup>
+
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
         <!-- Visual Studio 14 properties -->
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
@@ -43,4 +49,12 @@
         <IntermediateOutputPath>$(TemplatesIntermediate)</IntermediateOutputPath>
         <BaseIntermediateOutputPath>$(TemplatesIntermediate)</BaseIntermediateOutputPath>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <TestTemplates Include="$(TemplatesBin)\test\ClassLibrary"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb"/>
+        <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
+        <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
+        <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
+    </ItemGroup>
 </Project>
