@@ -2,7 +2,6 @@
   <Import Project="Templates.Settings.targets" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
 
-
   <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList"/>
 
   <Target Name="VerifyTemplates" DependsOnTargets="Build">
@@ -25,8 +24,9 @@
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
     <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" ExcludedPackagesList="$(ExcludedPackages)"/>
+    <WriteLinesToFile File="$(CoherenceDropFile)" Lines="$(RemoteCoherencePackageSource)" Overwrite="True"/>
   </Target>
-
+  
   <Target Name="Build">
     <ItemGroup>
       <ProjectsToBuild Include="dirs.proj"/>
