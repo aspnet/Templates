@@ -88,7 +88,7 @@ namespace Microsoft.Web.Templates.FunctionalTests
             Assert.Contains("mailto:Support@example.com", reponseContent);
         }
 
-        [Fact]
+        //[Fact]
         public async void Verify_Account_Register_Get()
         {
             var server = TestServer.Create(_provider, _app);
@@ -103,7 +103,7 @@ namespace Microsoft.Web.Templates.FunctionalTests
             Assert.Contains("Create a new account.", reponseContent);
         }
 
-        [Fact]
+        //[Fact]
         public async void Verify_Account_Login_Invalid()
         {
             var server = TestServer.Create(_provider, _app);
