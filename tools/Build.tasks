@@ -65,8 +65,10 @@
                                 if (parts.Length == 2 && !excludedPackages.Contains(packageName)
                                     && !packageName.StartsWith("framework/"))
                                 {
-                                    Log.LogMessage("--> Added {0}", packageName);
-                                    packages.Add(packageName);
+                                    string packageVersion = parts[1].Trim();
+                                    string packageToAdd = string.Format("{0}.{1}.nupkg", packageName, packageVersion);
+                                    Log.LogMessage("--> Added {0}", packageToAdd);
+                                    packages.Add(packageToAdd);
                                 }
                             }
                         }
