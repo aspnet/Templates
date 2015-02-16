@@ -11,6 +11,7 @@
         <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)\artifacts\build</TemplatesBin>
         <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)\intermediate</TemplatesIntermediate>
         <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)\references</TemplatesReferences>
+        <TemplatesReferencePackages Condition=" '$(TemplatesReferencePackages)' == '' ">$(TemplatesRoot)\references\packages</TemplatesReferencePackages>
         <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)\src</TemplatesSource>
         <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)\test</TemplatesTest>
         <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)\tools</TemplatesTools>

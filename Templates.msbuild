@@ -2,7 +2,7 @@
   <Import Project="Templates.Settings.targets" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
 
-  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList"/>
+  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList;PublishReferencePackages"/>
 
   <Target Name="VerifyTemplates" DependsOnTargets="Build">
      <ItemGroup>
@@ -25,6 +25,18 @@
     </ItemGroup>
     <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" ExcludedPackagesList="$(ExcludedPackages)"/>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="$(RemoteCoherencePackageSource)" Overwrite="True"/>
+  </Target>
+  
+  <Target Name="PublishReferencePackages">
+    <ItemGroup>
+      <ReferencePackage Include="$(TemplatesReferencePackages)\Ix-Async.1.2.3.nupkg"/>
+      <ReferencePackage Include="$(TemplatesReferencePackages)\Remotion.Linq.2.0.0-alpha-002.nupkg"/>
+      <ReferencePackage Include="$(TemplatesReferencePackages)\System.Collections.Immutable.1.1.33-beta.nupkg"/>
+      <ReferencePackage Include="$(TemplatesReferencePackages)\System.Reflection.Metadata.1.0.18-beta.nupkg"/>
+    </ItemGroup>
+    <RemoveDir Directories="$(TemplatesBin)\ExternalPackages" Condition="Exists('$(TemplatesBin)\ExternalPackages')"/>
+    <MakeDir Directories="$(TemplatesBin)\ExternalPackages"/>
+    <Copy SourceFiles="@(ReferencePackage)" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
   </Target>
   
   <Target Name="Build">
