@@ -5,3 +5,4 @@ packages/**
 .nuget/**
 **/.vs/**
 *.user
+project.lock.json
