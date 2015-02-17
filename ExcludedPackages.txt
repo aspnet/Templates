@@ -12,6 +12,7 @@
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.Xml.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
++Microsoft.AspNet.PageExecutionInstrumentation.*
 +Microsoft.AspNet.Security.OAuthBearer.*
 +Microsoft.AspNet.Security.OpenIdConnect.*
 +Microsoft.AspNet.SignalR.SqlServer.*
