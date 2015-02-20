@@ -67,6 +67,10 @@
                                 {
                                     string packageVersion = parts[1].Trim();
                                     string packageToAdd = string.Format("{0}.{1}.nupkg", packageName, packageVersion);
+                                    if (packageToAdd.StartsWith("*"))
+                                    {
+                                        packageToAdd = packageToAdd.Substring(1);
+                                    }
                                     Log.LogMessage("--> Added {0}", packageToAdd);
                                     packages.Add(packageToAdd);
                                 }
