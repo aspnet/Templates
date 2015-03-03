@@ -11,7 +11,7 @@ namespace Microsoft.Web.Templates.FunctionalTests
             get; set;
         }
 
-        public string WebRoot
+        public string WebRootPath
         {
             get; internal set;
         }

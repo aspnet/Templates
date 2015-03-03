@@ -9,12 +9,12 @@
 +kre.coreclr.managed.*
 +kre.host.*
 +kre.hosting.*
++Microsoft.AspNet.Authentication.OAuthBearer.*
++Microsoft.AspNet.Authentication.OpenIdConnect.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.Xml.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
 +Microsoft.AspNet.PageExecutionInstrumentation.*
-+Microsoft.AspNet.Security.OAuthBearer.*
-+Microsoft.AspNet.Security.OpenIdConnect.*
 +Microsoft.AspNet.SignalR.SqlServer.*
 +Microsoft.AspNet.SignalR.Client.Cpp.*
 +Microsoft.AspNet.SignalR.Redis.*
