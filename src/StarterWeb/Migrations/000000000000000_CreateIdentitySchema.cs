@@ -58,7 +58,7 @@ namespace $safeprojectname$.Migrations
                     Id = x.Column("int", annotations: new Dictionary<string, string> { { "SqlServer:ValueGeneration", "Identity" } }),
                     RoleId = x.Column("nvarchar(450)", nullable: true)})
                 .PrimaryKey(x => x.Id, name: "PK_AspNetRoleClaims")
-                .ForeignKey(x => x.RoleId, "AspNetRoles", "Id", name: "FK_AspNetRoleClaims_AspNetRoles_RoleId");
+                .ForeignKey(x => x.RoleId, "AspNetRoles", principalColumns: new string[] { "Id" }, name: "FK_AspNetRoleClaims_AspNetRoles_RoleId");
             migrationBuilder.CreateTable(
                 "AspNetUserClaims",
                 x => new
@@ -68,7 +68,7 @@ namespace $safeprojectname$.Migrations
                     Id = x.Column("int", annotations: new Dictionary<string, string> { { "SqlServer:ValueGeneration", "Identity" } }),
                     UserId = x.Column("nvarchar(450)", nullable: true)})
                 .PrimaryKey(x => x.Id, name: "PK_AspNetUserClaims")
-                .ForeignKey(x => x.UserId, "AspNetUsers", "Id", name: "FK_AspNetUserClaims_AspNetUsers_UserId");
+                .ForeignKey(x => x.UserId, "AspNetUsers", principalColumns: new string[] { "Id" }, name: "FK_AspNetUserClaims_AspNetUsers_UserId");
             migrationBuilder.CreateTable(
                 "AspNetUserLogins",
                 x => new
@@ -78,7 +78,7 @@ namespace $safeprojectname$.Migrations
                     ProviderKey = x.Column("nvarchar(450)", nullable: true),
                     UserId = x.Column("nvarchar(450)", nullable: true)})
                 .PrimaryKey(x => new { x.LoginProvider, x.ProviderKey }, name: "PK_AspNetUserLogins")
-                .ForeignKey(x => x.UserId, "AspNetUsers", "Id", name: "FK_AspNetUserLogins_AspNetUsers_UserId");
+                .ForeignKey(x => x.UserId, "AspNetUsers", principalColumns: new string[] { "Id" }, name: "FK_AspNetUserLogins_AspNetUsers_UserId");
         }
         
         public override void Down(MigrationBuilder migrationBuilder)
