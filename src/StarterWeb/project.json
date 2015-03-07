@@ -1,4 +1,4 @@
-﻿{
+{
     /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
     "webroot": "wwwroot",
     "version": "1.0.0-*",
@@ -44,7 +44,7 @@
         "**.vspscc"
     ],
     "scripts": {
-        "postrestore": [ "npm install" ],
-        "prepare": [ "grunt bower:install" ]
+        "postrestore": [ "npm install", "bower install" ],
+        "prepare": [ "gulp copy" ]
     }
 }
