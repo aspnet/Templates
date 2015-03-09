@@ -3,6 +3,12 @@
 -ConsoleApp
 -EmptyWeb
 -WebAPI
++dnx-clr-win-*
++dnx-coreclr-win-*
++dnx.clr.managed.*
++dnx.coreclr.managed.*
++dnx.host.*
++dnx.hosting.*
 +kre-clr-win-*
 +kre-coreclr-win-*
 +kre.clr.managed.*
