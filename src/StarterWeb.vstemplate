@@ -764,9 +764,6 @@
                 <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-                <Folder Name="bin" TargetFolderName="bin">
-                    <ProjectItem ReplaceParameters="false" TargetFileName="gulp.js">gulp.js</ProjectItem>
-                </Folder>
                 <Folder Name="completion" TargetFolderName="completion">
                     <ProjectItem ReplaceParameters="false" TargetFileName="bash">bash</ProjectItem>
                     <ProjectItem ReplaceParameters="false" TargetFileName="fish">fish</ProjectItem>
@@ -853,9 +850,6 @@
                     <Folder Name="dateformat" TargetFolderName="dateformat">
                         <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
                         <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-                        <Folder Name="bin" TargetFolderName="bin">
-                            <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
-                        </Folder>
                         <Folder Name="lib" TargetFolderName="lib">
                             <ProjectItem ReplaceParameters="false" TargetFileName="dateformat.js">dateformat.js</ProjectItem>
                         </Folder>
@@ -1142,9 +1136,6 @@
                         <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
                         <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
                         <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-                        <Folder Name="bin" TargetFolderName="bin">
-                            <ProjectItem ReplaceParameters="false" TargetFileName="cmd.js">cmd.js</ProjectItem>
-                        </Folder>
                     </Folder>
                     <Folder Name="multipipe" TargetFolderName="multipipe">
                         <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -1224,9 +1215,6 @@
                         <ProjectItem ReplaceParameters="false" TargetFileName="semver.browser.js">semver.browser.js</ProjectItem>
                         <ProjectItem ReplaceParameters="false" TargetFileName="semver.js">semver.js</ProjectItem>
                         <ProjectItem ReplaceParameters="false" TargetFileName="semver.min.js">semver.min.js</ProjectItem>
-                        <Folder Name="bin" TargetFolderName="bin">
-                            <ProjectItem ReplaceParameters="false" TargetFileName="semver">semver</ProjectItem>
-                        </Folder>
                     </Folder>
                     <Folder Name="sequencify" TargetFolderName="sequencify">
                         <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
