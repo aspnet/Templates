@@ -53,6 +53,8 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
+    <Message Text="Installing gulp on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="npm install gulp" />
     <Message Text="Running $(KpmRestoreCommand) on $(TestPath)"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" />
     <Message Text="Running $(KpmBuildCommand) on $(TestPath)"/>
