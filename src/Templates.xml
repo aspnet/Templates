@@ -22,6 +22,7 @@
       <UIFilters>ProjectK</UIFilters>
       <Options>
         <Authentication Default="IndividualAuth">
+          <NoAuth />
           <IndividualAuth />
         </Authentication>
       </Options>
@@ -48,10 +49,35 @@
 
     <BaseTemplate ID="Microsoft.ProjectK.CSharp.StarterWeb"
               VSTemplatePath="KStarterWeb.vstemplate">
+        <ApplyRules Option="IndividualAuth">
+              <RunRule RuleID="StarterWebCommonAuth" />
+              <RunRule RuleID="StarterWebIndividualAuth" />
+        </ApplyRules>
     </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.ProjectK.CSharp.WebAPI"
               VSTemplatePath="KWebAPI.vstemplate">
     </BaseTemplate>
   </BaseTemplates>
+  
+  <Rules>
+      <Rule ID="StarterWebCommonAuth">
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
+      </Rule>
+      <Rule ID="StarterWebIndividualAuth">
+          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
+          <AddFile Destination="Migrations\000000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\000000000000000_CreateIdentitySchema.cs"/>
+          <AddFile Destination="Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs"/>
+          <AddFile Destination="Models\AccountViewModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs"/>
+          <AddFile Destination="Models\IdentityModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs"/>
+          <AddFile Destination="Views\Account\_ChangePasswordPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\_ChangePasswordPartial.cshtml"/>
+          <AddFile Destination="Views\Account\Login.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml"/>
+          <AddFile Destination="Views\Account\Manage.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Manage.cshtml"/>
+          <AddFile Destination="Views\Account\Register.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml"/>
+          <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\IndividualAuth\config.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
+      </Rule>
+  </Rules>
 </TemplateDefinition>

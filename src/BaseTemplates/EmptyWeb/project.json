@@ -2,7 +2,7 @@
     "webroot": "wwwroot",
     "version": "1.0.0-*",
     "dependencies": {
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta2-*"
+        "Microsoft.AspNet.Server.IIS": "{version}"
     },
     "frameworks": {
         "dnx451": { },

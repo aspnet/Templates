@@ -13,7 +13,8 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <UpdateJsonCommand>$(MSBuildThisFileDirectory)\updateJson.cmd</UpdateJsonCommand>
+    <UpdateJsonCommand>$(MSBuildThisFileDirectory)\..\updateJson.cmd</UpdateJsonCommand>
+    <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.GetVSTemplateItems" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks2.dll" />
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
@@ -31,74 +32,33 @@
   <ItemGroup>
     <VSTemplate Include="ClassLibrary.vstemplate">
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
-      <SearchPath>ClassLibrary\;Resources\</SearchPath>
+      <SearchPath>ClassLibrary\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="KClassLibrary.vstemplate">
       <TargetName>KClassLibrary</TargetName>
-      <SearchPath>Resources\</SearchPath>
+      <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
-      <SearchPath>ConsoleApp\;Resources\</SearchPath>
+      <SearchPath>ConsoleApp\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="KConsoleApp.vstemplate">
       <TargetName>KConsoleApp</TargetName>
-      <SearchPath>Resources\</SearchPath>
+      <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>      
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
-      <SearchPath>EmptyWeb\;Resources\</SearchPath>
+      <SearchPath>EmptyWeb\;$(ResourcesPath)</SearchPath>
     </VSTemplate>    
     <VSTemplate Include="StarterWeb.vstemplate">
       <TargetName>$(StarterWebTemplateName)</TargetName>
-      <SearchPath>StarterWeb\;Resources\</SearchPath>
+      <SearchPath>StarterWeb\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="WebAPI.vstemplate">
       <TargetName>$(WebAPITemplateName)</TargetName>
-      <SearchPath>WebAPI\;Resources\</SearchPath>
+      <SearchPath>WebAPI\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
   </ItemGroup>
-  
-  <ItemGroup>
-    <LooseFiles Include="
-              Templates.xml;
-              KStarterWeb.vstemplate;
-              KEmptyWeb.vstemplate;
-              KWebAPI.vstemplate;
-              Resources\WebProject.png">
-      <TargetName>$(Rules)</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-  </ItemGroup>
-  
-  <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
-    <PropertyGroup>
-      <TargetName>%(LooseFiles.TargetName)</TargetName>
-      <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>
-    </PropertyGroup>
-    <RemoveDir Directories="$(TempPath)" />
-
-    <ItemGroup>
-      <LooseFilesToCopy Include="@(LooseFiles)" Condition="'%(TargetName)' == '$(TargetName)'"/>
-    </ItemGroup>
-
-    <Copy SourceFiles="@(LooseFilesToCopy->'%(SearchPath)\%(Identity)')" DestinationFiles="@(LooseFilesToCopy->'$(TempPath)%(Identity)')">
-      <Output ItemName="CopiedLooseFiles" TaskParameter="CopiedFiles" />
-    </Copy>
-
-    <ItemGroup>
-      <FilesToReplace Remove="@(FilesToReplace)" />
-      <FilesToReplace Include="@(CopiedLooseFiles)" />
-    </ItemGroup>
-
-    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
-
-    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta3" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
-
-    <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
-    <Message Text="$(TargetName).zip" Importance="high" />
-  </Target>
   
   <Target Name="BuildAllTemplates" DependsOnTargets="GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
@@ -141,7 +101,6 @@
   <Target Name="BuildCompiled">
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="BuildAllTemplates" />
-    <CallTarget Targets="BuildLooseFiles" />
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />

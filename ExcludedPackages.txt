@@ -9,12 +9,6 @@
 +dnx.coreclr.managed.*
 +dnx.host.*
 +dnx.hosting.*
-+kre-clr-win-*
-+kre-coreclr-win-*
-+kre.clr.managed.*
-+kre.coreclr.managed.*
-+kre.host.*
-+kre.hosting.*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Authentication.OpenIdConnect.*
 +Microsoft.AspNet.Diagnostics.Elm.*

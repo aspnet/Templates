@@ -9,16 +9,41 @@
     <KpmBuildCommand>kpm build</KpmBuildCommand>
     <KpmRestoreCommand>kpm restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</KpmRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
+    <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  
+  <ItemDefinitionGroup>
+    <TemplatesToVerify>
+      <IsRulesPackage>false</IsRulesPackage>
+    </TemplatesToVerify>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <RulesToVerify>
+      <BaseTemplate/>
+      <AdditionalRuleFiles/>
+    </RulesToVerify>
+  </ItemDefinitionGroup>
+  
   <ItemGroup>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\Rules.zip">
+        <IsRulesPackage>true</IsRulesPackage>
+    </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip"/>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <AdditionalRuleFiles>CommonAuth\**\*.*</AdditionalRuleFiles>
+    </RulesToVerify>
   </ItemGroup>
   
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
@@ -43,7 +68,53 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
   </Target>
   
+  <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(Filename)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+    <PropertyGroup>
+      <TargetName>%(RulesToVerify.BaseTemplate).%(RulesToVerify.Filename)</TargetName>
+      <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
+      <AdditionalRuleFiles>%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles)</AdditionalRuleFiles>
+      <RuleFiles>%(RulesToVerify.Identity)\**\*.*</RuleFiles>
+    </PropertyGroup>
+    <RemoveDir Directories="$(TestPath)" />
+    <MakeDir Directories="$(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)\ProjectTemplates\%(RulesToVerify.BaseTemplate).zip * &gt; nul" />
+
+    <ItemGroup>
+      <ExtractedFiles Include="$(TestPath)\**\*.*"/>
+    </ItemGroup>
+
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="MyApplication" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="src" />
+
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="MyApplication" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
+    
+    <ItemGroup>
+      <ItemsToCopy Include="$(AdditionalRuleFiles)" Condition="'$(AdditionalRuleFiles)' != ''"/>
+      <ItemsToCopy Include="$(RuleFiles)" Condition="'$(RuleFiles)' != ''"/>
+    </ItemGroup> 
+
+    <Copy SourceFiles="@(ItemsToCopy)" DestinationFiles="@(ItemsToCopy->'$(TestPath)%(RecursiveDir)%(Filename)%(Extension)')" Condition="'@(ItemsToCopy)' != ''"/>
+
+    <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
+      <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
+    </GetDotNetFolder>
+
+    <Exec WorkingDirectory="$(TestPath)" Command="npm install -g gulp" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
+
+  </Target>
+  
   <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+    <PropertyGroup>
+      <IsTemplate>false</IsTemplate>
+      <IsTemplate Condition="'%(TemplatesToVerify.IsRulesPackage)' == 'false'">true</IsTemplate>
+    </PropertyGroup>
     <PropertyGroup>
       <TargetName>%(TemplatesToVerify.Filename)</TargetName>
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
@@ -53,17 +124,19 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Exec WorkingDirectory="$(TestPath)" Command="npm install -g gulp" />
-    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" />
-    <Message Text="Running $(KpmBuildCommand) on $(TestPath)"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="npm install -g gulp" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
   </Target>
 
   <Target Name="VerifyTemplates">
     <MakeDir Directories="$(TemplatesTestPath)" />
     <CallTarget Targets="ExtractAllTemplates" />
     <CallTarget Targets="CompileTemplates" />
+    <CallTarget Targets="CompileRules" />
+
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesTestPath)" />
