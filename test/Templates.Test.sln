@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22416.0
+VisualStudioVersion = 14.0.22605.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.Templates.FunctionalTests", "Microsoft.Web.Templates.FunctionalTests\Microsoft.Web.Templates.FunctionalTests.kproj", "{05C5E8B6-5729-4506-97FF-16570B232040}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.Templates.FunctionalTests", "Microsoft.Web.Templates.FunctionalTests\Microsoft.Web.Templates.FunctionalTests.xproj", "{05C5E8B6-5729-4506-97FF-16570B232040}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNet.Mvc.TestConfiguration", "Microsoft.AspNet.Mvc.TestConfiguration\Microsoft.AspNet.Mvc.TestConfiguration.kproj", "{680D75ED-601F-4D86-B01B-1072D0C31B8C}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.AspNet.Mvc.TestConfiguration", "Microsoft.AspNet.Mvc.TestConfiguration\Microsoft.AspNet.Mvc.TestConfiguration.xproj", "{680D75ED-601F-4D86-B01B-1072D0C31B8C}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "StarterWeb", "..\artifacts\build\Test\StarterWeb\StarterWeb.kproj", "{80252DCA-8071-4627-931A-3F4B2EB301D1}"
 EndProject

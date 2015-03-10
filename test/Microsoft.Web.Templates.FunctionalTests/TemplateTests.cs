@@ -8,7 +8,6 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.FunctionalTests;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.DependencyInjection.Fallback;
 using Microsoft.Framework.DependencyInjection.ServiceLookup;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Runtime;
@@ -75,7 +74,7 @@ namespace Microsoft.Web.Templates.FunctionalTests
         }
 
         // TODO: Kill this code
-        private static IServiceProvider BuildFallbackServiceProvider(IEnumerable<IServiceDescriptor> services, IServiceProvider fallback)
+        private static IServiceProvider BuildFallbackServiceProvider(IEnumerable<ServiceDescriptor> services, IServiceProvider fallback)
         {
             var sc = HostingServices.Create(fallback);
             sc.Add(services);

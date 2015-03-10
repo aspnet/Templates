@@ -10,7 +10,6 @@ using MyApplication;
 using Xunit;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.Logging;
-using Microsoft.AspNet.Authentication.Cookies;
 using System.Net;
 using System.Net.Http;
 using System.Collections.Generic;
