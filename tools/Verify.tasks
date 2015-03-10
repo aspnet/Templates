@@ -14,8 +14,9 @@
                 <![CDATA[
                 try
                 {
+                    string runtimeRoot = ".dnx";
                     string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    string defaultAlias = Path.Combine(userProfile, ".dotnet", "alias", "default.txt");
+                    string defaultAlias = Path.Combine(userProfile, runtimeRoot, "alias", "default.txt");
 
                     if (!File.Exists(defaultAlias))
                     {
@@ -26,8 +27,8 @@
                         using (var file = File.OpenText(defaultAlias))
                         {
                             string runtime = file.ReadToEnd().Trim();
-                            Log.LogMessage(@"Checking for runtime folder at {0}\.dotnet\runtimes\{1}\bin", userProfile, runtime);
-                            var runtimeBin = Path.Combine(userProfile, ".dotnet", "runtimes", runtime, "bin");
+                            Log.LogMessage(@"Checking for runtime folder at {0}\{1}\runtimes\{2}\bin", userProfile, runtimeRoot, runtime);
+                            var runtimeBin = Path.Combine(userProfile, runtimeRoot, "runtimes", runtime, "bin");
                             if (!Directory.Exists(runtimeBin))
                             {
                                 Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);

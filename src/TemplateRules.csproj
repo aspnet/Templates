@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
+  <PropertyGroup>
+    <ProjectGuid>{c14a0c12-e46e-4f5b-b034-3038d0fc1010}</ProjectGuid>
+    <ZipCommand>$(TemplatesTools)\7za.exe a -r</ZipCommand>
+    <UnZipCommand>$(TemplatesTools)\7za.exe x</UnZipCommand>
+    <Rules>Rules</Rules>
+    <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
+    <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
+    <UpdateJsonCommand>$(MSBuildThisFileDirectory)\updateJson.cmd</UpdateJsonCommand>
+  </PropertyGroup>
+  <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  
+  <ItemGroup>
+    <LooseFiles Include="
+              Templates.xml;
+              Resources\WebProject.png">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+    <LooseFiles Include="
+              KStarterWeb.vstemplate;
+              KEmptyWeb.vstemplate;
+              KWebAPI.vstemplate">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\BaseTemplates</SearchPath>
+    </LooseFiles>
+    
+    <!-- StarterWeb Common Auth Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Individual Auth Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\000000000000000_CreateIdentitySchema.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
+              Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs;
+              Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs;
+              Rules\StarterWeb\IndividualAuth\Views\Account\_ChangePasswordPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Manage.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\config.json;
+              Rules\StarterWeb\IndividualAuth\project.json;
+              Rules\StarterWeb\IndividualAuth\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+    
+  </ItemGroup>
+  
+  <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
+    <PropertyGroup>
+      <TargetName>%(LooseFiles.TargetName)</TargetName>
+      <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>
+    </PropertyGroup>
+    <RemoveDir Directories="$(TempPath)" />
+
+    <ItemGroup>
+      <LooseFilesToCopy Include="@(LooseFiles)" Condition="'%(TargetName)' == '$(TargetName)'"/>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(LooseFilesToCopy->'%(SearchPath)\%(Identity)')" DestinationFiles="@(LooseFilesToCopy->'$(TempPath)%(Identity)')">
+      <Output ItemName="CopiedLooseFiles" TaskParameter="CopiedFiles" />
+    </Copy>
+
+    <ItemGroup>
+      <FilesToReplace Remove="@(FilesToReplace)" />
+      <FilesToReplace Include="@(CopiedLooseFiles)" />
+    </ItemGroup>
+
+    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
+
+    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta3" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
+
+    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />  
+
+    <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
+    <Message Text="$(TargetName).zip" Importance="high" />
+  </Target>
+  
+  <Target Name="BuildCompiled">
+    <MakeDir Directories="$(TemplatesOutputPath)" />
+    <CallTarget Targets="BuildLooseFiles" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="BuildCompiled" />
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>

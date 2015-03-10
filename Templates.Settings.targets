@@ -11,6 +11,7 @@
         <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)\artifacts\build</TemplatesBin>
         <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)\intermediate</TemplatesIntermediate>
         <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)\references</TemplatesReferences>
+        <TemplatesReferencePackages Condition=" '$(TemplatesReferencePackages)' == '' ">$(TemplatesRoot)\references\packages</TemplatesReferencePackages>
         <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)\src</TemplatesSource>
         <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)\test</TemplatesTest>
         <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)\tools</TemplatesTools>
@@ -19,13 +20,22 @@
     </PropertyGroup>
     
     <PropertyGroup>
+        <BuildNoTimestamp Condition="'$(BuildNoTimestamp)' == ''">false</BuildNoTimestamp>
         <DotNetFolderInPath Condition="'$(DotNetFolderInPath)' == ''">false</DotNetFolderInPath>
-        <UseLatestSigned Condition="'$(UseLatestSigned)' == ''">false</UseLatestSigned>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
+        <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
-        <PackageSource Condition="'$(PackageSource)' == '' or '$(UseLatestSigned)' == 'true'">\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</PackageSource>
+        <RemoteCoherencePackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</RemoteCoherencePackageSource >
+        <PackageSource Condition="'$(PackageSource)' == ''">$(RemoteCoherencePackageSource)</PackageSource >
         <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ExcludedPackages>$(MSBuildThisFileDirectory)\ExcludedPackages.txt</ExcludedPackages>
+        <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
+        <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
+        <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -43,4 +53,13 @@
         <IntermediateOutputPath>$(TemplatesIntermediate)</IntermediateOutputPath>
         <BaseIntermediateOutputPath>$(TemplatesIntermediate)</BaseIntermediateOutputPath>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <TestTemplates Include="$(TemplatesBin)\test\ClassLibrary"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.IndividualAuth"/>
+        <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
+        <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
+        <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
+    </ItemGroup>
 </Project>

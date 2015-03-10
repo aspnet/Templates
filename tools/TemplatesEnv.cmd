@@ -6,6 +6,12 @@ if defined ProgramFiles(x86) (
     set "TemplatesProgramFiles=%ProgramFiles%"
 )
 
+if defined PACKAGE_DROP_SHARE (
+    set "PackageDropShare=%PACKAGE_DROP_SHARE%"
+) else (
+    set "PackageDropShare=\\projectk-tc\drops\latest-packages\dev"
+)
+
 set "TemplatesVSVersion=14.0"
 set "TemplatesRoot=%~dp0"
 set "TemplatesRoot=%TemplatesRoot:~0,-7%"
