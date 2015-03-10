@@ -14,7 +14,7 @@
                 <![CDATA[
                 try
                 {
-                    string runtimeRoot = ".k";
+                    string runtimeRoot = ".dnx";
                     string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                     string defaultAlias = Path.Combine(userProfile, runtimeRoot, "alias", "default.txt");
 
