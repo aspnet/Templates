@@ -68,6 +68,11 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
   </Target>
   
+  <Target Name="InstallNpmPackages">
+    <Exec Command="npm install -g gulp" Condition="!Exists('$(AppData)\npm\gulp')" />
+    <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower')" />
+  </Target>
+  
   <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(Filename)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
     <PropertyGroup>
       <TargetName>%(RulesToVerify.BaseTemplate).%(RulesToVerify.Filename)</TargetName>
@@ -102,12 +107,10 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Exec WorkingDirectory="$(TestPath)" Command="npm install -g gulp" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
-
   </Target>
   
   <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
@@ -124,20 +127,19 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Exec WorkingDirectory="$(TestPath)" Command="npm install -g gulp" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
   </Target>
 
-  <Target Name="VerifyTemplates">
+  <Target Name="VerifyTemplates" DependsOnTargets="InstallNpmPackages">
     <MakeDir Directories="$(TemplatesTestPath)" />
     <CallTarget Targets="ExtractAllTemplates" />
     <CallTarget Targets="CompileTemplates" />
     <CallTarget Targets="CompileRules" />
-
   </Target>
+
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesTestPath)" />
   </Target>
