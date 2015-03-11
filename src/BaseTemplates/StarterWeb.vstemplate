@@ -755,6 +755,9 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+          <Folder Name="bin" TargetFolderName="bin">
+            <ProjectItem ReplaceParameters="false" TargetFileName="gulp.js">gulp.js</ProjectItem>
+          </Folder>
           <Folder Name="completion" TargetFolderName="completion">
             <ProjectItem ReplaceParameters="false" TargetFileName="bash">bash</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="fish">fish</ProjectItem>
