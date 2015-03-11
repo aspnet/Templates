@@ -8,7 +8,7 @@
     <Rules>Rules</Rules>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <UpdateJsonCommand>$(MSBuildThisFileDirectory)\updateJson.cmd</UpdateJsonCommand>
+    <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
