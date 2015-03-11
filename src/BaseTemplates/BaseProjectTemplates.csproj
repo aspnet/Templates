@@ -13,7 +13,7 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <UpdateJsonCommand>$(TemplateTools)\updateJson.cmd</UpdateJsonCommand>
+    <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
     <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.GetVSTemplateItems" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks2.dll" />
