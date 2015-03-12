@@ -69,8 +69,8 @@
   </Target>
   
   <Target Name="InstallNpmPackages">
-    <Exec Command="npm install -g gulp" Condition="!Exists('$(AppData)\npm\gulp')" />
-    <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower')" />
+    <Exec Command="npm install -g gulp" Condition="!Exists('$(AppData)\npm\gulp') or '$(ForceNpmInstall)' == 'true'" />
+    <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower') or '$(ForceNpmInstall)' == 'true'" />
   </Target>
   
   <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(Filename)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">

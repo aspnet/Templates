@@ -29,6 +29,7 @@
         <RemoteCoherencePackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</RemoteCoherencePackageSource >
         <PackageSource Condition="'$(PackageSource)' == ''">$(RemoteCoherencePackageSource)</PackageSource >
         <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
+        <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
     <PropertyGroup>
