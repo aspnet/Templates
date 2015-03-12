@@ -31,7 +31,7 @@ namespace $safeprojectname$
             //    .AddDbContext<ApplicationDbContext>();
 
             // Add Identity services to the services container.
-            //services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add MVC services to the services container.
