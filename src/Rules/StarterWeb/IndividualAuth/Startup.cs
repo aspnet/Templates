@@ -37,7 +37,7 @@ namespace $safeprojectname$
                 .AddDbContext<ApplicationDbContext>();
 
             // Add Identity services to the services container.
-            services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add MVC services to the services container.
@@ -46,7 +46,6 @@ namespace $safeprojectname$
             // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
             // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
             // services.AddWebApiConventions();
-
         }
 
         // Configure is called after ConfigureServices is called.

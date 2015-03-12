@@ -29,9 +29,9 @@ namespace $safeprojectname$.Models
             }
         }
         
-        protected override void OnConfiguring(DbContextOptions options)
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            options.UseSqlServer();
+            builder.UseSqlServer();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
