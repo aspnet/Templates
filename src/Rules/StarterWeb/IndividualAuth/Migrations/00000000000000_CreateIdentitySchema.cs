@@ -99,7 +99,7 @@ namespace $safeprojectname$.Migrations
         {
             get
             {
-                return "000000000000000_CreateIdentitySchema";
+                return "00000000000000_CreateIdentitySchema";
             }
         }
 
