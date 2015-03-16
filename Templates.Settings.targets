@@ -26,6 +26,8 @@
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
         <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
+        <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
+        <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
         <RemoteCoherencePackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages</RemoteCoherencePackageSource >
         <PackageSource Condition="'$(PackageSource)' == ''">$(RemoteCoherencePackageSource)</PackageSource >
         <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>

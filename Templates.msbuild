@@ -24,7 +24,13 @@
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
     <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" ExcludedPackagesList="$(ExcludedPackages)"/>
-    <WriteLinesToFile File="$(CoherenceDropFile)" Lines="$(RemoteCoherencePackageSource)" Overwrite="True"/>
+    
+    <ItemGroup>
+      <LinesToWrite Include="$(RemoteCoherencePackageSource)"/>
+      <LinesToWrite Include="Template Version: $(PackageVersionType):$(TemplateVersion)"/>
+      <LinesToWrite Include="Coherence Version: $(PackageVersion)"/>
+    </ItemGroup>
+    <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
   </Target>
   
   <Target Name="PublishReferencePackages">
