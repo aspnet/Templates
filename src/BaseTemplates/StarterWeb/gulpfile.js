@@ -1,18 +1,18 @@
 /// <binding Clean='clean' />
 
 var gulp = require("gulp"),
-	rimraf = require("rimraf"),
-	fs = require("fs");
+  rimraf = require("rimraf"),
+  fs = require("fs");
 
 eval("var project = " + fs.readFileSync("./project.json"));
 
 var paths = {
-	bower: "./bower_components/",
-	lib: "./" + project.webroot + "/lib/"
+  bower: "./bower_components/",
+  lib: "./" + project.webroot + "/lib/"
 };
 
 gulp.task("clean", function (cb) {
-	rimraf(paths.lib, cb);
+  rimraf(paths.lib, cb);
 });
 
 gulp.task("copy", ["clean"], function () {
@@ -26,8 +26,8 @@ gulp.task("copy", ["clean"], function () {
 		"jquery-validation-unobtrusive": "jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
 	};
 
-	for (var destinationDir in bower) {
-		gulp.src(paths.bower + bower[destinationDir])
-			.pipe(gulp.dest(paths.lib + destinationDir));
-	}
+  for (var destinationDir in bower) {
+    gulp.src(paths.bower + bower[destinationDir])
+      .pipe(gulp.dest(paths.lib + destinationDir));
+  }
 });
