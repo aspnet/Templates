@@ -2,7 +2,7 @@
 using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Hosting;
 
-namespace Microsoft.Web.Templates.FunctionalTests
+namespace Microsoft.Web.Templates.Tests
 {
     public class TestHostingEnvironment : IHostingEnvironment
     {

@@ -2,8 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using Microsoft.Framework.ConfigurationModel;
+using Microsoft.AspNet.Mvc;
 
-namespace Microsoft.AspNet.Mvc.FunctionalTests
+namespace Microsoft.Web.Templates.Tests
 {
     public class TestConfigurationProvider : ITestConfigurationProvider
     {

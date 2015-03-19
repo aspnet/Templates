@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Web.Templates.FunctionalTests
+﻿namespace Microsoft.Web.Templates.Tests
 {
     public interface IAssemblyProvider
     {

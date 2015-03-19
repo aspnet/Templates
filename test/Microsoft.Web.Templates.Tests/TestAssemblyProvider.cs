@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Microsoft.Web.Templates.FunctionalTests
+namespace Microsoft.Web.Templates.Tests
 {
     /// <summary>
     /// Limits MVC to use a single Assembly for controller discovery.

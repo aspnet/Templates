@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.FunctionalTests;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.ServiceLookup;
@@ -13,16 +13,41 @@ using Microsoft.Framework.Logging;
 using Microsoft.Framework.Runtime;
 using Microsoft.Framework.Runtime.Infrastructure;
 
-namespace Microsoft.Web.Templates.FunctionalTests
+namespace Microsoft.Web.Templates.Tests
 {
-    public class TemplateTests
+    public abstract class TemplateTestBase : IDisposable
     {
-        // path from Templates\test\Microsoft.Web.Templates.FunctionalTests
+        // path from Templates\test\Microsoft.Web.Templates.Tests
         protected static readonly string TestProjectsPath = Path.Combine("..", "..", "artifacts", "build", "Test");
 
         protected IServiceProvider CreateServices(string applicationWebSiteName)
         {
             return CreateServices(applicationWebSiteName, TestProjectsPath);
+        }
+
+        public void Dispose()
+        {
+          Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+        }
+
+        protected abstract Type StartupType { get; }
+        protected abstract string TemplateName { get; }
+
+        public HostingInformation InitializeHosting()
+        {
+          return InitializeHosting(StartupType, TemplateName);
+        }
+
+        protected HostingInformation InitializeHosting(Type startupType, string templateName)
+        {
+            return new HostingInformation(startupType)
+            {
+                Provider = CreateServices(templateName)
+            };
         }
 
         private IServiceProvider CreateServices(string applicationWebSiteName, string applicationPath)

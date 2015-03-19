@@ -18,6 +18,7 @@
   <ItemDefinitionGroup>
     <TemplatesToVerify>
       <IsRulesPackage>false</IsRulesPackage>
+      <ProjectGuid/>
     </TemplatesToVerify>
   </ItemDefinitionGroup>
 
@@ -25,6 +26,7 @@
     <RulesToVerify>
       <BaseTemplate/>
       <AdditionalRuleFiles/>
+      <ProjectGuid/>
     </RulesToVerify>
   </ItemDefinitionGroup>
   
@@ -32,17 +34,28 @@
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\Rules.zip">
         <IsRulesPackage>true</IsRulesPackage>
     </TemplatesToVerify>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip"/>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip"/>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip"/>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip"/>
-    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip"/>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip">
+      <ProjectGuid>{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}</ProjectGuid>
+    </TemplatesToVerify>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip">
+      <ProjectGuid>{8979AF70-A472-40D3-8171-812F9E11C276}</ProjectGuid>
+    </TemplatesToVerify>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip">
+      <ProjectGuid>{E451D2C2-A401-46B2-B181-B22221AC0D83}</ProjectGuid>
+    </TemplatesToVerify>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip">
+      <ProjectGuid>{2D35BE10-ECC4-4639-96AE-925702B83655}</ProjectGuid>
+    </TemplatesToVerify>
+    <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip">
+      <ProjectGuid>{80252DCA-8071-4627-931A-3F4B2EB301D1}</ProjectGuid>
+    </TemplatesToVerify>
   </ItemGroup>
 
   <ItemGroup>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <AdditionalRuleFiles>CommonAuth\**\*.*</AdditionalRuleFiles>
+      <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
     </RulesToVerify>
   </ItemGroup>
   
@@ -50,21 +63,22 @@
     <PropertyGroup>
       <TargetName>%(TemplatesToVerify.Filename)</TargetName>
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
+      <IsRulesPackage>%(TemplatesToVerify.IsRulesPackage)</IsRulesPackage>
+      <ProjectGuid>%(TemplatesToVerify.ProjectGuid)</ProjectGuid>
     </PropertyGroup>
     <RemoveDir Directories="$(TestPath)" />
     <MakeDir Directories="$(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)\ProjectTemplates\$(TargetName).zip * &gt; nul" />
-
     <ItemGroup>
-      <ExtractedFiles Include="$(TestPath)\**\*.*"/>
+      <ExtractedFiles Include="$(TestPath)\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
     </ItemGroup>
 
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="MyApplication" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="src" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(ProjectGuid)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="src" />
 
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="MyApplication" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
   </Target>
   
@@ -79,29 +93,30 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
       <AdditionalRuleFiles>%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles)</AdditionalRuleFiles>
       <RuleFiles>%(RulesToVerify.Identity)\**\*.*</RuleFiles>
+      <ProjectGuid>%(RulesToVerify.ProjectGuid)</ProjectGuid>
     </PropertyGroup>
     <RemoveDir Directories="$(TestPath)" />
     <MakeDir Directories="$(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)\ProjectTemplates\%(RulesToVerify.BaseTemplate).zip * &gt; nul" />
 
     <ItemGroup>
-      <ExtractedFiles Include="$(TestPath)\**\*.*"/>
-    </ItemGroup>
-
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="MyApplication" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.kproj')" Replace="src" />
-
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="MyApplication" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="{80252dca-8071-4627-931a-3f4b2eb301d1}" />
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
-    
-    <ItemGroup>
       <ItemsToCopy Include="$(AdditionalRuleFiles)" Condition="'$(AdditionalRuleFiles)' != ''"/>
       <ItemsToCopy Include="$(RuleFiles)" Condition="'$(RuleFiles)' != ''"/>
     </ItemGroup> 
 
     <Copy SourceFiles="@(ItemsToCopy)" DestinationFiles="@(ItemsToCopy->'$(TestPath)%(RecursiveDir)%(Filename)%(Extension)')" Condition="'@(ItemsToCopy)' != ''"/>
+    <Copy SourceFiles="$(TestPath)\%(RulesToVerify.BaseTemplate).xproj" DestinationFiles="$(TestPath)\$(TargetName).xproj"/>
+    <ItemGroup>
+      <ExtractedFiles Include="$(TestPath)\**\*.*"/>
+    </ItemGroup>
+
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(ProjectGuid)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="src" />
+
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
 
     <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
