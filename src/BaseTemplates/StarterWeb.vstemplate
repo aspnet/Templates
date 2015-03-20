@@ -9,7 +9,7 @@
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>17</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.ProjectK.StarterWeb</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.DNX.StarterWeb</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>WebApplication</DefaultName>

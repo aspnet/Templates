@@ -9,7 +9,7 @@
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>18</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.ProjectK.WebAPI</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.DNX.WebAPI</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>WebApplication</DefaultName>

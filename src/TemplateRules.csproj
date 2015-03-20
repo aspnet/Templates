@@ -22,9 +22,9 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
     <LooseFiles Include="
-              KStarterWeb.vstemplate;
-              KEmptyWeb.vstemplate;
-              KWebAPI.vstemplate">
+              DNXStarterWeb.vstemplate;
+              DNXEmptyWeb.vstemplate;
+              DNXWebAPI.vstemplate">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\BaseTemplates</SearchPath>
     </LooseFiles>

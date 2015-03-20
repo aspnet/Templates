@@ -8,7 +8,6 @@
     <ConsoleAppTemplateName>ConsoleApp</ConsoleAppTemplateName>
     <ClassLibraryTemplateName>ClassLibrary</ClassLibraryTemplateName>
     <EmptyWebTemplateName>EmptyWeb</EmptyWebTemplateName>
-    <Rules>Rules</Rules>
     <StarterWebTemplateName>StarterWeb</StarterWebTemplateName>
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
@@ -34,16 +33,16 @@
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
       <SearchPath>ClassLibrary\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="KClassLibrary.vstemplate">
-      <TargetName>KClassLibrary</TargetName>
+    <VSTemplate Include="DNXClassLibrary.vstemplate">
+      <TargetName>DNXClassLibrary</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
       <SearchPath>ConsoleApp\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="KConsoleApp.vstemplate">
-      <TargetName>KConsoleApp</TargetName>
+    <VSTemplate Include="DNXConsoleApp.vstemplate">
+      <TargetName>DNXConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>      
     <VSTemplate Include="EmptyWeb.vstemplate">
