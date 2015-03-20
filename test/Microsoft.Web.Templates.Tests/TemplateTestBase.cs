@@ -6,6 +6,7 @@ using System.Reflection;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.TestHost;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.ServiceLookup;
@@ -15,126 +16,85 @@ using Microsoft.Framework.Runtime.Infrastructure;
 
 namespace Microsoft.Web.Templates.Tests
 {
-    public abstract class TemplateTestBase : IDisposable
+    public abstract class TemplateTestBase
     {
         // path from Templates\test\Microsoft.Web.Templates.Tests
         protected static readonly string TestProjectsPath = Path.Combine("..", "..", "artifacts", "build", "Test");
 
-        protected IServiceProvider CreateServices(string applicationWebSiteName)
+        protected TestServer CreateServer()
         {
-            return CreateServices(applicationWebSiteName, TestProjectsPath);
-        }
-
-        public void Dispose()
-        {
-          Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
+            return CreateServer(new HostingInformation(StartupType));
         }
 
         protected abstract Type StartupType { get; }
         protected abstract string TemplateName { get; }
 
-        public HostingInformation InitializeHosting()
+        private TestServer CreateServer(HostingInformation hostingInfo)
         {
-          return InitializeHosting(StartupType, TemplateName);
+            return TestServer.Create(
+                hostingInfo.ApplicationBuilder,
+                services => AddTestServices(services, TemplateName, TestProjectsPath, hostingInfo.ApplicationConfigureServices));
         }
 
-        protected HostingInformation InitializeHosting(Type startupType, string templateName)
+        private static void AddTestServices(
+            IServiceCollection services,
+            string applicationWebSiteName,
+            string applicationPath,
+            Action<IServiceCollection> configureServices)
         {
-            return new HostingInformation(startupType)
-            {
-                Provider = CreateServices(templateName)
-            };
-        }
+            applicationPath = applicationPath ?? TestProjectsPath;
 
-        private IServiceProvider CreateServices(string applicationWebSiteName, string applicationPath)
-        {
-            var originalProvider = CallContextServiceLocator.Locator.ServiceProvider;
-            var appEnvironment = originalProvider.GetRequiredService<IApplicationEnvironment>();
+            // Get current IApplicationEnvironment; likely added by the host.
+            var provider = services.BuildServiceProvider();
+            var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
 
-            // When an application executes in a regular context, the application base path points to the root 
-            // directory where the application is located, for example MvcSample.Web. However, when executing 
-            // an aplication as part of a test, the ApplicationBasePath of the IApplicationEnvironment points 
-            // to the root folder of the test project. 
-            // To compensate for this, we need to calculate the original path and override the application 
-            // environment value so that components like the view engine work properly in the context of the 
-            // test. 
-            var appBasePath = CalculateApplicationBasePath(appEnvironment, applicationWebSiteName, applicationPath);
-
-            var services = new ServiceCollection();
-            services.AddInstance(
-                typeof(IApplicationEnvironment),
-                new TestApplicationEnvironment(appEnvironment, appBasePath));
-
-            // Injecting a custom assembly provider via configuration setting. It's not good enough to just 
-            // add the service directly since it's registered by MVC. 
+            // When an application executes in a regular context, the application base path points to the root
+            // directory where the application is located, for example MvcSample.Web. However, when executing
+            // an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
+            // to the root folder of the test project.
+            // To compensate for this, we need to calculate the original path and override the application
+            // environment value so that components like the view engine work properly in the context of the
+            // test.
+            var applicationBasePath = CalculateApplicationBasePath(
+                originalEnvironment,
+                applicationWebSiteName,
+                applicationPath);
+            var environment = new TestApplicationEnvironment(
+                originalEnvironment,
+                applicationBasePath);
+            services.AddInstance<IApplicationEnvironment>(environment);
+            services.AddInstance<IHostingEnvironment>(new HostingEnvironment(environment));
             var providerType = CreateAssemblyProviderType(applicationWebSiteName);
-
             var configuration = new TestConfigurationProvider();
             configuration.Configuration.Set(
                 typeof(IAssemblyProvider).FullName,
                 providerType.AssemblyQualifiedName);
+            services.AddInstance<ITestConfigurationProvider>(configuration);
+            services.AddInstance<ILoggerFactory>(new LoggerFactory());
 
-            services.AddInstance(
-                typeof(ITestConfigurationProvider),
-                configuration);
 
-            services.AddInstance(
-                typeof(ILoggerFactory),
-                new LoggerFactory());
-
-            return BuildFallbackServiceProvider(services, originalProvider);
+            if (configureServices != null)
+            {
+                configureServices(services);
+            }
         }
+
 
         // Calculate the path relative to the application base path.
         public static string CalculateApplicationBasePath(IApplicationEnvironment appEnvironment,
                                                           string applicationWebSiteName, string websitePath)
         {
-            // Mvc/test/WebSites/applicationWebSiteName
             return Path.GetFullPath(
                 Path.Combine(appEnvironment.ApplicationBasePath, websitePath, applicationWebSiteName));
-        }
-
-        // TODO: Kill this code
-        private static IServiceProvider BuildFallbackServiceProvider(IEnumerable<ServiceDescriptor> services, IServiceProvider fallback)
-        {
-            var sc = HostingServices.Create(fallback);
-            sc.Add(services);
-
-            // Build the manifest
-            var manifestTypes = services.Where(t => t.ServiceType.GetTypeInfo().GenericTypeParameters.Length == 0
-                    && t.ServiceType != typeof(IServiceManifest)
-                    && t.ServiceType != typeof(IServiceProvider))
-                    .Select(t => t.ServiceType).Distinct();
-            sc.AddInstance<IServiceManifest>(new ServiceManifest(manifestTypes, fallback.GetRequiredService<IServiceManifest>()));
-            return sc.BuildServiceProvider();
         }
 
         private static Type CreateAssemblyProviderType(string siteName)
         {
             // Creates a service type that will limit MVC to only the controllers in the test site.
-            // We only want this to happen when running in proc.
+            // We only want this to happen when running in-process.
             var assembly = Assembly.Load(new AssemblyName(siteName));
-
             var providerType = typeof(TestAssemblyProvider<>).MakeGenericType(assembly.GetExportedTypes()[0]);
             return providerType;
-        }
-
-        private class ServiceManifest : IServiceManifest
-        {
-            public ServiceManifest(IEnumerable<Type> services, IServiceManifest fallback = null)
-            {
-                Services = services;
-                if (fallback != null)
-                {
-                    Services = Services.Concat(fallback.Services).Distinct();
-                }
-            }
-
-            public IEnumerable<Type> Services { get; private set; }
         }
     }
 }

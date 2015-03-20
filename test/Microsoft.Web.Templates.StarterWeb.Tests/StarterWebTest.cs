@@ -46,8 +46,7 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Home_Index_Get()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act
@@ -62,8 +61,7 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Home_About_Get()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act
@@ -78,8 +76,7 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Home_Contact_Get()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act

@@ -46,56 +46,52 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Home_Index_Get()
         {
-          var hostingInfo = InitializeHosting();
-          var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
-          var client = server.CreateClient();
+            var server = CreateServer();
+            var client = server.CreateClient();
 
-          // Act
-          var getReponse = await client.GetAsync("http://localhost");
-          var reponseContent = await getReponse.Content.ReadAsStringAsync();
+            // Act
+            var getReponse = await client.GetAsync("http://localhost");
+            var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
-          // Assert
-          Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
-          Assert.Contains("This application consists of:", reponseContent);
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
+            Assert.Contains("This application consists of:", reponseContent);
         }
 
         [Fact]
         public async void Verify_Home_About_Get()
         {
-          var hostingInfo = InitializeHosting();
-          var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
-          var client = server.CreateClient();
+            var server = CreateServer();
+            var client = server.CreateClient();
 
-          // Act
-          var getReponse = await client.GetAsync("http://localhost/Home/About");
-          var reponseContent = await getReponse.Content.ReadAsStringAsync();
+            // Act
+            var getReponse = await client.GetAsync("http://localhost/Home/About");
+            var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
-          // Assert
-          Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
-          Assert.Contains("Use this area to provide additional information.", reponseContent);
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
+            Assert.Contains("Use this area to provide additional information.", reponseContent);
         }
 
         [Fact]
         public async void Verify_Home_Contact_Get()
         {
-          var hostingInfo = InitializeHosting();
-          var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
-          var client = server.CreateClient();
+            var server = CreateServer();
+            var client = server.CreateClient();
 
-          // Act
-          var getReponse = await client.GetAsync("http://localhost/Home/Contact");
-          var reponseContent = await getReponse.Content.ReadAsStringAsync();
+            // Act
+            var getReponse = await client.GetAsync("http://localhost/Home/Contact");
+            var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
-          // Assert
-          Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
-          Assert.Contains("mailto:Support@example.com", reponseContent);
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
+            Assert.Contains("mailto:Support@example.com", reponseContent);
         }
 
         [Fact]
         public async void Verify_Account_Register_Get()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act
@@ -109,8 +105,7 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Account_Register_CreateAccount()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act
@@ -136,8 +131,7 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Account_Login_Invalid()
         {
-            var hostingInfo = InitializeHosting();
-            var server = TestServer.Create(hostingInfo.Provider, hostingInfo.ApplicationBuilder);
+            var server = CreateServer();
             var client = server.CreateClient();
 
             // Act
@@ -181,16 +175,16 @@ namespace Microsoft.Web.Templates.Tests
 
         private HttpContent CreateRegisterPost(string verificationToken, string userName, string password, string confirmPassword)
         {
-          List<KeyValuePair<string, string>> form = new List<KeyValuePair<string, string>>();
+            List<KeyValuePair<string, string>> form = new List<KeyValuePair<string, string>>();
 
-          form.Add(new KeyValuePair<string, string>("__RequestVerificationToken", verificationToken));
-          form.Add(new KeyValuePair<string, string>("UserName", userName));
-          form.Add(new KeyValuePair<string, string>("Password", password));
-          form.Add(new KeyValuePair<string, string>("ConfirmPassword", confirmPassword));
+            form.Add(new KeyValuePair<string, string>("__RequestVerificationToken", verificationToken));
+            form.Add(new KeyValuePair<string, string>("UserName", userName));
+            form.Add(new KeyValuePair<string, string>("Password", password));
+            form.Add(new KeyValuePair<string, string>("ConfirmPassword", confirmPassword));
 
-          var content = new FormUrlEncodedContent(form);
+            var content = new FormUrlEncodedContent(form);
 
-          return content;
+            return content;
         }
 
         private string ExtractVerificationToken(string response)
@@ -209,10 +203,10 @@ namespace Microsoft.Web.Templates.Tests
         private string ExtractVerificationCookie(HttpHeaders headers)
         {
             var cookiehHeaders = headers.GetValues("Set-Cookie");
-            foreach(var header in cookiehHeaders)
+            foreach (var header in cookiehHeaders)
             {
                 var cookies = header.Split(';');
-                foreach(var cookie in cookies)
+                foreach (var cookie in cookies)
                 {
                     if (cookie.StartsWith("__RequestVerificationToken"))
                     {

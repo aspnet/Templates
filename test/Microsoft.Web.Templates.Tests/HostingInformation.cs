@@ -8,35 +8,42 @@ using Microsoft.Framework.Logging;
 
 namespace Microsoft.Web.Templates.Tests
 {
-	public class HostingInformation
-	{
-		private Type _startupType;
-		private TestHostingEnvironment _hostingEnvironment;
+    public class HostingInformation
+    {
+        private Type _startupType;
+        private TestHostingEnvironment _hostingEnvironment;
+        private object _startup;
 
-		public HostingInformation(Type startupType)
-		{
-			_startupType = startupType;
-			_hostingEnvironment = new TestHostingEnvironment();
-		}
-		public TestHostingEnvironment HostingEnvironment
-		{
-			get { return _hostingEnvironment; }
-		}
-		public Action<IApplicationBuilder> ApplicationBuilder
-		{
-			get { return ConfigureApp; }
-		}
+        public HostingInformation(Type startupType)
+        {
+            _startupType = startupType;
+            _hostingEnvironment = new TestHostingEnvironment();
+            _startup = System.Activator.CreateInstance(_startupType, _hostingEnvironment);
+        }
+        public TestHostingEnvironment HostingEnvironment
+        {
+            get { return _hostingEnvironment; }
+        }
+        public Action<IApplicationBuilder> ApplicationBuilder
+        {
+            get { return ConfigureApp; }
+        }
 
-		public IServiceProvider Provider { get; set; }
+        public Action<IServiceCollection> ApplicationConfigureServices
+        {
+            get { return ConfigureServices; }
+        }
 
-		private void ConfigureApp(IApplicationBuilder app)
-		{
-			var startup = System.Activator.CreateInstance(_startupType, _hostingEnvironment);
-			var configureServices = _startupType.GetMethod("ConfigureServices", BindingFlags.Public | BindingFlags.Instance);
-			app.UseServices(services => configureServices.Invoke(startup, new object[] { services }));
+        private void ConfigureApp(IApplicationBuilder app)
+        {
+            var configure = _startupType.GetMethod("Configure", BindingFlags.Public | BindingFlags.Instance);
+            configure.Invoke(_startup, new object[] { app, HostingEnvironment, app.ApplicationServices.GetService<ILoggerFactory>() });
+        }
 
-			var configure = _startupType.GetMethod("Configure", BindingFlags.Public | BindingFlags.Instance);
-			configure.Invoke(startup, new object[] { app, HostingEnvironment, app.ApplicationServices.GetService<ILoggerFactory>() });
-		}
-	}
+        private void ConfigureServices(IServiceCollection services)
+        {
+            var configureServices = _startupType.GetMethod("ConfigureServices", BindingFlags.Public | BindingFlags.Instance);
+            configureServices.Invoke(_startup, new object[] { services });
+        }
+    }
 }
