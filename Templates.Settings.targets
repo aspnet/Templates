@@ -8,15 +8,15 @@
 
         <!-- Usually these are environment variables, but they aren't set when running VS -->
         <TemplatesRoot Condition=" '$(TemplatesRoot)' == '' ">$(MSBuildThisFileDirectory)</TemplatesRoot>
-        <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)\artifacts\build</TemplatesBin>
-        <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)\intermediate</TemplatesIntermediate>
-        <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)\references</TemplatesReferences>
-        <TemplatesReferencePackages Condition=" '$(TemplatesReferencePackages)' == '' ">$(TemplatesRoot)\references\packages</TemplatesReferencePackages>
-        <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)\src</TemplatesSource>
-        <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)\test</TemplatesTest>
-        <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)\tools</TemplatesTools>
-        <TemplatesSetup Condition=" '$(TemplatesSetup)' == '' ">$(TemplatesRoot)\setup</TemplatesSetup>
-        <TemplatesTestResults Condition=" '$(TemplatesTestResults)' == '' ">$(TemplatesRoot)\TestResults</TemplatesTestResults>
+        <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)artifacts\build</TemplatesBin>
+        <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)intermediate</TemplatesIntermediate>
+        <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)references</TemplatesReferences>
+        <TemplatesReferencePackages Condition=" '$(TemplatesReferencePackages)' == '' ">$(TemplatesRoot)references\packages</TemplatesReferencePackages>
+        <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)src</TemplatesSource>
+        <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)test</TemplatesTest>
+        <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)tools</TemplatesTools>
+        <TemplatesSetup Condition=" '$(TemplatesSetup)' == '' ">$(TemplatesRoot)setup</TemplatesSetup>
+        <TemplatesTestResults Condition=" '$(TemplatesTestResults)' == '' ">$(TemplatesRoot)TestResults</TemplatesTestResults>
     </PropertyGroup>
     
     <PropertyGroup>
