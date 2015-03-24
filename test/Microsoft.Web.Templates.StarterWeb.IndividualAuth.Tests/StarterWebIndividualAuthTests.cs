@@ -116,10 +116,9 @@ namespace Microsoft.Web.Templates.Tests
             Assert.Contains("Create a new account.", responseContent);
 
             var verificationToken = ExtractVerificationToken(responseContent);
-            var verificationCookie = ExtractVerificationCookie(getResponse.Headers);
 
             HttpContent requestContent = CreateRegisterPost(verificationToken, "ANewUser@ms.com", "Asd!123$$", "Asd!123$$");
-            requestContent.Headers.Add("Cookie", string.Format("__RequestVerificationToken={0}", verificationCookie));
+            AddCookiesToRequest(getResponse.Headers, requestContent.Headers);
 
             var postResponse = await client.PostAsync("http://localhost/Account/Register", requestContent);
             var postResponseContent = await getResponse.Content.ReadAsStringAsync();
@@ -141,9 +140,7 @@ namespace Microsoft.Web.Templates.Tests
 
             var verificationToken = ExtractVerificationToken(responseContent);
             HttpContent requestContent = CreateLoginPost(verificationToken, "NotAUser", "NoPassword");
-
-            var verificationCookie = ExtractVerificationCookie(getResponse.Headers);
-            requestContent.Headers.Add("Cookie", string.Format("__RequestVerificationToken={0}", verificationCookie));
+            AddCookiesToRequest(getResponse.Headers, requestContent.Headers);
 
             var postResponse = await client.PostAsync("http://localhost/Account/Login", requestContent);
             Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
@@ -200,20 +197,15 @@ namespace Microsoft.Web.Templates.Tests
             return token.SingleOrDefault();
         }
 
-        private string ExtractVerificationCookie(HttpHeaders headers)
+        private string AddCookiesToRequest(HttpHeaders responseHeaders, HttpHeaders requestHeaders)
         {
-            var cookiehHeaders = headers.GetValues("Set-Cookie");
+            var cookiehHeaders = responseHeaders.GetValues("Set-Cookie");
             foreach (var header in cookiehHeaders)
             {
-                var cookies = header.Split(';');
-                foreach (var cookie in cookies)
-                {
-                    if (cookie.StartsWith("__RequestVerificationToken"))
-                    {
-                        var parts = cookie.Split('=');
-                        return parts[1].Trim();
-                    }
-                }
+                var cookieParts = header.Split(';');
+                var cookie = cookieParts[0];
+                var parts = cookie.Split('=');
+                requestHeaders.Add("Cookie", string.Format("{0}={1}", parts[0], parts[1]));
             }
 
             return String.Empty;
