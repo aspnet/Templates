@@ -17,7 +17,6 @@ gulp.task("clean", function (cb) {
 
 gulp.task("copy", ["clean"], function () {
   var bower = {
-    "angular": "angular/angular*.{js,map}",
     "bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
     "bootstrap-touch-carousel": "bootstrap-touch-carousel/dist/**/*.{js,css}",
     "hammer.js": "hammer.js/hammer*.{js,map}",
