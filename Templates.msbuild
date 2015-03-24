@@ -16,7 +16,7 @@
   </Target>
   
   <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)">
-    <Exec Command="kpm list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
+    <Exec Command="dnu list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
   </Target>
   
   <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList">

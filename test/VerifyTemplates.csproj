@@ -6,8 +6,8 @@
   <PropertyGroup>
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
-    <KpmBuildCommand>kpm build</KpmBuildCommand>
-    <KpmRestoreCommand>kpm restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</KpmRestoreCommand>
+    <DnuBuildCommand>dnu build</DnuBuildCommand>
+    <DnuRestoreCommand>dnu restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</DnuRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
     <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
@@ -122,10 +122,10 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
-    <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
   </Target>
   
   <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
@@ -142,10 +142,10 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Message Text="Running $(KpmRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
-    <Message Text="Running $(KpmBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(KpmBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
   </Target>
 
   <Target Name="VerifyTemplates" DependsOnTargets="InstallNpmPackages">
