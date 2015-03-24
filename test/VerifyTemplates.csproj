@@ -54,7 +54,7 @@
   <ItemGroup>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
-      <AdditionalRuleFiles>CommonAuth\**\*.*</AdditionalRuleFiles>
+      <AdditionalRuleFiles>..\CommonAuth\**\*.*</AdditionalRuleFiles>
       <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
     </RulesToVerify>
   </ItemGroup>
