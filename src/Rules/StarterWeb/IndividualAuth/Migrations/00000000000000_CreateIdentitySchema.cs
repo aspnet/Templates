@@ -127,7 +127,7 @@ namespace $safeprojectname$.Migrations
                         b.Property<string>("Name");
                         b.Property<string>("NormalizedName");
                         b.Key("Id");
-                        b.ForRelational().Table("AspNetRoles");
+                        b.Metadata.Relational().Table = "AspNetRoles";
                     });
 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
@@ -138,7 +138,7 @@ namespace $safeprojectname$.Migrations
                             .GenerateValueOnAdd();
                         b.Property<string>("RoleId");
                         b.Key("Id");
-                        b.ForRelational().Table("AspNetRoleClaims");
+                        b.Metadata.Relational().Table = "AspNetRoleClaims";
                     });
 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
@@ -149,7 +149,7 @@ namespace $safeprojectname$.Migrations
                             .GenerateValueOnAdd();
                         b.Property<string>("UserId");
                         b.Key("Id");
-                        b.ForRelational().Table("AspNetUserClaims");
+                        b.Metadata.Relational().Table = "AspNetUserClaims";
                     });
 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
@@ -159,7 +159,7 @@ namespace $safeprojectname$.Migrations
                         b.Property<string>("ProviderKey");
                         b.Property<string>("UserId");
                         b.Key("LoginProvider", "ProviderKey");
-                        b.ForRelational().Table("AspNetUserLogins");
+                        b.Metadata.Relational().Table = "AspNetUserLogins";
                     });
 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
@@ -167,7 +167,7 @@ namespace $safeprojectname$.Migrations
                         b.Property<string>("RoleId");
                         b.Property<string>("UserId");
                         b.Key("UserId", "RoleId");
-                        b.ForRelational().Table("AspNetUserRoles");
+                        b.Metadata.Relational().Table = "AspNetUserRoles";
                     });
 
                 builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
@@ -190,7 +190,7 @@ namespace $safeprojectname$.Migrations
                         b.Property<bool>("TwoFactorEnabled");
                         b.Property<string>("UserName");
                         b.Key("Id");
-                        b.ForRelational().Table("AspNetUsers");
+                        b.Metadata.Relational().Table = "AspNetUsers";
                     });
 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
