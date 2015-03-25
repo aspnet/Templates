@@ -1341,6 +1341,7 @@
         </Folder>
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
         <Folder Name="css" TargetFolderName="css">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.css">site.css</ProjectItem>

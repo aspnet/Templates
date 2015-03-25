@@ -98,6 +98,7 @@
   <Target Name="VerifyContent">
     <ItemGroup>
       <FilesToVerify Include="**\*.*"/>
+      <FilesToVerify Remove="**\*.ico"/>
       <FilesToVerify Remove="StarterWeb\node_modules\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\bower_components\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap*\**\*.*"/>
