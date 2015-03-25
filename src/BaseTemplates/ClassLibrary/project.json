@@ -1,17 +1,17 @@
 {
-    "version": "1.0.0-*",
-    "dependencies": {
-    },
+  "version": "1.0.0-*",
+  "dependencies": {
+  },
 
-    "frameworks" : {
-        "dnx451" : {
-            "dependencies": {
-            }
-        },
-        "dnxcore50" : {
-            "dependencies": {
-                "System.Runtime": "{version}"
-            }
-        }
+  "frameworks" : {
+    "dnx451" : {
+      "dependencies": {
+      }
+    },
+    "dnxcore50" : {
+      "dependencies": {
+        "System.Runtime": "{version}"
+      }
     }
+  }
 }

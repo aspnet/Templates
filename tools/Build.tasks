@@ -121,22 +121,33 @@
                     {
                         using(var file = File.OpenText(taskItem.ItemSpec))
                         {
-                            int lineNumber = 1;
+                            int lineNumber = 0;
+                            string line = String.Empty;
                             while(!file.EndOfStream)
                             {
-                                string line = file.ReadLine();
+                                lineNumber++;
+                                line = file.ReadLine();
                                 if (!line.TrimEnd().Equals(line))
                                 {
-                                    Log.LogError("Whitespace found in {0} line {1}, '{2}'", taskItem.ItemSpec, lineNumber, line);
+                                    Log.LogError("Trailing whitespace found in {0} line {1}, '{2}'", taskItem.ItemSpec, lineNumber, line);
                                 }
-                                lineNumber++;
+                                if (line.Contains('\t'))
+                                {
+                                    Log.LogError("Embedded Tab found in {0} line {1}, '{2}'", taskItem.ItemSpec, lineNumber, line.Replace("\\t", "\\\\t"));
+                                }
+                            }
+                            file.DiscardBufferedData();
+                            file.BaseStream.Seek(-3, SeekOrigin.End);
+                            if (file.Read() == 10 || file.Read() != 13 || file.Read() != 10)
+                            {
+                                Log.LogError("Last line in a file must be a non-blank line terminated with \\r\\n: {0} line {1}, '{2}'", taskItem.ItemSpec, lineNumber, line);
                             }
                         }
                     }
                 }
                 catch(Exception ex)
                 {
-                    Log.LogError("Error Generating Dependency List");
+                    Log.LogError("Error Verifying Whitespace");
                     Log.LogErrorFromException(ex);
                 }
                 return !Log.HasLoggedErrors;

@@ -101,6 +101,7 @@
       <FilesToVerify Remove="StarterWeb\node_modules\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\bower_components\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap*\**\*.*"/>
+      <FilesToVerify Remove="StarterWeb\wwwroot\lib\jquery*\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\images\**\*.*"/>
     </ItemGroup>
     <Message Text="@(FilesToVerify)" Importance="high" />

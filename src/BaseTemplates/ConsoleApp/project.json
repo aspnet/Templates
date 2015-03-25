@@ -1,16 +1,16 @@
 {
-    "version": "1.0.0-*",
-    "dependencies": {
-    },
-    "commands": {
-        "$safeprojectname$" : "$safeprojectname$"
-    },
-    "frameworks" : {
-        "dnx451" : { },
-        "dnxcore50" : {
-            "dependencies": {
-                "System.Console": "{version}"
-            }
-        }
+  "version": "1.0.0-*",
+  "dependencies": {
+  },
+  "commands": {
+    "$safeprojectname$" : "$safeprojectname$"
+  },
+  "frameworks" : {
+    "dnx451" : { },
+    "dnxcore50" : {
+      "dependencies": {
+          "System.Console": "{version}"
+      }
     }
+  }
 }

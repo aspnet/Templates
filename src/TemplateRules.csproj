@@ -86,11 +86,6 @@
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
 
-    <ItemGroup>
-      <FilesToVerify Remove="@(FilesToVerify)"/>
-      <FilesToVerify Include="@(FilesToReplace)"/>
-    </ItemGroup>
-    <VerifyWhitespace FileList="@(FilesToVerify)" />
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
   </Target>
@@ -99,6 +94,7 @@
     <ItemGroup>
       <FilesToVerify Include="**\*.*"/>
       <FilesToVerify Remove="BaseTemplates\**\*.*"/>
+      <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
     <Message Text="@(FilesToVerify)" Importance="high" />
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
