@@ -49,6 +49,7 @@
     <ItemGroup>
       <ProjectsToBuild Include="dirs.proj"/>
     </ItemGroup>
+    <Error Text="BUILD_BRANCH must be set" Condition="'$(BUILD_BRANCH)' == ''"/>
     <Message Text="Coherence Build = '$(CoherenceBuildNumber)'"/>
     <MakeDir Directories="$(TemplatesBin)"/>
     <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>

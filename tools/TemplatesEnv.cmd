@@ -1,5 +1,10 @@
 @echo off
 
+if not defined BUILD_BRANCH (
+  echo You must set BUILD_BRANCH to dev or release before running this command
+  exit /b 0
+)
+
 if defined ProgramFiles(x86) (
     set "TemplatesProgramFiles=%ProgramFiles(x86)%"
 ) else (
@@ -9,7 +14,7 @@ if defined ProgramFiles(x86) (
 if defined PACKAGE_DROP_SHARE (
     set "PackageDropShare=%PACKAGE_DROP_SHARE%"
 ) else (
-    set "PackageDropShare=\\projectk-tc\drops\latest-packages\dev"
+    set "PackageDropShare=\\projectk-tc\drops\latest-packages\%BUILD_BRANCH%"
 )
 
 set "TemplatesVSVersion=14.0"

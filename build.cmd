@@ -11,7 +11,8 @@ IF "%*"=="" (
 )
 
 IF "%BUILD_BRANCH%"=="" (
-  SET BUILD_BRANCH=dev
+  ECHO BUILD_BRANCH must be set to dev or release
+  EXIT /B 0
 )
 
 IF EXIST %CACHED_NUGET% goto copynuget 

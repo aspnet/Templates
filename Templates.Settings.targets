@@ -23,7 +23,6 @@
         <BuildNoTimestamp Condition="'$(BuildNoTimestamp)' == ''">false</BuildNoTimestamp>
         <DotNetFolderInPath Condition="'$(DotNetFolderInPath)' == ''">false</DotNetFolderInPath>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
-        <PackageVersionType Condition="'$(PackageVersionType)' == ''">dev</PackageVersionType>
         <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
