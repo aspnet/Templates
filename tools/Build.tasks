@@ -100,4 +100,48 @@
             </Code>
         </Task>
     </UsingTask>    
-</Project>     
+    <UsingTask
+        TaskName="VerifyWhitespace"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <FileList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {   foreach(var taskItem in FileList)
+                    {
+                        using(var file = File.OpenText(taskItem.ItemSpec))
+                        {
+                            int lineNumber = 1;
+                            while(!file.EndOfStream)
+                            {
+                                string line = file.ReadLine();
+                                if (!line.TrimEnd().Equals(line))
+                                {
+                                    Log.LogError("Whitespace found in {0} line {1}, '{2}'", taskItem.ItemSpec, lineNumber, line);
+                                }
+                                lineNumber++;
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Generating Dependency List");
+                    Log.LogErrorFromException(ex);
+                }
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+</Project>

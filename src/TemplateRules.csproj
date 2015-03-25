@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\tools\Build.tasks" />
   <PropertyGroup>
     <ProjectGuid>{c14a0c12-e46e-4f5b-b034-3038d0fc1010}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe a -r</ZipCommand>
@@ -13,7 +14,7 @@
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
-  
+
   <ItemGroup>
     <LooseFiles Include="
               Templates.xml;
@@ -28,7 +29,7 @@
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\BaseTemplates</SearchPath>
     </LooseFiles>
-    
+
     <!-- StarterWeb Common Auth Files -->
     <LooseFiles Include="
               Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml">
@@ -54,9 +55,9 @@
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
-    
+
   </ItemGroup>
-  
+
   <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
       <TargetName>%(LooseFiles.TargetName)</TargetName>
@@ -83,20 +84,35 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />  
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
 
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="@(FilesToReplace)"/>
+    </ItemGroup>
+    <VerifyWhitespace FileList="@(FilesToVerify)" />
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
   </Target>
-  
+
+  <Target Name="VerifyContent">
+    <ItemGroup>
+      <FilesToVerify Include="**\*.*"/>
+      <FilesToVerify Remove="BaseTemplates\**\*.*"/>
+    </ItemGroup>
+    <Message Text="@(FilesToVerify)" Importance="high" />
+    <VerifyWhitespace FileList="@(FilesToVerify)"/>
+  </Target>
+
   <Target Name="BuildCompiled">
     <MakeDir Directories="$(TemplatesOutputPath)" />
+    <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildLooseFiles" />
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
   </Target>
-  
+
   <Target Name="Build" DependsOnTargets="BuildCompiled" />
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>

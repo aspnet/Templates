@@ -1,5 +1,5 @@
 <Project DefaultTargets="Verify" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="Templates.Settings.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)\Templates.Settings.targets" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
 
   <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList;PublishReferencePackages"/>

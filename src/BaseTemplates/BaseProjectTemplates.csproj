@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\tools\Build.tasks" />
   <PropertyGroup>
     <ProjectGuid>{c14a0c12-e46e-4f5b-b034-3038d0fc1010}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe a -r</ZipCommand>
@@ -19,14 +20,12 @@
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
-  
   <ItemDefinitionGroup>
     <VSTemplate>
       <TargetName/>
       <SearchPath/>
     </VSTemplate>
   </ItemDefinitionGroup>
-  
   <!--This item group contains templates which are to be built-->
   <ItemGroup>
     <VSTemplate Include="ClassLibrary.vstemplate">
@@ -44,11 +43,11 @@
     <VSTemplate Include="DNXConsoleApp.vstemplate">
       <TargetName>DNXConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
-    </VSTemplate>      
+    </VSTemplate>
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
       <SearchPath>EmptyWeb\;$(ResourcesPath)</SearchPath>
-    </VSTemplate>    
+    </VSTemplate>
     <VSTemplate Include="StarterWeb.vstemplate">
       <TargetName>$(StarterWebTemplateName)</TargetName>
       <SearchPath>StarterWeb\;$(ResourcesPath)</SearchPath>
@@ -58,22 +57,21 @@
       <SearchPath>WebAPI\;$(ResourcesPath)</SearchPath>
     </VSTemplate>
   </ItemGroup>
-  
   <Target Name="BuildAllTemplates" DependsOnTargets="GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
       <TargetName>%(VSTemplateItem.TargetName)</TargetName>
       <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>
     </PropertyGroup>
     <RemoveDir Directories="$(TempPath)" />
-    
+
     <Copy SourceFiles="@(VSTemplateItem)" DestinationFiles="@(VSTemplateItem->'$(TempPath)%(TemplateRelativeFilePath)')" Condition="'%(Extension)' != '.vstemplate'">
       <Output ItemName="CopiedVsTemplateFiles" TaskParameter="CopiedFiles"/>
     </Copy>
-    
+
     <Copy SourceFiles="@(VSTemplateItem)" DestinationFiles="@(VSTemplateItem->'$(TempPath)%(Filename)%(Extension)')" Condition="'%(Extension)' == '.vstemplate'">
       <Output ItemName="CopiedVsTemplateFiles" TaskParameter="CopiedFiles"/>
     </Copy>
-    
+
     <ItemGroup>
       <FilesToReplace Remove="@(FilesToReplace)" />
       <FilesToReplace Include="@(CopiedVsTemplateFiles)" />
@@ -85,26 +83,39 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />  
-    
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
+
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
   </Target>
 
-  <Target Name="GetTemplateItemsFromVSTemplates" Condition="'@(VSTemplate)'!=''">    
+  <Target Name="GetTemplateItemsFromVSTemplates" Condition="'@(VSTemplate)'!=''">
     <GetVSTemplateItems Templates="@(VSTemplate)">
       <Output TaskParameter="TemplateItems" ItemName="VSTemplateItem" />
     </GetVSTemplateItems>
   </Target>
-  
+
+  <Target Name="VerifyContent">
+    <ItemGroup>
+      <FilesToVerify Include="**\*.*"/>
+      <FilesToVerify Remove="StarterWeb\node_modules\**\*.*"/>
+      <FilesToVerify Remove="StarterWeb\bower_components\**\*.*"/>
+      <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap*\**\*.*"/>
+      <FilesToVerify Remove="StarterWeb\wwwroot\images\**\*.*"/>
+    </ItemGroup>
+    <Message Text="@(FilesToVerify)" Importance="high" />
+    <VerifyWhitespace FileList="@(FilesToVerify)"/>
+  </Target>
+
   <Target Name="BuildCompiled">
     <MakeDir Directories="$(TemplatesOutputPath)" />
+    <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildAllTemplates" />
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
   </Target>
-  
+
   <Target Name="Build" DependsOnTargets="BuildCompiled" />
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>

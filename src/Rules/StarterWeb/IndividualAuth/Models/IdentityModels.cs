@@ -16,11 +16,11 @@ namespace $safeprojectname$.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         private static bool _created = false;
-        
+
         public ApplicationDbContext()
-        {            
+        {
             // Create the database and schema if it doesn't exist
-            // This is a temporary workaround to create database until Entity Framework database migrations 
+            // This is a temporary workaround to create database until Entity Framework database migrations
             // are supported in ASP.NET 5
             if (!_created)
             {
@@ -28,7 +28,7 @@ namespace $safeprojectname$.Models
                 _created = true;
             }
         }
-        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

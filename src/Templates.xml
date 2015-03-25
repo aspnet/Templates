@@ -59,7 +59,7 @@
               VSTemplatePath="DNXWebAPI.vstemplate">
     </BaseTemplate>
   </BaseTemplates>
-  
+
   <Rules>
       <Rule ID="StarterWebCommonAuth">
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>

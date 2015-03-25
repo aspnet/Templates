@@ -2,12 +2,12 @@
     "version": "1.0.0-*",
     "dependencies": {
     },
-    "commands": { 
+    "commands": {
         "$safeprojectname$" : "$safeprojectname$"
     },
     "frameworks" : {
         "dnx451" : { },
-        "dnxcore50" : { 
+        "dnxcore50" : {
             "dependencies": {
                 "System.Console": "{version}"
             }
