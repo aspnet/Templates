@@ -1,0 +1,8 @@
+﻿{
+  "profiles": {
+    "IIS Express": {
+      "launchBrowser": true,
+      "launchUrl": "api/values"
+    }
+  }
+}

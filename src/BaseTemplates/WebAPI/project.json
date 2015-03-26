@@ -1,13 +1,16 @@
 {
-  /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
   "webroot": "wwwroot",
   "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
   "dependencies": {
     "Microsoft.AspNet.Server.IIS": "{version}",
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.StaticFiles": "{version}",
     "Microsoft.AspNet.Server.WebListener": "{version}",
-    "Microsoft.AspNet.Tooling.Razor": "{version}"
   },
   "frameworks": {
     "dnx451": { },

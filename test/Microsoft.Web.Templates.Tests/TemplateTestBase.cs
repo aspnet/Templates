@@ -23,7 +23,12 @@ namespace Microsoft.Web.Templates.Tests
 
         protected TestServer CreateServer()
         {
-            return CreateServer(new HostingInformation(StartupType));
+            return CreateServer(GetHostingInformation());
+        }
+
+        protected virtual HostingInformation GetHostingInformation()
+        {
+            return new HostingInformation(StartupType);
         }
 
         protected abstract Type StartupType { get; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
@@ -18,7 +19,6 @@ namespace Microsoft.Web.Templates.Tests
         {
             _startupType = startupType;
             _hostingEnvironment = new TestHostingEnvironment();
-            _startup = System.Activator.CreateInstance(_startupType, _hostingEnvironment);
         }
         public TestHostingEnvironment HostingEnvironment
         {
@@ -34,16 +34,32 @@ namespace Microsoft.Web.Templates.Tests
             get { return ConfigureServices; }
         }
 
-        private void ConfigureApp(IApplicationBuilder app)
+        protected object Startup
         {
-            var configure = _startupType.GetMethod("Configure", BindingFlags.Public | BindingFlags.Instance);
-            configure.Invoke(_startup, new object[] { app, HostingEnvironment, app.ApplicationServices.GetService<ILoggerFactory>() });
+            get
+            {
+                return LazyInitializer.EnsureInitialized<object>(ref _startup, () => 
+                {
+                    return System.Activator.CreateInstance(_startupType, _hostingEnvironment);
+                });
+            }
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        protected Type StartupType
         {
-            var configureServices = _startupType.GetMethod("ConfigureServices", BindingFlags.Public | BindingFlags.Instance);
-            configureServices.Invoke(_startup, new object[] { services });
+            get { return _startupType; }
+        }
+
+        protected virtual void ConfigureApp(IApplicationBuilder app)
+        {
+            var configure = StartupType.GetMethod("Configure", BindingFlags.Public | BindingFlags.Instance);
+            configure.Invoke(Startup, new object[] { app, HostingEnvironment, app.ApplicationServices.GetService<ILoggerFactory>() });
+        }
+
+        protected virtual void ConfigureServices(IServiceCollection services)
+        {
+            var configureServices = StartupType.GetMethod("ConfigureServices", BindingFlags.Public | BindingFlags.Instance);
+            configureServices.Invoke(Startup, new object[] { services });
         }
     }
 }
