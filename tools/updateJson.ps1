@@ -17,7 +17,7 @@ function ProcessFile {
     )
 
     $semanticRegEx = "(?<Version>\d+(\.\d+){0,3})(?<Release>-[a-z][0-9a-z-]*)?(\.nupkg)"
-
+    
     $fileName = $sourceFile.Name
     
     if ($fileName -match $semanticRegEx)
@@ -61,7 +61,7 @@ function ProcessProjectFile {
 
         foreach ($line in Get-Content $projectJsonFilePath)
         {
-            $matchPattern = """(?<PackageName>\S*)""\s*:\s*""(?<PackageVersion>\S*)"".*"
+            $matchPattern = """(?<PackageName>\S*)""\s*:\s*""(?<PackageVersion>\S+)"".*"
             if ($line -match $matchPattern -and $PackageNameVersionHash.Contains($Matches.PackageName))
             {
                 $line = $line.Replace($Matches.PackageVersion, $PackageNameVersionHash[$Matches.PackageName])
