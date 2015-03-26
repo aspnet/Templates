@@ -1,15 +1,31 @@
 {
   "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
   "dependencies": {
   },
   "commands": {
     "$safeprojectname$" : "$safeprojectname$"
   },
   "frameworks" : {
-    "dnx451" : { },
+    "dnx451": {
+      "frameworkAssemblies": {
+        "Microsoft.CSharp": "",
+        "System.Collections": "",
+        "System.Linq": "",
+        "System.Threading": ""
+      }
+    },
     "dnxcore50" : {
       "dependencies": {
-          "System.Console": "{version}"
+        "System.Console": "{version}",
+        "System.Collections": "{version}",
+        "System.Linq": "{version}",
+        "System.Threading": "{version}",
+        "Microsoft.CSharp": "{version}"
       }
     }
   }
