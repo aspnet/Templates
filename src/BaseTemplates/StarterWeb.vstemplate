@@ -736,8 +736,8 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
         </Folder>
       </Folder>
-      <Folder Name="Compiler" TargetFolderName="Compiler">
-        <Folder Name="Preprocess" TargetFolderName="Preprocess">
+      <Folder Name="compiler" TargetFolderName="compiler">
+        <Folder Name="preprocess" TargetFolderName="preprocess">
           <ProjectItem ReplaceParameters="true" TargetFileName="RazorPreCompilation.cs">RazorPreCompilation.cs</ProjectItem>
         </Folder>
       </Folder>
