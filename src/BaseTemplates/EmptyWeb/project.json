@@ -16,7 +16,7 @@
   "commands": {
       "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
   },
-  "bundleExclude": [
+  "publishExclude": [
     "node_modules",
     "bower_components",
     "**.xproj",
