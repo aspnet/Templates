@@ -7,6 +7,7 @@ namespace $safeprojectname$.Compiler.Preprocess
     {
         public RazorPreCompilation(IServiceProvider provider) : base(provider)
         {
+            GenerateSymbols = true;
         }
     }
 }
