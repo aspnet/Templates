@@ -34,7 +34,7 @@ namespace Microsoft.Web.Templates.Tests
             get { return ConfigureServices; }
         }
 
-        protected object Startup
+        protected virtual object Startup
         {
             get
             {

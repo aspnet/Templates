@@ -49,6 +49,8 @@ namespace Microsoft.Web.Templates.Tests
         {
             applicationPath = applicationPath ?? TestProjectsPath;
 
+            EnsurePath(Path.Combine(applicationPath, applicationWebSiteName, "wwwroot"));
+
             // Get current IApplicationEnvironment; likely added by the host.
             var provider = services.BuildServiceProvider();
             var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
@@ -100,6 +102,14 @@ namespace Microsoft.Web.Templates.Tests
             var assembly = Assembly.Load(new AssemblyName(siteName));
             var providerType = typeof(TestAssemblyProvider<>).MakeGenericType(assembly.GetExportedTypes()[0]);
             return providerType;
+        }
+
+        private static void EnsurePath(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
     }
 }
