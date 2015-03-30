@@ -46,6 +46,7 @@ namespace $safeprojectname$.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewBag.ReturnUrl = returnUrl;
+            ViewBag.LoginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout

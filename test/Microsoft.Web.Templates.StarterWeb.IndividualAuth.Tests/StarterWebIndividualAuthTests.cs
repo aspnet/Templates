@@ -167,7 +167,7 @@ namespace Microsoft.Web.Templates.Tests
             Assert.NotEqual(String.Empty, authCookie);
         }
 
-        //[Fact] //Disabled due to bug in MVC
+        [Fact]
         public async void Verify_Account_Login_Invalid()
         {
             var server = CreateServer();
