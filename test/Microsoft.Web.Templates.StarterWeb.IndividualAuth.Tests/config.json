@@ -1,12 +1,10 @@
 ﻿{
-    "Data": {
-        "DefaultConnection": { 
-            "ConnectionString": "Server=(localdb)\\templatetests;Database=StarterWebIndividualAuth.Test;Trusted_Connection=True;MultipleActiveResultSets=true"
-        }
-    },
-    "EntityFramework": {
-        "ApplicationDbContext": {
-            "ConnectionString": "name=Data:DefaultConnection:ConnectionString"
-        }
-    }
+  "AppSettings": {
+    "SiteTitle": "StarterWeb.IndividualAuth"
+  },
+  "Data": {
+      "DefaultConnection": { 
+          "ConnectionString": "Server=(localdb)\\templatetests;Database=aspnet5-StarterWeb.IndividualAuth-1;Trusted_Connection=True;MultipleActiveResultSets=true"
+      }
+  },
 }

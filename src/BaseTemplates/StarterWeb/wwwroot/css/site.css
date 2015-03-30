@@ -37,3 +37,6 @@ textarea {
         z-index: 10 !important;
     }
 }
+meta.fallback-test {
+     visibility: hidden;
+}

@@ -1,13 +1,23 @@
 {
-  /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
   "webroot": "wwwroot",
+  "userSecretsId": "aspnet5-$safeprojectname$-$guid2$",
   "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
   "dependencies": {
     "EntityFramework.SqlServer": "{version}",
     "EntityFramework.Commands": "{version}",
+    "Microsoft.Framework.Runtime": "{version}",
     "Microsoft.AspNet.Mvc": "{version}",
-    /* "Microsoft.AspNet.Mvc.WebApiCompatShim": "{version}", */
+    "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
     "Microsoft.AspNet.Authentication.Cookies": "{version}",
+    "Microsoft.AspNet.Authentication.Facebook": "{version}",
+    "Microsoft.AspNet.Authentication.Google": "{version}",
+    "Microsoft.AspNet.Authentication.MicrosoftAccount": "{version}",
+    "Microsoft.AspNet.Authentication.Twitter": "{version}",
     "Microsoft.AspNet.Diagnostics": "{version}",
     "Microsoft.AspNet.Diagnostics.Entity": "{version}",
     "Microsoft.AspNet.Identity.EntityFramework": "{version}",
@@ -16,13 +26,13 @@
     "Microsoft.AspNet.StaticFiles": "{version}",
     "Microsoft.AspNet.Tooling.Razor": "{version}",
     "Microsoft.Framework.ConfigurationModel.Json": "{version}",
+    "Microsoft.Framework.ConfigurationModel.UserSecrets": "{version}",
     "Microsoft.Framework.CodeGenerators.Mvc": "{version}",
     "Microsoft.Framework.Logging": "{version}",
     "Microsoft.Framework.Logging.Console": "{version}",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__BrowserLinkPackageVersion__"
   },
   "commands": {
-    /* Change the port number when you are self hosting this application */
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
     "gen": "Microsoft.Framework.CodeGeneration",
     "ef":  "EntityFramework.Commands"

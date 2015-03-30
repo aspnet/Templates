@@ -40,16 +40,35 @@
     <!-- StarterWeb Individual Auth Files -->
     <LooseFiles Include="
               Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
+              Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
               Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs;
               Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs;
-              Rules\StarterWeb\IndividualAuth\Views\Account\_ChangePasswordPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Models\ManageViewModels.cs;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPasswordConfirmation.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\Account\Manage.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ResetPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ResetPasswordConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\SendCode.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\VerifyCode.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\AddPhoneNumber.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\_GlobalImport.cshtml;
               Rules\StarterWeb\IndividualAuth\config.json;
+              Rules\StarterWeb\IndividualAuth\MessageServices.cs;
               Rules\StarterWeb\IndividualAuth\project.json;
               Rules\StarterWeb\IndividualAuth\Startup.cs">
       <TargetName>$(Rules)</TargetName>
@@ -96,8 +115,13 @@
       <FilesToVerify Remove="BaseTemplates\**\*.*"/>
       <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
-    <Message Text="@(FilesToVerify)" Importance="high" />
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="**\*.cs"/>
+      <FilesToVerify Remove="BaseTemplates\**\*.cs"/>
+    </ItemGroup>
+    <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
   </Target>
 
   <Target Name="BuildCompiled">
