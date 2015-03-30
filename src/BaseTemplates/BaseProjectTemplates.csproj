@@ -105,8 +105,12 @@
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\jquery*\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\images\**\*.*"/>
     </ItemGroup>
-    <Message Text="@(FilesToVerify)" Importance="high" />
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="**\*.cs"/>
+    </ItemGroup>
+    <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
   </Target>
 
   <Target Name="BuildCompiled">

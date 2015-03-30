@@ -24,6 +24,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.Templates.Web
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebAPI", "..\artifacts\build\Test\WebAPI\WebAPI.xproj", "{2D35BE10-ECC4-4639-96AE-925702B83655}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.Templates.EmptyWeb.Tests", "Microsoft.Web.Templates.EmptyWeb.Tests\Microsoft.Web.Templates.EmptyWeb.Tests.xproj", "{DE7BE58B-C565-4060-9686-ECE9F25B5801}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EmptyWeb", "..\artifacts\build\Test\EmptyWeb\EmptyWeb.xproj", "{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{2D35BE10-ECC4-4639-96AE-925702B83655}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D35BE10-ECC4-4639-96AE-925702B83655}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D35BE10-ECC4-4639-96AE-925702B83655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE7BE58B-C565-4060-9686-ECE9F25B5801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7BE58B-C565-4060-9686-ECE9F25B5801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE7BE58B-C565-4060-9686-ECE9F25B5801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7BE58B-C565-4060-9686-ECE9F25B5801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

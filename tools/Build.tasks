@@ -60,8 +60,6 @@
                                 string[] parts = line.Trim().Split();
                                 string packageName = parts[0].Trim();
                                 
-                                Log.LogMessage("Evaluating {0}", packageName);
-
                                 if (parts.Length == 2 && !excludedPackages.Contains(packageName)
                                     && !packageName.StartsWith("framework/"))
                                 {
@@ -71,7 +69,6 @@
                                     {
                                         packageToAdd = packageToAdd.Substring(1);
                                     }
-                                    Log.LogMessage("--> Added {0}", packageToAdd);
                                     packages.Add(packageToAdd);
                                 }
                             }
@@ -148,6 +145,68 @@
                 catch(Exception ex)
                 {
                     Log.LogError("Error Verifying Whitespace");
+                    Log.LogErrorFromException(ex);
+                }
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    <UsingTask
+        TaskName="VerifyUsings"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <FileList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <RequiredUsings ParameterType="System.String" Required="True"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {   foreach(var taskItem in FileList)
+                    {
+                        String[] reqUsings = RequiredUsings.Split(';');
+                    
+                        bool[] hasUsing = new bool[reqUsings.Length];
+                        using(var file = File.OpenText(taskItem.ItemSpec))
+                        {
+                            while(!file.EndOfStream)
+                            {
+                                string line = file.ReadLine();
+                                if (line.Contains("{"))
+                                {
+                                    // continue to the first open brace, then go to the next file.
+                                    break;
+                                }
+                                
+                                for(int i=0; i < reqUsings.Length; i++)
+                                {
+                                    if (line.Contains(String.Format("using {0};", reqUsings[i])))
+                                    {
+                                        hasUsing[i] = true;
+                                    }
+                                }
+                            }
+                            for (int i=0; i < reqUsings.Length; i++)
+                            {
+                                if (!hasUsing[i]) 
+                                {
+                                    Log.LogError("File {0} is missing required using statemenet: {1}", taskItem.ItemSpec, reqUsings[i]);
+                                }
+                            } 
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Verifying Using statements");
                     Log.LogErrorFromException(ex);
                 }
                 return !Log.HasLoggedErrors;

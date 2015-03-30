@@ -1,12 +1,15 @@
 {
-  /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
   "webroot": "wwwroot",
   "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
   "dependencies": {
     "Microsoft.AspNet.Mvc": "{version}",
-    /* "Microsoft.AspNet.Mvc.WebApiCompatShim": "{version}", */
+    "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
     "Microsoft.AspNet.Diagnostics": "{version}",
-    "Microsoft.AspNet.Diagnostics.Entity": "{version}",
     "Microsoft.AspNet.Server.IIS": "{version}",
     "Microsoft.AspNet.Server.WebListener": "{version}",
     "Microsoft.AspNet.StaticFiles": "{version}",
@@ -18,7 +21,6 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__BrowserLinkPackageVersion__"
   },
   "commands": {
-    /* Change the port number when you are self hosting this application */
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
     "gen": "Microsoft.Framework.CodeGeneration",
   },
@@ -31,7 +33,7 @@
     "node_modules",
     "bower_components"
   ],
-  "bundleExclude": [
+  "publishExclude": [
     "node_modules",
     "bower_components",
     "**.xproj",

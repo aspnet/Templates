@@ -1,6 +1,11 @@
 {
   "webroot": "wwwroot",
   "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
   "dependencies": {
     "Microsoft.AspNet.Server.IIS": "{version}"
   },
@@ -8,7 +13,10 @@
     "dnx451": { },
     "dnxcore50": { }
   },
-  "bundleExclude": [
+  "commands": {
+      "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
+  },
+  "publishExclude": [
     "node_modules",
     "bower_components",
     "**.xproj",

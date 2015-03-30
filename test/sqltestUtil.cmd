@@ -9,6 +9,6 @@ exit /b 0
 :delete
 sqllocaldb p "templateTests" 2> nul
 sqllocaldb d "templateTests" 2> nul
-del %userprofile%\StarterWeb*.Test*.* 2> nul
+del %userprofile%\aspnet5-StarterWeb.IndividualAuth*.* 2> nul
 
 exit /b 0

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Metadata.Builders;
@@ -151,7 +153,7 @@ namespace $safeprojectname$.Migrations
     {
         public override string Id
         {
-            get { return "00000000000000_CreateIdentitySchema"; }
+            get { return "000000000000_CreateIdentitySchema"; }
         }
 
         public override string ProductVersion
