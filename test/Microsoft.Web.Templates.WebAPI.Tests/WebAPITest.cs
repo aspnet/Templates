@@ -29,11 +29,6 @@ namespace Microsoft.Web.Templates.Tests
             }
         }
 
-        protected override HostingInformation GetHostingInformation()
-        {
-            return new WebAPIHostingInformation(StartupType);
-        }
-
         [Fact]
         public async void Verify_Api_Get_Values()
         {

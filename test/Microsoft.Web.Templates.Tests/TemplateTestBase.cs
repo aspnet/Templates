@@ -21,72 +21,69 @@ namespace Microsoft.Web.Templates.Tests
         // path from Templates\test\Microsoft.Web.Templates.Tests
         protected static readonly string TestProjectsPath = Path.Combine("..", "..", "artifacts", "build", "Test");
 
-        protected TestServer CreateServer()
-        {
-            return CreateServer(GetHostingInformation());
-        }
-
-        protected virtual HostingInformation GetHostingInformation()
-        {
-            return new HostingInformation(StartupType);
-        }
-
         protected abstract Type StartupType { get; }
         protected abstract string TemplateName { get; }
 
-        private TestServer CreateServer(HostingInformation hostingInfo)
+        protected TestServer CreateServer()
         {
-            return TestServer.Create(
-                hostingInfo.ApplicationBuilder,
-                services => AddTestServices(services, TemplateName, TestProjectsPath, hostingInfo.ApplicationConfigureServices));
-        }
+            //applicationPath = applicationPath ?? TestProjectsPath;
 
-        private static void AddTestServices(
-            IServiceCollection services,
-            string applicationWebSiteName,
-            string applicationPath,
-            Action<IServiceCollection> configureServices)
-        {
-            applicationPath = applicationPath ?? TestProjectsPath;
+            EnsurePath(Path.Combine(TestProjectsPath, TemplateName, "wwwroot"));
 
-            EnsurePath(Path.Combine(applicationPath, applicationWebSiteName, "wwwroot"));
-
-            // Get current IApplicationEnvironment; likely added by the host.
-            var provider = services.BuildServiceProvider();
+            //// Get current IApplicationEnvironment; likely added by the host.
+            var provider = CallContextServiceLocator.Locator.ServiceProvider;
             var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
 
-            // When an application executes in a regular context, the application base path points to the root
-            // directory where the application is located, for example MvcSample.Web. However, when executing
-            // an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
-            // to the root folder of the test project.
-            // To compensate for this, we need to calculate the original path and override the application
-            // environment value so that components like the view engine work properly in the context of the
-            // test.
+            //// When an application executes in a regular context, the application base path points to the root
+            //// directory where the application is located, for example MvcSample.Web. However, when executing
+            //// an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
+            //// to the root folder of the test project.
+            //// To compensate for this, we need to calculate the original path and override the application
+            //// environment value so that components like the view engine work properly in the context of the
+            //// test.
             var applicationBasePath = CalculateApplicationBasePath(
                 originalEnvironment,
-                applicationWebSiteName,
-                applicationPath);
+                TemplateName,
+                TestProjectsPath);
             var environment = new TestApplicationEnvironment(
                 originalEnvironment,
                 applicationBasePath);
-            services.AddInstance<IApplicationEnvironment>(environment);
-            var hostingEnvironment = new HostingEnvironment();
-            hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
-            services.AddInstance<IHostingEnvironment>(hostingEnvironment);
-            var providerType = CreateAssemblyProviderType(applicationWebSiteName);
+
+            var providerType = CreateAssemblyProviderType(TemplateName);
             var configuration = new TestConfigurationProvider();
             configuration.Configuration.Set(
                 typeof(IAssemblyProvider).FullName,
                 providerType.AssemblyQualifiedName);
-            services.AddInstance<ITestConfigurationProvider>(configuration);
-            services.AddInstance<ILoggerFactory>(new LoggerFactory());
 
-
-            if (configureServices != null)
-            {
-                configureServices(services);
-            }
+            var builder = TestServer.CreateBuilder(provider, new Configuration(), app => { },
+                services =>
+                {
+                    services.AddInstance<ITestConfigurationProvider>(configuration);
+                    services.AddInstance<ILoggerFactory>(new LoggerFactory());
+                    services.AddInstance<IApplicationEnvironment>(environment);
+                    var hostingEnvironment = new HostingEnvironment();
+                    hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
+                    services.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                });
+                //AddTestServices(services, TemplateName, TestProjectsPath, hostingInfo.ApplicationConfigureServices));
+            builder.ApplicationName = TemplateName;
+            builder.StartupType = StartupType;
+            return builder.Build();
         }
+
+        //private static void AddTestServices(
+        //    IServiceCollection services,
+        //    string applicationWebSiteName,
+        //    string applicationPath,
+        //    Action<IServiceCollection> configureServices)
+        //{
+
+
+        //    if (configureServices != null)
+        //    {
+        //        configureServices(services);
+        //    }
+        //}
 
 
         // Calculate the path relative to the application base path.
