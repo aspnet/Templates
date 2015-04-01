@@ -2,11 +2,6 @@
   "webroot": "wwwroot",
   "userSecretsId": "aspnet5-$safeprojectname$-$guid2$",
   "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
   "dependencies": {
     "EntityFramework.SqlServer": "{version}",
     "EntityFramework.Commands": "{version}",
