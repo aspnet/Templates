@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading;
 using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.ServiceLookup;
@@ -12,15 +13,15 @@ namespace Microsoft.Web.Templates.Tests
     public class HostingInformation
     {
         private Type _startupType;
-        private TestHostingEnvironment _hostingEnvironment;
+        private HostingEnvironment _hostingEnvironment;
         private object _startup;
 
         public HostingInformation(Type startupType)
         {
             _startupType = startupType;
-            _hostingEnvironment = new TestHostingEnvironment();
+            _hostingEnvironment = new HostingEnvironment();
         }
-        public TestHostingEnvironment HostingEnvironment
+        public HostingEnvironment HostingEnvironment
         {
             get { return _hostingEnvironment; }
         }
