@@ -66,7 +66,7 @@ namespace $safeprojectname$
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
                 options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
-            
+
             services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
             {
                 options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
