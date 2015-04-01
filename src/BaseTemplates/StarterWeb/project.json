@@ -1,11 +1,6 @@
 {
   "webroot": "wwwroot",
   "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
   "dependencies": {
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
@@ -22,7 +17,7 @@
   },
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-    "gen": "Microsoft.Framework.CodeGeneration",
+    "gen": "Microsoft.Framework.CodeGeneration"
   },
   "frameworks": {
     "dnx451": { },

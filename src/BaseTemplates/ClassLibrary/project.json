@@ -7,18 +7,8 @@
   "licenseUrl": "",
   "dependencies": {
   },
-  "commands": {
-    "$safeprojectname$" : "$safeprojectname$"
-  },
   "frameworks" : {
-    "dnx451": {
-      "frameworkAssemblies": {
-        "Microsoft.CSharp": "",
-        "System.Collections": "",
-        "System.Linq": "",
-        "System.Threading": ""
-      }
-    },
+    "dnx451": { },
     "dnxcore50" : {
       "dependencies": {
         "System.Collections": "{version}",
