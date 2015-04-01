@@ -26,17 +26,18 @@ namespace $safeprojectname$
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup()
         {
             // Setup configuration sources.
             var configuration = new Configuration()
                 .AddJsonFile("config.json");
 
-            if (env.IsEnvironment("Development"))
-            {
+            // BUGBUG: regression in hosting cannot take IHostingEnvironment in Startup ctor
+            //if (env.IsEnvironment("Development"))
+            //{
                 // Add a fwlink here and add some comment.
                 configuration.AddUserSecrets();
-            }
+            //}
             configuration.AddEnvironmentVariables();
             Configuration = configuration;
         }

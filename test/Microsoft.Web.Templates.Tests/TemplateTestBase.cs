@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.TestHost;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.DependencyInjection.ServiceLookup;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Runtime;
 using Microsoft.Framework.Runtime.Infrastructure;
@@ -34,6 +31,8 @@ namespace Microsoft.Web.Templates.Tests
             var provider = CallContextServiceLocator.Locator.ServiceProvider;
             var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
 
+            Debugger.Launch();
+
             //// When an application executes in a regular context, the application base path points to the root
             //// directory where the application is located, for example MvcSample.Web. However, when executing
             //// an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
@@ -54,21 +53,30 @@ namespace Microsoft.Web.Templates.Tests
             configuration.Configuration.Set(
                 typeof(IAssemblyProvider).FullName,
                 providerType.AssemblyQualifiedName);
+            var hostingEnvironment = new HostingEnvironment();
 
-            var builder = TestServer.CreateBuilder(provider, new Configuration(), app => { },
-                services =>
-                {
-                    services.AddInstance<ITestConfigurationProvider>(configuration);
-                    services.AddInstance<ILoggerFactory>(new LoggerFactory());
-                    services.AddInstance<IApplicationEnvironment>(environment);
-                    var hostingEnvironment = new HostingEnvironment();
-                    hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
-                    services.AddInstance<IHostingEnvironment>(hostingEnvironment);
-                });
+
+            try
+            {
+                CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
+                var builder = TestServer.CreateBuilder(provider, new Configuration(), app => { },
+                    services =>
+                    {
+                        services.AddInstance<ITestConfigurationProvider>(configuration);
+                        services.AddInstance<ILoggerFactory>(new LoggerFactory());
+                        services.AddInstance<IApplicationEnvironment>(environment);
+                        hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
+                        services.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                    });
                 //AddTestServices(services, TemplateName, TestProjectsPath, hostingInfo.ApplicationConfigureServices));
-            builder.ApplicationName = TemplateName;
-            builder.StartupType = StartupType;
-            return builder.Build();
+                builder.ApplicationName = TemplateName;
+                builder.StartupType = StartupType;
+                return builder.Build();
+            }
+            finally
+            {
+                CallContextServiceLocator.Locator.ServiceProvider = provider;
+            }
         }
 
         //private static void AddTestServices(
@@ -110,5 +118,33 @@ namespace Microsoft.Web.Templates.Tests
                 Directory.CreateDirectory(path);
             }
         }
+
+        private class WrappingServiceProvider : IServiceProvider
+        {
+            private readonly IApplicationEnvironment _appEnv;
+            private readonly IHostingEnvironment _hostingEnv;
+            private readonly IServiceProvider _fallback;
+
+            public WrappingServiceProvider(IServiceProvider fallback, IApplicationEnvironment appEnv, IHostingEnvironment hostingEnv)
+            {
+                _appEnv = appEnv;
+                _hostingEnv = hostingEnv;
+                _fallback = fallback;
+            }
+
+            public object GetService(Type serviceType)
+            {
+                if (serviceType == typeof(IApplicationEnvironment))
+                {
+                    return _appEnv;
+                }
+                else if (serviceType == typeof(IHostingEnvironment))
+                {
+                    return _hostingEnv;
+                }
+                return _fallback.GetService(serviceType);
+            }
+        }
+
     }
 }
