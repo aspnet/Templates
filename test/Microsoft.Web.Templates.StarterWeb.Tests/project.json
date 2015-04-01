@@ -1,7 +1,7 @@
 {
     "version": "1.0.0-*",
     "compilationOptions": {
-        "warningsAsErrors": true
+        "warningsAsErrors": "true"
     },
     "dependencies": {
         "Microsoft.AspNet.TestHost": "1.0.0-*",
