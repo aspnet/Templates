@@ -70,7 +70,9 @@ namespace Microsoft.Web.Templates.Tests
                 originalEnvironment,
                 applicationBasePath);
             services.AddInstance<IApplicationEnvironment>(environment);
-            services.AddInstance<IHostingEnvironment>(new HostingEnvironment(environment));
+            var hostingEnvironment = new HostingEnvironment();
+            hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
+            services.AddInstance<IHostingEnvironment>(hostingEnvironment);
             var providerType = CreateAssemblyProviderType(applicationWebSiteName);
             var configuration = new TestConfigurationProvider();
             configuration.Configuration.Set(
