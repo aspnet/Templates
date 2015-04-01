@@ -57,6 +57,7 @@ namespace Microsoft.Web.Templates.Tests
 
                     });
                 builder.ApplicationName = TemplateName;
+                builder.ApplicationBasePath = applicationBasePath;
                 builder.StartupType = StartupType;
                 return builder.Build();
             }
