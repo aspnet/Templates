@@ -23,15 +23,11 @@ namespace Microsoft.Web.Templates.Tests
 
         protected TestServer CreateServer()
         {
-            //applicationPath = applicationPath ?? TestProjectsPath;
-
             EnsurePath(Path.Combine(TestProjectsPath, TemplateName, "wwwroot"));
 
             //// Get current IApplicationEnvironment; likely added by the host.
             var provider = CallContextServiceLocator.Locator.ServiceProvider;
             var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
-
-            Debugger.Launch();
 
             //// When an application executes in a regular context, the application base path points to the root
             //// directory where the application is located, for example MvcSample.Web. However, when executing
@@ -48,27 +44,18 @@ namespace Microsoft.Web.Templates.Tests
                 originalEnvironment,
                 applicationBasePath);
 
-            var providerType = CreateAssemblyProviderType(TemplateName);
-            var configuration = new TestConfigurationProvider();
-            configuration.Configuration.Set(
-                typeof(IAssemblyProvider).FullName,
-                providerType.AssemblyQualifiedName);
             var hostingEnvironment = new HostingEnvironment();
-
-
             try
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
                 var builder = TestServer.CreateBuilder(provider, new Configuration(), app => { },
                     services =>
                     {
-                        services.AddInstance<ITestConfigurationProvider>(configuration);
                         services.AddInstance<ILoggerFactory>(new LoggerFactory());
-                        services.AddInstance<IApplicationEnvironment>(environment);
-                        hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
-                        services.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                        var assemblyProvider = CreateAssemblyProvider(TemplateName);
+                        services.AddInstance(assemblyProvider);
+
                     });
-                //AddTestServices(services, TemplateName, TestProjectsPath, hostingInfo.ApplicationConfigureServices));
                 builder.ApplicationName = TemplateName;
                 builder.StartupType = StartupType;
                 return builder.Build();
@@ -79,21 +66,6 @@ namespace Microsoft.Web.Templates.Tests
             }
         }
 
-        //private static void AddTestServices(
-        //    IServiceCollection services,
-        //    string applicationWebSiteName,
-        //    string applicationPath,
-        //    Action<IServiceCollection> configureServices)
-        //{
-
-
-        //    if (configureServices != null)
-        //    {
-        //        configureServices(services);
-        //    }
-        //}
-
-
         // Calculate the path relative to the application base path.
         public static string CalculateApplicationBasePath(IApplicationEnvironment appEnvironment,
                                                           string applicationWebSiteName, string websitePath)
@@ -102,13 +74,20 @@ namespace Microsoft.Web.Templates.Tests
                 Path.Combine(appEnvironment.ApplicationBasePath, websitePath, applicationWebSiteName));
         }
 
-        private static Type CreateAssemblyProviderType(string siteName)
+        private static IAssemblyProvider CreateAssemblyProvider(string siteName)
         {
             // Creates a service type that will limit MVC to only the controllers in the test site.
             // We only want this to happen when running in-process.
             var assembly = Assembly.Load(new AssemblyName(siteName));
-            var providerType = typeof(TestAssemblyProvider<>).MakeGenericType(assembly.GetExportedTypes()[0]);
-            return providerType;
+            var provider = new FixedSetAssemblyProvider
+            {
+                CandidateAssemblies =
+                {
+                    assembly,
+                },
+            };
+
+            return provider;
         }
 
         private static void EnsurePath(string path)
