@@ -30,11 +30,13 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
             var configuration = new Configuration()
-                .AddJsonFile("config.json");
+                .AddJsonFile("config.json")
+                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsEnvironment("Development"))
             {
-                // Add a fwlink here and add some comment.
+                // This reads the configuration keys from the secret store.
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
             }
             configuration.AddEnvironmentVariables();
@@ -43,9 +45,10 @@ namespace $safeprojectname$
 
         public IConfiguration Configuration { get; set; }
 
-        // This method gets called by the runtime.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
             // Add EF services to the services container.
@@ -60,7 +63,8 @@ namespace $safeprojectname$
                 .AddDefaultTokenProviders();
 
             // Configure the options for the authentication middleware.
-            // You can configure options for Google, Twitter and other middlewares as shown below.
+            // You can add options for Google, Twitter and other middleware as shown below.
+            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             services.Configure<FacebookAuthenticationOptions>(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -76,8 +80,8 @@ namespace $safeprojectname$
             // Add MVC services to the services container.
             services.AddMvc();
 
-            // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
-            // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
+            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
+            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
         }
 
@@ -85,6 +89,7 @@ namespace $safeprojectname$
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
+
             // Add the console logger.
             loggerfactory.AddConsole(minLevel: LogLevel.Warning);
 
@@ -98,7 +103,7 @@ namespace $safeprojectname$
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
+                // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
 
@@ -108,8 +113,8 @@ namespace $safeprojectname$
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
 
-            // Add authentication middleware to the request pipeline.
-            // You can configure options such as Id and Secret in ConfigureServices.
+            // Add authentication middleware to the request pipeline. You can configure options such as Id and Secret in the ConfigureServices method.
+            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             // app.UseFacebookAuthentication();
             // app.UseGoogleAuthentication();
             // app.UseMicrosoftAccountAuthentication();
