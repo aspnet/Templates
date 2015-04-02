@@ -34,7 +34,8 @@ namespace $safeprojectname$
 
             if (env.IsEnvironment("Development"))
             {
-                // Add a fwlink here and add some comment.
+                // This reads the configuration keys from the secret store. 
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
             }
             configuration.AddEnvironmentVariables();
@@ -43,9 +44,10 @@ namespace $safeprojectname$
 
         public IConfiguration Configuration { get; set; }
 
-        // This method gets called by the runtime.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
             // Add EF services to the services container.
@@ -60,7 +62,7 @@ namespace $safeprojectname$
                 .AddDefaultTokenProviders();
 
             // Configure the options for the authentication middleware.
-            // You can configure options for Google, Twitter and other middlewares as shown below.
+            // You can add options for Google, Twitter and other middlewares as shown below.
             services.Configure<FacebookAuthenticationOptions>(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -76,7 +78,7 @@ namespace $safeprojectname$
             // Add MVC services to the services container.
             services.AddMvc();
 
-            // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
+            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
             // services.AddWebApiConventions();
         }
@@ -109,7 +111,7 @@ namespace $safeprojectname$
             app.UseIdentity();
 
             // Add authentication middleware to the request pipeline.
-            // You can configure options such as Id and Secret in ConfigureServices.
+            // You can configure options such as Id and Secret in the ConfigureServices method.
             // app.UseFacebookAuthentication();
             // app.UseGoogleAuthentication();
             // app.UseMicrosoftAccountAuthentication();

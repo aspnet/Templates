@@ -1,19 +1,23 @@
 {
   "webroot": "wwwroot",
   "version": "1.0.0-*",
+
   "dependencies": {
     "Microsoft.AspNet.Server.IIS": "{version}",
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.StaticFiles": "{version}",
     "Microsoft.AspNet.Server.WebListener": "{version}"
   },
+
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
   },
+
   "frameworks": {
     "dnx451": { },
     "dnxcore50": { }
   },
+
   "exclude": [
     "wwwroot",
     "node_modules",

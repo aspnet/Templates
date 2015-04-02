@@ -1,6 +1,7 @@
 {
   "webroot": "wwwroot",
   "version": "1.0.0-*",
+
   "dependencies": {
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
@@ -15,14 +16,17 @@
     "Microsoft.Framework.Logging.Console": "{version}",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__BrowserLinkPackageVersion__"
   },
+
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
     "gen": "Microsoft.Framework.CodeGeneration"
   },
+
   "frameworks": {
     "dnx451": { },
     "dnxcore50": { }
   },
+
   "exclude": [
     "wwwroot",
     "node_modules",

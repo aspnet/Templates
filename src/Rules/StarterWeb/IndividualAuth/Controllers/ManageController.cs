@@ -142,7 +142,7 @@ namespace $safeprojectname$.Controllers
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(await GetCurrentUserAsync(), phoneNumber);
-            // Send an SMS through the SMS provider to verify the phone number
+            // Send an SMS to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
@@ -166,7 +166,7 @@ namespace $safeprojectname$.Controllers
                     return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, redisplay the form
             ModelState.AddModelError("", "Failed to verify phone number");
             return View(model);
         }
