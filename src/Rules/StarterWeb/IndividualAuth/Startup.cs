@@ -34,7 +34,7 @@ namespace $safeprojectname$
 
             if (env.IsEnvironment("Development"))
             {
-                // This reads the configuration keys from the secret store. 
+                // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
             }
@@ -62,7 +62,7 @@ namespace $safeprojectname$
                 .AddDefaultTokenProviders();
 
             // Configure the options for the authentication middleware.
-            // You can add options for Google, Twitter and other middlewares as shown below.
+            // You can add options for Google, Twitter and other middlewares as shown below. For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             services.Configure<FacebookAuthenticationOptions>(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -110,7 +110,7 @@ namespace $safeprojectname$
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
 
-            // Add authentication middleware to the request pipeline.
+            // Add authentication middleware to the request pipeline.  For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             // You can configure options such as Id and Secret in the ConfigureServices method.
             // app.UseFacebookAuthentication();
             // app.UseGoogleAuthentication();

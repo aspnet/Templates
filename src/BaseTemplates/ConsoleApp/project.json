@@ -6,12 +6,13 @@
   "projectUrl": "",
   "licenseUrl": "",
 
+  "dependencies": {
+  },
+
   "commands": {
     "$safeprojectname$" : "$safeprojectname$"
   },
 
-  "dependencies": {
-  },
   "frameworks" : {
     "dnx451": { },
     "dnxcore50" : {
