@@ -6,7 +6,6 @@
   "dependencies": {
     "EntityFramework.SqlServer": "{version}",
     "EntityFramework.Commands": "{version}",
-    "Microsoft.Framework.Runtime": "{version}",
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
     "Microsoft.AspNet.Authentication.Cookies": "{version}",

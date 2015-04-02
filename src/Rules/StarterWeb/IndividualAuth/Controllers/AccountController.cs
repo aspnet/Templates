@@ -64,7 +64,7 @@ namespace $safeprojectname$.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
             }
@@ -147,8 +147,7 @@ namespace $safeprojectname$.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await SignInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey,
-                isPersistent: false);
+            var result = await SignInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
@@ -424,7 +423,7 @@ namespace $safeprojectname$.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error.Description);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
         }
 

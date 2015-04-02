@@ -3,9 +3,9 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Microsoft.AspNet.Diagnostics": "{version}",
     "Microsoft.AspNet.Mvc": "{version}",
     "Microsoft.AspNet.Mvc.TagHelpers": "{version}",
-    "Microsoft.AspNet.Diagnostics": "{version}",
     "Microsoft.AspNet.Server.IIS": "{version}",
     "Microsoft.AspNet.Server.WebListener": "{version}",
     "Microsoft.AspNet.StaticFiles": "{version}",

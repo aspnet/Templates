@@ -167,7 +167,7 @@ namespace $safeprojectname$.Controllers
                 }
             }
             // If we got this far, something failed, redisplay the form
-            ModelState.AddModelError("", "Failed to verify phone number");
+            ModelState.AddModelError(string.Empty, "Failed to verify phone number");
             return View(model);
         }
 
@@ -318,7 +318,7 @@ namespace $safeprojectname$.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error.Description);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
         }
 

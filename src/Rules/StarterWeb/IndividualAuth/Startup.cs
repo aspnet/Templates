@@ -30,7 +30,8 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
             var configuration = new Configuration()
-                .AddJsonFile("config.json");
+                .AddJsonFile("config.json")
+                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsEnvironment("Development"))
             {
@@ -62,7 +63,8 @@ namespace $safeprojectname$
                 .AddDefaultTokenProviders();
 
             // Configure the options for the authentication middleware.
-            // You can add options for Google, Twitter and other middlewares as shown below. For more information see http://go.microsoft.com/fwlink/?LinkID=532715
+            // You can add options for Google, Twitter and other middleware as shown below.
+            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             services.Configure<FacebookAuthenticationOptions>(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -79,7 +81,7 @@ namespace $safeprojectname$
             services.AddMvc();
 
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
-            // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
+            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
         }
 
@@ -87,6 +89,7 @@ namespace $safeprojectname$
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
+
             // Add the console logger.
             loggerfactory.AddConsole(minLevel: LogLevel.Warning);
 
@@ -100,7 +103,7 @@ namespace $safeprojectname$
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
+                // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
 
@@ -110,8 +113,8 @@ namespace $safeprojectname$
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
 
-            // Add authentication middleware to the request pipeline.  For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            // You can configure options such as Id and Secret in the ConfigureServices method.
+            // Add authentication middleware to the request pipeline. You can configure options such as Id and Secret in the ConfigureServices method.
+            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
             // app.UseFacebookAuthentication();
             // app.UseGoogleAuthentication();
             // app.UseMicrosoftAccountAuthentication();

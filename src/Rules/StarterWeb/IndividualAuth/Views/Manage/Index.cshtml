@@ -40,7 +40,7 @@
             @*@(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
                 {
-                    <a asp-controller="Manage" asp-action="AddPhoneNumber">Add</a>
+                    <a asp-controller="Manage" asp-action="AddPhoneNumber">Change</a>
                         @: &nbsp;|&nbsp;
                         <a asp-controller="Manage" asp-action="RemovePhoneNumber">Remove</a>
                 }
@@ -59,7 +59,7 @@
             </p>
             @*@if (Model.TwoFactor)
                 {
-                    <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
+                    <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal" role="form">
                         <text>
                             Enabled
                             <input type="submit" value="Disable" class="btn btn-link" />
@@ -68,7 +68,7 @@
                 }
                 else
                 {
-                    <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
+                    <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal" role="form">
                         <text>
                             Disabled
                             <input type="submit" value="Enable" class="btn btn-link" />
