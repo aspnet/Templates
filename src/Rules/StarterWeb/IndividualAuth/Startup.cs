@@ -66,10 +66,11 @@ namespace $safeprojectname$
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
                 options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
+
             services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
             {
                 options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
-                options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
+                options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
             });
 
             // Add MVC services to the services container.
