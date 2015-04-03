@@ -17,11 +17,6 @@ namespace $safeprojectname$.Migrations
     {
         public override void Up(MigrationBuilder migration)
         {
-            migration.CreateSequence(
-                name: "DefaultSequence",
-                type: "bigint",
-                startWith: 1L,
-                incrementBy: 10);
             migration.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
@@ -65,7 +60,8 @@ namespace $safeprojectname$.Migrations
                 {
                     ClaimType = table.Column(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column(type: "nvarchar(max)", nullable: true),
-                    Id = table.Column(type: "int", nullable: false),
+                    Id = table.Column(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGeneration", "Identity"),
                     UserId = table.Column(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -101,7 +97,8 @@ namespace $safeprojectname$.Migrations
                 {
                     ClaimType = table.Column(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column(type: "nvarchar(max)", nullable: true),
-                    Id = table.Column(type: "int", nullable: false),
+                    Id = table.Column(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGeneration", "Identity"),
                     RoleId = table.Column(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -138,12 +135,11 @@ namespace $safeprojectname$.Migrations
 
         public override void Down(MigrationBuilder migration)
         {
-            migration.DropSequence("DefaultSequence");
-            migration.DropTable("AspNetRoles");
+            migration.DropTable("AspNetUserRoles");
             migration.DropTable("AspNetRoleClaims");
             migration.DropTable("AspNetUserLogins");
             migration.DropTable("AspNetUserClaims");
-            migration.DropTable("AspNetUserRoles");
+            migration.DropTable("AspNetRoles");
             migration.DropTable("AspNetUsers");
         }
     }
@@ -153,7 +149,7 @@ namespace $safeprojectname$.Migrations
     {
         public override string Id
         {
-            get { return "000000000000_CreateIdentitySchema"; }
+            get { return "00000000000000_CreateIdentitySchema"; }
         }
 
         public override string ProductVersion
@@ -166,7 +162,7 @@ namespace $safeprojectname$.Migrations
             get
             {
                 var builder = new BasicModelBuilder()
-                    .Annotation("SqlServer:ValueGeneration", "Sequence");
+                    .Annotation("SqlServer:ValueGeneration", "Identity");
 
                 builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                     {
@@ -222,7 +218,7 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetRoles");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.Property<string>("ClaimType")
                             .Annotation("OriginalValueIndex", 0);
@@ -238,7 +234,7 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetRoleClaims");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.Property<string>("ClaimType")
                             .Annotation("OriginalValueIndex", 0);
@@ -254,7 +250,7 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetUserClaims");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.Property<string>("LoginProvider")
                             .GenerateValueOnAdd()
@@ -270,7 +266,7 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetUserLogins");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.Property<string>("RoleId")
                             .Annotation("OriginalValueIndex", 0);
@@ -280,22 +276,22 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetUserRoles");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.ForeignKey("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", "RoleId");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.ForeignKey("$safeprojectname$.Models.ApplicationUser", "UserId");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.ForeignKey("$safeprojectname$.Models.ApplicationUser", "UserId");
                     });
 
-                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", b =>
                     {
                         b.ForeignKey("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", "RoleId");
                         b.ForeignKey("$safeprojectname$.Models.ApplicationUser", "UserId");
