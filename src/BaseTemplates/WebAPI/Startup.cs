@@ -21,14 +21,15 @@ namespace $safeprojectname$
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
-            // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
+            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
+            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
         }
 
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Configure the HTTP request pipeline.
             app.UseStaticFiles();
 
             // Add MVC to the request pipeline.

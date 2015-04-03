@@ -55,6 +55,7 @@
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.js"></script>
         <script src="~/lib/hammer.js/hammer.js"></script>
+        <script src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.min.js"
@@ -69,11 +70,11 @@
                 asp-fallback-src="~/lib/hammer.js/hammer.js">
         </script>
         <script src="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js"
-                asp-fallback-src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js">
+                asp-fallback-src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"
+                asp-fallback-test="window.Hammer">
         </script>
     </environment>
 
-    <script src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

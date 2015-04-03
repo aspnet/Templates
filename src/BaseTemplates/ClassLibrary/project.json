@@ -5,8 +5,10 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+
   "dependencies": {
   },
+
   "frameworks" : {
     "dnx451": { },
     "dnxcore50" : {

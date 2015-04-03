@@ -5,11 +5,14 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+
   "dependencies": {
   },
+
   "commands": {
     "$safeprojectname$" : "$safeprojectname$"
   },
+
   "frameworks" : {
     "dnx451": { },
     "dnxcore50" : {
