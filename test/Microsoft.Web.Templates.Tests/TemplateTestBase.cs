@@ -23,17 +23,17 @@ namespace Microsoft.Web.Templates.Tests
         {
             EnsurePath(Path.Combine(TestProjectsPath, TemplateName, "wwwroot"));
 
-            //// Get current IApplicationEnvironment; likely added by the host.
+            // Get current IApplicationEnvironment; likely added by the host.
             var provider = CallContextServiceLocator.Locator.ServiceProvider;
             var originalEnvironment = provider.GetRequiredService<IApplicationEnvironment>();
 
-            //// When an application executes in a regular context, the application base path points to the root
-            //// directory where the application is located, for example MvcSample.Web. However, when executing
-            //// an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
-            //// to the root folder of the test project.
-            //// To compensate for this, we need to calculate the original path and override the application
-            //// environment value so that components like the view engine work properly in the context of the
-            //// test.
+            // When an application executes in a regular context, the application base path points to the root
+            // directory where the application is located, for example MvcSample.Web. However, when executing
+            // an application as part of a test, the ApplicationBasePath of the IApplicationEnvironment points
+            // to the root folder of the test project.
+            // To compensate for this, we need to calculate the original path and override the application
+            // environment value so that components like the view engine work properly in the context of the
+            // test.
             var applicationBasePath = CalculateApplicationBasePath(
                 originalEnvironment,
                 TemplateName,
@@ -48,7 +48,7 @@ namespace Microsoft.Web.Templates.Tests
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
                 var builder = TestServer.CreateBuilder(provider, new Configuration());
-                builder.AdditionalServices.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                //builder.AdditionalServices.AddInstance<IHostingEnvironment>(hostingEnvironment);
                 var assemblyProvider = CreateAssemblyProvider(TemplateName);
                 builder.AdditionalServices.AddInstance(assemblyProvider);
                 builder.ApplicationName = TemplateName;
