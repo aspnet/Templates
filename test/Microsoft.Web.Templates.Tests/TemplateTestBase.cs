@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Microsoft.AspNet.Hosting;
@@ -18,7 +17,6 @@ namespace Microsoft.Web.Templates.Tests
         // path from Templates\test\Microsoft.Web.Templates.Tests
         protected static readonly string TestProjectsPath = Path.Combine("..", "..", "artifacts", "build", "Test");
 
-        protected abstract Type StartupType { get; }
         protected abstract string TemplateName { get; }
 
         protected TestServer CreateServer()
@@ -45,20 +43,16 @@ namespace Microsoft.Web.Templates.Tests
                 applicationBasePath);
 
             var hostingEnvironment = new HostingEnvironment();
+            hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
             try
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
-                var builder = TestServer.CreateBuilder(provider, new Configuration(), app => { },
-                    services =>
-                    {
-                        services.AddInstance<ILoggerFactory>(new LoggerFactory());
-                        var assemblyProvider = CreateAssemblyProvider(TemplateName);
-                        services.AddInstance(assemblyProvider);
-
-                    });
+                var builder = TestServer.CreateBuilder(provider, new Configuration());
+                builder.AdditionalServices.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                var assemblyProvider = CreateAssemblyProvider(TemplateName);
+                builder.AdditionalServices.AddInstance(assemblyProvider);
                 builder.ApplicationName = TemplateName;
                 builder.ApplicationBasePath = applicationBasePath;
-                builder.StartupType = StartupType;
                 return builder.Build();
             }
             finally

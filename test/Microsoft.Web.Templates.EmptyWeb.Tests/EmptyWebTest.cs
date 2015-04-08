@@ -9,18 +9,6 @@ namespace Microsoft.Web.Templates.Tests
     {
         private static readonly string _templateName = "EmptyWeb";
 
-        public EmptyWebTests()
-        {
-        }
-
-        protected override Type StartupType
-        {
-            get
-            {
-                return typeof(Startup);
-            }
-        }
-
         protected override string TemplateName
         {
             get

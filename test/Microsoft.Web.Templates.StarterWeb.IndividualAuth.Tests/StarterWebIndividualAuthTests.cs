@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Xml.Linq;
+using Microsoft.AspNet.Builder;
 using StarterWeb.IndividualAuth;
 using Xunit;
 
@@ -17,14 +18,6 @@ namespace Microsoft.Web.Templates.Tests
 
         public StarterWebIndividualAuthTests()
         {
-        }
-
-        protected override Type StartupType
-        {
-            get
-            {
-                return typeof(Startup);
-            }
         }
 
         protected override string TemplateName
