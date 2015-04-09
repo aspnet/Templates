@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
     <Name>Class Library (Package)</Name>
-    <Description>A project template for creating a class library as a NuGet package that can target any platform.</Description>
+    <Description>PREVIEW - A project template for creating a class library as a NuGet package that can target any platform.</Description>
     <Icon>LibraryProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
