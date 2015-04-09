@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
     <Name>Console Application (Package)</Name>
-    <Description>A project template for creating a console application as a NuGet package that can run on .NET Framework or .NET Core.</Description>
+    <Description>PREVIEW - A project template for creating a console application as a NuGet package that can run on .NET Framework or .NET Core.</Description>
     <Icon>ConsoleProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>

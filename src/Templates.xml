@@ -4,8 +4,8 @@
     <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>An empty project template for creating ASP.NET 5 Preview application. This template does not have any content in it.</Summary>
-      <Description>An empty project template for creating ASP.NET 5 Preview application. This template does not have any content in it.</Description>
+      <Summary>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Summary>
+      <Description>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
@@ -17,8 +17,8 @@
     <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Summary>
-      <Description>A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Description>
+      <Summary>PREVIEW - A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Summary>
+      <Description>PREVIEW - A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
@@ -30,8 +30,8 @@
     <Template Name="Web Site" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>A project template for creating an ASP.NET 5 Preview application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
-      <Description>A project template for creating an ASP.NET 5 Preview application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
+      <Summary>PREVIEW - A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
+      <Description>PREVIEW - A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="IndividualAuth">
