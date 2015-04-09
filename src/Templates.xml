@@ -17,8 +17,8 @@
     <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
       <Icon>Resources\WebProject.png</Icon>
       <PreviewImage>Resources\WebProject.png</PreviewImage>
-      <Summary>PREVIEW - A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Summary>
-      <Description>PREVIEW - A project template for creating RESTful HTTP services that can read a broad range of clients including browsers and mobile devices.</Description>
+      <Summary>PREVIEW - A project template for creating RESTful HTTP services that can reach a broad range of clients including browsers and mobile devices.</Summary>
+      <Description>PREVIEW - A project template for creating RESTful HTTP services that can reach a broad range of clients including browsers and mobile devices.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
