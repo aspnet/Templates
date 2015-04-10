@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace $safeprojectname$
 {
+    // This class is used by the application to send Email and SMS when you turn on two-factor authentication in ASP.NET Identity.
+    // For more details see this link http://go.microsoft.com/fwlink/?LinkID=532713
     public static class MessageServices
     {
         public static Task SendEmailAsync(string email, string subject, string message)
