@@ -9,29 +9,12 @@ namespace Microsoft.Web.Templates.Tests
     {
         private static readonly string _templateName = "WebAPI";
 
-        public WebAPITests()
-        {
-        }
-
-        protected override Type StartupType
-        {
-            get
-            {
-                return typeof(Startup);
-            }
-        }
-
         protected override string TemplateName
         {
             get
             {
                 return _templateName;
             }
-        }
-
-        protected override HostingInformation GetHostingInformation()
-        {
-            return new WebAPIHostingInformation(StartupType);
         }
 
         [Fact]

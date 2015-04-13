@@ -23,18 +23,6 @@ namespace Microsoft.Web.Templates.Tests
     {
         private static readonly string _templateName = "StarterWeb";
 
-        public StarterWebTests()
-        {
-        }
-
-        protected override Type StartupType
-        {
-            get
-            {
-                return typeof(Startup);
-            }
-        }
-
         protected override string TemplateName
         {
             get
