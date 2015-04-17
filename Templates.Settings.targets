@@ -35,7 +35,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ExcludedPackages>$(MSBuildThisFileDirectory)\ExcludedPackages.txt</ExcludedPackages>
+        <TemplatePackages>$(MSBuildThisFileDirectory)\TemplatePackages.txt</TemplatePackages>
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
