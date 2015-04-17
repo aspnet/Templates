@@ -10,12 +10,12 @@
   },
 
   "commands": {
-    "$safeprojectname$" : "$safeprojectname$"
+    "$safeprojectname$": "$safeprojectname$"
   },
 
-  "frameworks" : {
+  "frameworks": {
     "dnx451": { },
-    "dnxcore50" : {
+    "dnxcore50": {
       "dependencies": {
         "System.Console": "{version}",
         "System.Collections": "{version}",
