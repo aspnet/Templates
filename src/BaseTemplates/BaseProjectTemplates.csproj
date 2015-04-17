@@ -79,7 +79,7 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta4" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta5" />
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
