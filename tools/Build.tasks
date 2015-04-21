@@ -57,7 +57,8 @@
                                 {
                                     continue;
                                 }
-                                string[] parts = line.Trim().Split();
+                                
+                                string[] parts = line.StartsWith("*") ? line.Substring(1).Trim().Split() : line.Trim().Split();
                                 string packageName = parts[0].Trim();
                                 
                                 if (parts.Length == 2 && !templatePackages.Contains(packageName)
