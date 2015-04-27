@@ -47,13 +47,15 @@ namespace Microsoft.Web.Templates.Tests
             try
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
-                var builder = TestServer.CreateBuilder(provider, new Configuration());
-                //builder.AdditionalServices.AddInstance<IHostingEnvironment>(hostingEnvironment);
                 var assemblyProvider = CreateAssemblyProvider(TemplateName);
-                builder.AdditionalServices.AddInstance(assemblyProvider);
-                builder.ApplicationName = TemplateName;
-                builder.ApplicationBasePath = applicationBasePath;
-                return builder.Build();
+                var builder = TestServer.CreateBuilder(provider, new Configuration())
+                    .UseStartup(TemplateName)
+                    .UseServices(services => 
+                    {
+                        services.AddInstance<IHostingEnvironment>(hostingEnvironment);
+                        services.AddInstance(assemblyProvider);
+                    };
+                return new TestServer(builder);
             }
             finally
             {
