@@ -40,7 +40,8 @@ namespace Microsoft.Web.Templates.Tests
                 TestProjectsPath);
             var environment = new TestApplicationEnvironment(
                 originalEnvironment,
-                applicationBasePath);
+                applicationBasePath,
+                TemplateName);
 
             var hostingEnvironment = new HostingEnvironment();
             hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
@@ -48,7 +49,7 @@ namespace Microsoft.Web.Templates.Tests
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
                 var assemblyProvider = CreateAssemblyProvider(TemplateName);
-                var builder = TestServer.CreateBuilder(provider, new Configuration())
+                var builder = TestServer.CreateBuilder()
                     .UseStartup(TemplateName)
                     .UseServices(services => 
                     {
