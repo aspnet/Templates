@@ -54,7 +54,7 @@ namespace Microsoft.Web.Templates.Tests
                     {
                         services.AddInstance<IHostingEnvironment>(hostingEnvironment);
                         services.AddInstance(assemblyProvider);
-                    };
+                    });
                 return new TestServer(builder);
             }
             finally
