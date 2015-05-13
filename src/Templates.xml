@@ -70,6 +70,7 @@
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs"/>
+          <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.Designer.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"/>
           <AddFile Destination="Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs"/>
           <AddFile Destination="Models\AccountViewModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs"/>
           <AddFile Destination="Models\IdentityModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs"/>

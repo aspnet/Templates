@@ -11,9 +11,19 @@ using $safeprojectname$.Models;
 namespace $safeprojectname$.Migrations
 {
     [ContextType(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class CreateIdentitySchema
     {
-        public override IModel Model
+        public override string Id
+        {
+            get { return "00000000000000_CreateIdentitySchema"; }
+        }
+
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta5"; }
+        }
+
+        public override IModel Target
         {
             get
             {
@@ -117,7 +127,7 @@ namespace $safeprojectname$.Migrations
                         b.Annotation("Relational:TableName", "AspNetUserRoles");
                     });
 
-                builder.Entity("$safeprojectname$.ApplicationUser", b =>
+                builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                     {
                         b.Property<string>("Id")
                             .GenerateValueOnAdd()

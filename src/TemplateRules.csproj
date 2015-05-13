@@ -42,6 +42,7 @@
               Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
               Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
               Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs;
               Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs;
