@@ -1,5 +1,38 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <UsingTask
+        TaskName="GetDotNetPackageFolder"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <PackageFolderPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string runtimeRoot = ".dnx";
+                    string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    var packageFolder = Path.Combine(userProfile, ".dnx","packages");
+                    PackageFolderPath = new TaskItem(packageFolder);
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error getting Package folder");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>    
+
+
+    <UsingTask
         TaskName="GetDependencyListForTemplates"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >

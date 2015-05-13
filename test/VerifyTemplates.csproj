@@ -7,7 +7,7 @@
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
     <DnuBuildCommand>dnu build</DnuBuildCommand>
-    <DnuRestoreCommand>dnu restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</DnuRestoreCommand>
+    <DnuRestoreCommand>dnu restore -f $(PackageSourceForRestore)</DnuRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
     <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
@@ -60,7 +60,7 @@
       <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
     </RulesToVerify>
   </ItemGroup>
-  
+
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
     <PropertyGroup>
       <TargetName>%(TemplatesToVerify.Filename)</TargetName>
@@ -130,7 +130,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
-    <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
@@ -151,7 +151,7 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 

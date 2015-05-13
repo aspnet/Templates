@@ -20,17 +20,18 @@
     </PropertyGroup>
     
     <PropertyGroup>
-        <BuildNoTimestamp Condition="'$(BuildNoTimestamp)' == ''">false</BuildNoTimestamp>
-        <DotNetFolderInPath Condition="'$(DotNetFolderInPath)' == ''">false</DotNetFolderInPath>
+        <IsOfficialBuild Condition="'$(IsOfficialBuild)' == ''">false</IsOfficialBuild>
         <PackageVersionType Condition="'$(PackageVersionType)' == ''">$(BUILD_BRANCH)</PackageVersionType>
         <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
-        <PackageType Condition="'$(PackageType)' == ''"></PackageType>
-        <RemoteCoherencePackageSource>\\projectk-tc\drops\Coherence-Signed\$(PackageVersionType)\$(PackageVersion)\Packages$(PackageType)</RemoteCoherencePackageSource >
-        <PackageSource Condition="'$(PackageSource)' == ''">$(RemoteCoherencePackageSource)</PackageSource >
-        <PackageFallbackSource>$(TemplatesReferences)\Packages</PackageFallbackSource>
+        <PackageType Condition="'$(PackageVersionType)' == 'release'">$(ReleasePackageType)</PackageType>
+        <PackageType Condition="'$(PackageVersionType)' == 'dev'">$(DevPackageType)</PackageType>
+        <CoherencePackageSource Condition="'$(CoherencePackageSource)' != ''">$(CoherencePackageSource)\$(PackageType)</CoherencePackageSource>
+        <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
+        <PackageSource Condition="'$(PackageSource)' == '' and '$(PackageVersionType)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
+        <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -64,5 +65,24 @@
         <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
         <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
+    </ItemGroup>
+
+    <!-- These packages get copied to ExternalPackages on official builds -->
+    <ItemGroup>
+      <ExternalReferencePackage Include="Ix-Async">
+          <Version>1.2.3</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Remotion.Linq">
+          <Version>2.0.0-alpha-002</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.Collections.Immutable">
+          <Version>1.1.34-rc</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.Reflection.Metadata">
+          <Version>1.0.19-rc</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Newtonsoft.Json">
+          <Version>6.0.6</Version>
+      </ExternalReferencePackage>
     </ItemGroup>
 </Project>
