@@ -26,8 +26,8 @@ md .nuget
 copy %CACHED_NUGET% .nuget\nuget.exe > nul 
  
 :restore 
-IF EXIST packages\KoreBuild goto run 
-.nuget\NuGet.exe install KoreBuild -ExcludeVersion -o packages -nocache -pre -Source \\projectk-tc\Drops\Universe\%BUILD_BRANCH%\Latest\build
+IF EXIST packages\KoreBuild goto run  
+.nuget\NuGet.exe install KoreBuild -ExcludeVersion -o packages -nocache -pre -Source https://myget.org/F/aspnetvnext
 .nuget\NuGet.exe install Sake -version 0.2 -o packages -ExcludeVersion
  
 IF "%SKIP_DNX_INSTALL%"=="1" goto run 
