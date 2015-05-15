@@ -1388,6 +1388,8 @@
           </Folder>
           <Folder Name="jquery" TargetFolderName="jquery">
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="jquery-migrate.js">jquery-migrate.js</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="jquery-migrate.min.js">jquery-migrate.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.map">jquery.min.map</ProjectItem>
           </Folder>
