@@ -62,6 +62,8 @@
         <TestTemplates Include="$(TemplatesBin)\test\ClassLibrary"/>
         <TestTemplates Include="$(TemplatesBin)\test\StarterWeb"/>
         <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.IndividualAuth"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Single"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Multiple"/>
         <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
         <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
@@ -83,6 +85,15 @@
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Newtonsoft.Json">
           <Version>6.0.6</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
+          <Version>1.0.0-beta4-204171524</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
+          <Version>2.0.0-beta4-204171524</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.IdentityModel.Tokens">
+          <Version>5.0.0-beta4-204171524</Version>
       </ExternalReferencePackage>
     </ItemGroup>
 </Project>

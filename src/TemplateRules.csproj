@@ -76,6 +76,32 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
+    <!-- StarterWeb Org Auth Common Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\project.json">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Org Auth Single Org Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Org Auth Multiple Org Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
   </ItemGroup>
 
   <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
