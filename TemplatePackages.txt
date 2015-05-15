@@ -10,7 +10,6 @@
 +dnx.host.*
 +dnx.hosting.*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
-+Microsoft.AspNet.Authentication.OpenIdConnect.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.Xml.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
