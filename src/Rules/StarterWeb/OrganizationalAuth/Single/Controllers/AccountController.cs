@@ -18,20 +18,6 @@ namespace $safeprojectname$.Controllers
         {
             return new ChallengeResult(
                 OpenIdConnectAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
-
-            //Context.Response.Challenge(new AuthenticationProperties { RedirectUri = "/" },
-            //    OpenIdConnectAuthenticationDefaults.AuthenticationScheme);
-
-            //return new ContentResult();
-
-            // Send an OpenID Connect sign-in request.
-            //if (!Context.User.Identity.IsAuthenticated)
-            //{
-            //    Context.Response.Challenge(new AuthenticationProperties { RedirectUri = "/" },
-            //        CookieAuthenticationDefaults.AuthenticationScheme);
-            //        //new string[] { OpenIdConnectAuthenticationDefaults.AuthenticationScheme,
-            //        //    CookieAuthenticationDefaults.AuthenticationScheme});
-            //}
         }
 
         public IActionResult SignOut()

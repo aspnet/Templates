@@ -30,7 +30,8 @@ namespace $safeprojectname$
 
             if (env.IsEnvironment("Development"))
             {
-                // Add a fwlink here and add some comment.
+                // This reads the configuration keys from the secret store.
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
             }
             configuration.AddEnvironmentVariables();
@@ -49,7 +50,6 @@ namespace $safeprojectname$
 
             services.Configure<CookieAuthenticationOptions>(options =>
             {
-                options.AuthenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.AutomaticAuthentication = true;
             });
 
@@ -58,16 +58,11 @@ namespace $safeprojectname$
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
                 options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
-                options.AutomaticAuthentication = true;
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
             // Add MVC services to the services container.
             services.AddMvc();
-
-            // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
-            // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
-            // services.AddWebApiConventions();
         }
 
         // Configure is called after ConfigureServices is called.
@@ -105,9 +100,6 @@ namespace $safeprojectname$
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                // Uncomment the following line to add a route for porting Web API 2 controllers.
-                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
         }
     }
