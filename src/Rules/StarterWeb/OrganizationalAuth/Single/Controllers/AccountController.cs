@@ -22,7 +22,7 @@ namespace $safeprojectname$.Controllers
 
         public IActionResult SignOut()
         {
-            string callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
+            var callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
             Context.Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationScheme);
             Context.Authentication.SignOut(OpenIdConnectAuthenticationDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = callbackUrl });

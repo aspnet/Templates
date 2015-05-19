@@ -45,9 +45,6 @@ namespace $safeprojectname$
         {
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
-            // Add services for OpenId Connect middleware to login using Azure AD.
-            services.AddDataProtection();
-
             services.Configure<CookieAuthenticationOptions>(options =>
             {
                 options.AutomaticAuthentication = true;
