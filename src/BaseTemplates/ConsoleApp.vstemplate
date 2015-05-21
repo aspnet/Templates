@@ -22,8 +22,4 @@
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Program.cs</ProjectItem>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.ProjectSystem.Wizard, Version=__VSVER__.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Web.ProjectSystem.Wizard.WebProjectSystemTemplateWizard</FullClassName>
-  </WizardExtension>
 </VSTemplate>
