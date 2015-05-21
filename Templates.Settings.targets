@@ -30,8 +30,10 @@
         <PackageType Condition="'$(PackageVersionType)' == 'dev'">$(DevPackageType)</PackageType>
         <CoherencePackageSource Condition="'$(CoherencePackageSource)' != ''">$(CoherencePackageSource)\$(PackageType)</CoherencePackageSource>
         <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
+        <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(PackageVersionType)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
         <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
+        <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -94,6 +96,13 @@
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
           <Version>5.0.0-beta4-204171524</Version>
+      </ExternalReferencePackage>
+      <!-- Application Insight packages -->
+      <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
+          <Version>1.0.0-beta5</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
+          <Version>0.17.1-beta</Version>
       </ExternalReferencePackage>
     </ItemGroup>
 </Project>

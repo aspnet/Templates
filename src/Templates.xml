@@ -60,6 +60,32 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
               VSTemplatePath="DNXStarterWeb.vstemplate">
+        <ApplyRules Option="ApplicationInsights">
+            <ApplyRules Option="NoAuth">
+                  <RunRule RuleID="StarterWebAINoAuth" />
+            </ApplyRules>
+            <ApplyRules Option="IndividualAuth">
+                  <RunRule RuleID="StarterWebAICommonAuth" />
+                  <RunRule RuleID="StarterWebAIIndividualAuth" />
+            </ApplyRules>
+            <ApplyRules Option="OrgAuth">
+                  <RunRule RuleID="StarterWebAICommonAuth" />
+                  <RunRule RuleID="StarterWebAIOrganizationalAuthCommon" />
+                  <ApplyRules Option="SSO">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+                  <ApplyRules Option="MultiOrg">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                  </ApplyRules>
+                  <ApplyRules Option="SSOR">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+                  <ApplyRules Option="MultiOrgR">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                  </ApplyRules>
+            </ApplyRules>
+        </ApplyRules>
+
         <ApplyRules Option="IndividualAuth">
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
@@ -84,6 +110,13 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
               VSTemplatePath="DNXWebAPI.vstemplate">
+          <ApplyRules Option="ApplicationInsights">
+              <ApplyRules Option="NoAuth">
+                  <AddFile Destination="config.json" Source="Rules\WebAPI\AI\NoAuth\config.json"/>
+                  <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\NoAuth\project.json"/>
+                  <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
+              </ApplyRules>
+          </ApplyRules>
     </BaseTemplate>
   </BaseTemplates>
 
@@ -139,6 +172,34 @@
       <Rule ID="StarterWebOrganizationalAuthMultiple">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs"/>
+      </Rule>
+      <!-- Application Insights rules -->
+      <Rule ID="StarterWebAINoAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml"/>
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\NoAuth\config.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\NoAuth\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAICommonAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml"/>
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml"/>
+      </Rule>
+      <Rule ID="StarterWebAIIndividualAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\IndividualAuth\config.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\IndividualAuth\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthCommon">
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Common\project.json"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\config.json"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthSingle">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthMultiple">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs"/>
       </Rule>
   </Rules>
 </TemplateDefinition>

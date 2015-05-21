@@ -28,8 +28,10 @@
       <BaseTemplate/>
       <CommonAuthRuleFiles/>
       <AdditionalRuleFiles/>
+      <AdditionalRuleFiles2/>
       <ProjectGuid/>
       <Guid2>{60e58d4e-cbd8-4827-a36b-bc7e039fc580}</Guid2>
+      <RuleName/>
     </RulesToVerify>
   </ItemDefinitionGroup>
   
@@ -57,21 +59,59 @@
   <ItemGroup>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>IndividualAuth</RuleName>
       <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Single">
       <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>Single</RuleName>
       <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
       <ProjectGuid>{D90D6984-DC7B-4737-AA33-208A7A127DB6}</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Multiple">
       <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>Multiple</RuleName>
       <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
       <ProjectGuid>{ACFE3CE9-E7BA-4EDC-B060-354D06CE653B}</ProjectGuid>
     </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\NoAuth">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>AI</RuleName>
+      <ProjectGuid>{97AC8FE3-B735-486D-BC92-E41C361BB1F6}</ProjectGuid>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\IndividualAuth">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>AI.IndividualAuth</RuleName>
+      <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <AdditionalRuleFiles>..\..\IndividualAuth\**\*.*</AdditionalRuleFiles>
+      <ProjectGuid>{C1B949CB-4A32-439E-BDE3-606B74D9CFE2}</ProjectGuid>
+      <Guid2>{e9e54fd8-776e-4775-89ab-f66ee5a09140}</Guid2>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\OrganizationalAuth\Single">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>AI.Single</RuleName>
+      <CommonAuthRuleFiles>..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <AdditionalRuleFiles>..\..\..\OrganizationalAuth\Common\**\*.*</AdditionalRuleFiles>
+      <AdditionalRuleFiles2>..\..\..\OrganizationalAuth\Single\**\*.*</AdditionalRuleFiles2>
+      <ProjectGuid>{6F95DF1F-61C3-4950-9CAA-8ABCD8C969B1}</ProjectGuid>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\OrganizationalAuth\Multiple">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <RuleName>AI.Multiple</RuleName>
+      <CommonAuthRuleFiles>..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <AdditionalRuleFiles>..\..\..\OrganizationalAuth\Common\**\*.*</AdditionalRuleFiles>
+      <AdditionalRuleFiles2>..\..\..\OrganizationalAuth\Multiple\**\*.*</AdditionalRuleFiles2>
+      <ProjectGuid>{B0FED42B-B143-4A33-ACCE-7E5932A75BDC}</ProjectGuid>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\NoAuth">
+      <BaseTemplate>WebAPI</BaseTemplate>
+      <RuleName>AI</RuleName>
+      <ProjectGuid>{26693172-B6F1-41F3-A6E4-B67ACF31E0C8}</ProjectGuid>
+    </RulesToVerify>
+
   </ItemGroup>
 
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
@@ -108,12 +148,14 @@
     <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower') or '$(ForceNpmInstall)' == 'true'" />
   </Target>
   
-  <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(Filename)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+  <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(RuleName)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
     <PropertyGroup>
-      <TargetName>%(RulesToVerify.BaseTemplate).%(RulesToVerify.Filename)</TargetName>
+      <RuleName>%(RulesToVerify.RuleName)</RuleName>
+      <TargetName>%(RulesToVerify.BaseTemplate).$(RuleName)</TargetName>
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
       <CommonAuthRuleFiles Condition="'%(RulesToVerify.CommonAuthRuleFiles)' != ''">%(RulesToVerify.Identity)\%(RulesToVerify.CommonAuthRuleFiles)</CommonAuthRuleFiles>
       <AdditionalRuleFiles Condition="'%(RulesToVerify.AdditionalRuleFiles)' != ''">%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles)</AdditionalRuleFiles>
+      <AdditionalRuleFiles2 Condition="'%(RulesToVerify.AdditionalRuleFiles2)' != ''">%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles2)</AdditionalRuleFiles2>
       <RuleFiles>%(RulesToVerify.Identity)\**\*.*</RuleFiles>
       <ProjectGuid>%(RulesToVerify.ProjectGuid)</ProjectGuid>
     </PropertyGroup>
@@ -125,6 +167,7 @@
     <ItemGroup>
       <ItemsToCopy Include="$(CommonAuthRuleFiles)" Condition="'$(CommonAuthRuleFiles)' != ''"/>
       <ItemsToCopy Include="$(AdditionalRuleFiles)" Condition="'$(AdditionalRuleFiles)' != ''"/>
+      <ItemsToCopy Include="$(AdditionalRuleFiles2)" Condition="'$(AdditionalRuleFiles2)' != ''"/>
       <ItemsToCopy Include="$(RuleFiles)" Condition="'$(RuleFiles)' != ''"/>
     </ItemGroup> 
 
