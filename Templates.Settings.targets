@@ -78,7 +78,7 @@
           <Version>2.0.0-alpha-002</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.Collections.Immutable">
-          <Version>1.1.34-rc</Version>
+          <Version>1.1.36</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.Reflection.Metadata">
           <Version>1.0.19-rc</Version>
