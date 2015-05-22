@@ -51,27 +51,6 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
               VSTemplatePath="DNXStarterWeb.vstemplate">
-        <ApplyRules Option="IndividualAuth">
-              <RunRule RuleID="StarterWebCommonAuth" />
-              <RunRule RuleID="StarterWebIndividualAuth" />
-        </ApplyRules>
-        <ApplyRules Option="OrgAuth">
-              <RunRule RuleID="StarterWebCommonAuth" />
-              <RunRule RuleID="StarterWebOrganizationalAuthCommon" />
-              <ApplyRules Option="SSO">
-                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
-              </ApplyRules>
-              <ApplyRules Option="MultiOrg">
-                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
-              </ApplyRules>
-              <ApplyRules Option="SSOR">
-                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
-              </ApplyRules>
-              <ApplyRules Option="MultiOrgR">
-                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
-              </ApplyRules>
-        </ApplyRules>
-
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="StarterWebAINoAuth" />
@@ -96,6 +75,27 @@
                         <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
                   </ApplyRules>
             </ApplyRules>
+        </ApplyRules>
+
+        <ApplyRules Option="IndividualAuth">
+              <RunRule RuleID="StarterWebCommonAuth" />
+              <RunRule RuleID="StarterWebIndividualAuth" />
+        </ApplyRules>
+        <ApplyRules Option="OrgAuth">
+              <RunRule RuleID="StarterWebCommonAuth" />
+              <RunRule RuleID="StarterWebOrganizationalAuthCommon" />
+              <ApplyRules Option="SSO">
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+              </ApplyRules>
+              <ApplyRules Option="MultiOrg">
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+              </ApplyRules>
+              <ApplyRules Option="SSOR">
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+              </ApplyRules>
+              <ApplyRules Option="MultiOrgR">
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+              </ApplyRules>
         </ApplyRules>
     </BaseTemplate>
 
