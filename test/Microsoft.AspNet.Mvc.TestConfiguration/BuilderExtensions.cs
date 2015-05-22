@@ -3,7 +3,7 @@
 
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.TestConfiguration;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 
 namespace Microsoft.AspNet.Builder
@@ -14,7 +14,7 @@ namespace Microsoft.AspNet.Builder
         {
             var configurationProvider = app.ApplicationServices.GetService<ITestConfigurationProvider>();
             var configuration = configurationProvider == null
-                ? new Configuration()
+                ? new ConfigurationBuilder().Build()
                 : configurationProvider.Configuration;
 
             return configuration;

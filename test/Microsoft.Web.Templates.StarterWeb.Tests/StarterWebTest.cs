@@ -8,7 +8,7 @@ using Microsoft.AspNet.Mvc.Razor;
 using Microsoft.Framework.DependencyInjection;
 using StarterWeb;
 using Xunit;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.Logging;
 using System.Net;
 using System.Net.Http;
