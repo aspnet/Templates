@@ -8,7 +8,7 @@ using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Authentication.OpenIdConnect;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Runtime;
@@ -21,7 +21,7 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
 
-            var configuration = new Configuration(appEnv.ApplicationBasePath)
+            var configuration = new ConfigurationSection(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
@@ -40,7 +40,7 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+            services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 
             services.Configure<CookieAuthenticationOptions>(options =>
             {

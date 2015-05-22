@@ -7,7 +7,7 @@ using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Routing;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
@@ -20,9 +20,10 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            Configuration = new Configuration(appEnv.ApplicationBasePath)
+            var configuration = new ConfigurationSection(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; set; }
@@ -30,7 +31,7 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+            services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 
             // Add MVC services to the services container.
             services.AddMvc();
@@ -38,7 +39,6 @@ namespace $safeprojectname$
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
-
         }
 
         // Configure is called after ConfigureServices is called.

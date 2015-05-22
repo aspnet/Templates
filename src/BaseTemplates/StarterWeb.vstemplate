@@ -1332,7 +1332,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.cs">AppSettings.cs</ProjectItem>
       </Folder>
       <Folder Name="Views" TargetFolderName="Views">
-        <ProjectItem ReplaceParameters="true" TargetFileName="_GlobalImport.cshtml">_GlobalImport.cshtml</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Home" TargetFolderName="Home">
           <ProjectItem ReplaceParameters="true" TargetFileName="About.cshtml">About.cshtml</ProjectItem>

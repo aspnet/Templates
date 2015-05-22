@@ -8,7 +8,7 @@
         "Microsoft.AspNet.Mvc": "6.0.0-*",
         "Microsoft.AspNet.Mvc.Razor": "6.0.0-*",
         "Microsoft.AspNet.Hosting": "1.0.0-*",
-        "Microsoft.Framework.ConfigurationModel": "1.0.0-*",
+        "Microsoft.Framework.Configuration": "1.0.0-*",
         "Microsoft.AspNet.Mvc.TestConfiguration": "1.0.0-*",
         "xunit.runner.aspnet": "1.0.0-*"
     },

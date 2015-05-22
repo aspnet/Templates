@@ -145,7 +145,7 @@
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
           <AddFile Destination="Views\Shared\_ValidationScriptsPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml"/>
-          <ReplaceFile Destination="Views\_GlobalImport.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_GlobalImport.cshtml"/>
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\IndividualAuth\config.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
