@@ -83,7 +83,7 @@
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebIndividualAuth">
-          <AddFile Destination="MessageServices.cs" Source="Rules\StarterWeb\IndividualAuth\MessageServices.cs"/>
+          <AddFile Destination="Services\MessageServices.cs" Source="Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs"/>
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs"/>
