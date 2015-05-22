@@ -67,7 +67,7 @@
               Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\_GlobalImport.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\config.json;
               Rules\StarterWeb\IndividualAuth\MessageServices.cs;
               Rules\StarterWeb\IndividualAuth\project.json;
