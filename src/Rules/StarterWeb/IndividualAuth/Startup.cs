@@ -32,7 +32,7 @@ namespace $safeprojectname$
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
-		
+
             if (env.IsEnvironment("Development"))
             {
                 // This reads the configuration keys from the secret store.
