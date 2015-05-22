@@ -21,7 +21,7 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
 
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
+            var configuration = new ConfigurationSection(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
@@ -29,10 +29,10 @@ namespace $safeprojectname$
             {
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                configuration.AddUserSecrets();
             }
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            configuration.AddEnvironmentVariables();
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; set; }
