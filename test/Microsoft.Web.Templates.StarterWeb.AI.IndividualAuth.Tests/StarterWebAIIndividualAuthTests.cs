@@ -225,15 +225,25 @@ namespace Microsoft.Web.Templates.Tests
 
         private string ExtractVerificationToken(string response)
         {
-            // remove &copy; to make XElement happy.
-            var fixedResponse = response.Replace("&copy;", "");
-            XElement root = XElement.Parse(fixedResponse);
-            var token =
-                from el in root.Descendants("input")
-                where (string)el.Attribute("name") == "__RequestVerificationToken"
-                select (string)el.Attribute("value");
+            // <input name="__RequestVerificationToken" type="hidden" value="CfDJ8B_OdGUvnqVKs5KuFSYfNbZTz5af_gv-85B9D1Lf88Ze87ZGq8FG6HLvHxxLmP_UU8SdDNmECMJpFsrDPlzIHBZt_yUajSJLkbVOqlZd59J8eK_90825xgVCf-sGoepijEmxZKu_kggNeONAqxMoIQQ" /></form>
+            string tokenElement = String.Empty;
+            var builder = new StringBuilder();
+            var writer = new StreamWriter(new MemoryStream());
+            writer.Write(response);
 
-            return token.SingleOrDefault();
+            writer.BaseStream.Position = 0;
+            var reader = new StreamReader(writer.BaseStream);
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine().Trim();
+                if (line.StartsWith("<input name=\"__RequestVerificationToken\""))
+                {
+                    tokenElement = line.Replace("</form>", "");
+                }
+            }
+
+            XElement root = XElement.Parse(tokenElement);
+            return (string)root.Attribute("value");
         }
 
         private void AddCookiesToRequest(HttpHeaders responseHeaders, HttpHeaders requestHeaders)
