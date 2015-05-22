@@ -28,7 +28,7 @@ namespace $safeprojectname$
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
-            if (env.IsEnvironment("Development"))
+            if (env.IsDevelopment())
             {
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
@@ -40,10 +40,9 @@ namespace $safeprojectname$
 
         public IConfiguration Configuration { get; set; }
 
-        // This method gets called by the runtime.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
             services.Configure<CookieAuthenticationOptions>(options =>
             {
@@ -63,14 +62,15 @@ namespace $safeprojectname$
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+
             // Configure the HTTP request pipeline.
-            // Add the console logger.
-            loggerfactory.AddConsole();
 
             // Add the following to the request pipeline only in development environment.
-            if (env.IsEnvironment("Development"))
+            if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseErrorPage(ErrorPageOptions.ShowAll);
