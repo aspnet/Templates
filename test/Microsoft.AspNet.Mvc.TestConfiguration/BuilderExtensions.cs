@@ -14,8 +14,8 @@ namespace Microsoft.AspNet.Builder
         {
             var configurationProvider = app.ApplicationServices.GetService<ITestConfigurationProvider>();
             var configuration = configurationProvider == null
-                ? new ConfigurationSection()
-                : configurationProvider.ConfigurationSection;
+                ? new ConfigurationBuilder.BUild()
+                : configurationProvider.Configuration;
 
             return configuration;
         }
