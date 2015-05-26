@@ -20,10 +20,10 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var configuration = new ConfigurationSection(appEnv.ApplicationBasePath)
+            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
-            Configuration = configuration;
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; set; }
