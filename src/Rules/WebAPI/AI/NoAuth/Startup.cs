@@ -17,16 +17,16 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var configuration = new ConfigurationSection(appEnv.ApplicationBasePath)
+            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json");
 
             if (env.IsEnvironment("Development"))
             {
-                configuration.AddApplicationInsightsSettings(developerMode: true);
+                builder.AddApplicationInsightsSettings(developerMode: true);
             }
 
-            configuration.AddEnvironmentVariables();
-            Configuration = configuration;
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; set; }
