@@ -1,2 +1,5 @@
 {
+  "ApplicationInsights": {
+    "InstrumentationKey": ""
+  }
 }

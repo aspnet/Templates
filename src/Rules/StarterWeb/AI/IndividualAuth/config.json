@@ -1,4 +1,7 @@
 {
+  "ApplicationInsights": {
+    "InstrumentationKey": ""
+  },
   "AppSettings": {
     "SiteTitle": "$safeprojectname$"
   },

@@ -23,6 +23,12 @@ namespace $safeprojectname$
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
+
+            if (env.IsEnvironment("Development"))
+            {
+                // This will expedite telemetry through pipeline, allowing you to view results immediately.
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
             Configuration = builder.Build();
         }
 
@@ -31,6 +37,10 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Application Insights data collection services to the container.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 
             // Add MVC services to the services container.
@@ -47,6 +57,9 @@ namespace $safeprojectname$
         {
             // Configure the HTTP request pipeline.
 
+            // Track HTTP request telemetry data.
+            app.UseApplicationInsightsRequestTelemetry();
+
             // Add the console logger.
             loggerfactory.AddConsole();
 
@@ -62,6 +75,9 @@ namespace $safeprojectname$
                 // send the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
+
+            // Track exception telemetry data. Should be configured after all error handling middleware.
+            app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();

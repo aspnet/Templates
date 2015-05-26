@@ -33,6 +33,9 @@ namespace $safeprojectname$
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
+
+                // This will expedite telemetry through pipeline, allowing you to view results immediately.
+                builder.AddApplicationInsightsSettings(developerMode: true);
             }
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -43,6 +46,9 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Application Insights data collection services to the container.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
             services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 
             services.Configure<CookieAuthenticationOptions>(options =>
@@ -66,6 +72,10 @@ namespace $safeprojectname$
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
+
+            // Track HTTP request telemetry data.
+            app.UseApplicationInsightsRequestTelemetry();
+
             // Add the console logger.
             loggerfactory.AddConsole();
 
@@ -81,6 +91,9 @@ namespace $safeprojectname$
                 // send the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
+
+            // Track exception telemetry data. Should be configured after all error handling middleware.
+            app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
