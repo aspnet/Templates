@@ -26,7 +26,7 @@ namespace $safeprojectname$
 
             if (env.IsEnvironment("Development"))
             {
-                // This will expedite telemetry through pipeline, allowing you to view results immediately.
+                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             Configuration = builder.Build();
@@ -37,7 +37,7 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add Application Insights data collection services to the container.
+            // Add Application Insights data collection services to the services container.
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add Application settings to the services container.
@@ -57,7 +57,7 @@ namespace $safeprojectname$
         {
             // Configure the HTTP request pipeline.
 
-            // Track HTTP request telemetry data.
+            // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 
             // Add the console logger.
@@ -76,7 +76,7 @@ namespace $safeprojectname$
                 app.UseErrorHandler("/Home/Error");
             }
 
-            // Track exception telemetry data. Should be configured after all error handling middleware.
+            // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
             app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
