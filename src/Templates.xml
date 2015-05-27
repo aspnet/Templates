@@ -166,15 +166,18 @@
       </Rule>
       <!-- Application Insights rules -->
       <Rule ID="StarterWebAINoAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml"/>
           <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\NoAuth\config.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\NoAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
       </Rule>
       <Rule ID="StarterWebAICommonAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebAIIndividualAuth">
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\IndividualAuth\config.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>

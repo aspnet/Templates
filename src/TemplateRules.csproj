@@ -104,11 +104,14 @@
 
     <!-- StarterWeb AI Files -->
     <LooseFiles Include="
+              Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
               Rules\StarterWeb\AI\NoAuth\project.json;
               Rules\StarterWeb\AI\NoAuth\config.json;
               Rules\StarterWeb\AI\NoAuth\Startup.cs;
+              Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml;
+              Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\IndividualAuth\Startup.cs;
               Rules\StarterWeb\AI\IndividualAuth\project.json;
               Rules\StarterWeb\AI\IndividualAuth\config.json;
