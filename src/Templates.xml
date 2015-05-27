@@ -11,6 +11,9 @@
         <Authentication Default="NoAuth">
           <NoAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
@@ -24,6 +27,9 @@
         <Authentication Default="NoAuth">
           <NoAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
@@ -39,6 +45,9 @@
           <IndividualAuth />
           <OrgAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
