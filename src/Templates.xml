@@ -11,6 +11,9 @@
         <Authentication Default="NoAuth">
           <NoAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
@@ -24,6 +27,9 @@
         <Authentication Default="NoAuth">
           <NoAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
@@ -37,7 +43,11 @@
         <Authentication Default="IndividualAuth">
           <NoAuth />
           <IndividualAuth />
+          <OrgAuth />
         </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
       </Options>
     </Template>
 
@@ -53,6 +63,22 @@
         <ApplyRules Option="IndividualAuth">
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
+        </ApplyRules>
+        <ApplyRules Option="OrgAuth">
+              <RunRule RuleID="StarterWebCommonAuth" />
+              <RunRule RuleID="StarterWebOrganizationalAuthCommon" />
+              <ApplyRules Option="SSO">
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+              </ApplyRules>
+              <ApplyRules Option="MultiOrg">
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+              </ApplyRules>
+              <ApplyRules Option="SSOR">
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+              </ApplyRules>
+              <ApplyRules Option="MultiOrgR">
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+              </ApplyRules>
         </ApplyRules>
     </BaseTemplate>
 
@@ -70,6 +96,7 @@
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs"/>
+          <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.Designer.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"/>
           <AddFile Destination="Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs"/>
           <AddFile Destination="Models\AccountViewModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs"/>
           <AddFile Destination="Models\IdentityModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs"/>
@@ -94,10 +121,24 @@
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
           <AddFile Destination="Views\Shared\_ValidationScriptsPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml"/>
-          <ReplaceFile Destination="Views\_GlobalImport.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_GlobalImport.cshtml"/>
+          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\IndividualAuth\config.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthCommon">
+          <AddFile Destination="Views\Account\SignOutCallback.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml"/>
+          <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
+          <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\OrganizationalAuth\Common\project.json"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthSingle">
+          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthMultiple">
+          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs"/>
       </Rule>
   </Rules>
 </TemplateDefinition>

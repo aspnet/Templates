@@ -3,18 +3,18 @@
 
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.TestConfiguration;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 
 namespace Microsoft.AspNet.Builder
 {
     public static class BuilderExtensions
     {
-        public static Configuration GetTestConfiguration(this IApplicationBuilder app)
+        public static IConfiguration GetTestConfiguration(this IApplicationBuilder app)
         {
             var configurationProvider = app.ApplicationServices.GetService<ITestConfigurationProvider>();
             var configuration = configurationProvider == null
-                ? new Configuration()
+                ? new ConfigurationBuilder.BUild()
                 : configurationProvider.Configuration;
 
             return configuration;

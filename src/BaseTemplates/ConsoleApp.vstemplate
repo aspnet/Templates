@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Console Application (Package)</Name>
-    <Description>PREVIEW - A project template for creating a console application as a NuGet package that can run on .NET Framework or .NET Core.</Description>
+    <Name Package="{AAB75614-2F8F-4DA6-B0A6-763C6DBB2969}" ID="5007"/>
+    <Description Package="{AAB75614-2F8F-4DA6-B0A6-763C6DBB2969}" ID="5008"/>
     <Icon>ConsoleProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
@@ -22,8 +22,4 @@
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Program.cs</ProjectItem>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.ProjectSystem.Wizard, Version=__VSVER__.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Web.ProjectSystem.Wizard.WebProjectSystemTemplateWizard</FullClassName>
-  </WizardExtension>
 </VSTemplate>

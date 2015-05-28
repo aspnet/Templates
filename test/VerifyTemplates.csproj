@@ -7,7 +7,7 @@
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
     <DnuBuildCommand>dnu build</DnuBuildCommand>
-    <DnuRestoreCommand>dnu restore --source $(PackageSource) --fallbacksource $(PackageFallbackSource)</DnuRestoreCommand>
+    <DnuRestoreCommand>dnu restore -f $(PackageSourceForRestore)</DnuRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
     <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
@@ -26,6 +26,7 @@
   <ItemDefinitionGroup>
     <RulesToVerify>
       <BaseTemplate/>
+      <CommonAuthRuleFiles/>
       <AdditionalRuleFiles/>
       <ProjectGuid/>
       <Guid2>{60e58d4e-cbd8-4827-a36b-bc7e039fc580}</Guid2>
@@ -56,11 +57,23 @@
   <ItemGroup>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
-      <AdditionalRuleFiles>..\CommonAuth\**\*.*</AdditionalRuleFiles>
       <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
+      <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Single">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
+      <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <ProjectGuid>{D90D6984-DC7B-4737-AA33-208A7A127DB6}</ProjectGuid>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Multiple">
+      <BaseTemplate>StarterWeb</BaseTemplate>
+      <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
+      <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <ProjectGuid>{ACFE3CE9-E7BA-4EDC-B060-354D06CE653B}</ProjectGuid>
     </RulesToVerify>
   </ItemGroup>
-  
+
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
     <PropertyGroup>
       <TargetName>%(TemplatesToVerify.Filename)</TargetName>
@@ -85,8 +98,9 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
-
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
+
   </Target>
   
   <Target Name="InstallNpmPackages">
@@ -98,15 +112,18 @@
     <PropertyGroup>
       <TargetName>%(RulesToVerify.BaseTemplate).%(RulesToVerify.Filename)</TargetName>
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
-      <AdditionalRuleFiles>%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles)</AdditionalRuleFiles>
+      <CommonAuthRuleFiles Condition="'%(RulesToVerify.CommonAuthRuleFiles)' != ''">%(RulesToVerify.Identity)\%(RulesToVerify.CommonAuthRuleFiles)</CommonAuthRuleFiles>
+      <AdditionalRuleFiles Condition="'%(RulesToVerify.AdditionalRuleFiles)' != ''">%(RulesToVerify.Identity)\%(RulesToVerify.AdditionalRuleFiles)</AdditionalRuleFiles>
       <RuleFiles>%(RulesToVerify.Identity)\**\*.*</RuleFiles>
       <ProjectGuid>%(RulesToVerify.ProjectGuid)</ProjectGuid>
     </PropertyGroup>
+
     <RemoveDir Directories="$(TestPath)" />
     <MakeDir Directories="$(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)\ProjectTemplates\%(RulesToVerify.BaseTemplate).zip * &gt; nul" />
 
     <ItemGroup>
+      <ItemsToCopy Include="$(CommonAuthRuleFiles)" Condition="'$(CommonAuthRuleFiles)' != ''"/>
       <ItemsToCopy Include="$(AdditionalRuleFiles)" Condition="'$(AdditionalRuleFiles)' != ''"/>
       <ItemsToCopy Include="$(RuleFiles)" Condition="'$(RuleFiles)' != ''"/>
     </ItemGroup> 
@@ -127,16 +144,17 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
-    <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
-    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
-    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
-    <VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')"/>
+    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)"/>
+    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" />
+    <VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')" />
   </Target>
   
   <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
@@ -149,7 +167,7 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <GetDotNetFolder Condition="'$(DotNetFolderInPath)' == 'false' and '$(DotNetFolder)' == ''">
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 

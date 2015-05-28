@@ -15,34 +15,31 @@
     <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>
   </Target>
   
-  <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)">
+  <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)" Condition="'$(IsOfficialBuild)' == 'true'">
     <Exec Command="dnu list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
   </Target>
   
-  <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList">
+  <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" ExcludedPackagesList="$(ExcludedPackages)"/>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)"/>
     
     <ItemGroup>
-      <LinesToWrite Include="$(RemoteCoherencePackageSource)"/>
+      <LinesToWrite Include="$(CoherencePackageSource)"/>
       <LinesToWrite Include="Template Version: $(PackageVersionType):$(TemplateVersion)"/>
       <LinesToWrite Include="Coherence Version: $(PackageVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
   </Target>
   
-  <Target Name="PublishReferencePackages">
-    <ItemGroup>
-      <ReferencePackage Include="$(TemplatesReferencePackages)\Ix-Async.1.2.3.nupkg"/>
-      <ReferencePackage Include="$(TemplatesReferencePackages)\Remotion.Linq.2.0.0-alpha-002.nupkg"/>
-      <ReferencePackage Include="$(TemplatesReferencePackages)\System.Collections.Immutable.1.1.33-beta.nupkg"/>
-      <ReferencePackage Include="$(TemplatesReferencePackages)\System.Reflection.Metadata.1.0.18-beta.nupkg"/>
-    </ItemGroup>
+  <Target Name="PublishReferencePackages" Condition="'$(IsOfficialBuild)' == 'true'">
+    <GetDotNetPackageFolder Condition="'$(DNX_PACKAGES)' == ''">
+      <Output PropertyName="DNX_PACKAGES" TaskParameter="PackageFolderPath"/>
+    </GetDotNetPackageFolder>
     <RemoveDir Directories="$(TemplatesBin)\ExternalPackages" Condition="Exists('$(TemplatesBin)\ExternalPackages')"/>
     <MakeDir Directories="$(TemplatesBin)\ExternalPackages"/>
-    <Copy SourceFiles="@(ReferencePackage)" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
+    <Copy SourceFiles="$(DNX_PACKAGES)\%(ExternalReferencePackage.Identity)\%(ExternalReferencePackage.Version)\%(ExternalReferencePackage.Identity).%(ExternalReferencePackage.Version).nupkg" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
   </Target>
   
   <Target Name="Build">

@@ -736,8 +736,8 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
         </Folder>
       </Folder>
-      <Folder Name="Compiler" TargetFolderName="Compiler">
-        <Folder Name="Preprocess" TargetFolderName="Preprocess">
+      <Folder Name="compiler" TargetFolderName="compiler">
+        <Folder Name="preprocess" TargetFolderName="preprocess">
           <ProjectItem ReplaceParameters="true" TargetFileName="RazorPreCompilation.cs">RazorPreCompilation.cs</ProjectItem>
         </Folder>
       </Folder>
@@ -1332,7 +1332,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.cs">AppSettings.cs</ProjectItem>
       </Folder>
       <Folder Name="Views" TargetFolderName="Views">
-        <ProjectItem ReplaceParameters="true" TargetFileName="_GlobalImport.cshtml">_GlobalImport.cshtml</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Home" TargetFolderName="Home">
           <ProjectItem ReplaceParameters="true" TargetFileName="About.cshtml">About.cshtml</ProjectItem>
@@ -1402,8 +1402,4 @@
       </Folder>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.ProjectSystem.Wizard, Version=__VSVER__.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Web.ProjectSystem.Wizard.WebProjectSystemTemplateWizard</FullClassName>
-  </WizardExtension>
 </VSTemplate>

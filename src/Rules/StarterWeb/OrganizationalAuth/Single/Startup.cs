@@ -7,6 +7,9 @@ using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Routing;
+using Microsoft.AspNet.Authentication;
+using Microsoft.AspNet.Authentication.Cookies;
+using Microsoft.AspNet.Authentication.OpenIdConnect;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
@@ -20,9 +23,18 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
+
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+
+            if (env.IsEnvironment("Development"))
+            {
+                // This reads the configuration keys from the secret store.
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+                builder.AddUserSecrets();
+            }
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -33,19 +45,27 @@ namespace $safeprojectname$
         {
             services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 
+            services.Configure<CookieAuthenticationOptions>(options =>
+            {
+                options.AutomaticAuthentication = true;
+            });
+
+            services.Configure<OpenIdConnectAuthenticationOptions>(options =>
+            {
+                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
+                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
+                options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+
             // Add MVC services to the services container.
             services.AddMvc();
-
-            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
-            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
-            // services.AddWebApiConventions();
         }
 
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
-
             // Add the console logger.
             loggerfactory.AddConsole();
 
@@ -65,15 +85,18 @@ namespace $safeprojectname$
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
+            // Add cookie-based authentication to the request pipeline.
+            app.UseCookieAuthentication();
+
+            // Add OpenIdConnect middleware so you can login using Azure AD.
+            app.UseOpenIdConnectAuthentication();
+
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                // Uncomment the following line to add a route for porting Web API 2 controllers.
-                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
         }
     }

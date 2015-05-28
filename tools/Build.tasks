@@ -1,12 +1,45 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <UsingTask
+        TaskName="GetDotNetPackageFolder"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <PackageFolderPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string runtimeRoot = ".dnx";
+                    string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    var packageFolder = Path.Combine(userProfile, ".dnx","packages");
+                    PackageFolderPath = new TaskItem(packageFolder);
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error getting Package folder");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>    
+
+
+    <UsingTask
         TaskName="GetDependencyListForTemplates"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
         <ParameterGroup>
             <DependencyList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <MergedDependencyList ParameterType="System.String" Required="True" />
-            <ExcludedPackagesList ParameterType="System.String" />
+            <TemplatePackagesList ParameterType="System.String" />
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -20,12 +53,12 @@
                 try
                 {   
                     List<string> packages = new List<string>();
-                    List<string> excludedPackages = new List<string>();
+                    List<string> templatePackages = new List<string>();
                     
-                    if (!string.IsNullOrEmpty(ExcludedPackagesList))
+                    if (!string.IsNullOrEmpty(TemplatePackagesList))
                     {
-                        Log.LogMessage("Using ExludedPackagesList: {0}", ExcludedPackagesList);
-                        using (var packageReference = File.OpenText(ExcludedPackagesList))
+                        Log.LogMessage("Using TemplatePackagesList: {0}", TemplatePackagesList);
+                        using (var packageReference = File.OpenText(TemplatePackagesList))
                         {
                             while (!packageReference.EndOfStream)
                             {
@@ -37,7 +70,7 @@
                                 }
                                 else if (line.StartsWith("-"))
                                 {
-                                    excludedPackages.Add(packageName);
+                                    templatePackages.Add(packageName);
                                 }
                             }
                         }
@@ -57,10 +90,11 @@
                                 {
                                     continue;
                                 }
-                                string[] parts = line.Trim().Split();
+                                
+                                string[] parts = line.StartsWith("*") ? line.Substring(1).Trim().Split() : line.Trim().Split();
                                 string packageName = parts[0].Trim();
                                 
-                                if (parts.Length == 2 && !excludedPackages.Contains(packageName)
+                                if (parts.Length == 2 && !templatePackages.Contains(packageName)
                                     && !packageName.StartsWith("framework/"))
                                 {
                                     string packageVersion = parts[1].Trim();

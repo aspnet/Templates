@@ -42,6 +42,7 @@
               Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
               Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
               Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs;
               Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs;
@@ -66,11 +67,37 @@
               Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\_GlobalImport.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\config.json;
               Rules\StarterWeb\IndividualAuth\MessageServices.cs;
               Rules\StarterWeb\IndividualAuth\project.json;
               Rules\StarterWeb\IndividualAuth\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Org Auth Common Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\project.json">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Org Auth Single Org Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- StarterWeb Org Auth Multiple Org Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
@@ -99,11 +126,11 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta4" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion).0-beta5" />
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
+    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="'$(IsOfficialBuild)' == 'true'"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(IsOfficialBuild)' == 'true'"/>
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
