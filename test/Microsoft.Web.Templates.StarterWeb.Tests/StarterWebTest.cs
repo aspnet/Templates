@@ -43,7 +43,7 @@ namespace Microsoft.Web.Templates.Tests
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
-            Assert.Contains("This application consists of:", reponseContent);
+            Assert.Contains("Home Page - " + _templateName, reponseContent);
         }
 
         [Fact]

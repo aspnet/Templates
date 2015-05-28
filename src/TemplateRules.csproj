@@ -69,7 +69,7 @@
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\config.json;
-              Rules\StarterWeb\IndividualAuth\MessageServices.cs;
+              Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
               Rules\StarterWeb\IndividualAuth\project.json;
               Rules\StarterWeb\IndividualAuth\Startup.cs">
       <TargetName>$(Rules)</TargetName>
