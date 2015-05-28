@@ -31,8 +31,6 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
-
             // Add MVC services to the services container.
             services.AddMvc();
 
@@ -42,15 +40,15 @@ namespace $safeprojectname$
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+
             // Configure the HTTP request pipeline.
 
-            // Add the console logger.
-            loggerfactory.AddConsole();
-
             // Add the following to the request pipeline only in development environment.
-            if (env.IsEnvironment("Development"))
+            if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseErrorPage(ErrorPageOptions.ShowAll);
