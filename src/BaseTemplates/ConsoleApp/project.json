@@ -1,7 +1,7 @@
 {
   "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
+  "description": "$projectname$ Console Application",
+  "authors": [ "$username$" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
