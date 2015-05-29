@@ -1,7 +1,7 @@
 {
   "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
+  "description": "$projectname$ Class Library",
+  "authors": [ "$username$" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
