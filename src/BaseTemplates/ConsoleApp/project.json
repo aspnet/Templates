@@ -1,6 +1,6 @@
 {
   "version": "1.0.0-*",
-  "description": "$projectname$ Class Library",
+  "description": "$projectname$ Console Application",
   "authors": [ "$username$" ],
   "tags": [ "" ],
   "projectUrl": "",
