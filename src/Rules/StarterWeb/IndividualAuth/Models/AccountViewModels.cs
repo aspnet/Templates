@@ -10,6 +10,7 @@ namespace $safeprojectname$.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
     }
 
@@ -63,6 +64,7 @@ namespace $safeprojectname$.Models
     public class ForgotPasswordViewModel
     {
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
     }
 
@@ -83,6 +85,7 @@ namespace $safeprojectname$.Models
     public class RegisterViewModel
     {
         [Required]
+        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
