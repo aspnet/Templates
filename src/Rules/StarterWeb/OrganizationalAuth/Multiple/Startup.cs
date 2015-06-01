@@ -48,6 +48,7 @@ namespace $safeprojectname$
 
             services.ConfigureOpenIdConnectAuthentication(options =>
             {
+                options.AutomaticAuthentication = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
             });

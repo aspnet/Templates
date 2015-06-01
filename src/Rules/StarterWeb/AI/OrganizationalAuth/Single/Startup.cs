@@ -56,6 +56,7 @@ namespace $safeprojectname$
 
             services.Configure<OpenIdConnectAuthenticationOptions>(options =>
             {
+                options.AutomaticAuthentication = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
                 options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
