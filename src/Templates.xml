@@ -60,32 +60,6 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
               VSTemplatePath="DNXStarterWeb.vstemplate">
-        <ApplyRules Option="ApplicationInsights">
-            <ApplyRules Option="NoAuth">
-                  <RunRule RuleID="StarterWebAINoAuth" />
-            </ApplyRules>
-            <ApplyRules Option="IndividualAuth">
-                  <RunRule RuleID="StarterWebAICommonAuth" />
-                  <RunRule RuleID="StarterWebAIIndividualAuth" />
-            </ApplyRules>
-            <ApplyRules Option="OrgAuth">
-                  <RunRule RuleID="StarterWebAICommonAuth" />
-                  <RunRule RuleID="StarterWebAIOrganizationalAuthCommon" />
-                  <ApplyRules Option="SSO">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
-                  </ApplyRules>
-                  <ApplyRules Option="MultiOrg">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
-                  </ApplyRules>
-                  <ApplyRules Option="SSOR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
-                  </ApplyRules>
-                  <ApplyRules Option="MultiOrgR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
-                  </ApplyRules>
-            </ApplyRules>
-        </ApplyRules>
-
         <ApplyRules Option="IndividualAuth">
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
@@ -105,6 +79,30 @@
               <ApplyRules Option="MultiOrgR">
                     <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
               </ApplyRules>
+        </ApplyRules>
+        <ApplyRules Option="ApplicationInsights">
+            <ApplyRules Option="NoAuth">
+                  <RunRule RuleID="StarterWebAINoAuth" />
+            </ApplyRules>
+            <ApplyRules Option="IndividualAuth">
+                  <RunRule RuleID="StarterWebAICommonAuth" />
+                  <RunRule RuleID="StarterWebAIIndividualAuth" />
+            </ApplyRules>
+            <ApplyRules Option="OrgAuth">
+                  <RunRule RuleID="StarterWebAICommonAuth" />
+                  <ApplyRules Option="SSO">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+                  <ApplyRules Option="MultiOrg">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                  </ApplyRules>
+                  <ApplyRules Option="SSOR">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+                  <ApplyRules Option="MultiOrgR">
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                  </ApplyRules>
+            </ApplyRules>
         </ApplyRules>
     </BaseTemplate>
 
@@ -191,15 +189,15 @@
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>
       </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthCommon">
-          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Common\project.json"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\config.json"/>
-      </Rule>
       <Rule ID="StarterWebAIOrganizationalAuthSingle">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\config.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json"/>
       </Rule>
       <Rule ID="StarterWebAIOrganizationalAuthMultiple">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs"/>
+          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\config.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json"/>
       </Rule>
   </Rules>
 </TemplateDefinition>

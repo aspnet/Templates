@@ -66,9 +66,14 @@
         <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.IndividualAuth"/>
         <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Single"/>
         <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Multiple"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.IndividualAuth"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.Single"/>
+        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.Multiple"/>
         <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
         <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
+        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
     </ItemGroup>
 
     <!-- These packages get copied to ExternalPackages on official builds -->
