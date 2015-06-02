@@ -6,9 +6,7 @@ var gulp = require("gulp"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
     uglify = require("gulp-uglify"),
-    project;
-
-project = JSON.parse(fs.readFileSync("./project.json"));
+    project = require("./project.json");
 
 var paths = {
     webroot: "./" + project.webroot + "/"
