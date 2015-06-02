@@ -139,6 +139,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$dnxtargetframeworkversion\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(DnxTargetFrameworkVersion)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
   </Target>
@@ -187,6 +188,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$dnxtargetframeworkversion\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(DnxTargetFrameworkVersion)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
     <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
