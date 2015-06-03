@@ -1,7 +1,6 @@
 ﻿/// <binding Clean='clean' />
 
 var gulp = require("gulp"),
-    fs = require("fs"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
