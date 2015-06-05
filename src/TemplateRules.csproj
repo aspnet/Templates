@@ -18,7 +18,9 @@
   <ItemGroup>
     <LooseFiles Include="
               Templates.xml;
-              Resources\WebProject.png">
+              Resources\WebSite.png;
+              Resources\WebAPI.png;
+              Resources\Empty.png">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>

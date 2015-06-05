@@ -3,7 +3,7 @@
   <TemplateData>
     <Name>ASP.NET 5 Empty Web Application</Name>
     <Description>A project for creating an empty ASP.NET 5 web application</Description>
-    <Icon>WebProject.png</Icon>
+    <Icon>Empty.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>

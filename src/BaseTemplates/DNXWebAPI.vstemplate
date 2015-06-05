@@ -3,7 +3,7 @@
   <TemplateData>
     <Name>ASP.NET 5 Web API</Name>
     <Description>A project for creating an ASP.NET 5 Web API</Description>
-    <Icon>WebProject.png</Icon>
+    <Icon>WebAPI.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
