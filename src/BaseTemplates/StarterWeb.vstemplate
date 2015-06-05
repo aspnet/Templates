@@ -3,7 +3,7 @@
   <TemplateData>
     <Name>ASP.NET 5 Preview Web Application</Name>
     <Description>A project for creating an ASP.NET 5 Preview Starter Web Application</Description>
-    <Icon>WebSite.png</Icon>
+    <Icon>WebApplication.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>

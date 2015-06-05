@@ -33,9 +33,9 @@
       </Options>
     </Template>
 
-    <Template Name="Web Site" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
-      <Icon>Resources\WebSite.png</Icon>
-      <PreviewImage>Resources\WebSite.png</PreviewImage>
+    <Template Name="Web Application" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
+      <Icon>Resources\WebApplication.png</Icon>
+      <PreviewImage>Resources\WebApplication.png</PreviewImage>
       <Summary>PREVIEW - A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
       <Description>PREVIEW - A project template for creating an ASP.NET 5 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
       <UIFilters>DNXProject</UIFilters>
