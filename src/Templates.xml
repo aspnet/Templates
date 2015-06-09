@@ -137,6 +137,7 @@
           <AddFile Destination="Views\Account\ExternalLoginFailure.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml"/>
           <AddFile Destination="Views\Account\ForgotPassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPassword.cshtml"/>
           <AddFile Destination="Views\Account\ForgotPasswordConfirmation.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPasswordConfirmation.cshtml"/>
+          <AddFile Destination="Views\Account\Lockout.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Lockout.cshtml"/>
           <AddFile Destination="Views\Account\Login.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml"/>
           <AddFile Destination="Views\Account\Register.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml"/>
           <AddFile Destination="Views\Account\ResetPassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ResetPassword.cshtml"/>

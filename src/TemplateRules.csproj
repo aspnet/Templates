@@ -54,6 +54,7 @@
               Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPasswordConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Lockout.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ResetPassword.cshtml;
