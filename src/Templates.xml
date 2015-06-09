@@ -13,7 +13,6 @@
         </Authentication>
         <AzureResources>
           <AzureWebsite/>
-          <AzureVirtualMachine />
         </AzureResources>
       </Options>
     </Template>
@@ -30,7 +29,6 @@
         </Authentication>
         <AzureResources>
           <AzureWebsite/>
-          <AzureVirtualMachine />
         </AzureResources>
       </Options>
     </Template>
@@ -49,7 +47,6 @@
         </Authentication>
         <AzureResources>
           <AzureWebsite/>
-          <AzureVirtualMachine />
         </AzureResources>
       </Options>
     </Template>
