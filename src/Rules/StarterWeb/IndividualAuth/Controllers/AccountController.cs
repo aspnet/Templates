@@ -143,6 +143,7 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
+            EnsureDatabaseCreated(_applicationDbContext);
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
@@ -439,7 +440,7 @@ namespace $safeprojectname$.Controllers
         // not yet supported in this release.
         // Please see this http://go.microsoft.com/fwlink/?LinkID=615859 for more information on how to do deploy the database
         // when publishing your application.
-        public static void EnsureDatabaseCreated(ApplicationDbContext context)
+        private static void EnsureDatabaseCreated(ApplicationDbContext context)
         {
             if (!_databaseChecked)
             {
