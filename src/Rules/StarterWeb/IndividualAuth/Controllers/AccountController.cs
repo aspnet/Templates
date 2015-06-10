@@ -9,6 +9,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.Data.Entity;
 using $safeprojectname$;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
@@ -22,17 +23,21 @@ namespace $safeprojectname$.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
+        private readonly ApplicationDbContext _applicationDbContext;
+        private static bool _databaseChecked;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ISmsSender smsSender)
+            ISmsSender smsSender,
+            ApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
+            _applicationDbContext = applicationDbContext;
         }
 
         //
@@ -52,6 +57,7 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+            EnsureDatabaseCreated(_applicationDbContext);
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -97,6 +103,7 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            EnsureDatabaseCreated(_applicationDbContext);
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -136,6 +143,7 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
+            EnsureDatabaseCreated(_applicationDbContext);
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
@@ -426,6 +434,23 @@ namespace $safeprojectname$.Controllers
         }
 
         #region Helpers
+
+        // The following code creates the database and schema if they don't exist.
+        // This is a temporary workaround since deploying database through EF migrations is
+        // not yet supported in this release.
+        // Please see this http://go.microsoft.com/fwlink/?LinkID=615859 for more information on how to do deploy the database
+        // when publishing your application.
+        private static void EnsureDatabaseCreated(ApplicationDbContext context)
+        {
+            if (!_databaseChecked)
+            {
+                _databaseChecked = true;
+                if (!context.Database.AsRelational().Exists())
+                {
+                    context.Database.AsRelational().ApplyMigrations();
+                }
+            }
+        }
 
         private void AddErrors(IdentityResult result)
         {
