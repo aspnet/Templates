@@ -94,13 +94,13 @@
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta4-204171524</Version>
+          <Version>1.0.0-beta5-206011020</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta4-204171524</Version>
+          <Version>2.0.0-beta5-206011020</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta4-204171524</Version>
+          <Version>5.0.0-beta5-206011020</Version>
       </ExternalReferencePackage>
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
