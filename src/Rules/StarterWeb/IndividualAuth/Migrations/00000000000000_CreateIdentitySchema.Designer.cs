@@ -30,7 +30,6 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ConcurrencyStamp")
@@ -51,7 +50,6 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .GenerateValueOnAdd()
                         .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
                         .Annotation("OriginalValueIndex", 0);
 
@@ -72,7 +70,6 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .GenerateValueOnAdd()
                         .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
                         .Annotation("OriginalValueIndex", 0);
 
@@ -93,11 +90,9 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ProviderKey")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 1);
 
                     b.Property<string>("ProviderDisplayName")
@@ -127,7 +122,6 @@ namespace $safeprojectname$.Migrations
             builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<int>("AccessFailedCount")
