@@ -23,10 +23,12 @@
 +Microsoft.VisualBasic.*
 +Microsoft.Win32.Registry.AccessControl.*
 +System.Diagnostics.FileVersionInfo.*
++System.IO.Compression.*
 +System.IO.Compression.ZipFile.*
 +System.IO.File+System.AccessControl.*
 +System.Linq.Parallel.*
 +System.Net.Http.4.*
++System.Net.NameResolution.*
 +System.Net.WebHeaderCollection.*
 +System.Net.Security.*
 +System.Net.Sockets.*
