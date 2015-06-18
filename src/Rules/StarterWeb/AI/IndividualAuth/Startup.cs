@@ -110,7 +110,7 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else
