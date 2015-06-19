@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using $safeprojectname$;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
@@ -445,9 +446,9 @@ namespace $safeprojectname$.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                if (!context.Database.AsRelational().Exists())
+                if (!dbContext.GetService<IRelationalDataStoreCreator>().Exists())
                 {
-                    context.Database.AsRelational().ApplyMigrations();
+                    context.Database.ApplyMigrations();
                 }
             }
         }
