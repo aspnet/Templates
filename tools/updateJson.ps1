@@ -24,18 +24,20 @@ function ProcessFile {
     {
         $packageNameWithDot = $fileName.Remove($fileName.IndexOf($Matches.Version))
         $packageName = $packageNameWithDot.Substring(0, $packageNameWithDot.Length-1)
-        $packageVersion = $Matches.Version + $Matches.Release
+        $packageVersion = $Matches.Version
+        $packageVersionWithRelease = $Matches.Version + $Matches.Release
 
         if ($PackageNameVersionHash.ContainsKey($packageName))
         {
-            if ($packageVersion -ge $PackageNameVersionHash[$packageName])
+            if (!$PackageNameVersionHash[$packageName].ContainsKey($packageVersion))
             {
-                $PackageNameVersionHash[$packageName] = $packageVersion
+                $PackageNameVersionHash[$packageName].Add($packageVersion, $packageVersionWithRelease)
             }
         }
         else
         {
-            $PackageNameVersionHash.Add($packageName, $packageVersion)
+            $PackageNameVersionHash.Add($packageName, @{})
+            $PackageNameVersionHash[$packageName].Add($packageVersion, $packageVersionWithRelease)
         }
     }
 }
@@ -64,7 +66,21 @@ function ProcessProjectFile {
             $matchPattern = """(?<PackageName>\S*)""\s*:\s*""(?<PackageVersion>\S+)"".*"
             if ($line -match $matchPattern -and $PackageNameVersionHash.Contains($Matches.PackageName))
             {
-                $line = $line.Replace($Matches.PackageVersion, $PackageNameVersionHash[$Matches.PackageName])
+                $packageName = $Matches.PackageName
+                $packageVersion = $Matches.PackageVersion
+                $packageVersionWithoutWildCard = $packageVersion
+                $releaseIndex = $packageVersion.IndexOf("-")
+                
+                if ($releaseIndex -gt -1)
+                {
+                    $packageVersionWithoutWildCard = $packageVersion.SubString(0, $releaseIndex)
+                }
+                
+                # if there is no match, we won't replace anything
+                if ($PackageNameVersionHash[$packageName].ContainsKey($packageVersionWithoutWildCard))
+                {
+                    $line = $line.Replace($packageVersion, $PackageNameVersionHash[$packageName][$packageVersionWithoutWildCard])
+                }
             }
             Out-File -FilePath $tempFile -InputObject $line -Encoding utf8 -Append
         }
