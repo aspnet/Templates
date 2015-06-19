@@ -447,7 +447,7 @@ namespace $safeprojectname$.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                if (!dbContext.GetService<IRelationalDataStoreCreator>().Exists())
+                if (!context.GetService<IRelationalDataStoreCreator>().Exists())
                 {
                     context.Database.ApplyMigrations();
                 }
