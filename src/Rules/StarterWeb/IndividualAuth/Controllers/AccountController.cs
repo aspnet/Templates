@@ -445,10 +445,7 @@ namespace $safeprojectname$.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                if (!context.Database.AsRelational().Exists())
-                {
-                    context.Database.AsRelational().ApplyMigrations();
-                }
+                context.Database.AsRelational().ApplyMigrations();
             }
         }
 
