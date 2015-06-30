@@ -11,7 +11,6 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Relational;
 using $safeprojectname$;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
