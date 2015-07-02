@@ -84,7 +84,7 @@
           <Version>1.2.3</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Remotion.Linq">
-          <Version>2.0.0-alpha-002</Version>
+          <Version>2.0.0-alpha-004</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.Collections.Immutable">
           <Version>1.1.36</Version>
