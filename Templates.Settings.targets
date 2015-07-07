@@ -45,12 +45,17 @@
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
     </PropertyGroup>
-
+    
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
         <!-- Visual Studio 14 properties -->
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
         <VersionedReferencePath>Dev14</VersionedReferencePath>
         <TargetVsVersion>VS14</TargetVsVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ApplicationInsightsPackageVersion>1.0.0-beta5</ApplicationInsightsPackageVersion>
+        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta5</BrowserLinkPackageVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -106,7 +111,7 @@
       </ExternalReferencePackage>
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
-          <Version>1.0.0-beta5</Version>
+          <Version>$(ApplicationInsightsPackageVersion)</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
           <Version>0.17.1-beta</Version>
