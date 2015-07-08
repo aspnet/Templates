@@ -54,7 +54,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion>1.0.0-beta5</ApplicationInsightsPackageVersion>
+        <ApplicationInsightsPackageVersion>1.0.0-beta6</ApplicationInsightsPackageVersion>
         <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta5</BrowserLinkPackageVersion>
     </PropertyGroup>
 
