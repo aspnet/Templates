@@ -50,7 +50,7 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
+                        .ValueGeneratedOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ClaimType")
@@ -70,7 +70,7 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
+                        .ValueGeneratedOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ClaimType")
