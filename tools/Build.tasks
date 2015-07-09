@@ -40,6 +40,7 @@
             <DependencyList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <MergedDependencyList ParameterType="System.String" Required="True" />
             <TemplatePackagesList ParameterType="System.String" />
+            <PackageSourcePath ParameterType="System.String" />
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -53,11 +54,10 @@
                 try
                 {   
                     List<string> packages = new List<string>();
-                    List<string> templatePackages = new List<string>();
+                    List<string> excludedPackages = new List<string>();
                     
                     if (!string.IsNullOrEmpty(TemplatePackagesList))
                     {
-                        Log.LogMessage("Using TemplatePackagesList: {0}", TemplatePackagesList);
                         using (var packageReference = File.OpenText(TemplatePackagesList))
                         {
                             while (!packageReference.EndOfStream)
@@ -66,11 +66,51 @@
                                 string packageName = line.Substring(1);
                                 if (line.StartsWith("+"))
                                 {
-                                    packages.Add(packageName);
+                                    var files = Directory.EnumerateFiles(PackageSourcePath, packageName);
+                                    if (files.Count() == 0)
+                                    {
+                                        Log.LogMessage("{0} contains {1}, but no matching package could be found", TemplatePackagesList, packageName);
+                                    }
+                                    foreach(var file in files)
+                                    {
+                                        FileInfo info = new FileInfo(file);
+                                        Log.LogMessage("Found {0}", info.Name);
+
+                                        if (!excludedPackages.Contains(info.Name))
+                                        {
+                                            Log.LogMessage("-> Adding {0}", info.Name);
+                                            packages.Add(info.Name);                                      
+                                        }
+                                        else
+                                        {
+                                            Log.LogMessage("-> Package excluded, skipping");
+                                        }
+                                    }
                                 }
                                 else if (line.StartsWith("-"))
                                 {
-                                    templatePackages.Add(packageName);
+                                    var files = Directory.EnumerateFiles(PackageSourcePath, packageName);
+                                    if (files.Count() > 0)
+                                    {                                 
+                                        foreach(var file in files)
+                                        {
+                                            FileInfo info = new FileInfo(file);
+
+                                            excludedPackages.Add(info.Name);
+                                            if (packages.Contains(info.Name))
+                                            {
+                                                packages.Remove(info.Name);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        excludedPackages.Add(packageName);
+                                        if (packages.Contains(packageName))
+                                        {
+                                            packages.Remove(packageName);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -86,7 +126,7 @@
                             while (!file.EndOfStream)
                             {
                                 string line = file.ReadLine().Trim();
-                                if (line.StartsWith("[") || line.StartsWith("->") || line.EndsWith(")"))
+                                if (line.StartsWith("[") || line.StartsWith("->") || line.EndsWith(")") || line.EndsWith(":"))
                                 {
                                     continue;
                                 }
@@ -94,7 +134,7 @@
                                 string[] parts = line.StartsWith("*") ? line.Substring(1).Trim().Split() : line.Trim().Split();
                                 string packageName = parts[0].Trim();
                                 
-                                if (parts.Length == 2 && !templatePackages.Contains(packageName)
+                                if (parts.Length == 2 && !excludedPackages.Contains(packageName)
                                     && !packageName.StartsWith("framework/"))
                                 {
                                     string packageVersion = parts[1].Trim();
