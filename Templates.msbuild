@@ -23,7 +23,7 @@
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" />
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" ExternalReferencePackages="@(ExternalReferencePackage);Microsoft.VisualStudio.Web.BrowserLink.Loader"/>
     
     <ItemGroup>
       <LinesToWrite Include="$(CoherencePackageSource)"/>

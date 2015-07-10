@@ -39,6 +39,7 @@
         <ParameterGroup>
             <DependencyList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <MergedDependencyList ParameterType="System.String" Required="True" />
+            <ExternalReferencePackages ParameterType="System.String" Required="True"/>
             <TemplatePackagesList ParameterType="System.String" />
             <PackageSourcePath ParameterType="System.String" />
         </ParameterGroup>
@@ -72,7 +73,7 @@
                                     var files = Directory.EnumerateFiles(PackageSourcePath, packageName);
                                     if (files.Count() == 0)
                                     {
-                                        Log.LogMessage("  {0} contains {1}, but no matching package could be found", TemplatePackagesList, packageName);
+                                        Log.LogWarning("  {0} contains {1}, but no matching package could be found on package share.", TemplatePackagesList, packageName);
                                     }
                                     foreach(var file in files)
                                     {
@@ -143,23 +144,60 @@
                                 {
                                     string packageVersion = parts[1].Trim();
                                     string packageToAdd = string.Format("{0}.{1}.nupkg", packageName, packageVersion);
-                                    if (packageToAdd.StartsWith("*"))
+                                    string originalPackageToAdd = packageToAdd;
+                                    int attempt = 0;
+                                    while (attempt++ < 2)
                                     {
-                                        packageToAdd = packageToAdd.Substring(1);
-                                    }
-                                    
-                                    
-                                    if (!packages.Contains(packageToAdd))
-                                    {
-                                        Log.LogMessage("  Found {0}", packageToAdd);
-                                        if (!includedPackages.Contains(packageToAdd))
+                                        if (packageToAdd.StartsWith("*"))
                                         {
-                                            Log.LogMessage("    Adding {0}", packageToAdd);
-                                            packages.Add(packageToAdd);
+                                            packageToAdd = packageToAdd.Substring(1);
                                         }
-                                        else
+                                        
+                                        if (packages.Contains(packageToAdd))
                                         {
-                                            Log.LogMessage("    Wildcard entry found but it is explictly references. Consider removing from wildcard list.");
+                                            if (includedPackages.Contains(packageToAdd))
+                                            {
+                                                Log.LogMessage("  Found {0}", packageToAdd);
+                                                Log.LogWarning("    Wildcard entry found but it is explictly referenced. Consider removing from wildcard list.");
+                                            }
+                                            else if (attempt == 2)
+                                            {
+                                                Log.LogMessage("      Matched {0}", packageToAdd);
+                                            }
+                                            break;
+                                        }
+                                        else 
+                                        {
+                                            Log.LogMessage("  Found {0}", packageToAdd);
+                                            
+                                            var files = Directory.EnumerateFiles(PackageSourcePath, packageToAdd);
+
+                                            if (!ExternalReferencePackages.Contains(packageName) && files.Count() == 0)
+                                            {
+                                                // if there is a package dependency on another version, we should try to see if we have another version we are already including.
+                                                if (attempt < 2)
+                                                {
+                                                    var packageNameNoSemVer = packageToAdd.Substring(0, packageToAdd.IndexOf("-")) + "*";
+                                                    Log.LogWarning("    {0} not found. ({1})", originalPackageToAdd, fileName);
+                                                        
+                                                    files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer);
+                                                    if (files.Count() > 0)
+                                                    {
+                                                        
+                                                        FileInfo info = new FileInfo(files.ToArray()[0]);
+                                                        packageToAdd = info.Name;
+                                                        continue;
+                                                    }
+                                                }
+                                                Log.LogError("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName); 
+                                                break;                                             
+                                            }
+                                            else
+                                            {
+                                                Log.LogMessage("    Adding {0}", packageToAdd);
+                                                packages.Add(packageToAdd);
+                                                break;
+                                            }
                                         }
                                     }
                                 }
