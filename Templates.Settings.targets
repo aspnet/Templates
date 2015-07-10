@@ -101,13 +101,13 @@
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta5-206290920</Version>
+          <Version>1.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta5-206290920</Version>
+          <Version>2.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta5-206290920</Version>
+          <Version>5.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
