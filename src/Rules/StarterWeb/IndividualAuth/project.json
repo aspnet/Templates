@@ -4,8 +4,8 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-*",
-    "EntityFramework.Commands": "7.0.0-*",
+    "EntityFramework7.SqlServer": "7.0.0-*",
+    "EntityFramework7.Commands": "7.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-*",
@@ -30,7 +30,7 @@
 
   "commands": {
     "web": "Microsoft.AspNet.Hosting --config hosting.ini",
-    "ef": "EntityFramework.Commands"
+    "ef": "EntityFramework7.Commands"
   },
 
   "frameworks": {
