@@ -107,7 +107,12 @@
                                                 // if there is a package dependency on another version, we should try to see if we have another version we are already including.
                                                 if (attempt < 2)
                                                 {
-                                                    var packageNameNoSemVer = packageToAdd.Substring(0, packageToAdd.IndexOf("-")) + "*";
+                                                    var index = packageToAdd.IndexOf("-");
+                                                    if (index == -1)
+                                                    {
+                                                        index =  packageToAdd.IndexOf(".nupkg");
+                                                    }
+                                                    var packageNameNoSemVer = packageToAdd.Substring(0, index) + "*";
                                                     Log.LogWarning("    {0} not found. ({1})", originalPackageToAdd, fileName);
                                                         
                                                     files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer);

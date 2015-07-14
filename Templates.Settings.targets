@@ -116,5 +116,15 @@
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
           <Version>0.17.1-beta</Version>
       </ExternalReferencePackage>
+      <!-- Release CodeAnalysis Packages -->
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers">
+          <Version>1.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common">
+          <Version>1.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp">
+          <Version>1.0.0</Version>
+      </ExternalReferencePackage>
     </ItemGroup>
 </Project>
