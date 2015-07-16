@@ -31,9 +31,11 @@
         <CoherencePackageSource Condition="'$(CoherencePackageSource)' != ''">$(CoherencePackageSource)\$(PackageType)</CoherencePackageSource>
         <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
+        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(PackageVersionType)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
         <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
+        <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -43,12 +45,17 @@
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
     </PropertyGroup>
-
+    
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
         <!-- Visual Studio 14 properties -->
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
         <VersionedReferencePath>Dev14</VersionedReferencePath>
         <TargetVsVersion>VS14</TargetVsVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ApplicationInsightsPackageVersion>1.0.0-beta6</ApplicationInsightsPackageVersion>
+        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta6</BrowserLinkPackageVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -82,7 +89,7 @@
           <Version>1.2.3</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Remotion.Linq">
-          <Version>2.0.0-alpha-002</Version>
+          <Version>2.0.0-alpha-004</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.Collections.Immutable">
           <Version>1.1.36</Version>
@@ -94,20 +101,30 @@
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta5-206011020</Version>
+          <Version>1.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta5-206011020</Version>
+          <Version>2.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta5-206011020</Version>
+          <Version>5.0.0-beta6-207061559</Version>
       </ExternalReferencePackage>
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
-          <Version>1.0.0-beta5</Version>
+          <Version>$(ApplicationInsightsPackageVersion)</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
           <Version>0.17.1-beta</Version>
+      </ExternalReferencePackage>
+      <!-- Release CodeAnalysis Packages -->
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers">
+          <Version>1.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common">
+          <Version>1.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp">
+          <Version>1.0.0</Version>
       </ExternalReferencePackage>
     </ItemGroup>
 </Project>

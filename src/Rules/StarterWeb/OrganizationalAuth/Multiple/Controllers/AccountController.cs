@@ -20,11 +20,11 @@ namespace $safeprojectname$.Controllers
                 OpenIdConnectAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
         }
 
-        public IActionResult SignOut()
+        public async Task<IActionResult> SignOut()
         {
             var callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
-            Context.Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationScheme);
-            Context.Authentication.SignOut(OpenIdConnectAuthenticationDefaults.AuthenticationScheme,
+            await Context.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await Context.Authentication.SignOutAsync(OpenIdConnectAuthenticationDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = callbackUrl });
             return new EmptyResult();
         }
