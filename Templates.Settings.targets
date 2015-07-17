@@ -86,7 +86,7 @@
     <!-- These packages get copied to ExternalPackages on official builds -->
     <ItemGroup>
       <ExternalReferencePackage Include="Ix-Async">
-          <Version>1.2.3</Version>
+          <Version>1.2.4</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Remotion.Linq">
           <Version>2.0.0-alpha-004</Version>
