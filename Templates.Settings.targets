@@ -114,7 +114,7 @@
           <Version>$(ApplicationInsightsPackageVersion)</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
-          <Version>1.0.0-beta6</Version>
+          <Version>1.1.1-beta</Version>
       </ExternalReferencePackage>
       <!-- Release CodeAnalysis Packages -->
       <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers">
