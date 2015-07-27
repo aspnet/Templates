@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
 using System.Runtime.Versioning;
 using Microsoft.Framework.Runtime;
 
@@ -28,9 +29,9 @@ namespace Microsoft.Web.Templates.Tests
             get { return _applicationName; }
         }
 
-        public string Version
+        public string ApplicationVersion
         {
-            get { return _originalAppEnvironment.Version; }
+            get { return _originalAppEnvironment.ApplicationVersion; }
         }
 
         public string ApplicationBasePath
@@ -49,6 +50,15 @@ namespace Microsoft.Web.Templates.Tests
         public FrameworkName RuntimeFramework
         {
             get { return _originalAppEnvironment.RuntimeFramework; }
+        }
+
+        public object GetData(string name)
+        {
+            return null;
+        }
+
+        public void SetData(string name, object value)
+        {
         }
     }
 }
