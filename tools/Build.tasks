@@ -61,21 +61,31 @@
                     {
                         string fileName = list.ItemSpec;
                         Log.LogMessage("Opening {0}", fileName);
+                        bool foundPackageReferences = false;
 
                         using (var file = File.OpenText(fileName))
                         {
                             while (!file.EndOfStream)
                             {
                                 string line = file.ReadLine().Trim();
-                                if (line.StartsWith("[") || line.StartsWith("->") || line.EndsWith(")") || line.EndsWith(":"))
+                                
+                                if (!foundPackageReferences)
                                 {
+                                    if (line.StartsWith("Package references:"))
+                                    {
+                                        foundPackageReferences = true;
+                                    }
                                     continue;
                                 }
                                 
                                 string[] parts = line.StartsWith("*") ? line.Substring(1).Trim().Split() : line.Trim().Split();
                                 string packageName = parts[0].Trim();
                                 
-                                if (parts.Length == 2 && !packageName.StartsWith("framework/"))
+                                if (parts.Length < 2)
+                                {
+                                    foundPackageReferences = false;
+                                }
+                                else
                                 {
                                     string packageVersion = parts[1].Trim();
                                     string packageToAdd = string.Format("{0}.{1}.nupkg", packageName, packageVersion);
