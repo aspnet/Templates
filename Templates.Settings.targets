@@ -89,7 +89,7 @@
           <Version>1.2.4</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Remotion.Linq">
-          <Version>2.0.0-alpha-004</Version>
+          <Version>2.0.0-beta-002</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.Collections.Immutable">
           <Version>1.1.36</Version>
@@ -101,13 +101,13 @@
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta6-207061559</Version>
+          <Version>1.0.0-beta6-207211625</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta6-207061559</Version>
+          <Version>2.0.0-beta6-207211625</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta6-207061559</Version>
+          <Version>5.0.0-beta6-207211625</Version>
       </ExternalReferencePackage>
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
