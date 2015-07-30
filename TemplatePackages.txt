@@ -6,9 +6,6 @@
 -dnx-coreclr-win-arm*
 +dnx-clr-win-*
 +dnx-coreclr-win-*
-+dnx.clr.managed.*
-+dnx.coreclr.managed.*
-+dnx.host.*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*

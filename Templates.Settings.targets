@@ -44,6 +44,7 @@
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
+        <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
     </PropertyGroup>
     
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -55,7 +56,7 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-beta6</ApplicationInsightsPackageVersion>
-        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta6</BrowserLinkPackageVersion>
+        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta7</BrowserLinkPackageVersion>
     </PropertyGroup>
 
     <PropertyGroup>

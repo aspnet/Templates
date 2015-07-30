@@ -42,6 +42,7 @@
             <ExternalReferencePackages ParameterType="System.String" Required="True"/>
             <TemplatePackagesList ParameterType="System.String" />
             <PackageSourcePath ParameterType="System.String" />
+            <WarnOnMissingPackage ParameterType="System.Boolean"/>
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -53,7 +54,7 @@
             <Code Type="Fragment" Language="cs">
                 <![CDATA[
                 try
-                {   
+                {  
                     List<string> packages = new List<string>();
                     List<string> excludedPackages = new List<string>();
                     
@@ -117,13 +118,22 @@
                                                 // if there is a package dependency on another version, we should try to see if we have another version we are already including.
                                                 if (attempt < 2)
                                                 {
+                                                    bool noSemVer = false;
                                                     var index = packageToAdd.IndexOf("-");
                                                     if (index == -1)
                                                     {
                                                         index =  packageToAdd.IndexOf(".nupkg");
+                                                        noSemVer = true;
                                                     }
                                                     var packageNameNoSemVer = packageToAdd.Substring(0, index) + "*";
-                                                    Log.LogWarning("    {0} not found. ({1})", originalPackageToAdd, fileName);
+                                                    if (noSemVer)
+                                                    {
+                                                        Log.LogMessage("    Attempting to match {0})", originalPackageToAdd);
+                                                    }
+                                                    else
+                                                    {
+                                                        Log.LogWarning("    {0} not found. ({1})", originalPackageToAdd, fileName);
+                                                    }
                                                         
                                                     files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer);
                                                     if (files.Count() > 0)
@@ -134,8 +144,16 @@
                                                         continue;
                                                     }
                                                 }
-                                                Log.LogError("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName); 
-                                                break;                                             
+                                                if (WarnOnMissingPackage)
+                                                {
+                                                    Log.LogWarning("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName);
+                                                    break; 
+                                                }                                             
+                                                else
+                                                {
+                                                    Log.LogError("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName); 
+                                                    break;
+                                                }                                             
                                             }
                                             else
                                             {

@@ -5,7 +5,7 @@
 
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
-    "Microsoft.Framework.Runtime": "1.0.0-*",
+    "Microsoft.Dnx.Runtime": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-*",
