@@ -5,3 +5,4 @@ packages/**
 **/.vs/**
 *.user
 project.lock.json
+Templates.BranchSettings.targets
