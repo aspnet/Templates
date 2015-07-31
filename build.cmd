@@ -10,11 +10,6 @@ IF "%*"=="" (
   SET SCRIPTARGS=%*
 )
 
-IF "%BUILD_BRANCH%"=="" (
-  ECHO BUILD_BRANCH must be set to dev or release
-  EXIT /B 0
-)
-
 IF EXIST %CACHED_NUGET% goto copynuget 
 echo Downloading latest version of NuGet.exe... 
 IF NOT EXIST %LocalAppData%\NuGet md %LocalAppData%\NuGet 
