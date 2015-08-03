@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations.Infrastructure;
+using Microsoft.Data.Entity.SqlServer.Metadata;
 using $safeprojectname$.Models;
 
 namespace $safeprojectname$.Migrations
@@ -15,24 +16,26 @@ namespace $safeprojectname$.Migrations
         public override void BuildModel(ModelBuilder builder)
         {
             builder
-                .Annotation("SqlServer:ValueGeneration", "Identity");
+                .Annotation("ProductVersion", "7.0.0-beta7")
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn);
 
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
                 {
-                    b.Property<string>("Id")
-                        .Annotation("OriginalValueIndex", 0);
+                    b.Property<string>("Id");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .ConcurrencyToken()
-                        .Annotation("OriginalValueIndex", 1);
+                        .ConcurrencyToken();
 
                     b.Property<string>("Name")
-                        .Annotation("OriginalValueIndex", 2);
+                        .Annotation("MaxLength", 256);
 
                     b.Property<string>("NormalizedName")
-                        .Annotation("OriginalValueIndex", 3);
+                        .Annotation("MaxLength", 256);
 
                     b.Key("Id");
+
+                    b.Index("NormalizedName")
+                        .Annotation("Relational:Name", "RoleNameIndex");
 
                     b.Annotation("Relational:TableName", "AspNetRoles");
                 });
@@ -40,17 +43,13 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .Annotation("OriginalValueIndex", 0);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClaimType")
-                        .Annotation("OriginalValueIndex", 1);
+                    b.Property<string>("ClaimType");
 
-                    b.Property<string>("ClaimValue")
-                        .Annotation("OriginalValueIndex", 2);
+                    b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .Annotation("OriginalValueIndex", 3);
+                    b.Property<string>("RoleId");
 
                     b.Key("Id");
 
@@ -60,17 +59,13 @@ namespace $safeprojectname$.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .Annotation("OriginalValueIndex", 0);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClaimType")
-                        .Annotation("OriginalValueIndex", 1);
+                    b.Property<string>("ClaimType");
 
-                    b.Property<string>("ClaimValue")
-                        .Annotation("OriginalValueIndex", 2);
+                    b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId")
-                        .Annotation("OriginalValueIndex", 3);
+                    b.Property<string>("UserId");
 
                     b.Key("Id");
 
@@ -79,17 +74,13 @@ namespace $safeprojectname$.Migrations
 
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .Annotation("OriginalValueIndex", 0);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .Annotation("OriginalValueIndex", 1);
+                    b.Property<string>("ProviderKey");
 
-                    b.Property<string>("ProviderDisplayName")
-                        .Annotation("OriginalValueIndex", 2);
+                    b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId")
-                        .Annotation("OriginalValueIndex", 3);
+                    b.Property<string>("UserId");
 
                     b.Key("LoginProvider", "ProviderKey");
 
@@ -98,11 +89,9 @@ namespace $safeprojectname$.Migrations
 
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .Annotation("OriginalValueIndex", 0);
+                    b.Property<string>("UserId");
 
-                    b.Property<string>("RoleId")
-                        .Annotation("OriginalValueIndex", 1);
+                    b.Property<string>("RoleId");
 
                     b.Key("UserId", "RoleId");
 
@@ -111,53 +100,48 @@ namespace $safeprojectname$.Migrations
 
             builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .Annotation("OriginalValueIndex", 0);
+                    b.Property<string>("Id");
 
-                    b.Property<int>("AccessFailedCount")
-                        .Annotation("OriginalValueIndex", 1);
+                    b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .ConcurrencyToken()
-                        .Annotation("OriginalValueIndex", 2);
+                        .ConcurrencyToken();
 
                     b.Property<string>("Email")
-                        .Annotation("OriginalValueIndex", 3);
+                        .Annotation("MaxLength", 256);
 
-                    b.Property<bool>("EmailConfirmed")
-                        .Annotation("OriginalValueIndex", 4);
+                    b.Property<bool>("EmailConfirmed");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .Annotation("OriginalValueIndex", 5);
+                    b.Property<bool>("LockoutEnabled");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .Annotation("OriginalValueIndex", 6);
+                    b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("NormalizedEmail")
-                        .Annotation("OriginalValueIndex", 7);
+                        .Annotation("MaxLength", 256);
 
                     b.Property<string>("NormalizedUserName")
-                        .Annotation("OriginalValueIndex", 8);
+                        .Annotation("MaxLength", 256);
 
-                    b.Property<string>("PasswordHash")
-                        .Annotation("OriginalValueIndex", 9);
+                    b.Property<string>("PasswordHash");
 
-                    b.Property<string>("PhoneNumber")
-                        .Annotation("OriginalValueIndex", 10);
+                    b.Property<string>("PhoneNumber");
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .Annotation("OriginalValueIndex", 11);
+                    b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("SecurityStamp")
-                        .Annotation("OriginalValueIndex", 12);
+                    b.Property<string>("SecurityStamp");
 
-                    b.Property<bool>("TwoFactorEnabled")
-                        .Annotation("OriginalValueIndex", 13);
+                    b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
-                        .Annotation("OriginalValueIndex", 14);
+                        .Annotation("MaxLength", 256);
 
                     b.Key("Id");
+
+                    b.Index("NormalizedEmail")
+                        .Annotation("Relational:Name", "EmailIndex");
+
+                    b.Index("NormalizedUserName")
+                        .Annotation("Relational:Name", "UserNameIndex");
 
                     b.Annotation("Relational:TableName", "AspNetUsers");
                 });
