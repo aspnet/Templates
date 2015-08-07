@@ -32,8 +32,8 @@
         <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
-        <RoslynPackageSource Condition="'$(RoslynPackageSource)' != ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
-        <NetFxPackageSource Condition="'$(NetFxPackageSource)' != ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
+        <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
+        <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
         <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
