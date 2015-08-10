@@ -17,6 +17,7 @@
   
   <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)" Condition="'$(IsOfficialBuild)' == 'true'">
     <Exec Command="dnu list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
+    <Exec Command="dnu list --details %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DetailedDependencyListFileName)"/>
   </Target>
   
   <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
