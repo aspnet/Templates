@@ -46,7 +46,7 @@
     <PropertyGroup>
         <TemplatePackages>$(MSBuildThisFileDirectory)\TemplatePackages.txt</TemplatePackages>
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
-        <DetailedDependencyListFilename>PackageList.detailed.generated.txt</DependencyListFilename>
+        <DetailedDependencyListFilename>PackageList.detailed.generated.txt</DetailedDependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
