@@ -227,7 +227,7 @@
                                                     }
                                                     else 
                                                     {
-                                                        isMatch = string.Equals(version, packageVersion);
+                                                        isMatch = packageVersion.StartsWith(version);
                                                     }
                                                 }  
                                                 
