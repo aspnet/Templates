@@ -63,6 +63,7 @@
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-beta7</ApplicationInsightsPackageVersion>
         <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta7</BrowserLinkPackageVersion>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
     </PropertyGroup>
 
     <PropertyGroup>
