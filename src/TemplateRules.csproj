@@ -164,8 +164,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(BrowserLinkPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(IsOfficialBuild)' == 'true'"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(IsOfficialBuild)' == 'true'"/>
+    <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />

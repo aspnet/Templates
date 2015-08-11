@@ -22,6 +22,8 @@
     
     <PropertyGroup>
         <IsOfficialBuild Condition="'$(IsOfficialBuild)' == ''">false</IsOfficialBuild>
+        <UseExactPackageVersions Condition="'$(TemplateBuildBranch)' == 'release'">$(IsOfficialBuild)</UseExactPackageVersions>
+        <UseExactPackageVersions Condition="'$(UseExactPackageVersions)' == ''">$(IsOfficialBuild)</UseExactPackageVersions>
         <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
