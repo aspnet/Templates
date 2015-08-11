@@ -46,7 +46,6 @@
     <PropertyGroup>
         <TemplatePackages>$(MSBuildThisFileDirectory)\TemplatePackages.txt</TemplatePackages>
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
-        <DetailedDependencyListFilename>PackageList.detailed.generated.txt</DetailedDependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
@@ -89,32 +88,34 @@
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
     </ItemGroup>
 
+    <ItemDefinitionGroup>
+      <ExternalReferencePackage>
+          <Version/>
+          <DoNotCopy>false</DoNotCopy>
+      </ExternalReferencePackage>
+    </ItemDefinitionGroup>
     <!-- These packages get copied to ExternalPackages on official builds -->
     <ItemGroup>
-      <ExternalReferencePackage Include="Ix-Async">
-          <Version>1.2.4</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Remotion.Linq">
-          <Version>2.0.0-beta-002</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Collections.Immutable">
-          <Version>1.1.36</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Reflection.Metadata">
-          <Version>1.0.21</Version>
-      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Ix-Async"/>
+      <ExternalReferencePackage Include="Remotion.Linq"/>
+      <ExternalReferencePackage Include="System.Reflection.Metadata"/>
       <ExternalReferencePackage Include="Newtonsoft.Json">
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta6-207211625</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta6-207211625</Version>
+          <Version>1.0.0</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta6-207211625</Version>
+          <Version>5.0.0</Version>
       </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.IdentityModel.Tokens.Jwt">
+          <Version>5.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols">
+          <Version>2.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols.OpenIdConnect"/>
+
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
           <Version>$(ApplicationInsightsPackageVersion)</Version>
@@ -122,15 +123,23 @@
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
           <Version>1.1.1-beta</Version>
       </ExternalReferencePackage>
-      <!-- Release CodeAnalysis Packages -->
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers">
-          <Version>1.0.0</Version>
+      
+      <!-- Release Runtime Packages -->
+      <ExternalReferencePackage Include="System.Collections.Immutable">
+          <Version>1.1.36</Version>
       </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common">
-          <Version>1.0.0</Version>
+      <ExternalReferencePackage Include="System.Runtime">
+          <Version>4.0.0</Version>
       </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp">
-          <Version>1.0.0</Version>
+      <ExternalReferencePackage Include="System.Reflection">
+          <Version>4.0.10</Version>
       </ExternalReferencePackage>
+      
+      <!-- CodeAnalysis Packages -->
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers" />
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common" />
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp" />
+      <!-- BrowserLink -->
+      <ExternalReferencePackage Include="Microsoft.VisualStudio.Web.BrowserLink.Loader"/>
     </ItemGroup>
 </Project>

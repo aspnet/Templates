@@ -31,6 +31,81 @@
         </Task>
     </UsingTask>    
 
+    <UsingTask
+        TaskName="GetResolvedExternalPackageInfo"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <MergedDependencyList ParameterType="System.String" Required="True" />
+            <ExternalReferencePackages ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <PackageInfo ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="True" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    List<string> packages = new List<string>();
+                    List<ITaskItem> info = new List<ITaskItem>();
+                    using (var file = File.OpenText(MergedDependencyList))
+                    {
+                        while (!file.EndOfStream)
+                        {
+                            string line = file.ReadLine().Trim();
+                            packages.Add(line);
+                        }
+                    }
+                    
+                    foreach(var externalPackage in ExternalReferencePackages)
+                    {
+                        Log.LogMessage("Processing {0}", externalPackage);
+
+                        var externalFileName = externalPackage.ItemSpec;
+                        var doNotCopy = externalPackage.GetMetadata("DoNotCopy");
+                        var version = externalPackage.GetMetadata("Version");
+                        
+                        if (string.Equals(doNotCopy, "true", StringComparison.OrdinalIgnoreCase))
+                        {
+                            Log.LogMessage("  Do Not Copy");
+                            continue;
+                        }
+                        
+                        string packageToMatch = externalFileName;
+                        
+                        if (!string.IsNullOrEmpty(version))
+                        {
+                            packageToMatch = string.Format("{0}.{1}", packageToMatch, version);
+                            Log.LogMessage("  Version Specified: {0}. Now Matching {1}", version, packageToMatch);
+                        }
+                        
+                        var matchingPackages = packages.Where(p => p.StartsWith(packageToMatch));
+                        foreach(var match in matchingPackages)
+                        {
+                            var taskItem = new TaskItem(externalFileName);
+                            taskItem.SetMetadata("Version", match.Replace(externalFileName,"").Substring(1).Replace(".nupkg",""));
+                            info.Add(taskItem);
+                        }
+                    }
+                    
+                    PackageInfo = info.ToArray();
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Generating Package Paths");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>   
 
     <UsingTask
         TaskName="GetDependencyListForTemplates"
@@ -39,7 +114,7 @@
         <ParameterGroup>
             <DependencyList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <MergedDependencyList ParameterType="System.String" Required="True" />
-            <ExternalReferencePackages ParameterType="System.String" Required="True"/>
+            <ExternalReferencePackages ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <TemplatePackagesList ParameterType="System.String" />
             <PackageSourcePath ParameterType="System.String" />
             <WarnOnMissingPackage ParameterType="System.Boolean"/>
@@ -79,8 +154,15 @@
                                     continue;
                                 }
                                 
+                                // Example entry:
+                                // * System.Linq 4.0.1-beta-23207
+                                //     by Project: ClassLibrary 1.0.0-beta7-10431
+                                //     by Package: Microsoft.CSharp 4.0.1-beta-23207
+                                //
+                                
                                 string[] parts = line.StartsWith("*") ? line.Substring(1).Trim().Split() : line.Trim().Split();
                                 string packageName = parts[0].Trim();
+                                string packageVersion = string.Empty;
                                 
                                 if (parts.Length < 2)
                                 {
@@ -88,14 +170,32 @@
                                 }
                                 else
                                 {
-                                    string packageVersion = parts[1].Trim();
+                                    packageVersion = parts[1].Trim();
                                     string packageToAdd = string.Format("{0}.{1}.nupkg", packageName, packageVersion);
                                     string originalPackageToAdd = packageToAdd;
                                     string originalPackageVersion = string.Empty;
-                                    bool isRTM = false;
+                                    string referencedBy = string.Empty;
                                     int attempt = 0;
-                                    while (attempt++ < 2)
+                                    bool matched = false;
+                                    bool shouldContinue = true;
+                                    
+                                    // read the by project/package lines for debugging package reference issues
+                                    while (true)
                                     {
+                                        line = file.ReadLine().Trim();
+                                        if (line.StartsWith("by Package:"))
+                                        {
+                                            referencedBy = line;
+                                        }
+                                        else if (line.Length == 0)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    
+                                    while (!matched && shouldContinue)
+                                    {
+                                        attempt++;
                                         if (packageToAdd.StartsWith("*"))
                                         {
                                             packageToAdd = packageToAdd.Substring(1);
@@ -103,7 +203,7 @@
                                         
                                         if (packages.Contains(packageToAdd))
                                         {
-                                            if (attempt == 2)
+                                            if (matched)
                                             {
                                                 Log.LogMessage("      Matched {0}", packageToAdd);
                                             }
@@ -114,11 +214,30 @@
                                             Log.LogMessage("  Found {0}", packageToAdd);
                                             
                                             var files = Directory.EnumerateFiles(PackageSourcePath, packageToAdd);
+                                            
+                                            var matchingPackages = ExternalReferencePackages.Where(rp => 
+                                            {
+                                                bool isMatch = false;
+                                                if (string.Equals(rp.ItemSpec, packageName))
+                                                {
+                                                    var version = rp.GetMetadata("Version");
+                                                    if (string.IsNullOrEmpty(version) || version.Contains("*"))
+                                                    {
+                                                        isMatch = true;
+                                                    }
+                                                    else 
+                                                    {
+                                                        isMatch = string.Equals(version, packageVersion);
+                                                    }
+                                                }  
+                                                
+                                                return isMatch;
+                                            });
 
-                                            if (!ExternalReferencePackages.Contains(packageName) && files.Count() == 0)
+                                            if (matchingPackages.Count() == 0 && files.Count() == 0)
                                             {
                                                 // if there is a package dependency on another version, we should try to see if we have another version we are already including.
-                                                if (attempt < 2)
+                                                if (attempt == 1)
                                                 {
                                                     bool isOriginalNoSemVer = false;
                                                     bool isOriginalNoTimeStamp = false;
@@ -127,7 +246,7 @@
                                                     if (index == -1)
                                                     {
                                                         index =  packageToAdd.IndexOf(".nupkg");
-                                                        isOriginalNoSemVer  = true;
+                                                        isOriginalNoSemVer = true;
                                                     }
                                                     else
                                                     {
@@ -139,71 +258,117 @@
                                                         }
                                                         originalParts = originalPackageVersion.Split('-');
                                                     }
-                                                    
+
                                                     var packageNameNoSemVer = packageToAdd.Substring(0, index);
+
                                                     if (isOriginalNoSemVer)
                                                     {
-                                                        Log.LogError("{0} not found in coherence build", originalPackageToAdd);
-                                                        break;
+                                                        // if the original release version was not present, we will try to find the next highest version on coherence
+                                                        var buildVersionSeperator = packageNameNoSemVer.LastIndexOf('.');
+                                                        var buildVersionString = packageNameNoSemVer.Substring(buildVersionSeperator + 1);
+                                                        var buildVersion = int.Parse(buildVersionString) + 1;
+
+                                                        packageNameNoSemVer = string.Format("{0}.{1}", packageNameNoSemVer.Substring(0, buildVersionSeperator), buildVersion);
                                                     }
-                                                        
-                                                    files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer + "*");
-                                                    if (files.Count() > 0)
+                                                    
+                                                    while (!matched && shouldContinue && attempt < 3)
                                                     {
-                                                        FileInfo info = new FileInfo(files.ToArray()[0]);
-                                                        packageToAdd = info.Name;
-                                                        index = packageToAdd.IndexOf("-");
-                                                        var foundVersion = String.Empty;
-                                                        bool isFoundNoTimeStamp = false;
-                                                        string[] foundParts = null;
-                                                        
-                                                        if (index != -1)
+
+                                                        files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer + "*");
+
+                                                        if (files.Count() > 0)
                                                         {
-                                                            foundVersion = packageToAdd.Substring(index + 1).Replace(".nupkg", "");
-                                                            var i = foundVersion.IndexOf("-");
-                                                            if (i == -1)
-                                                            {
-                                                                isFoundNoTimeStamp  = true;
-                                                            }
-                                                            
-                                                            foundParts = foundVersion.Split('-');
                                                         
-                                                            if (isOriginalNoTimeStamp != isFoundNoTimeStamp)
+                                                            FileInfo info = new FileInfo(files.ToArray()[0]);
+                                                            packageToAdd = info.Name;
+                                                            index = packageToAdd.IndexOf("-");
+                                                            var foundVersion = String.Empty;
+                                                            bool isFoundNoTimeStamp = false;
+                                                            string[] foundParts = null;
+
+                                                            if (index != -1)
                                                             {
-                                                                Log.LogWarning("Mismatched timestamp builds {0} was requested, but {1} was found.", originalPackageToAdd, packageToAdd);
-                                                            }
-                                                            else
-                                                            {
-                                                                if (foundParts[0] != originalParts[0])
+                                                                foundVersion = packageToAdd.Substring(index + 1).Replace(".nupkg", "");
+                                                                var i = foundVersion.IndexOf("-");
+                                                                if (i == -1)
                                                                 {
-                                                                    Log.LogWarning("{0} had a referenced semantic version of {1}, but only {2} could be found.", packageNameNoSemVer, originalParts[0], foundParts[0]);
+                                                                    isFoundNoTimeStamp  = true;
+                                                                }
+                                                                
+                                                                foundParts = foundVersion.Split('-');
+                                                            
+                                                                if (isOriginalNoTimeStamp != isFoundNoTimeStamp && !isOriginalNoSemVer)
+                                                                {
+                                                                    Log.LogWarning("Mismatched timestamp builds {0} was requested, but {1} was found. {2}", originalPackageToAdd, packageToAdd, referencedBy);
                                                                 }
                                                                 else
                                                                 {
-                                                                    if (String.Compare(foundParts[1], originalParts[1]) < 0)
+                                                                    if (isOriginalNoSemVer)
                                                                     {
-                                                                        Log.LogError("{0} was referenced with version {1}-{2}, but only a lower version, {1}-{3} could be found.", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1]);
-									break;
+                                                                        matched = true;
+                                                                    }
+                                                                    else if (foundParts[0] != originalParts[0])
+                                                                    {
+                                                                        Log.LogWarning("{0} had a referenced semantic version of {1}, but only {2} could be found. {3}", packageNameNoSemVer, originalParts[0], foundParts[0], referencedBy);
                                                                     }
                                                                     else
                                                                     {
-									Log.LogWarning("{0} was referenced with version {1}-{2} but a higher version, {1}-{3} was found.", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1]);
-                                                                        continue;
+                                                                        if (String.Compare(foundParts[1], originalParts[1]) < 0)
+                                                                        {
+                                                                            Log.LogError("{0} was referenced with version {1}-{2}, but only a lower version, {1}-{3} could be found. {4}", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1], referencedBy);
+                                                                            shouldContinue = false;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            Log.LogWarning("{0} was referenced with version {1}-{2} but a higher version, {1}-{3} was found. {4}", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1], referencedBy);
+                                                                            matched = true;
+                                                                        }
                                                                     }
                                                                 }
                                                             }
+                                                            else
+                                                            {
+                                                                matched = true;
+                                                            }
+                                                        }
+                                                        else if (!isOriginalNoSemVer)
+                                                        {
+                                                            // if we were processing a semver file, lets try incrementing the build number and use that version.
+                                                            packageNameNoSemVer = packageToAdd.Substring(0, index);
+                                                            var buildVersionSeperator = packageNameNoSemVer.LastIndexOf('.');
+                                                            var buildVersionString = packageNameNoSemVer.Substring(buildVersionSeperator + 1);
+                                                            var buildVersion = int.Parse(buildVersionString) + 1;
+    
+                                                            packageNameNoSemVer = string.Format("{0}.{1}", packageNameNoSemVer.Substring(0, buildVersionSeperator), buildVersion);
+                                                            attempt++;
+
+                                                        }
+                                                        else
+                                                        {
+                                                            shouldContinue=false;
                                                         }
                                                     }
                                                 }
-                                                if (WarnOnMissingPackage)
+                                                if (matched)
                                                 {
-                                                    Log.LogWarning("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName);
-                                                    break; 
-                                                }                                             
+                                                    Log.LogMessage("    Adding {0}", packageToAdd);
+                                                    packages.Add(packageToAdd);
+                                                    break;
+                                                }
                                                 else
                                                 {
-                                                    Log.LogError("    {0} contains {1}, but no matching package could be found on package share.", fileName, packageName); 
-                                                    break;
+                                                    if (WarnOnMissingPackage)
+                                                    {
+                                                        Log.LogWarning("{0} contains {1} {2}, but no matching package could be found on package share. {3}", fileName, packageName, packageVersion, referencedBy);
+                                                        break; 
+                                                    }                                             
+                                                    else
+                                                    {
+                                                        Log.LogError("{0} contains {1} {2}, but no matching package could be found on package share. {3}", fileName, packageName, packageVersion, referencedBy); 
+                                                        Log.LogError("This may be due to the package going RTM. Consider adding this as an ExternalReferencePackage in Templates.Settings.targets", fileName, packageName, packageVersion, referencedBy); 
+                                                        
+                                                        break;
+                                                    }
                                                 }                                             
                                             }
                                             else
