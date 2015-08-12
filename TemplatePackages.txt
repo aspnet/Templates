@@ -19,6 +19,7 @@
 +System.Linq.Parallel.*
 +System.Net.WebHeaderCollection.*
 +System.Net.Security.*
++System.Private.DataContractSerialization.*
 +System.Runtime.Serialization.Xml.*
 +System.Security.AccessControl.*
 +System.Security.Cryptography.DeriveBytes.*
@@ -28,3 +29,4 @@
 +System.ServiceProcess.ServiceController.*
 +System.Threading.AccessControl.*
 +System.Xml.XmlDocument.*
++System.Xml.XmlSerializer.*
