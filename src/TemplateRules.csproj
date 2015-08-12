@@ -46,9 +46,8 @@
               Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
               Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
-              Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs;
-              Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs;
-              Rules\StarterWeb\IndividualAuth\Models\ManageViewModels.cs;
+              Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs;
+              Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs;
               Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml;
@@ -71,7 +70,24 @@
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\VerifyCodeViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\AddPhoneNumberViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs;
               Rules\StarterWeb\IndividualAuth\config.json;
+              Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
+              Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
               Rules\StarterWeb\IndividualAuth\project.json;
               Rules\StarterWeb\IndividualAuth\Startup.cs">
