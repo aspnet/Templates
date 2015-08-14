@@ -113,6 +113,11 @@
       <FilesToVerify Include="**\*.cs"/>
     </ItemGroup>
     <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="**\project.json"/>
+    </ItemGroup>
+    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
   </Target>
 
   <Target Name="BuildCompiled">
