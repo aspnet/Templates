@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
 
-namespace $safeprojectname$.ViewModels
+namespace $safeprojectname$.ViewModels.Manage
 {
     public class ConfigureTwoFactorViewModel
     {
