@@ -88,6 +88,7 @@ namespace $safeprojectname$
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
 
             // Configure the HTTP request pipeline.
 

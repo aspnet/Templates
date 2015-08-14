@@ -26,6 +26,7 @@
     "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Framework.Logging": "1.0.0-*",
     "Microsoft.Framework.Logging.Console": "1.0.0-*",
+    "Microsoft.Framework.Logging.Debug" : "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__BrowserLinkPackageVersion__"
   },
 
