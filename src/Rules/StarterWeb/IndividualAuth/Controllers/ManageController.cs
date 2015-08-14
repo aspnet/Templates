@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using System.Security.Principal;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
-using $safeprojectname$;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
+using $safeprojectname$.ViewModels.Manage;
 
 namespace $safeprojectname$.Controllers
 {

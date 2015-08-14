@@ -123,15 +123,16 @@
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebIndividualAuth">
-          <AddFile Destination="Services\MessageServices.cs" Source="Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs"/>
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs"/>
           <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.Designer.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"/>
           <AddFile Destination="Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs"/>
-          <AddFile Destination="Models\AccountViewModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\AccountViewModels.cs"/>
-          <AddFile Destination="Models\IdentityModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\IdentityModels.cs"/>
-          <AddFile Destination="Models\ManageViewModels.cs" Source="Rules\StarterWeb\IndividualAuth\Models\ManageViewModels.cs"/>
+          <AddFile Destination="Models\ApplicationDbContext.cs" Source="Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs"/>
+          <AddFile Destination="Models\ApplicationUser.cs" Source="Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs"/>
+          <AddFile Destination="Services\IEmailSender.cs" Source="Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs"/>
+          <AddFile Destination="Services\ISmsSender.cs" Source="Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs"/>
+          <AddFile Destination="Services\MessageServices.cs" Source="Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs"/>
           <AddFile Destination="Views\Account\ConfirmEmail.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml"/>
           <AddFile Destination="Views\Account\ExternalLoginConfirmation.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml"/>
           <AddFile Destination="Views\Account\ExternalLoginFailure.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml"/>
@@ -153,6 +154,21 @@
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
           <AddFile Destination="Views\Shared\_ValidationScriptsPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml"/>
+          <AddFile Destination="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\ForgotPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\LoginPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginPasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\RegisterViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\ResetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\SendCodeViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\VerifyCodeViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\VerifyCodeViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\AddPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\AddPhoneNumberViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\ChangePasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\FactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>x
+          <AddFile Destination="ViewModels\Manage\ManageLoginsViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\SetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\IndividualAuth\config.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
