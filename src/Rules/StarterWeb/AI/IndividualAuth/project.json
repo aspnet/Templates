@@ -4,11 +4,9 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-*",
     "EntityFramework.Commands": "7.0.0-*",
+    "EntityFramework.SqlServer": "7.0.0-*",
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
-    "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNet.Authentication.Facebook": "1.0.0-*",
     "Microsoft.AspNet.Authentication.Google": "1.0.0-*",
@@ -17,6 +15,8 @@
     "Microsoft.AspNet.Diagnostics": "1.0.0-*",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-*",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-*",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Server.IIS": "1.0.0-*",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
