@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations.Infrastructure;
+using Microsoft.Data.Entity.Migrations;
 using Microsoft.Data.Entity.SqlServer.Metadata;
 using $safeprojectname$.Models;
 
 namespace $safeprojectname$.Migrations
 {
-    [ContextType(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        public override void BuildModel(ModelBuilder builder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
-            builder
+            modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta7")
                 .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn);
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
                 {
                     b.Property<string>("Id");
 
@@ -40,7 +41,7 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetRoles");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -56,7 +57,7 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetRoleClaims");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -72,7 +73,7 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetUserClaims");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -87,7 +88,7 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetUserLogins");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -98,7 +99,7 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetUserRoles");
                 });
 
-            builder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
+            modelBuilder.Entity("$safeprojectname$.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -146,28 +147,28 @@ namespace $safeprojectname$.Migrations
                     b.Annotation("Relational:TableName", "AspNetUsers");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Reference("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
                         .InverseCollection()
                         .ForeignKey("RoleId");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Reference("$safeprojectname$.Models.ApplicationUser")
                         .InverseCollection()
                         .ForeignKey("UserId");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
                     b.Reference("$safeprojectname$.Models.ApplicationUser")
                         .InverseCollection()
                         .ForeignKey("UserId");
                 });
 
-            builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
                 {
                     b.Reference("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
                         .InverseCollection()
