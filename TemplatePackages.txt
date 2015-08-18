@@ -6,9 +6,6 @@
 -dnx-coreclr-win-arm*
 +dnx-clr-win-*
 +dnx-coreclr-win-*
-+dnx.clr.managed.*
-+dnx.coreclr.managed.*
-+dnx.host.*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
@@ -22,6 +19,7 @@
 +System.Linq.Parallel.*
 +System.Net.WebHeaderCollection.*
 +System.Net.Security.*
++System.Private.DataContractSerialization.*
 +System.Runtime.Serialization.Xml.*
 +System.Security.AccessControl.*
 +System.Security.Cryptography.DeriveBytes.*
@@ -31,3 +29,4 @@
 +System.ServiceProcess.ServiceController.*
 +System.Threading.AccessControl.*
 +System.Xml.XmlDocument.*
++System.Xml.XmlSerializer.*

@@ -16,14 +16,14 @@
   </Target>
   
   <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)" Condition="'$(IsOfficialBuild)' == 'true'">
-    <Exec Command="dnu list %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
+    <Exec Command="dnu list --details %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
   </Target>
   
   <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" ExternalReferencePackages="@(ExternalReferencePackage);Microsoft.VisualStudio.Web.BrowserLink.Loader"/>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
     
     <ItemGroup>
       <LinesToWrite Include="$(CoherencePackageSource)"/>
@@ -39,7 +39,10 @@
     </GetDotNetPackageFolder>
     <RemoveDir Directories="$(TemplatesBin)\ExternalPackages" Condition="Exists('$(TemplatesBin)\ExternalPackages')"/>
     <MakeDir Directories="$(TemplatesBin)\ExternalPackages"/>
-    <Copy SourceFiles="$(DNX_PACKAGES)\%(ExternalReferencePackage.Identity)\%(ExternalReferencePackage.Version)\%(ExternalReferencePackage.Identity).%(ExternalReferencePackage.Version).nupkg" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
+    <GetResolvedExternalPackageInfo MergedDependencyList="$(MergedDependencyListPath)" ExternalReferencePackages="@(ExternalReferencePackage)">
+        <Output TaskParameter="PackageInfo" ItemName="ExternalReferencePackageInfo"/>
+    </GetResolvedExternalPackageInfo>
+    <Copy SourceFiles="$(DNX_PACKAGES)\%(ExternalReferencePackageInfo.Identity)\%(ExternalReferencePackageInfo.Version)\%(ExternalReferencePackageInfo.Identity).%(ExternalReferencePackageInfo.Version).nupkg" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
   </Target>
   
   <Target Name="Build">

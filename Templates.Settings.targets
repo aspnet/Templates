@@ -22,6 +22,8 @@
     
     <PropertyGroup>
         <IsOfficialBuild Condition="'$(IsOfficialBuild)' == ''">false</IsOfficialBuild>
+        <UseExactPackageVersions Condition="'$(TemplateBuildBranch)' == 'release'">$(IsOfficialBuild)</UseExactPackageVersions>
+        <UseExactPackageVersions Condition="'$(UseExactPackageVersions)' == ''">$(IsOfficialBuild)</UseExactPackageVersions>
         <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
         <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
@@ -32,10 +34,14 @@
         <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
+        <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
+        <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
         <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
+        <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
+        <PackageSourceForRestore Condition="'$(NetFxPackageSource)' != ''">$(PackageSourceForRestore) -f $(NetFxPackageSource)</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -44,6 +50,7 @@
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
+        <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
     </PropertyGroup>
     
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -54,8 +61,9 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion>1.0.0-beta6</ApplicationInsightsPackageVersion>
-        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta6</BrowserLinkPackageVersion>
+        <ApplicationInsightsPackageVersion>1.0.0-beta7</ApplicationInsightsPackageVersion>
+        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta7</BrowserLinkPackageVersion>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -83,48 +91,75 @@
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
     </ItemGroup>
 
-    <!-- These packages get copied to ExternalPackages on official builds -->
+
+    <!-- 
+	
+	 The ExternalReferencePackages serve as a list of packages which are not part of the coherence build.
+         We use this list in two ways:
+             
+             1. To explictly specify which packages in the package closure which are not part of the package closure
+                are allowed
+             2. To determine which such packages get copied to ExternalPackages folder on official builds.
+
+         If Version is not specified, any version in the closure will match and be copied, otherwise,
+         the version will match any version of the package that starts with the version specified.
+
+         Specify <DoNotCopy>true</DoNotCopy> for packages which should be checked against the closure
+         but should not be copied.
+
+    -->
+    <ItemDefinitionGroup>
+      <ExternalReferencePackage>
+          <Version/>
+          <DoNotCopy>false</DoNotCopy>
+      </ExternalReferencePackage>
+    </ItemDefinitionGroup>
+
     <ItemGroup>
-      <ExternalReferencePackage Include="Ix-Async">
-          <Version>1.2.4</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Remotion.Linq">
-          <Version>2.0.0-alpha-004</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Collections.Immutable">
-          <Version>1.1.36</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Reflection.Metadata">
-          <Version>1.0.21</Version>
-      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Ix-Async"/>
+      <ExternalReferencePackage Include="Remotion.Linq"/>
+      <ExternalReferencePackage Include="System.Reflection.Metadata"/>
       <ExternalReferencePackage Include="Newtonsoft.Json">
           <Version>6.0.6</Version>
       </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging">
-          <Version>1.0.0-beta6-207061559</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocol.Extensions">
-          <Version>2.0.0-beta6-207061559</Version>
-      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging"/>
       <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0-beta6-207061559</Version>
+          <Version>5.0.0</Version>
       </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.IdentityModel.Tokens.Jwt">
+          <Version>5.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols">
+          <Version>2.0.0</Version>
+      </ExternalReferencePackage>
+      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols.OpenIdConnect"/>
+
       <!-- Application Insight packages -->
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
           <Version>$(ApplicationInsightsPackageVersion)</Version>
       </ExternalReferencePackage>
       <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
-          <Version>1.1.1-beta</Version>
+          <Version>1.1</Version>
       </ExternalReferencePackage>
-      <!-- Release CodeAnalysis Packages -->
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers">
-          <Version>1.0.0</Version>
+      
+      <!-- Release Runtime Packages -->
+      <ExternalReferencePackage Include="System.Collections.Immutable">
+          <Version>1.1.36</Version>
       </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common">
-          <Version>1.0.0</Version>
+      <ExternalReferencePackage Include="System.Runtime">
+          <Version>4.0.0</Version>
       </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp">
-          <Version>1.0.0</Version>
+      <ExternalReferencePackage Include="System.Reflection">
+          <Version>4.0.10</Version>
+      </ExternalReferencePackage>
+      
+      <!-- CodeAnalysis Packages -->
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers" />
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common" />
+      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp" />
+      <!-- BrowserLink -->
+      <ExternalReferencePackage Include="Microsoft.VisualStudio.Web.BrowserLink.Loader">
+          <DoNotCopy>true</DoNotCopy>
       </ExternalReferencePackage>
     </ItemGroup>
 </Project>
