@@ -20,6 +20,7 @@
     <ProjectCollection/>
     <CustomParameters>
       <CustomParameter Name="$projectwizardname$" Value="StarterWeb\StarterWeb.vstemplate" />
+      <CustomParameter Name="$nugetfeedsource$" Value="__NUGETFEEDSOURCE__" />
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
