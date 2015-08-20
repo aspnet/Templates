@@ -11,8 +11,6 @@
         <TemplatesRoot Condition=" '$(TemplatesRoot)' == '' ">$(MSBuildThisFileDirectory)</TemplatesRoot>
         <TemplatesBin Condition=" '$(TemplatesBin)' == '' ">$(TemplatesRoot)artifacts\build</TemplatesBin>
         <TemplatesIntermediate Condition=" '$(TemplatesIntermediate)' == '' ">$(TemplatesRoot)intermediate</TemplatesIntermediate>
-        <TemplatesReferences Condition=" '$(TemplatesReferences)' == '' ">$(TemplatesRoot)references</TemplatesReferences>
-        <TemplatesReferencePackages Condition=" '$(TemplatesReferencePackages)' == '' ">$(TemplatesRoot)\references\packages</TemplatesReferencePackages>
         <TemplatesSource Condition=" '$(TemplatesSource)' == '' ">$(TemplatesRoot)src</TemplatesSource>
         <TemplatesTest Condition=" '$(TemplatesTest)' == '' ">$(TemplatesRoot)test</TemplatesTest>
         <TemplatesTools Condition=" '$(TemplatesTools)' == '' ">$(TemplatesRoot)tools</TemplatesTools>
@@ -37,7 +35,7 @@
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
-        <PackageSourceForRestore>$(PackageSource) -f $(TemplatesReferences)\Packages -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
+        <PackageSourceForRestore>$(PackageSource) -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
@@ -62,7 +60,6 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-beta7</ApplicationInsightsPackageVersion>
-        <BrowserLinkPackageVersion>$(TemplatesTargetVersion).0-beta7</BrowserLinkPackageVersion>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
     </PropertyGroup>
 
@@ -157,9 +154,5 @@
       <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers" />
       <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common" />
       <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp" />
-      <!-- BrowserLink -->
-      <ExternalReferencePackage Include="Microsoft.VisualStudio.Web.BrowserLink.Loader">
-          <DoNotCopy>true</DoNotCopy>
-      </ExternalReferencePackage>
     </ItemGroup>
 </Project>
