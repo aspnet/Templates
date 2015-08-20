@@ -26,7 +26,7 @@ exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_so
 exec program='dnu' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono'
 
 #xunit-test target='test'
-  k-test each='var projectFile in Files.Include("**/project.json")'
+  k-test each='var projectFile in Files.Include("test/**/project.json")'
 
 functions @{
     string E(string key) { return Environment.GetEnvironmentVariable(key); }
