@@ -21,12 +21,13 @@ use-standard-lifecycle
 #repo-initialize target='initialize'
 default restore_options='${E("NUGET3_restore_options")}'
 default package_source='${E("PackageSource")}'
+default testFolder='test'
 
-exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='!IsMono'
-exec program='dnu' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono'
+exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='!IsMono' workingdir='${testFolder}'
+exec program='dnu' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono' workingdir='${testFolder}'
 
 #xunit-test target='test'
-  k-test each='var projectFile in Files.Include("**/project.json")'
+  k-test each='var projectFile in Files.Include("test/**/project.json")'
 
 functions @{
     string E(string key) { return Environment.GetEnvironmentVariable(key); }
