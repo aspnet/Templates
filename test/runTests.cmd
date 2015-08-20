@@ -1,12 +1,9 @@
 @echo off
-pushd %~dp0
 
-call sqltestUtil.cmd :create
+call %TemplatesTest%\sqltestUtil.cmd :create
 
-..\packages\Sake\tools\Sake.exe -I ..\packages\KoreBuild\build -f makefile.shade
+%TemplatesRoot%\packages\Sake\tools\Sake.exe -I %TemplatesRoot%\packages\KoreBuild\build -f test\makefile.shade
 
-call sqltestUtil.cmd :delete
-
-popd
+call %TemplatesTest%\sqltestUtil.cmd :delete
 
 exit /b 0

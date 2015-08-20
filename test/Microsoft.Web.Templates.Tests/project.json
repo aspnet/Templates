@@ -13,6 +13,7 @@
         "xunit.runner.aspnet": "2.0.0-*"
     },
     "frameworks": {
-        "dnx451": { }
+        "dnx451": { },
+        "dnxcore50": { }
     }
 }

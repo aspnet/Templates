@@ -16,6 +16,15 @@ namespace Microsoft.Web.Templates.Tests
         private static readonly string _templateName = "StarterWeb.AI.IndividualAuth";
         private static readonly string IdentityCookieName = ".AspNet.Microsoft.AspNet.Identity.Application";
 
+        private static int testCount = 0;
+        private int count = 0;
+
+        public StarterWebAIIndividualAuthTests()
+        {
+            testCount++;
+            count = testCount; 
+        }
+
         protected override string TemplateName
         {
             get
@@ -88,6 +97,7 @@ namespace Microsoft.Web.Templates.Tests
         {
             var server = CreateServer();
             var client = server.CreateClient();
+            var testUser = GetUniqueUserId();
 
             // Act
             var getResponse = await client.GetAsync("http://localhost/Account/Register");
@@ -98,7 +108,7 @@ namespace Microsoft.Web.Templates.Tests
 
             var verificationToken = ExtractVerificationToken(responseContent);
 
-            HttpContent requestContent = CreateRegisterPost(verificationToken, "testUser@ms.com", "Asd!123$$", "Asd!123$$");
+            HttpContent requestContent = CreateRegisterPost(verificationToken, testUser, "Asd!123$$", "Asd!123$$");
             AddCookiesToRequest(getResponse.Headers, requestContent.Headers);
 
             var postResponse = await client.PostAsync("http://localhost/Account/Register", requestContent);
@@ -118,7 +128,7 @@ namespace Microsoft.Web.Templates.Tests
             Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
 
             var manageContent = await manageResponse.Content.ReadAsStringAsync();
-            Assert.Contains("Hello testUser@ms.com", manageContent);
+            Assert.Contains("Hello " + testUser, manageContent);
             verificationToken = ExtractVerificationToken(manageContent);
 
             // Verify Logoff
@@ -144,7 +154,7 @@ namespace Microsoft.Web.Templates.Tests
             var loginResponseContent = await loginResponse.Content.ReadAsStringAsync();
 
             verificationToken = ExtractVerificationToken(responseContent);
-            HttpContent loginRequestContent = CreateLoginPost(verificationToken, "testUser@ms.com", "Asd!123$$");
+            HttpContent loginRequestContent = CreateLoginPost(verificationToken, testUser, "Asd!123$$");
             AddCookiesToRequest(getResponse.Headers, loginRequestContent.Headers);
 
             var loginPostResponse = await client.PostAsync("http://localhost/Account/Login", loginRequestContent);
@@ -280,6 +290,11 @@ namespace Microsoft.Web.Templates.Tests
         private void AddAuthCookie(HttpHeaders requestHeaders, string cookieValue)
         {
             requestHeaders.Add("Cookie", String.Format("{0}={1}", IdentityCookieName, cookieValue));
+        }
+
+        private string GetUniqueUserId()
+        { 
+            return string.Format("testUser{0}@ms.com", count);
         }
     }
 }
