@@ -9,7 +9,6 @@
         "Microsoft.AspNet.Mvc.Razor": "6.0.0-*",
         "Microsoft.AspNet.Hosting": "1.0.0-*",
         "Microsoft.Framework.Configuration": "1.0.0-*",
-        "Microsoft.AspNet.Mvc.TestConfiguration": "1.0.0-*",
         "xunit.runner.aspnet": "2.0.0-*",
         "Microsoft.Web.Templates.Tests": "1.0.0-*",
         "EmptyWeb": "1.0.0-*"
