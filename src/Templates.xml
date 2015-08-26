@@ -156,7 +156,7 @@
           <AddFile Destination="Views\Shared\_ValidationScriptsPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml"/>
           <AddFile Destination="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs"/>
           <AddFile Destination="ViewModels\Account\ForgotPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs"/>
-          <AddFile Destination="ViewModels\Account\LoginPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginPasswordViewModel.cs"/>
+          <AddFile Destination="ViewModels\Account\LoginViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginViewModel.cs"/>
           <AddFile Destination="ViewModels\Account\RegisterViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs"/>
           <AddFile Destination="ViewModels\Account\ResetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Account\SendCodeViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs"/>
