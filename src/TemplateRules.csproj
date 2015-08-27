@@ -72,7 +72,7 @@
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs;
-              Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs;
