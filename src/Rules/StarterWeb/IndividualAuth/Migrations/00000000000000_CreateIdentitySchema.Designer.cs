@@ -12,13 +12,17 @@ using $safeprojectname$.Models;
 namespace $safeprojectname$.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
+        public override string Id
+        {
+            get { return "00000000000000_CreateIdentitySchema"; }
+        }
+
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8")
+                .Annotation("ProductVersion", "7.0.0-beta7")
                 .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
