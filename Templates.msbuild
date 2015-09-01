@@ -9,7 +9,11 @@
       <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
     </ItemGroup>
     <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
-  </Target> 
+  </Target>
+
+  <Target Name="RestoreTemplate">
+    <Exec Command="dnu restore -f $(PackageSourceForRestore) --packages $(DNX_PACKAGES)" WorkingDirectory="$(TemplateFolder)"/>
+  </Target>
 
   <Target Name="UnitTest">
     <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>

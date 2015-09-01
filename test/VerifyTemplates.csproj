@@ -140,7 +140,6 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
-
   </Target>
   
   <Target Name="InstallNpmPackages">
@@ -193,6 +192,8 @@
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
 
+    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
+
     <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)"/>
     <Message Text="Running $(DnuBuildCommand) on $(TestPath)" />
@@ -213,6 +214,8 @@
     <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
       <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
     </GetDotNetFolder>
+
+    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
 
     <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
