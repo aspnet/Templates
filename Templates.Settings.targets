@@ -62,6 +62,8 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-beta7</ApplicationInsightsPackageVersion>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release'">$(ReleaseNugetFeedSource)</NugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">$(DevNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
     </PropertyGroup>
 
