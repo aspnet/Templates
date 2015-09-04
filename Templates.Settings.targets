@@ -37,11 +37,12 @@
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetlitedev/</PackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/</PackageSource>
-        <PackageSourceForRestore>$(PackageSource) -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
+        <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(NetFxPackageSource)' != ''">$(PackageSourceForRestore) -f $(NetFxPackageSource)</PackageSourceForRestore>
+        <PackageSourceForRestore>$(PackageSourceForRestore) -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
