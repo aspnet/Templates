@@ -14,7 +14,7 @@ namespace Microsoft.Web.Templates.Tests
     public class StarterWebAIIndividualAuthTests : TemplateTestBase
     {
         private static readonly string _templateName = "StarterWeb.AI.IndividualAuth";
-        private static readonly string IdentityCookieName = ".AspNet.Microsoft.AspNet.Identity.Application.AuthType";
+        private static readonly string IdentityCookieName = ".AspNet.Microsoft.AspNet.Identity.Application";
 
         public StarterWebAIIndividualAuthTests()
         {
