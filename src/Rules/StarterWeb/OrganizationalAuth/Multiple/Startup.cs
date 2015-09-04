@@ -96,14 +96,14 @@ namespace $safeprojectname$
                     // of validating the Issuer here.
                     // IssuerValidator
                 };
-                options.Notifications = new OpenIdConnectAuthenticationNotifications()
+                options.Events = new OpenIdConnectAuthenticationEvents()
                 {
-                    SecurityTokenValidated = (context) =>
+                    OnSecurityTokenValidated = (context) =>
                     {
                         // If your authentication logic is based on users then add your logic here
                         return Task.FromResult(0);
                     },
-                    AuthenticationFailed = (context) =>
+                    OnAuthenticationFailed = (context) =>
                     {
                         context.Response.Redirect("/Home/Error");
                         context.HandleResponse(); // Suppress the exception
