@@ -160,6 +160,10 @@
       <ExternalReferencePackage Include="System.Net.Sockets">
           <Version>4.0.10-beta-23123</Version>
       </ExternalReferencePackage>
+
+      <ExternalReferencePackage Include="Microsoft.Framework.Notification">
+          <Version>1.0.0-beta7</Version>
+      </ExternalReferencePackage>
       
       <!-- CodeAnalysis Packages -->
       <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers" />
