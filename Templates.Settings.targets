@@ -154,6 +154,9 @@
       <ExternalReferencePackage Include="System.Reflection">
           <Version>4.0.10</Version>
       </ExternalReferencePackage>
+      <ExternalReferencePackage Include="System.Reflection">
+          <Version>4.1.0</Version>
+      </ExternalReferencePackage>
 
       <ExternalReferencePackage Include="System.Net.NetworkInformation">
           <Version>4.0.10-beta-23123</Version>
