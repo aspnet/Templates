@@ -2,6 +2,7 @@
 **/artifacts/**
 packages/**
 .nuget/**
+.dnx/**
 **/.vs/**
 *.user
 project.lock.json
