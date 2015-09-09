@@ -22,7 +22,6 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="bower.json">bower.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="config.json">config.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="gulpfile.js">gulpfile.js</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="hosting.ini">hosting.ini</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="project.json">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
