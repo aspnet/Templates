@@ -6,6 +6,8 @@
 -dnx-coreclr-win-arm*
 +dnx-clr-win-*
 +dnx-coreclr-win-*
++runtime.win7*System.IO.Compression.*
++runtime.win7*System.Data.SqlClient.*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
