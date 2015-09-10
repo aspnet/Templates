@@ -19,7 +19,7 @@
                     {
                         dnxHome = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".dnx");
                     }
-
+                    dnxHome = Environment.ExpandEnvironmentVariables(dnxHome);
                     string defaultAlias = Path.Combine(dnxHome, "alias", "default.txt");
                     if (!File.Exists(defaultAlias))
                     {
