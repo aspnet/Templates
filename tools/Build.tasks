@@ -108,7 +108,8 @@
                     // Find a better way to do this.
                     copyPackages.Add("System.IO.Compression.clrcompression-x86 4.0.0");
                     copyPackages.Add("System.IO.Compression.clrcompression-x64 4.0.0");
-
+                    copyPackages.Add("System.Threading 4.0.0");
+                    copyPackages.Add("System.Threading.Tasks 4.0.0");
                     foreach(var list in DependencyList)
                     {
                         string fileName = list.ItemSpec;

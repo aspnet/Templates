@@ -22,6 +22,7 @@
 +System.Linq.Parallel.*
 +System.Net.WebHeaderCollection.*
 +System.Net.Security.*
++System.Net.Sockets.*
 +System.Private.DataContractSerialization.*
 +System.Reflection.Emit.*
 +System.Reflection.Primitives.*
