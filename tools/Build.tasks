@@ -240,8 +240,12 @@
 
                                                     if (isOriginalNoSemVer)
                                                     {
-                                                        // if the original release version was not present, pull it from the packages.
-                                                        shouldContinue = false;
+                                                        // if the original release version was not present, we will try to find the next highest version on cohe
+                                                        var buildVersionSeperator = packageNameNoSemVer.LastIndexOf('.');
+                                                        var buildVersionString = packageNameNoSemVer.Substring(buildVersionSeperator + 1);
+                                                        var buildVersion = int.Parse(buildVersionString) + 1;
+ 
+                                                        packageNameNoSemVer = string.Format("{0}.{1}", packageNameNoSemVer.Substring(0, buildVersionSeperator), buildVersion);
                                                     }
                                                     while (!matched && shouldContinue && attempt < 3)
                                                     {
