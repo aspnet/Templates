@@ -16,12 +16,16 @@
 +Microsoft.AspNet.SignalR.Redis.*
 +Microsoft.VisualBasic.*
 +Microsoft.Win32.Registry.AccessControl.*
++Systen.Collections.NonGeneric.*
 +System.Diagnostics.FileVersionInfo.*
 +System.IO.Compression.ZipFile.*
 +System.Linq.Parallel.*
 +System.Net.WebHeaderCollection.*
 +System.Net.Security.*
 +System.Private.DataContractSerialization.*
++System.Reflection.Emit.*
++System.Reflection.Primitives.*
++System.Runtime.Numerics.*
 +System.Runtime.Serialization.Xml.*
 +System.Security.AccessControl.*
 +System.Security.Cryptography.DeriveBytes.*
