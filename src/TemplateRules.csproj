@@ -85,7 +85,7 @@
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs;
-              Rules\StarterWeb\IndividualAuth\config.json;
+              Rules\StarterWeb\IndividualAuth\appsettings.json;
               Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
@@ -126,20 +126,20 @@
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
               Rules\StarterWeb\AI\NoAuth\project.json;
-              Rules\StarterWeb\AI\NoAuth\config.json;
+              Rules\StarterWeb\AI\NoAuth\appsettings.json;
               Rules\StarterWeb\AI\NoAuth\Startup.cs;
               Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml;
               Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\IndividualAuth\Startup.cs;
               Rules\StarterWeb\AI\IndividualAuth\project.json;
-              Rules\StarterWeb\AI\IndividualAuth\config.json;
+              Rules\StarterWeb\AI\IndividualAuth\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Single\config.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\config.json">
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
@@ -147,7 +147,7 @@
     <!-- WebAPI AI Files -->
     <LooseFiles Include="
               Rules\WebAPI\AI\NoAuth\project.json;
-              Rules\WebAPI\AI\NoAuth\config.json;
+              Rules\WebAPI\AI\NoAuth\appsettings.json;
               Rules\WebAPI\AI\NoAuth\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
