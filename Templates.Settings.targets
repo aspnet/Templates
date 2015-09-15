@@ -60,6 +60,7 @@
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
         <VersionedReferencePath>Dev14</VersionedReferencePath>
         <TargetVsVersion>VS14</TargetVsVersion>
+        <DefaultDnxTargetFrameworkVersion>dnx451</DefaultDnxTargetFrameworkVersion>
     </PropertyGroup>
 
     <PropertyGroup>
