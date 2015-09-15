@@ -43,7 +43,7 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
             });
 
-            services.Configure<OpenIdConnectAuthenticationOptions>(options =>
+            services.Configure<OpenIdConnectOptions>(options =>
             {
                 options.AutomaticAuthentication = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];

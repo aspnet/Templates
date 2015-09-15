@@ -96,7 +96,7 @@ namespace $safeprojectname$
                     // of validating the Issuer here.
                     // IssuerValidator
                 };
-                options.Events = new OpenIdConnectAuthenticationEvents()
+                options.Events = new OpenIdConnectEvents()
                 {
                     OnSecurityTokenValidated = (context) =>
                     {

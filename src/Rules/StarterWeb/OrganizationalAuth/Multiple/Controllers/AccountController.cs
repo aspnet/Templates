@@ -15,14 +15,14 @@ namespace $safeprojectname$.Controllers
         public IActionResult SignIn()
         {
             return new ChallengeResult(
-                OpenIdConnectAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
+                OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
         }
 
         public async Task<IActionResult> SignOut()
         {
             var callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
             await Context.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await Context.Authentication.SignOutAsync(OpenIdConnectAuthenticationDefaults.AuthenticationScheme,
+            await Context.Authentication.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = callbackUrl });
             return new EmptyResult();
         }
