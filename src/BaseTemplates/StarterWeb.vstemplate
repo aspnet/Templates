@@ -29,6 +29,9 @@
       <Folder Name="Controllers" TargetFolderName="Controllers">
         <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
       </Folder>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
       <Folder Name="node_modules" TargetFolderName="node_modules">
         <Folder Name=".bin" TargetFolderName=".bin">
           <ProjectItem ReplaceParameters="false" TargetFileName="gulp">gulp</ProjectItem>
