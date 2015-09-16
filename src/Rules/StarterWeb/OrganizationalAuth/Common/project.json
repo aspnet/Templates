@@ -14,7 +14,6 @@
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-*",
     "Microsoft.Dnx.Runtime": "1.0.0-*",
-    "Microsoft.Framework.CodeGenerators.Mvc" : "1.0.0-*",
     "Microsoft.Framework.Configuration.Json": "1.0.0-*",
     "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Framework.Logging": "1.0.0-*",
