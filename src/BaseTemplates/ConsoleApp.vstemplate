@@ -20,6 +20,9 @@
     <Project File="ConsoleApp.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Program.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
     </Project>
   </TemplateContent>
 </VSTemplate>
