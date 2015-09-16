@@ -30,7 +30,7 @@
   <ItemGroup>
     <VSTemplate Include="ClassLibrary.vstemplate">
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
-      <SearchPath>ClassLibrary\;$(ResourcesPath)</SearchPath>
+      <SearchPath>ClassLibrary\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
     <VSTemplate Include="DNXClassLibrary.vstemplate">
       <TargetName>DNXClassLibrary</TargetName>
@@ -38,7 +38,7 @@
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
-      <SearchPath>ConsoleApp\;$(ResourcesPath)</SearchPath>
+      <SearchPath>ConsoleApp\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
     <VSTemplate Include="DNXConsoleApp.vstemplate">
       <TargetName>DNXConsoleApp</TargetName>
@@ -46,15 +46,15 @@
     </VSTemplate>
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
-      <SearchPath>EmptyWeb\;$(ResourcesPath)</SearchPath>
+      <SearchPath>EmptyWeb\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
     <VSTemplate Include="StarterWeb.vstemplate">
       <TargetName>$(StarterWebTemplateName)</TargetName>
-      <SearchPath>StarterWeb\;$(ResourcesPath)</SearchPath>
+      <SearchPath>StarterWeb\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
     <VSTemplate Include="WebAPI.vstemplate">
       <TargetName>$(WebAPITemplateName)</TargetName>
-      <SearchPath>WebAPI\;$(ResourcesPath)</SearchPath>
+      <SearchPath>WebAPI\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
   </ItemGroup>
   <Target Name="BuildAllTemplates" DependsOnTargets="GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
@@ -110,6 +110,7 @@
     <ItemGroup>
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="**\*.cs"/>
+      <FilesToVerify Remove="Common\Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
     <ItemGroup>
