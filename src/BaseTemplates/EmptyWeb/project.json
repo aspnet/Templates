@@ -16,16 +16,14 @@
     "dnxcore50": { }
   },
 
-  "publishExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
-    "**.user",
-    "**.vspscc"
-  ],
   "exclude": [
     "wwwroot",
     "node_modules",
     "bower_components"
+  ],
+  "publishExclude": [
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
   ]
 }
