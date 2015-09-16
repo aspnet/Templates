@@ -37,10 +37,7 @@
     "node_modules",
     "bower_components"
   ],
-  "bundleExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
+  "publishExclude": [
     "**.user",
     "**.vspscc"
   ],
