@@ -32,7 +32,6 @@
     "bower_components"
   ],
   "publishExclude": [
-    "**.xproj",
     "**.user",
     "**.vspscc"
   ],
