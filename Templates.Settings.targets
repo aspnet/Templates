@@ -35,8 +35,8 @@
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetlitedev/</PackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/</PackageSource>
+        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetcidev/</PackageSource>
+        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetcirelease/</PackageSource>
         <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
@@ -65,9 +65,10 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-beta8</ApplicationInsightsPackageVersion>
-        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release'">$(ReleaseNugetFeedSource)</NugetFeedSource>
-        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">$(DevNugetFeedSource)</NugetFeedSource>
-        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
+        <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">$(DefaultNugetFeedSource)</NugetFeedSource>
     </PropertyGroup>
 
     <PropertyGroup>
