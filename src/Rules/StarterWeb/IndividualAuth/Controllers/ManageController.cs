@@ -6,7 +6,6 @@ using System.Security.Claims;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.ActionResults;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
 using $safeprojectname$.ViewModels.Manage;
