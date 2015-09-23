@@ -43,15 +43,6 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
             });
 
-            services.Configure<OpenIdConnectOptions>(options =>
-            {
-                options.AutomaticAuthentication = true;
-                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
-                options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
-                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -85,7 +76,14 @@ namespace $safeprojectname$
             app.UseCookieAuthentication();
 
             // Add OpenIdConnect middleware so you can login using Azure AD.
-            app.UseOpenIdConnectAuthentication();
+            app.UseOpenIdConnectAuthentication(options =>
+            {
+                options.AutomaticAuthentication = true;
+                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
+                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
+                options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
 
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>

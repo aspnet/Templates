@@ -50,13 +50,6 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
             });
 
-            services.AddOpenIdConnectAuthentication(options =>
-            {
-                options.AutomaticAuthentication = true;
-                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -98,6 +91,10 @@ namespace $safeprojectname$
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
+                options.AutomaticAuthentication = true;
+                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
+                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
+
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     // Instead of using the default validation (validating against a single issuer value, as we do in line of business apps),
@@ -110,7 +107,7 @@ namespace $safeprojectname$
                 };
                 options.Events = new OpenIdConnectEvents()
                 {
-                    OnSecurityTokenValidated = (context) =>
+                    OnAuthenticationValidated = (context) =>
                     {
                         // If your authentication logic is based on users then add your logic here
                         return Task.FromResult(0);
