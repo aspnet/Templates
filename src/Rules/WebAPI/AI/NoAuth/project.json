@@ -7,7 +7,10 @@
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
-    "Microsoft.Framework.Configuration.Json": "1.0.0-*"
+    "Microsoft.Framework.Configuration.Json": "1.0.0-*",
+    "Microsoft.Framework.Logging": "1.0.0-*",
+    "Microsoft.Framework.Logging.Console": "1.0.0-*",
+    "Microsoft.Framework.Logging.Debug" : "1.0.0-*"
   },
 
   "commands": {
