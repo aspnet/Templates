@@ -24,7 +24,7 @@ namespace $safeprojectname$.Migrations
                     b.Property<string>("Id");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .isConcurrencyToken();
+                        .IsConcurrencyToken();
 
                     b.Property<string>("Name")
                         .Annotation("MaxLength", 256);
