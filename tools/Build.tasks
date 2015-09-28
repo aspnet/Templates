@@ -359,6 +359,15 @@
                         }
                     }
                     
+                    foreach (var package in copyPackages.Distinct())
+                    {
+                        var packageName = package.Replace(" ",".") + ".nupkg";
+                        if (!packages.Contains(packageName))
+                        {
+                            packages.Add(packageName);
+                        }
+                    }
+                    
                     if (!string.IsNullOrEmpty(TemplatePackagesList))
                     {
                         Log.LogMessage("Opening {0}", TemplatePackagesList);
