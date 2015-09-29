@@ -4,7 +4,7 @@
 
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
     "Microsoft.Framework.Logging": "1.0.0-*",
     "Microsoft.Framework.Logging.Console": "1.0.0-*",
@@ -12,7 +12,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.WebListener --server.urls=http://localhost:5000"
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {
