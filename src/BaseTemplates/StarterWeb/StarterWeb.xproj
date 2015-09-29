@@ -10,7 +10,6 @@
     <RootNamespace>$safeprojectname$</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\bin\$(MSBuildProjectName)\</OutputPath>
-    <ActiveDebugProfile Condition="'$(ActiveDebugProfile)'=='' ">web</ActiveDebugProfile>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
