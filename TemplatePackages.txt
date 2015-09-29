@@ -6,8 +6,7 @@
 -dnx-coreclr-win-arm*
 +dnx-clr-win-*
 +dnx-coreclr-win-*
-+runtime.win7*System.IO.Compression.*
-+runtime.win7*System.Data.SqlClient.*
++runtime.win7*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
@@ -20,6 +19,7 @@
 +Microsoft.Win32.Registry.AccessControl.*
 +Systen.Collections.NonGeneric.*
 +System.Diagnostics.FileVersionInfo.*
++System.Globalization.Calendars.*
 +System.IO.Compression.ZipFile.*
 +System.Linq.Parallel.*
 +System.Net.WebHeaderCollection.*
@@ -32,6 +32,8 @@
 +System.Runtime.Serialization.Xml.*
 +System.Security.AccessControl.*
 +System.Security.Cryptography.DeriveBytes.*
++System.Security.Cryptography.Cng.*
++System.Security.Cryptography.Csp.*
 +System.ServiceModel.Duplex.*
 +System.ServiceModel.NetTcp.*
 +System.ServiceModel.Security.*
