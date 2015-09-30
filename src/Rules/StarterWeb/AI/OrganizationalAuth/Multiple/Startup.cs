@@ -80,6 +80,9 @@ namespace $safeprojectname$
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
+
             // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
             app.UseApplicationInsightsExceptionTelemetry();
 
