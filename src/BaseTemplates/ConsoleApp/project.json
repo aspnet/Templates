@@ -14,7 +14,7 @@
   },
 
   "frameworks": {
-    "$dnxtargetframeworkversion$": { },
+    "dnx451": { },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-*",
