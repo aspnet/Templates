@@ -32,6 +32,9 @@ namespace $safeprojectname$
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
+
             // Configure the HTTP request pipeline.
             app.UseStaticFiles();
 

@@ -52,6 +52,9 @@ namespace $safeprojectname$
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
+
             // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 

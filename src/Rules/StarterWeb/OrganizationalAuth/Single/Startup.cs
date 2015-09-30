@@ -70,6 +70,9 @@ namespace $safeprojectname$
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
+
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
