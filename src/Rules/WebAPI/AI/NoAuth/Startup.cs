@@ -7,6 +7,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 
 namespace $safeprojectname$
 {
@@ -15,8 +16,9 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json");
 
             if (env.IsEnvironment("Development"))
             {
@@ -44,8 +46,12 @@ namespace $safeprojectname$
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+
             // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 

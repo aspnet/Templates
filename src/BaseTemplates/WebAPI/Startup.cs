@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 
 namespace $safeprojectname$
 {
@@ -25,8 +26,12 @@ namespace $safeprojectname$
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+
             // Configure the HTTP request pipeline.
             app.UseStaticFiles();
 

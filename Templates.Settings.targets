@@ -35,13 +35,14 @@
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/</PackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/</PackageSource>
-        <PackageSourceForRestore>$(PackageSource) -f https://www.nuget.org/api/v2/</PackageSourceForRestore>
+        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
+        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</PackageSource>
+        <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
         <PackageSourceForRestore Condition="'$(NetFxPackageSource)' != ''">$(PackageSourceForRestore) -f $(NetFxPackageSource)</PackageSourceForRestore>
+        <PackageSourceForRestore>$(PackageSourceForRestore) -f https://api.nuget.org/v3/index.json</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -49,6 +50,7 @@
         <TemplatePackages>$(MSBuildThisFileDirectory)\TemplatePackages.txt</TemplatePackages>
         <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
         <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
+        <CopyPackagesListPath>$(TemplatesBin)\CopyPackageList.generated.txt</CopyPackagesListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
     </PropertyGroup>
@@ -58,11 +60,15 @@
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
         <VersionedReferencePath>Dev14</VersionedReferencePath>
         <TargetVsVersion>VS14</TargetVsVersion>
+        <DefaultDnxTargetFrameworkVersion>dnx451</DefaultDnxTargetFrameworkVersion>
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion>1.0.0-beta7</ApplicationInsightsPackageVersion>
-        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</NugetFeedSource>
+        <ApplicationInsightsPackageVersion>1.0.0-beta8</ApplicationInsightsPackageVersion>
+        <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
+        <NugetFeedSource Condition="'$(NugetFeedSource)' == ''">$(DefaultNugetFeedSource)</NugetFeedSource>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -88,80 +94,5 @@
         <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
-    </ItemGroup>
-
-
-    <!-- 
-	
-	 The ExternalReferencePackages serve as a list of packages which are not part of the coherence build.
-         We use this list in two ways:
-             
-             1. To explictly specify which packages in the package closure which are not part of the package closure
-                are allowed
-             2. To determine which such packages get copied to ExternalPackages folder on official builds.
-
-         If Version is not specified, any version in the closure will match and be copied, otherwise,
-         the version will match any version of the package that starts with the version specified.
-
-         Specify <DoNotCopy>true</DoNotCopy> for packages which should be checked against the closure
-         but should not be copied.
-
-    -->
-    <ItemDefinitionGroup>
-      <ExternalReferencePackage>
-          <Version/>
-          <DoNotCopy>false</DoNotCopy>
-      </ExternalReferencePackage>
-    </ItemDefinitionGroup>
-
-    <ItemGroup>
-      <ExternalReferencePackage Include="Ix-Async"/>
-      <ExternalReferencePackage Include="Remotion.Linq"/>
-      <ExternalReferencePackage Include="System.Reflection.Metadata"/>
-      <ExternalReferencePackage Include="Newtonsoft.Json">
-          <Version>6.0.6</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Logging"/>
-      <ExternalReferencePackage Include="System.IdentityModel.Tokens">
-          <Version>5.0.0</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.IdentityModel.Tokens.Jwt">
-          <Version>5.0.0</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols">
-          <Version>2.0.0</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.IdentityModel.Protocols.OpenIdConnect"/>
-
-      <!-- Application Insight packages -->
-      <ExternalReferencePackage Include="Microsoft.ApplicationInsights.AspNet">
-          <Version>$(ApplicationInsightsPackageVersion)</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="Microsoft.ApplicationInsights">
-          <Version>1.1</Version>
-      </ExternalReferencePackage>
-      
-      <!-- Release Runtime Packages -->
-      <ExternalReferencePackage Include="System.Collections.Immutable">
-          <Version>1.1.36</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Runtime">
-          <Version>4.0.0</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Reflection">
-          <Version>4.0.10</Version>
-      </ExternalReferencePackage>
-
-      <ExternalReferencePackage Include="System.Net.NetworkInformation">
-          <Version>4.0.10-beta-23123</Version>
-      </ExternalReferencePackage>
-      <ExternalReferencePackage Include="System.Net.Sockets">
-          <Version>4.0.10-beta-23123</Version>
-      </ExternalReferencePackage>
-      
-      <!-- CodeAnalysis Packages -->
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Analyzers" />
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.Common" />
-      <ExternalReferencePackage Include="Microsoft.CodeAnalysis.CSharp" />
     </ItemGroup>
 </Project>

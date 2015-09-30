@@ -20,9 +20,13 @@
     <Project File="EmptyWeb.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true">hosting.ini</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
-      <Folder Name="wwwroot" TargetFolderName="wwwroot" />
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot">
+        <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
+      </Folder>
     </Project>
   </TemplateContent>
 </VSTemplate>

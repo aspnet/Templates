@@ -110,7 +110,7 @@
               VSTemplatePath="DNXWebAPI.vstemplate">
           <ApplyRules Option="ApplicationInsights">
               <ApplyRules Option="NoAuth">
-                  <AddFile Destination="config.json" Source="Rules\WebAPI\AI\NoAuth\config.json"/>
+                  <AddFile Destination="appsettings.json" Source="Rules\WebAPI\AI\NoAuth\appsettings.json"/>
                   <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\NoAuth\project.json"/>
                   <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
               </ApplyRules>
@@ -170,7 +170,7 @@
           <AddFile Destination="ViewModels\Manage\SetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\IndividualAuth\config.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\IndividualAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
       </Rule>
@@ -192,7 +192,7 @@
       <Rule ID="StarterWebAINoAuth">
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\NoAuth\config.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\NoAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\NoAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
       </Rule>
@@ -202,18 +202,18 @@
       </Rule>
       <Rule ID="StarterWebAIIndividualAuth">
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\IndividualAuth\config.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\IndividualAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>
       </Rule>
       <Rule ID="StarterWebAIOrganizationalAuthSingle">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\config.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json"/>
       </Rule>
       <Rule ID="StarterWebAIOrganizationalAuthMultiple">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs"/>
-          <ReplaceFile Destination="config.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\config.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json"/>
       </Rule>
   </Rules>

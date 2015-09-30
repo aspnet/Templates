@@ -7,7 +7,7 @@
   "licenseUrl": "",
 
   "frameworks": {
-    "dnx451": { },
+    "$dnxtargetframeworkversion$": { },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-*",

@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.AspNet.TestHost;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Dnx.Runtime.Infrastructure;
@@ -77,7 +78,7 @@ namespace Microsoft.Web.Templates.Tests
             // Creates a service type that will limit MVC to only the controllers in the test site.
             // We only want this to happen when running in-process.
             var assembly = Assembly.Load(new AssemblyName(siteName));
-            var provider = new FixedSetAssemblyProvider
+            var provider = new StaticAssemblyProvider
             {
                 CandidateAssemblies =
                 {

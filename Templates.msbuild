@@ -27,7 +27,7 @@
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" CopyPackagesList="$(CopyPackagesListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
     
     <ItemGroup>
       <LinesToWrite Include="$(CoherencePackageSource)"/>
@@ -43,7 +43,7 @@
     </GetDotNetPackageFolder>
     <RemoveDir Directories="$(TemplatesBin)\ExternalPackages" Condition="Exists('$(TemplatesBin)\ExternalPackages')"/>
     <MakeDir Directories="$(TemplatesBin)\ExternalPackages"/>
-    <GetResolvedExternalPackageInfo MergedDependencyList="$(MergedDependencyListPath)" ExternalReferencePackages="@(ExternalReferencePackage)">
+    <GetResolvedExternalPackageInfo CopyPackagesList="$(CopyPackagesListPath)">
         <Output TaskParameter="PackageInfo" ItemName="ExternalReferencePackageInfo"/>
     </GetResolvedExternalPackageInfo>
     <Copy SourceFiles="$(DNX_PACKAGES)\%(ExternalReferencePackageInfo.Identity)\%(ExternalReferencePackageInfo.Version)\%(ExternalReferencePackageInfo.Identity).%(ExternalReferencePackageInfo.Version).nupkg" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>

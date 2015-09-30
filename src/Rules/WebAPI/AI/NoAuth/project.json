@@ -5,18 +5,20 @@
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-*",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
-    "Microsoft.Framework.Configuration.Json": "1.0.0-*"
+    "Microsoft.Framework.Configuration.Json": "1.0.0-*",
+    "Microsoft.Framework.Logging": "1.0.0-*",
+    "Microsoft.Framework.Logging.Console": "1.0.0-*",
+    "Microsoft.Framework.Logging.Debug" : "1.0.0-*"
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --config hosting.ini"
+    "web": "Microsoft.AspNet.Server.Kestrel",
   },
 
   "frameworks": {
-    "dnx451": { },
+    "$dnxtargetframeworkversion$": { },
     "dnxcore50": { }
   },
 
@@ -26,9 +28,6 @@
     "bower_components"
   ],
   "publishExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
     "**.user",
     "**.vspscc"
   ]

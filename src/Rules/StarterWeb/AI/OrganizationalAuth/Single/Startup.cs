@@ -19,9 +19,10 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
 
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
-                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
@@ -49,15 +50,6 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
             });
 
-            services.Configure<OpenIdConnectAuthenticationOptions>(options =>
-            {
-                options.AutomaticAuthentication = true;
-                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
-                options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
-                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -78,13 +70,13 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
@@ -97,7 +89,14 @@ namespace $safeprojectname$
             app.UseCookieAuthentication();
 
             // Add OpenIdConnect middleware so you can login using Azure AD.
-            app.UseOpenIdConnectAuthentication();
+            app.UseOpenIdConnectAuthentication(options =>
+            {
+                options.AutomaticAuthentication = true;
+                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
+                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
+                options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
 
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>

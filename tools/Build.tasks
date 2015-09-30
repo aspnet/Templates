@@ -36,8 +36,7 @@
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
         <ParameterGroup>
-            <MergedDependencyList ParameterType="System.String" Required="True" />
-            <ExternalReferencePackages ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <CopyPackagesList ParameterType="System.String" Required="True" />
             <PackageInfo ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="True" />
         </ParameterGroup>
         <Task>
@@ -51,44 +50,15 @@
                 <![CDATA[
                 try
                 {
-                    List<string> packages = new List<string>();
                     List<ITaskItem> info = new List<ITaskItem>();
-                    using (var file = File.OpenText(MergedDependencyList))
+                    using (var file = File.OpenText(CopyPackagesList))
                     {
                         while (!file.EndOfStream)
                         {
                             string line = file.ReadLine().Trim();
-                            packages.Add(line);
-                        }
-                    }
-                    
-                    foreach(var externalPackage in ExternalReferencePackages)
-                    {
-                        Log.LogMessage("Processing {0}", externalPackage);
-
-                        var externalFileName = externalPackage.ItemSpec;
-                        var doNotCopy = externalPackage.GetMetadata("DoNotCopy");
-                        var version = externalPackage.GetMetadata("Version");
-                        
-                        if (string.Equals(doNotCopy, "true", StringComparison.OrdinalIgnoreCase))
-                        {
-                            Log.LogMessage("  Do Not Copy");
-                            continue;
-                        }
-                        
-                        string packageToMatch = externalFileName;
-                        
-                        if (!string.IsNullOrEmpty(version))
-                        {
-                            packageToMatch = string.Format("{0}.{1}", packageToMatch, version);
-                            Log.LogMessage("  Version Specified: {0}. Now Matching {1}", version, packageToMatch);
-                        }
-                        
-                        var matchingPackages = packages.Where(p => p.StartsWith(packageToMatch));
-                        foreach(var match in matchingPackages)
-                        {
-                            var taskItem = new TaskItem(externalFileName);
-                            taskItem.SetMetadata("Version", match.Replace(externalFileName,"").Substring(1).Replace(".nupkg",""));
+                            string[] parts = line.Split();
+                            var taskItem = new TaskItem(parts[0]);
+                            taskItem.SetMetadata("Version", parts[1]);
                             info.Add(taskItem);
                         }
                     }
@@ -117,6 +87,7 @@
             <ExternalReferencePackages ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <TemplatePackagesList ParameterType="System.String" />
             <PackageSourcePath ParameterType="System.String" />
+            <CopyPackagesList ParameterType="System.String" />
             <WarnOnMissingPackage ParameterType="System.Boolean"/>
         </ParameterGroup>
         <Task>
@@ -132,7 +103,11 @@
                 {  
                     List<string> packages = new List<string>();
                     List<string> excludedPackages = new List<string>();
+                    List<string> copyPackages = new List<string>();
                     
+                    // Find a better way to do this.
+                    copyPackages.Add("System.Threading 4.0.0");
+                    copyPackages.Add("System.Threading.Tasks 4.0.0");
                     foreach(var list in DependencyList)
                     {
                         string fileName = list.ItemSpec;
@@ -243,7 +218,8 @@
                                                     bool isOriginalNoTimeStamp = false;
                                                     string[] originalParts = null;
                                                     var index = packageToAdd.IndexOf("-");
-                                                    if (index == -1)
+                                                    // special case for Ix-Asysn since its not a semver
+                                                    if (index == -1 ||  packageToAdd.StartsWith("Ix-Async"))
                                                     {
                                                         index =  packageToAdd.IndexOf(".nupkg");
                                                         isOriginalNoSemVer = true;
@@ -263,22 +239,19 @@
 
                                                     if (isOriginalNoSemVer)
                                                     {
-                                                        // if the original release version was not present, we will try to find the next highest version on coherence
+                                                        // if the original release version was not present, we will try to find the next highest version on cohe
                                                         var buildVersionSeperator = packageNameNoSemVer.LastIndexOf('.');
                                                         var buildVersionString = packageNameNoSemVer.Substring(buildVersionSeperator + 1);
                                                         var buildVersion = int.Parse(buildVersionString) + 1;
-
+ 
                                                         packageNameNoSemVer = string.Format("{0}.{1}", packageNameNoSemVer.Substring(0, buildVersionSeperator), buildVersion);
                                                     }
-                                                    
                                                     while (!matched && shouldContinue && attempt < 3)
                                                     {
-
                                                         files = Directory.EnumerateFiles(PackageSourcePath, packageNameNoSemVer + "*");
 
                                                         if (files.Count() > 0)
                                                         {
-                                                        
                                                             FileInfo info = new FileInfo(files.ToArray()[0]);
                                                             packageToAdd = info.Name;
                                                             index = packageToAdd.IndexOf("-");
@@ -341,7 +314,6 @@
     
                                                             packageNameNoSemVer = string.Format("{0}.{1}", packageNameNoSemVer.Substring(0, buildVersionSeperator), buildVersion);
                                                             attempt++;
-
                                                         }
                                                         else
                                                         {
@@ -364,9 +336,10 @@
                                                     }                                             
                                                     else
                                                     {
-                                                        Log.LogError("{0} contains {1} {2}, but no matching package could be found on package share. {3}", fileName, packageName, packageVersion, referencedBy); 
-                                                        Log.LogError("This may be due to the package going RTM. Consider adding this as an ExternalReferencePackage in Templates.Settings.targets", fileName, packageName, packageVersion, referencedBy); 
-                                                        
+                                                        Log.LogMessage("{0} contains {1} {2}, but no matching package could be found on package share. {3}", fileName, packageName, packageVersion, referencedBy); 
+                                                        Log.LogMessage("    Adding {0}", packageToAdd);
+                                                        copyPackages.Add(string.Format("{0} {1}",packageName, packageVersion));
+                                                        packages.Add(packageToAdd);
                                                         break;
                                                     }
                                                 }                                             
@@ -384,6 +357,14 @@
                         }
                     }
                     
+                    foreach (var package in copyPackages.Distinct())
+                    {
+                        var packageName = package.Replace(" ",".") + ".nupkg";
+                        if (!packages.Contains(packageName))
+                        {
+                            packages.Add(packageName);
+                        }
+                    }
                     
                     if (!string.IsNullOrEmpty(TemplatePackagesList))
                     {
@@ -459,6 +440,17 @@
                     using (var outFile = System.IO.File.CreateText(MergedDependencyList))
                     {
                         foreach (var package in packages.Distinct())
+                        {
+                            outFile.WriteLine(package);
+                        }
+                        outFile.Flush();
+                    }
+
+                    Log.LogMessage("Writing {0}", CopyPackagesList);
+
+                    using (var outFile = System.IO.File.CreateText(CopyPackagesList))
+                    {
+                        foreach (var package in copyPackages.Distinct())
                         {
                             outFile.WriteLine(package);
                         }

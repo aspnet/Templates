@@ -19,7 +19,7 @@
     <TemplatesToVerify>
       <IsRulesPackage>false</IsRulesPackage>
       <ProjectGuid/>
-      <Guid2>{60e58d4e-cbd8-4827-a36b-bc7e039fc580}</Guid2>
+      <Guid2>60e58d4e-cbd8-4827-a36b-bc7e039fc580</Guid2>
     </TemplatesToVerify>
   </ItemDefinitionGroup>
 
@@ -30,7 +30,7 @@
       <AdditionalRuleFiles/>
       <AdditionalRuleFiles2/>
       <ProjectGuid/>
-      <Guid2>{60e58d4e-cbd8-4827-a36b-bc7e039fc580}</Guid2>
+      <Guid2>60e58d4e-cbd8-4827-a36b-bc7e039fc580</Guid2>
       <RuleName/>
     </RulesToVerify>
   </ItemDefinitionGroup>
@@ -40,19 +40,19 @@
         <IsRulesPackage>true</IsRulesPackage>
     </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\EmptyWeb.zip">
-      <ProjectGuid>{BEAC15B9-5742-4C8D-9072-4C7B1C916C38}</ProjectGuid>
+      <ProjectGuid>BEAC15B9-5742-4C8D-9072-4C7B1C916C38</ProjectGuid>
     </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ConsoleApp.zip">
-      <ProjectGuid>{8979AF70-A472-40D3-8171-812F9E11C276}</ProjectGuid>
+      <ProjectGuid>8979AF70-A472-40D3-8171-812F9E11C276</ProjectGuid>
     </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\ClassLibrary.zip">
-      <ProjectGuid>{E451D2C2-A401-46B2-B181-B22221AC0D83}</ProjectGuid>
+      <ProjectGuid>E451D2C2-A401-46B2-B181-B22221AC0D83</ProjectGuid>
     </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\WebAPI.zip">
-      <ProjectGuid>{2D35BE10-ECC4-4639-96AE-925702B83655}</ProjectGuid>
+      <ProjectGuid>2D35BE10-ECC4-4639-96AE-925702B83655</ProjectGuid>
     </TemplatesToVerify>
     <TemplatesToVerify Include="$(OutputPath)\ProjectTemplates\StarterWeb.zip">
-      <ProjectGuid>{80252DCA-8071-4627-931A-3F4B2EB301D1}</ProjectGuid>
+      <ProjectGuid>80252DCA-8071-4627-931A-3F4B2EB301D1</ProjectGuid>
     </TemplatesToVerify>
   </ItemGroup>
 
@@ -60,7 +60,7 @@
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>IndividualAuth</RuleName>
-      <ProjectGuid>{EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84}</ProjectGuid>
+      <ProjectGuid>EACE0625-D9C4-4BAD-A2D9-8269FD0ABF84</ProjectGuid>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Single">
@@ -68,27 +68,27 @@
       <RuleName>Single</RuleName>
       <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
-      <ProjectGuid>{D90D6984-DC7B-4737-AA33-208A7A127DB6}</ProjectGuid>
+      <ProjectGuid>D90D6984-DC7B-4737-AA33-208A7A127DB6</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\OrganizationalAuth\Multiple">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>Multiple</RuleName>
       <AdditionalRuleFiles>..\Common\**\*.*</AdditionalRuleFiles>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
-      <ProjectGuid>{ACFE3CE9-E7BA-4EDC-B060-354D06CE653B}</ProjectGuid>
+      <ProjectGuid>ACFE3CE9-E7BA-4EDC-B060-354D06CE653B</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\NoAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>AI</RuleName>
-      <ProjectGuid>{97AC8FE3-B735-486D-BC92-E41C361BB1F6}</ProjectGuid>
+      <ProjectGuid>97AC8FE3-B735-486D-BC92-E41C361BB1F6</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\IndividualAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>AI.IndividualAuth</RuleName>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
       <AdditionalRuleFiles>..\..\IndividualAuth\**\*.*</AdditionalRuleFiles>
-      <ProjectGuid>{C1B949CB-4A32-439E-BDE3-606B74D9CFE2}</ProjectGuid>
-      <Guid2>{e9e54fd8-776e-4775-89ab-f66ee5a09140}</Guid2>
+      <ProjectGuid>C1B949CB-4A32-439E-BDE3-606B74D9CFE2</ProjectGuid>
+      <Guid2>e9e54fd8-776e-4775-89ab-f66ee5a09140</Guid2>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\OrganizationalAuth\Single">
       <BaseTemplate>StarterWeb</BaseTemplate>
@@ -96,7 +96,7 @@
       <CommonAuthRuleFiles>..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
       <AdditionalRuleFiles>..\..\..\OrganizationalAuth\Common\**\*.*</AdditionalRuleFiles>
       <AdditionalRuleFiles2>..\..\..\OrganizationalAuth\Single\**\*.*</AdditionalRuleFiles2>
-      <ProjectGuid>{6F95DF1F-61C3-4950-9CAA-8ABCD8C969B1}</ProjectGuid>
+      <ProjectGuid>6F95DF1F-61C3-4950-9CAA-8ABCD8C969B1</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\OrganizationalAuth\Multiple">
       <BaseTemplate>StarterWeb</BaseTemplate>
@@ -104,12 +104,12 @@
       <CommonAuthRuleFiles>..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
       <AdditionalRuleFiles>..\..\..\OrganizationalAuth\Common\**\*.*</AdditionalRuleFiles>
       <AdditionalRuleFiles2>..\..\..\OrganizationalAuth\Multiple\**\*.*</AdditionalRuleFiles2>
-      <ProjectGuid>{B0FED42B-B143-4A33-ACCE-7E5932A75BDC}</ProjectGuid>
+      <ProjectGuid>B0FED42B-B143-4A33-ACCE-7E5932A75BDC</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\NoAuth">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>AI</RuleName>
-      <ProjectGuid>{26693172-B6F1-41F3-A6E4-B67ACF31E0C8}</ProjectGuid>
+      <ProjectGuid>26693172-B6F1-41F3-A6E4-B67ACF31E0C8</ProjectGuid>
     </RulesToVerify>
 
   </ItemGroup>
@@ -136,6 +136,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$dnxtargetframeworkversion\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(DefaultDnxTargetFrameworkVersion)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
@@ -183,6 +184,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$dnxtargetframeworkversion\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(DefaultDnxTargetFrameworkVersion)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />

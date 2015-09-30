@@ -16,8 +16,9 @@ namespace $safeprojectname$
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -60,13 +61,13 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.

@@ -10,8 +10,7 @@
     "Microsoft.AspNet.Diagnostics": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-*",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-*",
     "Microsoft.Dnx.Runtime": "1.0.0-*",
@@ -24,11 +23,11 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --config hosting.ini"
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {
-    "dnx451": { },
+    "$dnxtargetframeworkversion$": { },
     "dnxcore50": { }
   },
 
@@ -37,10 +36,7 @@
     "node_modules",
     "bower_components"
   ],
-  "bundleExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
+  "publishExclude": [
     "**.user",
     "**.vspscc"
   ],

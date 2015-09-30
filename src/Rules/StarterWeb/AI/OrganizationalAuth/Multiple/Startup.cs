@@ -20,9 +20,10 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
 
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
-                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
@@ -50,13 +51,6 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
             });
 
-            services.ConfigureOpenIdConnectAuthentication(options =>
-            {
-                options.AutomaticAuthentication = true;
-                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -77,13 +71,13 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
@@ -98,6 +92,10 @@ namespace $safeprojectname$
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
+                options.AutomaticAuthentication = true;
+                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
+                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
+
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     // Instead of using the default validation (validating against a single issuer value, as we do in line of business apps),
@@ -108,14 +106,14 @@ namespace $safeprojectname$
                     // of validating the Issuer here.
                     // IssuerValidator
                 };
-                options.Notifications = new OpenIdConnectAuthenticationNotifications()
+                options.Events = new OpenIdConnectEvents()
                 {
-                    SecurityTokenValidated = (context) =>
+                    OnAuthenticationValidated = (context) =>
                     {
                         // If your authentication logic is based on users then add your logic here
                         return Task.FromResult(0);
                     },
-                    AuthenticationFailed = (context) =>
+                    OnAuthenticationFailed = (context) =>
                     {
                         context.Response.Redirect("/Home/Error");
                         context.HandleResponse(); // Suppress the exception
