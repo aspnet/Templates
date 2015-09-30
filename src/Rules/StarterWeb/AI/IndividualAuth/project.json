@@ -35,7 +35,7 @@
   },
 
   "frameworks": {
-    "$dnxtargetframeworkversion$": { },
+    "dnx451": { },
     "dnxcore50": { }
   },
 
