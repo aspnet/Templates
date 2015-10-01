@@ -26,6 +26,7 @@
 +System.Net.Security.*
 +System.Net.Sockets.*
 +System.Private.DataContractSerialization.*
++System.Private.Networking.*
 +System.Reflection.Emit.*
 +System.Reflection.Primitives.*
 +System.Runtime.Numerics.*
