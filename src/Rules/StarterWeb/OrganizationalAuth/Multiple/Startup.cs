@@ -86,6 +86,7 @@ namespace $safeprojectname$
                 options.AutomaticAuthentication = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
