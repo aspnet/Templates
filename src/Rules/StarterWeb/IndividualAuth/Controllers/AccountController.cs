@@ -193,7 +193,7 @@ namespace $safeprojectname$.Controllers
         {
             if (User.IsSignedIn())
             {
-                return RedirectToAction(nameof(ManageController.Index),"Manage");
+                return RedirectToAction(nameof(ManageController.Index), "Manage");
             }
 
             if (ModelState.IsValid)
