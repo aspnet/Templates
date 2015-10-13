@@ -4,8 +4,8 @@
     <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
       <PreviewImage>Resources\Empty.png</PreviewImage>
-      <Summary>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Summary>
-      <Description>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Description>
+      <Summary>PREVIEW - An empty project template for creating an ASP.NET 5 application. This template does not have any content in it.</Summary>
+      <Description>PREVIEW - An empty project template for creating an ASP.NET 5 application. This template does not have any content in it.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
