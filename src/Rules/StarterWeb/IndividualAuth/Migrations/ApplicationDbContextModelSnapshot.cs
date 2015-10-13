@@ -34,7 +34,7 @@ namespace $safeprojectname$.Migrations
 
                     b.HasKey("Id");
 
-                    b.Index("NormalizedName")
+                    b.HasIndex("NormalizedName")
                         .HasAnnotation("Relational:Name", "RoleNameIndex");
 
                     b.HasAnnotation("Relational:TableName", "AspNetRoles");
@@ -137,10 +137,10 @@ namespace $safeprojectname$.Migrations
 
                     b.HasKey("Id");
 
-                    b.Index("NormalizedEmail")
+                    b.HasIndex("NormalizedEmail")
                         .HasAnnotation("Relational:Name", "EmailIndex");
 
-                    b.Index("NormalizedUserName")
+                    b.HasIndex("NormalizedUserName")
                         .HasAnnotation("Relational:Name", "UserNameIndex");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
