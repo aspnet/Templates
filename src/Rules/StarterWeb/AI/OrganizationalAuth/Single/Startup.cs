@@ -45,11 +45,6 @@ namespace $safeprojectname$
             // Add Application Insights data collection services to the services container.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.Configure<CookieAuthenticationOptions>(options =>
-            {
-                options.AutomaticAuthentication = true;
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -89,12 +84,12 @@ namespace $safeprojectname$
             app.UseStaticFiles();
 
             // Add cookie-based authentication to the request pipeline.
-            app.UseCookieAuthentication();
+            app.UseCookieAuthentication(options => options.AutomaticAuthenticate = true);
 
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
-                options.AutomaticAuthentication = true;
+                options.AutomaticChallenge = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
                 options.PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"];
