@@ -53,6 +53,7 @@
         <CopyPackagesListPath>$(TemplatesBin)\CopyPackageList.generated.txt</CopyPackagesListPath>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
+        <FailOnLowerVersion Condition="'$(FailOnLowerVersion)' == ''">true</FailOnLowerVersion>
     </PropertyGroup>
     
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
