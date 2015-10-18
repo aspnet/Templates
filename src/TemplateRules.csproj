@@ -3,7 +3,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\tools\Build.tasks" />
   <PropertyGroup>
-    <ProjectGuid>{C14A0C12-E46E-4F5B-B034-3038D0FC1010}</ProjectGuid>
+    <ProjectGuid>{c14a0c12-e46e-4f5b-b034-3038d0fc1010}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe a -r</ZipCommand>
     <UnZipCommand>$(TemplatesTools)\7za.exe x</UnZipCommand>
     <Rules>Rules</Rules>
@@ -11,290 +11,202 @@
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
     <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
   </PropertyGroup>
-  <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll" />
+  <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+
   <ItemGroup>
-    <LooseFiles Include="&#xD;&#xA;              Templates.xml;&#xD;&#xA;              Resources\WebApplication.png;&#xD;&#xA;              Resources\WebAPI.png;&#xD;&#xA;              Resources\Empty.png">
+    <LooseFiles Include="
+              Templates.xml;
+              Resources\WebApplication.png;
+              Resources\WebAPI.png;
+              Resources\Empty.png">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
-    <LooseFiles Include="&#xD;&#xA;              DNXStarterWeb.vstemplate;&#xD;&#xA;              DNXEmptyWeb.vstemplate;&#xD;&#xA;              DNXWebAPI.vstemplate">
+    <LooseFiles Include="
+              DNXStarterWeb.vstemplate;
+              DNXEmptyWeb.vstemplate;
+              DNXWebAPI.vstemplate">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\BaseTemplates</SearchPath>
     </LooseFiles>
+
     <!-- StarterWeb Common Auth Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml">
+    <LooseFiles Include="
+              Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
     <!-- StarterWeb Individual Auth Files -->
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs">
-      <TargetName>Rules</TargetName>
+    <LooseFiles Include="
+              Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
+              Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
+              Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
+              Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs;
+              Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPasswordConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Lockout.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ResetPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\ResetPasswordConfirmation.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\SendCode.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Account\VerifyCode.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\AddPhoneNumber.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
+              Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Account\VerifyCodeViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\AddPhoneNumberViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\appsettings.json;
+              Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
+              Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
+              Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
+              Rules\StarterWeb\IndividualAuth\project.json;
+              Rules\StarterWeb\IndividualAuth\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPassword.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ForgotPasswordConfirmation.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\Lockout.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\Login.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\Register.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ResetPassword.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\ResetPasswordConfirmation.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\SendCode.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Account\VerifyCode.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\AddPhoneNumber.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ExternalLoginConfirmationViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ForgotPasswordViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\LoginViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\RegisterViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\ResetPasswordViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\SendCodeViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Account\VerifyCodeViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\AddPhoneNumberViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\appsettings.json">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\project.json">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
-    <LooseFiles Include="Rules\StarterWeb\IndividualAuth\Startup.cs">
-      <TargetName>Rules</TargetName>
-      <SearchPath>.\</SearchPath>
-    </LooseFiles>
+
     <!-- StarterWeb Org Auth Common Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Common\project.json">
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\project.json">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
     <!-- StarterWeb Org Auth Single Org Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs;&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs">
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
     <!-- StarterWeb Org Auth Multiple Org Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs;&#xD;&#xA;              Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs">
+    <LooseFiles Include="
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
     <!-- StarterWeb AI Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;&#xD;&#xA;              Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;&#xD;&#xA;              Rules\StarterWeb\AI\NoAuth\project.json;&#xD;&#xA;              Rules\StarterWeb\AI\NoAuth\appsettings.json;&#xD;&#xA;              Rules\StarterWeb\AI\NoAuth\Startup.cs;&#xD;&#xA;              Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml;&#xD;&#xA;              Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml;&#xD;&#xA;              Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml;&#xD;&#xA;              Rules\StarterWeb\AI\IndividualAuth\Startup.cs;&#xD;&#xA;              Rules\StarterWeb\AI\IndividualAuth\project.json;&#xD;&#xA;              Rules\StarterWeb\AI\IndividualAuth\appsettings.json;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;&#xD;&#xA;              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json">
+    <LooseFiles Include="
+              Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
+              Rules\StarterWeb\AI\NoAuth\project.json;
+              Rules\StarterWeb\AI\NoAuth\appsettings.json;
+              Rules\StarterWeb\AI\NoAuth\Startup.cs;
+              Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml;
+              Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\AI\IndividualAuth\Startup.cs;
+              Rules\StarterWeb\AI\IndividualAuth\project.json;
+              Rules\StarterWeb\AI\IndividualAuth\appsettings.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
     <!-- WebAPI AI Files -->
-    <LooseFiles Include="&#xD;&#xA;              Rules\WebAPI\AI\NoAuth\project.json;&#xD;&#xA;              Rules\WebAPI\AI\NoAuth\appsettings.json;&#xD;&#xA;              Rules\WebAPI\AI\NoAuth\Startup.cs">
+    <LooseFiles Include="
+              Rules\WebAPI\AI\NoAuth\project.json;
+              Rules\WebAPI\AI\NoAuth\appsettings.json;
+              Rules\WebAPI\AI\NoAuth\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
   </ItemGroup>
+
   <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
       <TargetName>%(LooseFiles.TargetName)</TargetName>
       <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>
     </PropertyGroup>
     <RemoveDir Directories="$(TempPath)" />
+
     <ItemGroup>
-      <LooseFilesToCopy Include="@(LooseFiles)" Condition="'%(TargetName)' == '$(TargetName)'" />
+      <LooseFilesToCopy Include="@(LooseFiles)" Condition="'%(TargetName)' == '$(TargetName)'"/>
     </ItemGroup>
+
     <Copy SourceFiles="@(LooseFilesToCopy->'%(SearchPath)\%(Identity)')" DestinationFiles="@(LooseFilesToCopy->'$(TempPath)%(Identity)')">
       <Output ItemName="CopiedLooseFiles" TaskParameter="CopiedFiles" />
     </Copy>
+
     <ItemGroup>
       <FilesToReplace Remove="@(FilesToReplace)" />
       <FilesToReplace Include="@(CopiedLooseFiles)" />
     </ItemGroup>
+
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NUGETFEEDSOURCE__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(NugetFeedSource)" />
+
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
-    <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'" />
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'" />
+
+    <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
   </Target>
+
   <Target Name="VerifyContent">
     <ItemGroup>
-      <FilesToVerify Include="**\*.*" />
-      <FilesToVerify Remove="BaseTemplates\**\*.*" />
-      <FilesToVerify Remove="**\*.png" />
+      <FilesToVerify Include="**\*.*"/>
+      <FilesToVerify Remove="BaseTemplates\**\*.*"/>
+      <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
-    <VerifyWhitespace FileList="@(FilesToVerify)" />
+    <VerifyWhitespace FileList="@(FilesToVerify)"/>
     <ItemGroup>
-      <FilesToVerify Remove="@(FilesToVerify)" />
-      <FilesToVerify Include="**\*.cs" />
-      <FilesToVerify Remove="BaseTemplates\**\*.cs" />
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="**\*.cs"/>
+      <FilesToVerify Remove="BaseTemplates\**\*.cs"/>
     </ItemGroup>
-    <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks" />
+    <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
     <ItemGroup>
-      <FilesToVerify Remove="@(FilesToVerify)" />
-      <FilesToVerify Include="**\project.json" />
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="**\project.json"/>
     </ItemGroup>
-    <VerifySortedDependencies FileList="@(FilesToVerify)" />
+    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
   </Target>
+
   <Target Name="BuildCompiled">
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="VerifyContent" />
@@ -303,6 +215,7 @@
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
   </Target>
+
   <Target Name="Build" DependsOnTargets="BuildCompiled" />
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>
