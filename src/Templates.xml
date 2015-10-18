@@ -166,6 +166,7 @@
           <AddFile Destination="ViewModels\Manage\FactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>x
           <AddFile Destination="ViewModels\Manage\ManageLoginsViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\RemoveLoginViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\RemoveLoginViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\SetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>

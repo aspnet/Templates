@@ -62,14 +62,14 @@ namespace $safeprojectname$.Controllers
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveLogin(string loginProvider, string providerKey)
+        public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
             ManageMessageId? message = ManageMessageId.Error;
             var user = await GetCurrentUserAsync();
-            if (user != null)
+            if (user != null) 
             {
-                var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
-                if (result.Succeeded)
+                var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey);
+                if (result.Succeeded) 
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     message = ManageMessageId.RemoveLoginSuccess;
