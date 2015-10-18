@@ -59,17 +59,6 @@ namespace $safeprojectname$.Controllers
         }
 
         //
-        // GET: /Account/RemoveLogin
-        [HttpGet]
-        public async Task<IActionResult> RemoveLogin()
-        {
-            var user = await GetCurrentUserAsync();
-            var linkedAccounts = await _userManager.GetLoginsAsync(user);
-            ViewData["ShowRemoveButton"] = await _userManager.HasPasswordAsync(user) || linkedAccounts.Count > 1;
-            return View(linkedAccounts);
-        }
-
-        //
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

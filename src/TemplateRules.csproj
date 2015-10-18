@@ -64,7 +64,6 @@
               Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
