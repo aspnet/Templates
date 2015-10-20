@@ -149,7 +149,6 @@
           <AddFile Destination="Views\Manage\ChangePassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml"/>
           <AddFile Destination="Views\Manage\Index.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml"/>
           <AddFile Destination="Views\Manage\ManageLogins.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml"/>
-          <AddFile Destination="Views\Manage\RemoveLogin.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml"/>
           <AddFile Destination="Views\Manage\SetPassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml"/>
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
@@ -165,8 +164,9 @@
           <AddFile Destination="ViewModels\Manage\ChangePasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\FactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs"/>
-          <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>x
+          <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\ManageLoginsViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\RemoveLoginViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\RemoveLoginViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\SetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
