@@ -318,16 +318,6 @@ namespace $safeprojectname$.Controllers
             }
         }
 
-        private async Task<bool> HasPhoneNumber()
-        {
-            var user = await _userManager.FindByIdAsync(User.GetUserId());
-            if (user != null)
-            {
-                return user.PhoneNumber != null;
-            }
-            return false;
-        }
-
         public enum ManageMessageId
         {
             AddPhoneSuccess,
