@@ -17,7 +17,7 @@ namespace $safeprojectname$
 
         public void Configure(IApplicationBuilder app)
         {
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             app.Run(async (context) =>

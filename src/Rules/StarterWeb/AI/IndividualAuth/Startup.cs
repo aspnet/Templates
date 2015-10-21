@@ -102,7 +102,7 @@ namespace $safeprojectname$
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.

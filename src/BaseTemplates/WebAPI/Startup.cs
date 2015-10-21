@@ -32,7 +32,7 @@ namespace $safeprojectname$
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             // Configure the HTTP request pipeline.
