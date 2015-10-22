@@ -19,21 +19,24 @@ namespace $safeprojectname$.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
+        private readonly ILogger _logger;
 
         public ManageController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
-            ISmsSender smsSender)
+        UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
+        IEmailSender emailSender,
+        ISmsSender smsSender,
+        ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
+            _logger = loggerFactory.CreateLogger<ManageController>();
         }
 
         //
-        // GET: /Account/Index
+        // GET: /Manage/Index
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
@@ -79,14 +82,14 @@ namespace $safeprojectname$.Controllers
         }
 
         //
-        // GET: /Account/AddPhoneNumber
+        // GET: /Manage/AddPhoneNumber
         public IActionResult AddPhoneNumber()
         {
             return View();
         }
 
         //
-        // POST: /Account/AddPhoneNumber
+        // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -113,6 +116,7 @@ namespace $safeprojectname$.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, true);
                 await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User enabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
@@ -128,12 +132,13 @@ namespace $safeprojectname$.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, false);
                 await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User disabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
 
         //
-        // GET: /Account/VerifyPhoneNumber
+        // GET: /Manage/VerifyPhoneNumber
         [HttpGet]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
@@ -143,7 +148,7 @@ namespace $safeprojectname$.Controllers
         }
 
         //
-        // POST: /Account/VerifyPhoneNumber
+        // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -168,7 +173,7 @@ namespace $safeprojectname$.Controllers
         }
 
         //
-        // GET: /Account/RemovePhoneNumber
+        // GET: /Manage/RemovePhoneNumber
         [HttpGet]
         public async Task<IActionResult> RemovePhoneNumber()
         {
@@ -194,7 +199,7 @@ namespace $safeprojectname$.Controllers
         }
 
         //
-        // POST: /Account/Manage
+        // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -210,6 +215,7 @@ namespace $safeprojectname$.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User changed their password successfully.");
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
@@ -252,7 +258,7 @@ namespace $safeprojectname$.Controllers
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 
-        //GET: /Account/Manage
+        //GET: /Manage/ManageLogins
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
@@ -337,4 +343,3 @@ namespace $safeprojectname$.Controllers
 
         #endregion
     }
-}

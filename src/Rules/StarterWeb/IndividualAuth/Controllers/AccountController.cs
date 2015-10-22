@@ -23,12 +23,14 @@ namespace $safeprojectname$.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ApplicationDbContext _applicationDbContext;
         private static bool _databaseChecked;
+        private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
+            ILoggerFactory loggerFactory,
             ApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
@@ -36,6 +38,7 @@ namespace $safeprojectname$.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _applicationDbContext = applicationDbContext;
+            _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
         //
@@ -61,9 +64,10 @@ namespace $safeprojectname$.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -72,6 +76,7 @@ namespace $safeprojectname$.Controllers
                 }
                 if (result.IsLockedOut)
                 {
+                    _logger.LogWarning("User account locked out.");
                     return View("Lockout");
                 }
                 else
@@ -115,6 +120,7 @@ namespace $safeprojectname$.Controllers
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User created a new account with password.");
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
                 AddErrors(result);
@@ -131,6 +137,7 @@ namespace $safeprojectname$.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -164,6 +171,7 @@ namespace $safeprojectname$.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
+                _logger.LogInformation("User logged in with {name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -212,6 +220,7 @@ namespace $safeprojectname$.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User created an account using {name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -422,6 +431,7 @@ namespace $safeprojectname$.Controllers
             }
             if (result.IsLockedOut)
             {
+                _logger.LogCritical("User account locked out.");
                 return View("Lockout");
             }
             else
@@ -474,4 +484,3 @@ namespace $safeprojectname$.Controllers
 
         #endregion
     }
-}
