@@ -615,8 +615,6 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
           <Folder Name="node_modules" TargetFolderName="node_modules">
-            <Folder Name=".bin" TargetFolderName=".bin">
-            </Folder>
             <Folder Name="amdefine" TargetFolderName="amdefine">
               <ProjectItem ReplaceParameters="false" TargetFileName="amdefine.js">amdefine.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="intercept.js">intercept.js</ProjectItem>
@@ -2426,8 +2424,8 @@
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
         <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="web.config">web.config</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
         <Folder Name="css" TargetFolderName="css">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.css">site.css</ProjectItem>
         </Folder>
