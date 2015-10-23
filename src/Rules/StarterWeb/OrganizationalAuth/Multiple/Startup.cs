@@ -40,11 +40,6 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookieAuthenticationOptions>(options =>
-            {
-                options.AutomaticAuthentication = true;
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -78,7 +73,10 @@ namespace $safeprojectname$
             app.UseStaticFiles();
 
             // Add cookie-based authentication to the request pipeline.
-            app.UseCookieAuthentication();
+            app.UseCookieAuthentication(options =>
+            {
+                options.AutomaticAuthentication = true;
+            });
 
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
