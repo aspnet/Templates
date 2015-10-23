@@ -6,7 +6,6 @@ using System.Security.Claims;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.Logging;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
 using $safeprojectname$.ViewModels.Manage;
@@ -344,4 +343,3 @@ namespace $safeprojectname$.Controllers
 
         #endregion
     }
-}

@@ -7,7 +7,7 @@ using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Authentication.OpenIdConnect;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Dnx.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,7 +48,7 @@ namespace $safeprojectname$
 
             services.Configure<CookieAuthenticationOptions>(options =>
             {
-                options.AutomaticAuthenticate = true;
+                options.AutomaticAuthentication = true;
             });
 
             // Add MVC services to the services container.
@@ -95,7 +95,7 @@ namespace $safeprojectname$
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
-                options.AutomaticAuthenticate = true;
+                options.AutomaticAuthentication = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
