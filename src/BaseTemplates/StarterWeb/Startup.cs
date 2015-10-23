@@ -17,7 +17,6 @@ namespace $safeprojectname$
         {
             // Setup configuration sources.
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
