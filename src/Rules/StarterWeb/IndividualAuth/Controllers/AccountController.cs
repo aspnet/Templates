@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
+using Microsoft.Extensions.Logging;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
 using $safeprojectname$.ViewModels.Account;
