@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.Logging;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
 using $safeprojectname$.ViewModels.Manage;
@@ -116,7 +117,7 @@ namespace $safeprojectname$.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, true);
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.LogInformation(1,"User enabled two-factor authentication.");
+                _logger.LogInformation(1, "User enabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
@@ -132,7 +133,7 @@ namespace $safeprojectname$.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, false);
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.LogInformation(2,"User disabled two-factor authentication.");
+                _logger.LogInformation(2, "User disabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
@@ -215,7 +216,7 @@ namespace $safeprojectname$.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3,"User changed their password successfully.");
+                    _logger.LogInformation(3, "User changed their password successfully.");
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
@@ -343,3 +344,4 @@ namespace $safeprojectname$.Controllers
 
         #endregion
     }
+}
