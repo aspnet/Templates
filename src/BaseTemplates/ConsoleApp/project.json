@@ -5,6 +5,10 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+  
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
   },
