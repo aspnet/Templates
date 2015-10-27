@@ -61,6 +61,7 @@
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
         <VersionedReferencePath>Dev14</VersionedReferencePath>
         <TargetVsVersion>VS14</TargetVsVersion>
+        <DefaultTargetFrameworkVersion>4.5.1</DefaultTargetFrameworkVersion>
     </PropertyGroup>
 
     <PropertyGroup>
