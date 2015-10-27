@@ -25,7 +25,6 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ValuesController.cs">ValuesController.cs</ProjectItem>
       </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
