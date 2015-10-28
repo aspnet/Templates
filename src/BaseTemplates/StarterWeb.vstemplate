@@ -2425,6 +2425,7 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
         <Folder Name="css" TargetFolderName="css">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.css">site.css</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="site.min.css">site.min.css</ProjectItem>
         </Folder>
         <Folder Name="images" TargetFolderName="images">
           <ProjectItem ReplaceParameters="false" TargetFileName="ASP-NET-Banners-01.png">ASP-NET-Banners-01.png</ProjectItem>
@@ -2434,6 +2435,7 @@
         </Folder>
         <Folder Name="js" TargetFolderName="js">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.js">site.js</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="site.min.js">site.min.js</ProjectItem>
         </Folder>
         <Folder Name="lib" TargetFolderName="lib">
           <Folder Name="bootstrap" TargetFolderName="bootstrap">
