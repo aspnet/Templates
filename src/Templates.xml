@@ -42,6 +42,7 @@
       <Options>
         <Authentication Default="IndividualAuth">
           <NoAuth />
+          <WindowsAuth />
           <IndividualAuth />
           <OrgAuth />
         </Authentication>
@@ -60,6 +61,9 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
               VSTemplatePath="DNXStarterWeb.vstemplate">
+        <ApplyRules Option="WindowsAuth">
+              <RunRule RuleID="StarterWebWindowsAuth" />
+        </ApplyRules>
         <ApplyRules Option="IndividualAuth">
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
@@ -83,6 +87,10 @@
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="StarterWebAINoAuth" />
+            </ApplyRules>
+            <ApplyRules Option="WindowsAuth">
+                  <RunRule RuleID="StarterWebAINoAuth" />
+                  <RunRule RuleID="StarterWebAIWindowsAuth" />
             </ApplyRules>
             <ApplyRules Option="IndividualAuth">
                   <RunRule RuleID="StarterWebAICommonAuth" />
@@ -119,6 +127,10 @@
   </BaseTemplates>
 
   <Rules>
+      <Rule ID="StarterWebWindowsAuth">
+          <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\StarterWeb\WindowsAuth\Properties\launchSettings.json"/>
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\WindowsAuth\Views\Shared\_Layout.cshtml"/>
+      </Rule>
       <Rule ID="StarterWebCommonAuth">
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
@@ -195,6 +207,9 @@
           <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\NoAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\NoAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIWindowsAuth">
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebAICommonAuth">
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml"/>
