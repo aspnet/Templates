@@ -120,6 +120,14 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
+    <!-- StarterWeb Windows Auth Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\WindowsAuth\Properties\launchSettings.json;
+              Rules\StarterWeb\WindowsAuth\Views\Shared\_Layout.cshtml">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
     <!-- StarterWeb AI Files -->
     <LooseFiles Include="
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
@@ -138,7 +146,8 @@
               Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json">
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json;
+              Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
