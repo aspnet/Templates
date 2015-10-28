@@ -199,6 +199,8 @@
     <ItemGroup>
       <FilesToVerify Include="**\*.*"/>
       <FilesToVerify Remove="BaseTemplates\**\*.*"/>
+      <FilesToVerify Remove="**\*.min.js"/>
+      <FilesToVerify Remove="**\*.min.css"/>
       <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
     <VerifyWhitespace FileList="@(FilesToVerify)"/>

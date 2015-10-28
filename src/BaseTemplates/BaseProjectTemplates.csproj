@@ -98,6 +98,8 @@
     <ItemGroup>
       <FilesToVerify Include="**\*.*"/>
       <FilesToVerify Remove="**\*.ico"/>
+      <FilesToVerify Remove="**\*.min.js"/>
+      <FilesToVerify Remove="**\*.min.css"/>
       <FilesToVerify Remove="StarterWeb\node_modules\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\bower_components\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap*\**\*.*"/>
