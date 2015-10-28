@@ -1,6 +1,9 @@
 ﻿{
   "userSecretsId": "aspnet5-$safeprojectname$-$guid2$",
   "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",

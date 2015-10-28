@@ -134,5 +134,8 @@ namespace $safeprojectname$
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
