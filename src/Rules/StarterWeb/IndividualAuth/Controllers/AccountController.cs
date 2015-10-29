@@ -160,8 +160,13 @@ namespace $safeprojectname$.Controllers
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
+            if (remoteError != null)
+            {
+                ModelState.AddModelError("", $"Error from RemoteAuthentication: {remoteError}");
+                return View(nameof(Login));
+            }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
