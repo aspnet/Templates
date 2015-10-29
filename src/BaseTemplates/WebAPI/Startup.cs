@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace $safeprojectname$
 {
@@ -32,7 +32,7 @@ namespace $safeprojectname$
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             // Configure the HTTP request pipeline.
@@ -43,5 +43,8 @@ namespace $safeprojectname$
             // Add the following route for porting Web API 2 controllers.
             // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

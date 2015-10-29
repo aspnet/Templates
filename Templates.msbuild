@@ -27,7 +27,7 @@
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" CopyPackagesList="$(CopyPackagesListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" CopyPackagesList="$(CopyPackagesListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" FailOnLowerVersion="$(FailOnLowerVersion)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
     
     <ItemGroup>
       <LinesToWrite Include="$(CoherencePackageSource)"/>

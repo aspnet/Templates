@@ -1,6 +1,8 @@
-{
-  "webroot": "wwwroot",
+﻿{
   "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
@@ -11,11 +13,11 @@
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-*",
-    "Microsoft.Framework.Configuration": "1.0.0-*",
-    "Microsoft.Framework.Configuration.Json": "1.0.0-*",
-    "Microsoft.Framework.Logging": "1.0.0-*",
-    "Microsoft.Framework.Logging.Console": "1.0.0-*",
-    "Microsoft.Framework.Logging.Debug" : "1.0.0-*",
+    "Microsoft.Extensions.Configuration": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+    "Microsoft.Extensions.Logging": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 

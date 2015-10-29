@@ -7,21 +7,19 @@ using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Authentication.OpenIdConnect;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace $safeprojectname$
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
             // Setup configuration sources.
 
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
@@ -40,11 +38,6 @@ namespace $safeprojectname$
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookieAuthenticationOptions>(options =>
-            {
-                options.AutomaticAuthentication = true;
-            });
-
             // Add MVC services to the services container.
             services.AddMvc();
         }
@@ -71,19 +64,22 @@ namespace $safeprojectname$
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
             // Add cookie-based authentication to the request pipeline.
-            app.UseCookieAuthentication();
+            app.UseCookieAuthentication(options =>
+            {
+                options.AutomaticAuthenticate = true;
+            });
 
             // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
-                options.AutomaticAuthentication = true;
+                options.AutomaticChallenge = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -122,5 +118,8 @@ namespace $safeprojectname$
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

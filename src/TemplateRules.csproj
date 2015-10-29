@@ -11,7 +11,6 @@
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
     <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
   </PropertyGroup>
-  <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
 
@@ -64,7 +63,6 @@
               Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
@@ -83,6 +81,7 @@
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\ViewModels\Manage\RemoveLoginViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs;
               Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs;
               Rules\StarterWeb\IndividualAuth\appsettings.json;
@@ -121,6 +120,14 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
+    <!-- StarterWeb Windows Auth Files -->
+    <LooseFiles Include="
+              Rules\StarterWeb\WindowsAuth\Properties\launchSettings.json;
+              Rules\StarterWeb\WindowsAuth\Views\Shared\_Layout.cshtml">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
     <!-- StarterWeb AI Files -->
     <LooseFiles Include="
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
@@ -139,7 +146,8 @@
               Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json">
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json;
+              Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
@@ -191,6 +199,8 @@
     <ItemGroup>
       <FilesToVerify Include="**\*.*"/>
       <FilesToVerify Remove="BaseTemplates\**\*.*"/>
+      <FilesToVerify Remove="**\*.min.js"/>
+      <FilesToVerify Remove="**\*.min.css"/>
       <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
     <VerifyWhitespace FileList="@(FilesToVerify)"/>

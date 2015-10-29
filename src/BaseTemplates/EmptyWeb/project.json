@@ -1,6 +1,8 @@
 {
-  "webroot": "wwwroot",
   "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",

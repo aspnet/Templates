@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace $safeprojectname$
 {
@@ -17,7 +18,7 @@ namespace $safeprojectname$
 
         public void Configure(IApplicationBuilder app)
         {
-            // Add the platform handler to the request pipeline.
+            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
             app.Run(async (context) =>
@@ -25,5 +26,8 @@ namespace $safeprojectname$
                 await context.Response.WriteAsync("Hello World!");
             });
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

@@ -1,15 +1,17 @@
-{
-  "webroot": "wwwroot",
+﻿{
   "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",
-    "Microsoft.Framework.Logging": "1.0.0-*",
-    "Microsoft.Framework.Logging.Console": "1.0.0-*",
-    "Microsoft.Framework.Logging.Debug" : "1.0.0-*"
+    "Microsoft.Extensions.Logging": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*"
   },
 
   "commands": {

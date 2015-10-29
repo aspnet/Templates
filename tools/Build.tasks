@@ -32,6 +32,57 @@
     </UsingTask>    
 
     <UsingTask
+        TaskName="RegexReplace"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <Encoding ParameterType="System.String"/>
+            <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <Find ParameterType="System.String" Required="True" />
+            <Replace ParameterType="System.String"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="System.Text.RegularExpressions" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(Encoding))
+                    {
+                        Encoding = "utf-8";
+                    }
+                    if (Replace == null)
+                    {
+                        Replace = String.Empty;
+                    }
+                    foreach (var fileName in Files.Select(f => f.GetMetadata("FullPath"))) 
+                    {
+                        FileAttributes oldAttributes = File.GetAttributes(fileName);
+                        File.SetAttributes(fileName, oldAttributes & ~FileAttributes.ReadOnly);
+                        string content = File.ReadAllText(fileName);
+                        string newContent = Regex.Replace(content, Find, Replace);
+                        File.WriteAllText(fileName, newContent, System.Text.Encoding.GetEncoding(Encoding));
+                        File.SetAttributes(fileName, oldAttributes);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error running RegexReplace");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask> 
+
+    <UsingTask
         TaskName="GetResolvedExternalPackageInfo"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
@@ -89,6 +140,7 @@
             <PackageSourcePath ParameterType="System.String" />
             <CopyPackagesList ParameterType="System.String" />
             <WarnOnMissingPackage ParameterType="System.Boolean"/>
+            <FailOnLowerVersion ParameterType="System.Boolean"/>
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -281,8 +333,16 @@
                                                                     {
                                                                         if (String.Compare(foundParts[1], originalParts[1]) < 0)
                                                                         {
-                                                                            Log.LogError("{0} was referenced with version {1}-{2}, but only a lower version, {1}-{3} could be found. {4}", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1], referencedBy);
-                                                                            shouldContinue = false;
+                                                                            if (FailOnLowerVersion)
+                                                                            {
+                                                                                Log.LogError("{0} was referenced with version {1}-{2}, but only a lower version, {1}-{3} could be found. {4}", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1], referencedBy);
+                                                                                shouldContinue = false;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                Log.LogWarning("{0} was referenced with version {1}-{2}, but only a lower version, {1}-{3} could be found. {4}", packageNameNoSemVer, originalParts[0], originalParts[1], foundParts[1], referencedBy);
+                                                                                matched = true;
+                                                                            }
                                                                         }
                                                                         else
                                                                         {

@@ -4,8 +4,8 @@
     <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
       <PreviewImage>Resources\Empty.png</PreviewImage>
-      <Summary>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Summary>
-      <Description>PREVIEW - An empty project template for creating ASP.NET 5 application. This template does not have any content in it.</Description>
+      <Summary>PREVIEW - An empty project template for creating an ASP.NET 5 application. This template does not have any content in it.</Summary>
+      <Description>PREVIEW - An empty project template for creating an ASP.NET 5 application. This template does not have any content in it.</Description>
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
@@ -42,6 +42,7 @@
       <Options>
         <Authentication Default="IndividualAuth">
           <NoAuth />
+          <WindowsAuth />
           <IndividualAuth />
           <OrgAuth />
         </Authentication>
@@ -60,6 +61,9 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
               VSTemplatePath="DNXStarterWeb.vstemplate">
+        <ApplyRules Option="WindowsAuth">
+              <RunRule RuleID="StarterWebWindowsAuth" />
+        </ApplyRules>
         <ApplyRules Option="IndividualAuth">
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
@@ -83,6 +87,10 @@
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="StarterWebAINoAuth" />
+            </ApplyRules>
+            <ApplyRules Option="WindowsAuth">
+                  <RunRule RuleID="StarterWebAINoAuth" />
+                  <RunRule RuleID="StarterWebAIWindowsAuth" />
             </ApplyRules>
             <ApplyRules Option="IndividualAuth">
                   <RunRule RuleID="StarterWebAICommonAuth" />
@@ -119,6 +127,10 @@
   </BaseTemplates>
 
   <Rules>
+      <Rule ID="StarterWebWindowsAuth">
+          <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\StarterWeb\WindowsAuth\Properties\launchSettings.json"/>
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\WindowsAuth\Views\Shared\_Layout.cshtml"/>
+      </Rule>
       <Rule ID="StarterWebCommonAuth">
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
@@ -149,7 +161,6 @@
           <AddFile Destination="Views\Manage\ChangePassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\ChangePassword.cshtml"/>
           <AddFile Destination="Views\Manage\Index.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\Index.cshtml"/>
           <AddFile Destination="Views\Manage\ManageLogins.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\ManageLogins.cshtml"/>
-          <AddFile Destination="Views\Manage\RemoveLogin.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\RemoveLogin.cshtml"/>
           <AddFile Destination="Views\Manage\SetPassword.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml"/>
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
@@ -165,8 +176,9 @@
           <AddFile Destination="ViewModels\Manage\ChangePasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ChangePasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ConfigureTwoFactorViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\FactorViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\FactorViewModel.cs"/>
-          <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>x
+          <AddFile Destination="ViewModels\Manage\IndexViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\IndexViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\ManageLoginsViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\ManageLoginsViewModel.cs"/>
+          <AddFile Destination="ViewModels\Manage\RemoveLoginViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\RemoveLoginViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\SetPasswordViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\SetPasswordViewModel.cs"/>
           <AddFile Destination="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\ViewModels\Manage\VerifyPhoneNumberViewModel.cs"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
@@ -195,6 +207,9 @@
           <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\NoAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\NoAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIWindowsAuth">
+          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebAICommonAuth">
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml"/>
