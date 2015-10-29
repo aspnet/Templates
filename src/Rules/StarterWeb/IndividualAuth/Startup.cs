@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Authentication.Facebook;
 using Microsoft.AspNet.Authentication.Google;
 using Microsoft.AspNet.Authentication.MicrosoftAccount;
+using Microsoft.AspNet.Authentication.OAuth;
 using Microsoft.AspNet.Authentication.Twitter;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics.Entity;
@@ -15,6 +16,7 @@ using Microsoft.Dnx.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.WebEncoders;
 using $safeprojectname$.Models;
 using $safeprojectname$.Services;
 
@@ -100,32 +102,41 @@ namespace $safeprojectname$
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
 
-            // Add and configure the options for authentication middleware to the request pipeline.
-            // You can add options for middleware as shown below.
-            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            //app.UseFacebookAuthentication(options =>
-            //{
-            //    options.AppId = Configuration["Authentication:Facebook:AppId"];
-            //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            //});
-            //app.UseGoogleAuthentication(options =>
-            //{
-            //    options.ClientId = Configuration["Authentication:Google:ClientId"];
-            //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //});
-            //app.UseMicrosoftAccountAuthentication(options =>
-            //{
-            //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
-            //    options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
-            //});
-            //app.UseTwitterAuthentication(options =>
-            //{
-            //    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
-            //    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
-            //});
+        // Add and configure the options for authentication middleware to the request pipeline.
+        // You can add options for middleware as shown below.
+        // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
+        //app.UseFacebookAuthentication(options =>
+        //{
+        //    options.AppId = Configuration["Authentication:Facebook:AppId"];
+        //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+        //});
+        //app.UseGoogleAuthentication(options =>
+        //{
+        //    options.ClientId = Configuration["Authentication:Google:ClientId"];
+        //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+        //    options.Events = new OAuthEvents()
+        //    {
+        //        OnRemoteError = ctx =>
+        //        {
+        //            ctx.Response.Redirect("/Account/ExternalLoginCallback?remoteError=" + UrlEncoder.Default.UrlEncode(ctx.Error.Message));
+        //            ctx.HandleResponse();
+        //            return Task.FromResult(0);
+        //        }
+        //    };
+        //});
+        //app.UseMicrosoftAccountAuthentication(options =>
+        //{
+        //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
+        //    options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
+        //});
+        //app.UseTwitterAuthentication(options =>
+        //{
+        //    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+        //    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+        //});
 
-            // Add MVC to the request pipeline.
-            app.UseMvc(routes =>
+        // Add MVC to the request pipeline.
+        app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
