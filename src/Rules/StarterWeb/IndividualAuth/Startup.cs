@@ -91,7 +91,7 @@ namespace $safeprojectname$
             }
 
             // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
-            app.UseIISPlatformHandler();
+            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
