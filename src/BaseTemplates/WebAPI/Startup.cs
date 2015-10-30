@@ -31,8 +31,8 @@ namespace $safeprojectname$
         {
             // Initalize configuration sources
             var builder = new ConfigurationBuilder(env.WebRootPath)
-                .AddJsonFile("config.json")
-                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile("appSettings.json")
+                .AddJsonFile($"appSettings.{env.EnvironmentName}.json", optional: true);
 
             Configuration = builder.Build();
             
