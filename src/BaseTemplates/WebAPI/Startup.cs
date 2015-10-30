@@ -21,6 +21,8 @@ namespace $safeprojectname$
             Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
+        public IConfigurationRoot Configuration { get; set; }
+
         // This method gets called by a runtime.
         // Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
