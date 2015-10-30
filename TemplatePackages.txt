@@ -6,7 +6,7 @@
 -dnx-coreclr-win-arm*
 +dnx-clr-win-*
 +dnx-coreclr-win-*
-+runtime.win7*
++runtime.win*
 +Microsoft.AspNet.Authentication.OAuthBearer.*
 +Microsoft.AspNet.Diagnostics.Elm.*
 +Microsoft.AspNet.Mvc.WebApiCompatShim.*
@@ -17,7 +17,7 @@
 +Microsoft.CodeGenerators.Mvc.*
 +Microsoft.VisualBasic.*
 +Microsoft.Win32.Registry.AccessControl.*
-+Systen.Collections.NonGeneric.*
++System.Collections.NonGeneric.*
 +System.Diagnostics.FileVersionInfo.*
 +System.Globalization.Calendars.*
 +System.IO.Compression.ZipFile.*
