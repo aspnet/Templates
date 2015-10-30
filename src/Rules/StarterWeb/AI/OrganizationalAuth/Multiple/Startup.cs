@@ -33,7 +33,7 @@ namespace $safeprojectname$
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -51,8 +51,7 @@ namespace $safeprojectname$
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             // Configure the HTTP request pipeline.
