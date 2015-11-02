@@ -16,20 +16,18 @@ namespace $safeprojectname$
     {
         public Startup(IHostingEnvironment env)
         {
-            // Setup configuration sources.
-
+            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
-                // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -37,20 +35,16 @@ namespace $safeprojectname$
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add MVC services to the services container.
+            // Add framework services.
             services.AddMvc();
         }
 
-        // Configure is called after ConfigureServices is called.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            // Configure the HTTP request pipeline.
-
-            // Add the following to the request pipeline only in development environment.
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -58,24 +52,18 @@ namespace $safeprojectname$
             }
             else
             {
-                // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
-            // Add static files to the request pipeline.
             app.UseStaticFiles();
 
-            // Add cookie-based authentication to the request pipeline.
             app.UseCookieAuthentication(options =>
             {
                 options.AutomaticAuthenticate = true;
             });
 
-            // Add OpenIdConnect middleware so you can login using Azure AD.
             app.UseOpenIdConnectAuthentication(options =>
             {
                 options.AutomaticChallenge = true;
@@ -85,7 +73,6 @@ namespace $safeprojectname$
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
-            // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

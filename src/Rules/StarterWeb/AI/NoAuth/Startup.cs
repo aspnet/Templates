@@ -14,7 +14,7 @@ namespace $safeprojectname$
     {
         public Startup(IHostingEnvironment env)
         {
-            // Setup configuration sources.
+            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
@@ -24,38 +24,28 @@ namespace $safeprojectname$
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }
 
-        // This method gets called by the runtime.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add Application Insights data collection services to the services container.
+            // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            // Add MVC services to the services container.
             services.AddMvc();
-
-            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
-            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
-            // services.AddWebApiConventions();
         }
 
-        // Configure is called after ConfigureServices is called.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            // Configure the HTTP request pipeline.
-
-            // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 
-            // Add the following to the request pipeline only in development environment.
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -63,29 +53,20 @@ namespace $safeprojectname$
             }
             else
             {
-                // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Adds middleware to the request pipeline for forwarding Windows Authentication, request scheme, remote IPs, etc to the IIS HttpPlatformHandler..
             app.UseIISPlatformHandler();
 
-            // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
             app.UseApplicationInsightsExceptionTelemetry();
 
-            // Add static files to the request pipeline.
             app.UseStaticFiles();
 
-            // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                // Uncomment the following line to add a route for porting Web API 2 controllers.
-                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
         }
 
