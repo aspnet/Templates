@@ -337,9 +337,9 @@ namespace $safeprojectname$.Controllers
             Error
         }
 
-        private async Task<ApplicationUser> GetCurrentUserAsync()
+        private Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await _userManager.FindByIdAsync(HttpContext.User.GetUserId());
+            return _userManager.FindByIdAsync(HttpContext.User.GetUserId());
         }
 
         #endregion
