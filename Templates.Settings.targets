@@ -31,8 +31,8 @@
         <CoherencePackageSource Condition="'$(CoherencePackageSource)' != ''">$(CoherencePackageSource)\$(PackageType)</CoherencePackageSource>
         <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
-        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/</AzureAdPackageSource>
-        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == ''">https://www.myget.org/F/azureadwebstacknightly/</AzureAdPackageSource>
+        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
+        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
         <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
