@@ -21,7 +21,7 @@
 +System.Collections.NonGeneric.*
 +System.Diagnostics.FileVersionInfo.*
 +System.Globalization.Calendars.*
--System.IO.Compression.4.0.0-beta
+-System.IO.Compression.4.0.0-beta.*
 +System.IO.Compression.4.0.0
 +System.IO.Compression.ZipFile.*
 +System.Linq.Parallel.*
