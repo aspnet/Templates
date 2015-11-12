@@ -5,7 +5,7 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables" : {
-        "ASPNET_ENV": "Development"
+        "Hosting:Environment": "Development"
       }
     }
   }
