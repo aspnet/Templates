@@ -328,6 +328,7 @@
                                                                     else if (foundParts[0] != originalParts[0])
                                                                     {
                                                                         Log.LogWarning("{0} had a referenced semantic version of {1}, but only {2} could be found. {3}", packageNameNoSemVer, originalParts[0], foundParts[0], referencedBy);
+                                                                        macthed = true;
                                                                     }
                                                                     else
                                                                     {
