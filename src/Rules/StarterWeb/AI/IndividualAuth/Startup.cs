@@ -34,7 +34,7 @@ namespace $safeprojectname$
             }
 
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -78,6 +78,18 @@ namespace $safeprojectname$
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
+                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
+                try
+                {
+                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                        .CreateScope())
+                    {
+                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                             .Database.Migrate();
+                    }
+                }
+                catch { }
             }
 
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
