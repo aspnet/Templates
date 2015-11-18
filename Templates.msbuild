@@ -1,6 +1,7 @@
 <Project DefaultTargets="Verify" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildThisFileDirectory)\Templates.Settings.targets" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
+  <Import Project="$(MSBuildThisFileDirectory)\tools\Verify.tasks" />
 
   <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;GenerateDependencyList;PublishReferencePackages"/>
 
@@ -12,7 +13,10 @@
   </Target>
 
   <Target Name="RestoreTemplate">
-    <Exec Command="dnu restore -f $(PackageSourceForRestore) --packages $(DNX_PACKAGES)" WorkingDirectory="$(TemplateFolder)"/>
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
+      <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
+    </GetDotNetFolder>
+    <Exec Command="$(DotNetFolder)dnu restore -f $(PackageSourceForRestore) --packages $(DNX_PACKAGES)" WorkingDirectory="$(TemplateFolder)"/>
   </Target>
 
   <Target Name="UnitTest">
@@ -20,7 +24,10 @@
   </Target>
   
   <Target Name="GenerateSingleDependecyList" Inputs="@(TestTemplates)" Outputs="%(TestTemplates.Identity)\$(DependencyListFileName)" Condition="'$(IsOfficialBuild)' == 'true'">
-    <Exec Command="dnu list --details %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
+    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
+      <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
+    </GetDotNetFolder>
+    <Exec Command="$(DotNetFolder)dnu list --details %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
   </Target>
   
   <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
