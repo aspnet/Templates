@@ -164,7 +164,7 @@ namespace $safeprojectname$.Controllers
         {
             if (remoteError != null)
             {
-                ModelState.AddModelError("", $"Error from RemoteAuthentication: {remoteError}");
+                ModelState.AddModelError("", $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
