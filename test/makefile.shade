@@ -23,7 +23,7 @@ default restore_options='${E("NUGET3_restore_options")}'
 default package_source='${E("PackageSource")}'
 default testFolder='test'
 
--//exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='!IsMono' workingdir='${testFolder}'
+exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='!IsMono' workingdir='${testFolder}'
 exec program='dnu' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono' workingdir='${testFolder}'
 
 #xunit-test target='test'
