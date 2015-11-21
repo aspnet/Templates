@@ -247,7 +247,7 @@ namespace Microsoft.Web.Templates.Tests
                 var line = reader.ReadLine().Trim();
                 if (line.StartsWith("<input name=\"__RequestVerificationToken\""))
                 {
-                    tokenElement = line.Replace("</form>", "");
+                    tokenElement = line.Substring(0, line.IndexOf("/>") + 2);
                 }
             }
 
