@@ -165,7 +165,7 @@ namespace $safeprojectname$.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
-                _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
+                _logger.LogInformation(5, $"User logged in with {info.LoginProvider} provider.");
                 return RedirectToLocal(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -214,7 +214,7 @@ namespace $safeprojectname$.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation(6, "User created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation(6, $"User created an account using {info.LoginProvider} provider.");
                         return RedirectToLocal(returnUrl);
                     }
                 }
