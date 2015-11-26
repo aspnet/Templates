@@ -111,15 +111,6 @@ namespace $safeprojectname$
             //{
             //    options.ClientId = Configuration["Authentication:Google:ClientId"];
             //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //    options.Events = new OAuthEvents()
-            //    {
-            //        OnRemoteError = ctx =>
-            //        {
-            //            ctx.Response.Redirect("/Account/ExternalLoginCallback?remoteError=" + UrlEncoder.Default.UrlEncode(ctx.Error.Message));
-            //            ctx.HandleResponse();
-            //            return Task.FromResult(0);
-            //        }
-            //    };
             //});
             //app.UseMicrosoftAccountAuthentication(options =>
             //{
