@@ -164,7 +164,7 @@ namespace $safeprojectname$.Controllers
         {
             if (remoteError != null)
             {
-                ModelState.AddModelError("", $"Error from external provider: {remoteError}");
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -442,7 +442,7 @@ namespace $safeprojectname$.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid code.");
+                ModelState.AddModelError(string.Empty, "Invalid code.");
                 return View(model);
             }
         }
