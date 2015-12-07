@@ -109,6 +109,12 @@
     </ItemGroup>
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
     <ItemGroup>
+      <FilesToVerify Remove="StarterWeb\.bowerrc"/>
+      <FilesToVerify Remove="StarterWeb\bower.json"/>
+      <FilesToVerify Remove="StarterWeb\package.json"/>
+    </ItemGroup>
+    <VerifyBOM FileList="@(FilesToVerify)"/>
+    <ItemGroup>
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="**\*.cs"/>
       <FilesToVerify Remove="Common\Properties\AssemblyInfo.cs"/>

@@ -204,6 +204,7 @@
       <FilesToVerify Remove="**\*.png"/>
     </ItemGroup>
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
+    <VerifyBOM FileList="@(FilesToVerify)"/>
     <ItemGroup>
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="**\*.cs"/>

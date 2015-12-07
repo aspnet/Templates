@@ -641,6 +641,57 @@
     </UsingTask>
 
     <UsingTask
+        TaskName="VerifyBOM"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <FileList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {   
+                    foreach(var taskItem in FileList)
+                    {
+                        bool hasBOM = false;
+                        using (var file = new FileStream(taskItem.ItemSpec, FileMode.Open))
+                        {
+                            if (file.CanSeek)
+                            {
+                                byte[] bom = new byte[4];
+                                file.Read(bom, 0, 4);
+                                if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf)
+                                {
+                                    hasBOM = true;
+                                }
+                            }
+                        }
+                        
+                        if (!hasBOM)
+                        {
+                              Log.LogError("File {0} is missing UTF-8 BOM", taskItem.ItemSpec);
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Verifying BOM");
+                    Log.LogErrorFromException(ex);
+                }
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <UsingTask
         TaskName="VerifySortedDependencies"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
