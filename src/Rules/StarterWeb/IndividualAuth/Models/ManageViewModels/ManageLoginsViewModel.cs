@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Http.Authentication;
 using Microsoft.AspNet.Identity;
 
-namespace $safeprojectname$.ViewModels.Manage
+namespace $safeprojectname$.Models.ManageViewModels
 {
     public class ManageLoginsViewModel
     {
