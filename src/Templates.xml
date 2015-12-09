@@ -137,9 +137,9 @@
       <Rule ID="StarterWebIndividualAuth">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
-          <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs"/>
-          <AddFile Destination="Migrations\00000000000000_CreateIdentitySchema.Designer.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"/>
-          <AddFile Destination="Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs"/>
+          <AddFile Destination="Data\Migrations\00000000000000_CreateIdentitySchema.cs" Source="Rules\StarterWeb\IndividualAuth\Data\Migrations\00000000000000_CreateIdentitySchema.cs"/>
+          <AddFile Destination="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" Source="Rules\StarterWeb\IndividualAuth\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"/>
+          <AddFile Destination="Data\Migrations\ApplicationDbContextModelSnapshot.cs" Source="Rules\StarterWeb\IndividualAuth\Data\Migrations\ApplicationDbContextModelSnapshot.cs"/>
           <AddFile Destination="Models\ApplicationDbContext.cs" Source="Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs"/>
           <AddFile Destination="Models\ApplicationUser.cs" Source="Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs"/>
           <AddFile Destination="Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs" Source="Rules\StarterWeb\IndividualAuth\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs"/>

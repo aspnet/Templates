@@ -42,9 +42,9 @@
     <LooseFiles Include="
               Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs;
               Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs;
-              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.cs;
-              Rules\StarterWeb\IndividualAuth\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
-              Rules\StarterWeb\IndividualAuth\Migrations\ApplicationDbContextModelSnapshot.cs;
+              Rules\StarterWeb\IndividualAuth\Data\Migrations\00000000000000_CreateIdentitySchema.cs;
+              Rules\StarterWeb\IndividualAuth\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs;
+              Rules\StarterWeb\IndividualAuth\Data\Migrations\ApplicationDbContextModelSnapshot.cs;
               Rules\StarterWeb\IndividualAuth\Models\ApplicationDbContext.cs;
               Rules\StarterWeb\IndividualAuth\Models\ApplicationUser.cs;
               Rules\StarterWeb\IndividualAuth\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs;
