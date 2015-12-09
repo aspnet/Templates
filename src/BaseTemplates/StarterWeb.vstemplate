@@ -2428,10 +2428,10 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="site.min.css">site.min.css</ProjectItem>
         </Folder>
         <Folder Name="images" TargetFolderName="images">
-          <ProjectItem ReplaceParameters="false" TargetFileName="ASP-NET-Banners-01.png">ASP-NET-Banners-01.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="ASP-NET-Banners-02.png">ASP-NET-Banners-02.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-01-Azure.png">Banner-01-Azure.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="Banner-02-VS.png">Banner-02-VS.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner1.png">banner1.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner2.png">banner2.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner3.png">banner3.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner4.png">banner4.png</ProjectItem>
         </Folder>
         <Folder Name="js" TargetFolderName="js">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.js">site.js</ProjectItem>
