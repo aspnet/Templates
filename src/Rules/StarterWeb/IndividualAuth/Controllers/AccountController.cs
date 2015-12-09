@@ -198,7 +198,7 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
-            if (User.Identity.IsAuthenticated())
+            if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction(nameof(ManageController.Index), "Manage");
             }
