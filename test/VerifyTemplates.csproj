@@ -7,7 +7,7 @@
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
     <DnuBuildCommand>dnu build</DnuBuildCommand>
-    <DnuRestoreCommand>dnu restore -f $(PackageSourceForRestore)</DnuRestoreCommand>
+    <DnuRestoreCommand>dnu restore </DnuRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
     <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
@@ -159,7 +159,7 @@
     <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower') or '$(ForceNpmInstall)' == 'true'" />
   </Target>
   
-  <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(RuleName)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+  <Target Name="CompileRules" Inputs="@(RulesToVerify)" Outputs="$(TemplatesTestPath)%(BaseTemplate).%(RuleName)\bin\Debug\%(BaseTemplate).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates;SetupPackageSource">
     <PropertyGroup>
       <RuleName>%(RulesToVerify.RuleName)</RuleName>
       <TargetName>%(RulesToVerify.BaseTemplate).$(RuleName)</TargetName>
@@ -206,14 +206,14 @@
 
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
 
-    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" />
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)"/>
+    <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)"/>
     <Message Text="Running $(DnuBuildCommand) on $(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" />
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')" />-->
   </Target>
   
-  <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates">
+  <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates;SetupPackageSource">
     <PropertyGroup>
       <IsTemplate>false</IsTemplate>
       <IsTemplate Condition="'%(TemplatesToVerify.IsRulesPackage)' == 'false'">true</IsTemplate>
@@ -229,8 +229,8 @@
 
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
 
-    <Message Text="Running $(DnuRestoreCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')"/>-->

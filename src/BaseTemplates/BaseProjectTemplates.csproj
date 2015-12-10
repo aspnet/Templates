@@ -56,7 +56,7 @@
       <SearchPath>WebAPI\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
   </ItemGroup>
-  <Target Name="BuildAllTemplates" DependsOnTargets="GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
+  <Target Name="BuildAllTemplates" DependsOnTargets="SetupPackageSource;GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
       <TargetName>%(VSTemplateItem.TargetName)</TargetName>
       <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>

@@ -1,0 +1,174 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask
+        TaskName="GetPackageSource"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <SetupDrop ParameterType="System.String" Required="true" />
+            <PackageType ParameterType="System.String" Required="true" />
+            <PackageSource ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <using Namespace="System.IO" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    using(var file = File.OpenText(Path.Combine(SetupDrop,"DropSources.txt")))
+                    {
+                        var coherenceDrop = Path.Combine(file.ReadLine(), PackageType);
+                        PackageSource = new TaskItem(coherenceDrop);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error getting Package source from SetupDrop");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask> 
+    <UsingTask
+        TaskName="GetDotNetPackageFolder"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <PackageFolderPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string runtimeRoot = ".dnx";
+                    string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    var packageFolder = Path.Combine(userProfile, ".dnx","packages");
+                    PackageFolderPath = new TaskItem(packageFolder);
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error getting Package folder");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask> 
+    <UsingTask
+        TaskName="GetDotNetFolder"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <DotNetPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string dnxHome = Environment.GetEnvironmentVariable("DNX_HOME");
+                    if (string.IsNullOrEmpty(dnxHome))
+                    {
+                        dnxHome = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".dnx");
+                    }
+                    dnxHome = Environment.ExpandEnvironmentVariables(dnxHome);
+                    string defaultAlias = Path.Combine(dnxHome, "alias", "default.txt");
+                    if (!File.Exists(defaultAlias))
+                    {
+                        Log.LogError("Unable to locate default alias {0}.", defaultAlias);
+                    }
+                    else 
+                    {
+                        using (var file = File.OpenText(defaultAlias))
+                        {
+                            string runtime = file.ReadToEnd().Trim();
+                            Log.LogMessage(@"Checking for runtime folder at {0}\runtimes\{1}\bin", dnxHome, runtime);
+                            var runtimeBin = Path.Combine(dnxHome, "runtimes", runtime, "bin");
+                            if (!Directory.Exists(runtimeBin))
+                            {
+                                Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
+                            }
+                            else
+                            {
+                                runtimeBin += @"\";
+                                DotNetPath = new TaskItem(runtimeBin);
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error getting DotNet folder");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    <UsingTask
+        TaskName="RegexReplace"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <Encoding ParameterType="System.String"/>
+            <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+            <Find ParameterType="System.String" Required="True" />
+            <Replace ParameterType="System.String"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="System.Text.RegularExpressions" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(Encoding))
+                    {
+                        Encoding = "utf-8";
+                    }
+                    if (Replace == null)
+                    {
+                        Replace = String.Empty;
+                    }
+                    foreach (var fileName in Files.Select(f => f.GetMetadata("FullPath"))) 
+                    {
+                        FileAttributes oldAttributes = File.GetAttributes(fileName);
+                        File.SetAttributes(fileName, oldAttributes & ~FileAttributes.ReadOnly);
+                        string content = File.ReadAllText(fileName);
+                        string newContent = Regex.Replace(content, Find, Replace);
+                        File.WriteAllText(fileName, newContent, System.Text.Encoding.GetEncoding(Encoding));
+                        File.SetAttributes(fileName, oldAttributes);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error running RegexReplace");
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>     
+</Project>

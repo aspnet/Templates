@@ -1,5 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildThisFileDirectory)\Templates.BranchSettings.targets" />
+    <Import Project="$(MSBuildThisFileDirectory)\tools\Common.tasks" />
     <PropertyGroup>
         <!-- If you build the project from the command prompt, use the TemplatesVSVersion environment variable. -->
         <TemplatesTargetVersion Condition=" '$(TemplatesTargetVersion)' == '' ">$(TemplatesVSVersion)</TemplatesTargetVersion>
@@ -22,27 +23,15 @@
         <IsOfficialBuild Condition="'$(IsOfficialBuild)' == ''">false</IsOfficialBuild>
         <UseExactPackageVersions Condition="'$(TemplateBuildBranch)' == 'release'">$(IsOfficialBuild)</UseExactPackageVersions>
         <UseExactPackageVersions Condition="'$(UseExactPackageVersions)' == ''">$(IsOfficialBuild)</UseExactPackageVersions>
-        <PackageVersion Condition="'$(PackageVersion)' == ''">$(CoherenceBuildNumber)</PackageVersion>
-        <PackageVersion Condition="'$(PackageVersion)' == ''">Latest</PackageVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'release'">$(ReleasePackageType)</PackageType>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
-        <CoherencePackageSource Condition="'$(CoherencePackageSource)' != ''">$(CoherencePackageSource)\$(PackageType)</CoherencePackageSource>
-        <PackageSource Condition="'$(PackageSource)' != ''">$(PackageSource)\$(PackageType)</PackageSource>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <NetFxPackageSource Condition="'$(NetFxPackageSource)' == ''">https://www.myget.org/F/dotnet-corefx</NetFxPackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
-        <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</PackageSource>
-        <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
-        <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
-        <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
-        <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
-        <PackageSourceForRestore Condition="'$(NetFxPackageSource)' != ''">$(PackageSourceForRestore) -f $(NetFxPackageSource)</PackageSourceForRestore>
-        <PackageSourceForRestore>$(PackageSourceForRestore) -f https://api.nuget.org/v3/index.json</PackageSourceForRestore>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
     </PropertyGroup>
 
@@ -96,4 +85,22 @@
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
         <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
     </ItemGroup>
+    
+    <Target Name="SetupPackageSource">
+        <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)" PackageType="$(PackageType)">
+            <Output PropertyName="PackageSource" TaskParameter="PackageSource"/>
+        </GetPackageSource>
+        
+        <PropertyGroup>
+            <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
+            <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</PackageSource>
+
+            <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(NetFxPackageSource)' != ''">$(PackageSourceForRestore) -f $(NetFxPackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore>$(PackageSourceForRestore) -f https://api.nuget.org/v3/index.json</PackageSourceForRestore>
+        </PropertyGroup>
+    </Target>
 </Project>

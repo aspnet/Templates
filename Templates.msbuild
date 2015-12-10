@@ -9,7 +9,7 @@
      <ItemGroup>
       <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
     </ItemGroup>
-    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);PackageSource=$(PackageSource)"/>
   </Target>
 
   <Target Name="RestoreTemplate">
@@ -34,12 +34,11 @@
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
-    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" CopyPackagesList="$(CopyPackagesListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(CoherencePackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" FailOnLowerVersion="$(FailOnLowerVersion)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
+    <GetDependencyListForTemplates DependencyList="@(DependencyLists)" MergedDependencyList="$(MergedDependencyListPath)" CopyPackagesList="$(CopyPackagesListPath)" TemplatePackagesList="$(TemplatePackages)" PackageSourcePath="$(PackageSource)" WarnOnMissingPackage="$(WarnOnMissingPackage)" FailOnLowerVersion="$(FailOnLowerVersion)" ExternalReferencePackages="@(ExternalReferencePackage)"/>
     
     <ItemGroup>
-      <LinesToWrite Include="$(CoherencePackageSource)"/>
-      <LinesToWrite Include="Template Version: $(PackageVersionType):$(TemplateVersion)"/>
-      <LinesToWrite Include="Coherence Version: $(PackageVersion)"/>
+      <LinesToWrite Include="$(PackageSource)"/>
+      <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
   </Target>
@@ -56,12 +55,12 @@
     <Copy SourceFiles="$(DNX_PACKAGES)\%(ExternalReferencePackageInfo.Identity)\%(ExternalReferencePackageInfo.Version)\%(ExternalReferencePackageInfo.Identity).%(ExternalReferencePackageInfo.Version).nupkg" DestinationFolder="$(TemplatesBin)\ExternalPackages"/>
   </Target>
   
-  <Target Name="Build">
+  <Target Name="Build" DependsOnTargets="SetupPackageSource">
     <ItemGroup>
       <ProjectsToBuild Include="dirs.proj"/>
     </ItemGroup>
     <Message Text="Coherence Build = '$(CoherenceBuildNumber)'" Condition="'$(CoherenceBuildNumber)' != ''"/>
     <MakeDir Directories="$(TemplatesBin)"/>
-    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration);PackageSource=$(PackageSource)"/>
   </Target>
 </Project>

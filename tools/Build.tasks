@@ -1,88 +1,5 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <UsingTask
-        TaskName="GetDotNetPackageFolder"
-        TaskFactory="CodeTaskFactory"
-        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
-        <ParameterGroup>
-            <PackageFolderPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
-        </ParameterGroup>
-        <Task>
-            <Using Namespace="System" />
-            <Using Namespace="Microsoft.Build.Framework" />
-            <Using Namespace="Microsoft.Build.Utilities" />
-            <Code Type="Fragment" Language="cs">
-                <![CDATA[
-                try
-                {
-                    string runtimeRoot = ".dnx";
-                    string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    var packageFolder = Path.Combine(userProfile, ".dnx","packages");
-                    PackageFolderPath = new TaskItem(packageFolder);
-                }
-                catch(Exception ex)
-                {
-                    Log.LogError("Error getting Package folder");
-                    Log.LogErrorFromException(ex);
-                }
-                
-                return !Log.HasLoggedErrors;
-                ]]>
-            </Code>
-        </Task>
-    </UsingTask>    
-
-    <UsingTask
-        TaskName="RegexReplace"
-        TaskFactory="CodeTaskFactory"
-        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
-        <ParameterGroup>
-            <Encoding ParameterType="System.String"/>
-            <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
-            <Find ParameterType="System.String" Required="True" />
-            <Replace ParameterType="System.String"/>
-        </ParameterGroup>
-        <Task>
-            <Using Namespace="System" />
-            <Using Namespace="System.IO" />
-            <Using Namespace="System.Linq" />
-            <Using Namespace="System.Text.RegularExpressions" />
-            <Using Namespace="Microsoft.Build.Framework" />
-            <Using Namespace="Microsoft.Build.Utilities" />
-            <Code Type="Fragment" Language="cs">
-                <![CDATA[
-                try
-                {
-                    if (String.IsNullOrWhiteSpace(Encoding))
-                    {
-                        Encoding = "utf-8";
-                    }
-                    if (Replace == null)
-                    {
-                        Replace = String.Empty;
-                    }
-                    foreach (var fileName in Files.Select(f => f.GetMetadata("FullPath"))) 
-                    {
-                        FileAttributes oldAttributes = File.GetAttributes(fileName);
-                        File.SetAttributes(fileName, oldAttributes & ~FileAttributes.ReadOnly);
-                        string content = File.ReadAllText(fileName);
-                        string newContent = Regex.Replace(content, Find, Replace);
-                        File.WriteAllText(fileName, newContent, System.Text.Encoding.GetEncoding(Encoding));
-                        File.SetAttributes(fileName, oldAttributes);
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Log.LogError("Error running RegexReplace");
-                    Log.LogErrorFromException(ex);
-                }
-                
-                return !Log.HasLoggedErrors;
-                ]]>
-            </Code>
-        </Task>
-    </UsingTask> 
-
-    <UsingTask
         TaskName="GetResolvedExternalPackageInfo"
         TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
@@ -127,7 +44,6 @@
             </Code>
         </Task>
     </UsingTask>   
-
     <UsingTask
         TaskName="GetDependencyListForTemplates"
         TaskFactory="CodeTaskFactory"
@@ -639,7 +555,6 @@
             </Code>
         </Task>
     </UsingTask>
-
     <UsingTask
         TaskName="VerifyBOM"
         TaskFactory="CodeTaskFactory"
@@ -690,7 +605,6 @@
             </Code>
         </Task>
     </UsingTask>
-
     <UsingTask
         TaskName="VerifySortedDependencies"
         TaskFactory="CodeTaskFactory"
@@ -760,6 +674,4 @@
             </Code>
         </Task>
     </UsingTask>
-
-
 </Project>
