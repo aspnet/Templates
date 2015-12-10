@@ -30,7 +30,7 @@
     <Exec Command="$(DotNetFolder)dnu list --details %(TestTemplates.Identity) > %(TestTemplates.Identity)\$(DependencyListFileName)"/>
   </Target>
   
-  <Target Name="GenerateDependencyList" DependsOnTargets="GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
+  <Target Name="GenerateDependencyList" DependsOnTargets="SetupPackageSource;GenerateSingleDependecyList" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
       <DependencyLists Include="%(TestTemplates.Identity)\$(DependencyListFileName)" />
     </ItemGroup>
