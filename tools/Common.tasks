@@ -19,7 +19,8 @@
                 {
                     using(var file = File.OpenText(Path.Combine(SetupDrop,"DropSources.txt")))
                     {
-                        var coherenceDrop = Path.Combine(file.ReadLine(), PackageType);
+                        var line = file.ReadLine();
+                        var coherenceDrop = Path.Combine(line.Split()[1], PackageType);
                         PackageSource = new TaskItem(coherenceDrop);
                     }
                 }
