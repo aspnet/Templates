@@ -38,6 +38,7 @@
     
     <ItemGroup>
       <LinesToWrite Include="$(PackageSource)"/>
+      <LinesToWrite Include="$(SetupDrop)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
