@@ -118,6 +118,12 @@
       <AdditionalRuleFiles2>..\NoAuth\**\*.*</AdditionalRuleFiles2>
       <ProjectGuid>6D670E6A-514A-4782-AD59-28675779EB09</ProjectGuid>
     </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\OrganizationalAuth\Single">
+      <BaseTemplate>WebAPI</BaseTemplate>
+      <RuleName>Single</RuleName>
+      <CommonAuthRuleFiles>..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <ProjectGuid>635C2BC0-6974-4F09-A019-065D17EEE35A</ProjectGuid>
+    </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\WindowsAuth">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>WindowsAuth</RuleName>
@@ -128,6 +134,13 @@
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>AI</RuleName>
       <ProjectGuid>26693172-B6F1-41F3-A6E4-B67ACF31E0C8</ProjectGuid>
+    </RulesToVerify>
+    <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\OrganizationalAuth\Single">
+      <BaseTemplate>WebAPI</BaseTemplate>
+      <RuleName>AI.Single</RuleName>
+      <CommonAuthRuleFiles>..\..\..\CommonAuth\**\*.*</CommonAuthRuleFiles>
+      <AdditionalRuleFiles>..\..\..\OrganizationalAuth\Single\**\*.*</AdditionalRuleFiles>
+      <ProjectGuid>1AF0C4E8-9B9D-4DCC-83DF-9D21AFE426AF</ProjectGuid>
     </RulesToVerify>
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\WindowsAuth">
       <BaseTemplate>WebAPI</BaseTemplate>
