@@ -152,6 +152,20 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
+    <!-- WebAPI Common Auth Files -->
+    <LooseFiles Include="
+              Rules\WebAPI\CommonAuth\Controllers\ValuesController.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
+    <!-- WebAPI Windows Auth Files -->
+    <LooseFiles Include="
+              Rules\WebAPI\WindowsAuth\Properties\launchSettings.json">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
     <!-- WebAPI AI Files -->
     <LooseFiles Include="
               Rules\WebAPI\AI\NoAuth\project.json;

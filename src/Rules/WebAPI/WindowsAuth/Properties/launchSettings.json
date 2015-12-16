@@ -1,0 +1,24 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": true,
+    "anonymousAuthentication": false
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName" : "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "environmentVariables" : {
+        "ASPNET_ENVIRONMENT": "Development"
+      }
+    },
+    "web": {
+      "commandName" : "web",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "environmentVariables" : {
+        "ASPNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

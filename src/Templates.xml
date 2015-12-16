@@ -25,6 +25,7 @@
       <UIFilters>DNXProject</UIFilters>
       <Options>
         <Authentication Default="NoAuth">
+          <WindowsAuth />
           <NoAuth />
         </Authentication>
         <AzureResources>
@@ -116,17 +117,23 @@
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
               VSTemplatePath="DNXWebAPI.vstemplate">
-          <ApplyRules Option="ApplicationInsights">
-              <ApplyRules Option="NoAuth">
-                  <AddFile Destination="appsettings.json" Source="Rules\WebAPI\AI\NoAuth\appsettings.json"/>
-                  <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\NoAuth\project.json"/>
-                  <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
-              </ApplyRules>
-          </ApplyRules>
+        <ApplyRules Option="WindowsAuth">
+              <RunRule RuleID="WebAPICommonAuth" />
+              <RunRule RuleID="WebAPIWindowsAuth" />
+        </ApplyRules>
+        <ApplyRules Option="ApplicationInsights">
+            <ApplyRules Option="NoAuth">
+                  <RunRule RuleID="WebAPIAINoAuth" />
+            </ApplyRules>
+            <ApplyRules Option="WindowsAuth">
+                  <RunRule RuleID="WebAPIAINoAuth" />
+            </ApplyRules>
+        </ApplyRules>
     </BaseTemplate>
   </BaseTemplates>
 
   <Rules>
+      <!-- Starter Web rules -->
       <Rule ID="StarterWebWindowsAuth">
           <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\StarterWeb\WindowsAuth\Properties\launchSettings.json"/>
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\WindowsAuth\Views\Shared\_Layout.cshtml"/>
@@ -200,7 +207,7 @@
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs"/>
       </Rule>
-      <!-- Application Insights rules -->
+      <!-- Application Insights StarterWeb rules -->
       <Rule ID="StarterWebAINoAuth">
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml"/>
@@ -230,6 +237,20 @@
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs"/>
           <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json"/>
+      </Rule>
+      <!-- Web API rules -->
+      <Rule ID="WebAPICommonAuth">
+          <ReplaceFile Destination="Controllers\ValuesController.cs" Source="Rules\WebAPI\CommonAuth\Controllers\ValuesController.cs"/>
+      </Rule>
+      <Rule ID="WebAPIWindowsAuth">
+          <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\WebAPI\WindowsAuth\Properties\launchSettings.json"/>
+      </Rule>
+
+      <!-- Application Insights Web API rules -->
+      <Rule ID="WebAPIAINoAuth">
+          <AddFile Destination="appsettings.json" Source="Rules\WebAPI\AI\NoAuth\appsettings.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\NoAuth\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
       </Rule>
   </Rules>
 </TemplateDefinition>
