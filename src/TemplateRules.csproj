@@ -166,11 +166,22 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
+    <!-- WebAPI Org Auth Single Org Files -->
+    <LooseFiles Include="
+              Rules\WebAPI\OrganizationalAuth\Single\project.json;
+              Rules\WebAPI\OrganizationalAuth\Single\Startup.cs">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
+
     <!-- WebAPI AI Files -->
     <LooseFiles Include="
               Rules\WebAPI\AI\NoAuth\project.json;
               Rules\WebAPI\AI\NoAuth\appsettings.json;
-              Rules\WebAPI\AI\NoAuth\Startup.cs">
+              Rules\WebAPI\AI\NoAuth\Startup.cs;
+              Rules\WebAPI\AI\OrganizationalAuth\Single\project.json;
+              Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json;
+              Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>

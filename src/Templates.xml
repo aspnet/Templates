@@ -26,6 +26,7 @@
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
+          <OrgAuth />
           <NoAuth />
         </Authentication>
         <AzureResources>
@@ -121,6 +122,15 @@
               <RunRule RuleID="WebAPICommonAuth" />
               <RunRule RuleID="WebAPIWindowsAuth" />
         </ApplyRules>
+        <ApplyRules Option="OrgAuth">
+              <RunRule RuleID="WebAPICommonAuth" />
+              <ApplyRules Option="SSO">
+                    <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
+              </ApplyRules>
+              <ApplyRules Option="SSOR">
+                    <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
+              </ApplyRules>
+        </ApplyRules>
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="WebAPIAINoAuth" />
@@ -128,6 +138,15 @@
             <ApplyRules Option="WindowsAuth">
                   <RunRule RuleID="WebAPIAINoAuth" />
             </ApplyRules>
+            <ApplyRules Option="OrgAuth">
+                  <ApplyRules Option="SSO">
+                        <RunRule RuleID="WebAPIAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+                  <ApplyRules Option="SSOR">
+                        <RunRule RuleID="WebAPIAIOrganizationalAuthSingle" />
+                  </ApplyRules>
+            </ApplyRules>
+
         </ApplyRules>
     </BaseTemplate>
   </BaseTemplates>
@@ -245,12 +264,21 @@
       <Rule ID="WebAPIWindowsAuth">
           <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\WebAPI\WindowsAuth\Properties\launchSettings.json"/>
       </Rule>
+      <Rule ID="WebAPIOrganizationalAuthSingle">
+          <ReplaceFile Destination="project.json" Source="Rules\WebAPI\OrganizationalAuth\Single\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs"/>
+      </Rule>
 
       <!-- Application Insights Web API rules -->
       <Rule ID="WebAPIAINoAuth">
           <AddFile Destination="appsettings.json" Source="Rules\WebAPI\AI\NoAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\NoAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
+      </Rule>
+      <Rule ID="WebAPIAIOrganizationalAuthSingle">
+          <ReplaceFile Destination="appsettings.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\project.json"/>
+          <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs"/>
       </Rule>
   </Rules>
 </TemplateDefinition>
