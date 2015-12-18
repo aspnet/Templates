@@ -43,5 +43,6 @@
 +System.ServiceModel.Security.*
 +System.ServiceProcess.ServiceController.*
 +System.Threading.AccessControl.*
++System.Threading.Overlapped.*
 +System.Xml.XmlDocument.*
 +System.Xml.XmlSerializer.*
