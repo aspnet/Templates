@@ -24,7 +24,7 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel"
+    "web": "$safeprojectname$"
   },
 
   "frameworks": {

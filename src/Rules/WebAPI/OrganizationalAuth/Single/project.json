@@ -20,7 +20,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel"
+    "web": "$safeprojectname$"
   },
 
   "frameworks": {

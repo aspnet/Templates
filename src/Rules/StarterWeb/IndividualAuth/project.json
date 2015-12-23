@@ -28,7 +28,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
+    "web": "$safeprojectname$",
     "ef": "EntityFramework.Commands"
   },
 

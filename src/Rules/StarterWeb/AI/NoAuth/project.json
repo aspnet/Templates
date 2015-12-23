@@ -23,7 +23,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel --server.urls=http://localhost:5000"
+    "web": "$safeprojectname$"
   },
 
   "frameworks": {
