@@ -12,13 +12,13 @@ namespace $safeprojectname$
         // Entry point for the application.
         public static void Main(string[] args)
         {
-           var configuration = WebApplicationConfiguration.GetDefault(args);
+            var hostingConfiguration = WebApplicationConfiguration.GetDefault(args);
 
             var application = new WebApplicationBuilder()
-                        .UseApplicationBasePath(Directory.GetCurrentDirectory())
-                        .UseConfiguration(configuration)
-                        .UseStartup<Startup>()
-                        .Build();
+                .UseApplicationBasePath(Directory.GetCurrentDirectory())
+                .UseConfiguration(hostingConfiguration)
+                .UseStartup<Startup>()
+                .Build();
 
             application.Run();
         }
