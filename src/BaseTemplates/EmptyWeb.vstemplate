@@ -19,6 +19,7 @@
   <TemplateContent>
     <Project File="EmptyWeb.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">hosting.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Program.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
