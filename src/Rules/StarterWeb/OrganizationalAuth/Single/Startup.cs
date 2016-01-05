@@ -80,16 +80,5 @@ namespace $safeprojectname$
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args)
-        {
-            var app = new WebApplicationBuilder()
-                .UseConfiguration(WebApplicationConfiguration.GetDefault(args))
-                .UseStartup<Startup>()
-                .Build();
-
-            app.Run();
-        }
     }
 }
