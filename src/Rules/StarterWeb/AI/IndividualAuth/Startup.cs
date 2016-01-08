@@ -91,9 +91,9 @@ namespace $safeprojectname$
                 }
                 catch { }
             }
-
+$if$ ($aspnet_useplatformhandler$ == false) $else$
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
+$endif$
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();

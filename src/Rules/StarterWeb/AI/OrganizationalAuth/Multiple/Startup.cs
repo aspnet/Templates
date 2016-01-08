@@ -61,9 +61,9 @@ namespace $safeprojectname$
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+$if$ ($aspnet_useplatformhandler$ == false) $else$
             app.UseIISPlatformHandler();
-
+$endif$
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
