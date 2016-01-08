@@ -243,6 +243,12 @@
 
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
 
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="$(TestPath)\project.json"/>
+    </ItemGroup>
+    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
+
     <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)"/>
     <Message Text="Running $(DnuBuildCommand) on $(TestPath)" />
@@ -266,11 +272,11 @@
 
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(IsTemplate)' == 'true'">
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="$(TestPath)\project.json"/>
     </ItemGroup>
-    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
+    <VerifySortedDependencies FileList="@(FilesToVerify)" Condition="'$(IsTemplate)' == 'true'"/>
 
     <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'" />
