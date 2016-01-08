@@ -176,6 +176,12 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
+
+    <!-- replace template engine rules so we can build, we will assume whatever is in the $else$ condition is what we want to keep. We also assume that $else$ and the $if$ are on the same line -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.+?\$else\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
+    <!-- remove any trailing $endif$ -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
+
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
   </Target>
@@ -219,6 +225,11 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
+
+    <!-- replace template engine rules so we can build, we will assume whatever is in the $else$ condition is what we want to keep. We also assume that $else$ and the $if$ are on the same line -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.+?\$else\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
+    <!-- remove any trailing $endif$ -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />

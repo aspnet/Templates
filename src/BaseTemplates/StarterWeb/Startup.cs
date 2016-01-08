@@ -46,9 +46,9 @@ namespace $safeprojectname$
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+$if$ ($aspnet_useplatformhandler$ == false) $else$
             app.UseIISPlatformHandler();
-
+$endif$
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
