@@ -266,6 +266,12 @@
 
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
 
+    <ItemGroup>
+      <FilesToVerify Remove="@(FilesToVerify)"/>
+      <FilesToVerify Include="$(TestPath)\project.json"/>
+    </ItemGroup>
+    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
+
     <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'" />
     <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>

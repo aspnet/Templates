@@ -172,4 +172,73 @@
             </Code>
         </Task>
     </UsingTask>     
+    <UsingTask
+        TaskName="VerifySortedDependencies"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <FileList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {   foreach(var taskItem in FileList)
+                    {
+                        int lineNumber = 0;
+                        int sectionLineNumber = 0;
+                        string jsonFile = taskItem.ItemSpec;
+                        using (var reader = System.IO.File.OpenText(jsonFile))
+                        {
+                            var packages = new List<string>();
+                            bool processing = false;
+                            while (!reader.EndOfStream )
+                            {
+                                lineNumber++;
+                                var line = reader.ReadLine().Split(':')[0].Trim().Replace("\"", "");
+                                if (string.Equals(line, "dependencies"))
+                                {
+                                    processing = true;
+                                    sectionLineNumber = lineNumber;
+                                    continue;
+                                }
+                                else if (processing)
+                                {
+                                    if (line.StartsWith("}"))
+                                    {
+                                        processing = false;
+                                        var sortedPackages = new List<string>(packages);
+                                        sortedPackages.Sort();
+                                        for(int i=0; i < packages.Count; i++)
+                                        {
+                                            if (!string.Equals(packages[i], sortedPackages[i]))
+                                            {
+                                                Log.LogError("Dependencies not sorted in dependency section starting on line {0} in {1} {2} was found, expected {3}.", sectionLineNumber, jsonFile, packages[i], sortedPackages[i]);
+                                            }
+                                        }
+                                        packages.Clear();
+                                        continue;
+                                    }
+                                    packages.Add(line);
+                                }
+                            }
+                        }                    
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error Verifying Using statements");
+                    Log.LogErrorFromException(ex);
+                }
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
 </Project>
