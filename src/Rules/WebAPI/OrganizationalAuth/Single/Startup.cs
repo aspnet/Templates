@@ -43,7 +43,9 @@ namespace $safeprojectname$
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-$if$ ($aspnet_useplatformhandler$ == false) $else$
+$if$ ($aspnet_useplatformhandler$ == false)
+$else$
+
             app.UseIISPlatformHandler();
 $endif$
             app.UseStaticFiles();

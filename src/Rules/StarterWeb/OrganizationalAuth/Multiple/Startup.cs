@@ -54,8 +54,9 @@ namespace $safeprojectname$
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-            }
-$if$ ($aspnet_useplatformhandler$ == false) $else$
+            }$if$ ($aspnet_useplatformhandler$ == false)
+$else$
+
             app.UseIISPlatformHandler();
 $endif$
             app.UseStaticFiles();

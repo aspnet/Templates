@@ -5,8 +5,9 @@
   },
 
   "dependencies": {
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
-$if$ ($aspnet_useplatformhandler$ == false)    "Microsoft.AspNet.Mvc": "6.0.0-*",$else$    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
+    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)
+    "Microsoft.AspNet.Mvc": "6.0.0-*",$else$
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",$endif$
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.StaticFiles": "1.0.0-*",

@@ -82,9 +82,10 @@ namespace $safeprojectname$
                     }
                 }
                 catch { }
-            }
-$if$ ($aspnet_useplatformhandler$ == false) $else$
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            }$if$ ($aspnet_useplatformhandler$ == false)
+$else$
+
+            app.UseIISPlatformHandler();
 $endif$
             app.UseStaticFiles();
 

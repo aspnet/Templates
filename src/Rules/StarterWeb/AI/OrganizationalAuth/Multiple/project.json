@@ -10,7 +10,9 @@
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNet.Authentication.OpenIdConnect": "1.0.0-*",
     "Microsoft.AspNet.Diagnostics": "1.0.0-*",
-$if$ ($aspnet_useplatformhandler$ == false)    "Microsoft.AspNet.Mvc": "6.0.0-*",$else$    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-*",$if$ ($aspnet_useplatformhandler$ == false)
+    "Microsoft.AspNet.Mvc": "6.0.0-*",$else$
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",$endif$
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
