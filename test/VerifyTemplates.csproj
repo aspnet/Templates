@@ -164,7 +164,10 @@
     <MakeDir Directories="$(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(ZipCommand) $(OutputPath)\ProjectTemplates\$(TargetName).zip * &gt; nul" />
     <ItemGroup>
+      <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
+      <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
+      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
     </ItemGroup>
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(ProjectGuid)" />
@@ -219,7 +222,10 @@
     <Copy SourceFiles="@(ItemsToCopy)" DestinationFiles="@(ItemsToCopy->'$(TestPath)%(RecursiveDir)%(Filename)%(Extension)')" Condition="'@(ItemsToCopy)' != ''"/>
     <Copy SourceFiles="$(TestPath)\%(RulesToVerify.BaseTemplate).xproj" DestinationFiles="$(TestPath)\$(TargetName).xproj"/>
     <ItemGroup>
+      <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*"/>
+      <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*"/>
+      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*"/>
     </ItemGroup>
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />

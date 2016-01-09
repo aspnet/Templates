@@ -217,10 +217,7 @@
                                         sortedPackages.Sort();
                                         for(int i=0; i < packages.Count; i++)
                                         {
-                                            // blank lines are ok here as we might be parsing $if$ $else$ in the build, but this will only happen on the CI
-                                            if (!string.IsNullOrEmpty(packages[i]) 
-                                              && !string.IsNullOrEmpty(sortedPackages[i])
-                                              && !string.Equals(packages[i], sortedPackages[i]))
+                                            if (!string.Equals(packages[i], sortedPackages[i]))
                                             {
                                                 Log.LogError("Dependencies not sorted in dependency section starting on line {0} in {1} {2} was found, expected {3}.", sectionLineNumber, jsonFile, packages[i], sortedPackages[i]);
                                             }
@@ -228,7 +225,11 @@
                                         packages.Clear();
                                         continue;
                                     }
-                                    packages.Add(line);
+                                    // blank lines are ok here as we might be parsing $if$ $else$ in the build, but this will only happen on the CI
+                                    if (!string.IsNullOrEmpty(line))
+                                    {
+                                        packages.Add(line);
+                                    }
                                 }
                             }
                         }                    
