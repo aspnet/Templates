@@ -15,7 +15,6 @@ namespace $safeprojectname$
             var hostingConfiguration = WebApplicationConfiguration.GetDefault(args);
 
             var application = new WebApplicationBuilder()
-                .UseApplicationBasePath(Directory.GetCurrentDirectory())
                 .UseConfiguration(hostingConfiguration)
                 .UseStartup<Startup>()
                 .Build();
