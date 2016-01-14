@@ -291,7 +291,7 @@ namespace $safeprojectname$.Controllers
         {
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, User.GetUserId());
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _signInManager.GetUserId(User));
             return Challenge(provider, properties);
         }
 
@@ -305,7 +305,7 @@ namespace $safeprojectname$.Controllers
             {
                 return View("Error");
             }
-            var info = await _signInManager.GetExternalLoginInfoAsync(User.GetUserId());
+            var info = await _signInManager.GetExternalLoginInfoAsync(await UserManager.GetUserIdAsync(user));
             if (info == null)
             {
                 return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
@@ -339,7 +339,7 @@ namespace $safeprojectname$.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return _userManager.FindByIdAsync(HttpContext.User.GetUserId());
+            return _signInManager.GetUserAsync(HttpContext.User);
         }
 
         #endregion
