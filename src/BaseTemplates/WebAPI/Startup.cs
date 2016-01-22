@@ -19,7 +19,7 @@ namespace $safeprojectname$
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }

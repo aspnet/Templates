@@ -27,7 +27,7 @@ namespace $safeprojectname$
                 builder.AddUserSecrets();
             }
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }

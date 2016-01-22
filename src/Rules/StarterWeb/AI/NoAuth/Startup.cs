@@ -25,7 +25,7 @@ namespace $safeprojectname$
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-            Configuration = builder.Build();
+            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
         public IConfigurationRoot Configuration { get; set; }
