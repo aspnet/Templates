@@ -56,8 +56,6 @@ $endif$
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseStaticFiles();
-
             app.UseJwtBearerAuthentication(options =>
             {
                 options.AutomaticAuthenticate = true;
