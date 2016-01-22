@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using $safeprojectname$.Models;
 
-namespace $safeprojectname$.Models
+namespace $safeprojectname$.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
