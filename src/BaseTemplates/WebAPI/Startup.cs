@@ -41,8 +41,6 @@ $else$
 
             app.UseIISPlatformHandler();
 $endif$
-            app.UseStaticFiles();
-
             app.UseMvc();
         }
     }

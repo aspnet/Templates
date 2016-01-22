@@ -48,8 +48,6 @@ $else$
 
             app.UseIISPlatformHandler();
 $endif$
-            app.UseStaticFiles();
-
             app.UseJwtBearerAuthentication(options =>
             {
                 options.AutomaticAuthenticate = true;

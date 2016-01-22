@@ -54,8 +54,6 @@ $endif$
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseStaticFiles();
-
             app.UseMvc();
         }
     }
