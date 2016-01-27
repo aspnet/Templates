@@ -10,6 +10,7 @@
     <RootNamespace>$safeprojectname$</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\bin\$(MSBuildProjectName)\</OutputPath>
+    <TargetFrameworkVersion>v$targetframeworkversion$</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
