@@ -68,7 +68,6 @@ $endif$
 
             app.UseOpenIdConnectAuthentication(options =>
             {
-                options.AutomaticChallenge = true;
                 options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
                 options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
