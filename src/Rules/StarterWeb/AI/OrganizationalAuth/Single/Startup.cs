@@ -53,8 +53,8 @@ namespace $safeprojectname$
 
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
