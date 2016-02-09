@@ -19,12 +19,24 @@
     "dnxcore50": { }
   },
 
+  "tools": {
+    "dotnet-publish-iis": "1.0.0-*"
+  },
+
+  "content": [
+    "wwwroot"
+  ],
+
   "exclude": [
-    "wwwroot",
     "node_modules"
   ],
+
   "publishExclude": [
     "**.user",
     "**.vspscc"
-  ]
+  ],
+
+  "scripts": {
+      "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
+  }
 }

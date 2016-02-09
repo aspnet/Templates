@@ -7,3 +7,4 @@ packages/**
 *.user
 project.lock.json
 Templates.BranchSettings.targets
+**/.vscode

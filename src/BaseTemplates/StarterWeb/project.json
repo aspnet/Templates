@@ -30,15 +30,27 @@
     "dnxcore50": { }
   },
 
-  "exclude": [
+  "tools": {
+    "dotnet-publish-iis": "1.0.0-*"
+  },
+
+  "content": [
     "wwwroot",
+    "Views",
+    "appsettings.json"
+  ],
+
+  "exclude": [
     "node_modules"
   ],
+
   "publishExclude": [
     "**.user",
     "**.vspscc"
   ],
+
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
   }
 }

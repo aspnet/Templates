@@ -19,7 +19,6 @@
   <TemplateContent>
     <Project File="WebAPI.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="hosting.json">hosting.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="project.json">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>

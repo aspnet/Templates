@@ -15,6 +15,7 @@ namespace $safeprojectname$
             var hostingConfiguration = WebApplicationConfiguration.GetDefault(args);
 
             var application = new WebApplicationBuilder()
+                .UseServerFactory("Microsoft.AspNet.Server.Kestrel")
                 .UseConfiguration(hostingConfiguration)
                 .UseStartup<Startup>()
                 .Build();

@@ -28,12 +28,22 @@
     "dnxcore50": { }
   },
 
-  "exclude": [
+  "content": [
     "wwwroot",
+    "Views",
+    "appsettings.json"
+  ],
+
+  "exclude": [
     "node_modules"
   ],
+
   "publishExclude": [
     "**.user",
     "**.vspscc"
-  ]
+  ],
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
+  }
 }
