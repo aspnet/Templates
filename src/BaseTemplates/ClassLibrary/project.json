@@ -1,8 +1,5 @@
 ﻿{
     "version": "1.0.0-*",
-    "compilationOptions": {
-        "emitEntryPoint": false
-    },
 
     "dependencies": {
         "NETStandard.Library": "1.0.0-rc2-23810"
