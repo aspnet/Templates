@@ -1,32 +1,14 @@
 ﻿{
-  "version": "1.0.0-*",
-  "description": "$projectname$ Console Application",
-  "authors": [ "$username$" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+    "version": "1.0.0-*",
+    "compilationOptions": {
+        "emitEntryPoint": true
+    },
 
-  "compilationOptions": {
-    "emitEntryPoint": true
-  },
+    "dependencies": {
+        "NETStandard.Library": "1.0.0-rc2-23810"
+    },
 
-  "dependencies": {
-  },
-
-  "commands": {
-    "$safeprojectname$": "$safeprojectname$"
-  },
-
-  "frameworks": {
-    "dnx451": { },
-    "dnxcore50": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-*",
-        "System.Collections": "4.0.11-*",
-        "System.Console": "4.0.0-*",
-        "System.Linq": "4.0.1-*",
-        "System.Threading": "4.0.11-*"
-      }
+    "frameworks": {
+        "dnxcore50": { }
     }
-  }
 }
