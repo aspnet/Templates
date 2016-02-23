@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name Package="{AAB75614-2F8F-4DA6-B0A6-763C6DBB2969}" ID="5009"/>
-    <Description Package="{AAB75614-2F8F-4DA6-B0A6-763C6DBB2969}" ID="5010"/>
+    <Name Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5009"/>
+    <Description Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5010"/>
     <Icon>LibraryProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
