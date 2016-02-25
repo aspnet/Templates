@@ -128,7 +128,7 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
-    <!-- StarterWeb AI Files 
+    <!-- StarterWeb AI Files
     <LooseFiles Include="
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
