@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -36,6 +36,11 @@ namespace $safeprojectname$
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+$if$ ($aspnet_useplatformhandler$ == false)
+$else$
+
+            app.UseIISPlatformHandler();
+$endif$
 
             if (env.IsDevelopment())
             {
@@ -45,11 +50,8 @@ namespace $safeprojectname$
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-            }$if$ ($aspnet_useplatformhandler$ == false)
-$else$
+            }
 
-            app.UseIISPlatformHandler();
-$endif$
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

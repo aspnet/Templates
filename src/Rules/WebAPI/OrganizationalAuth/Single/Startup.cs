@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,12 +48,12 @@ $else$
 
             app.UseIISPlatformHandler();
 $endif$
-            app.UseJwtBearerAuthentication(options =>
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
-                options.AutomaticAuthenticate = true;
-                options.AutomaticChallenge = true;
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"];
-                options.Audience = Configuration["Authentication:AzureAd:TenantId"];
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
+                Audience = Configuration["Authentication:AzureAd:TenantId"]
             });
 
             app.UseMvc();

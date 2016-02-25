@@ -1,29 +1,28 @@
 ﻿{
   "version": "1.0.0-*",
   "compilationOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
   },
 
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)
-    "Microsoft.AspNet.Mvc": "6.0.0-*",$else$
-    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-*",
-    "Microsoft.AspNet.Mvc": "6.0.0-*",$endif$
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$else$
+    "Microsoft.AspNetCore.IISPlatformHandler": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$endif$
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*"
-  },
-
-  "commands": {
-    "web": "$safeprojectname$"
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
+    "NETStandard.Library": "1.0.0-*"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "dnxcore50": {
+      "imports": "portable-net45+win8"
+    }
   },
 
   "tools": {

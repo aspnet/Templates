@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authentication.Cookies;
-using Microsoft.AspNet.Authentication.OpenIdConnect;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -49,6 +49,11 @@ namespace $safeprojectname$
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+$if$ ($aspnet_useplatformhandler$ == false)
+$else$
+
+            app.UseIISPlatformHandler();
+$endif$
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -60,27 +65,23 @@ namespace $safeprojectname$
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-            }$if$ ($aspnet_useplatformhandler$ == false)
-$else$
-
-            app.UseIISPlatformHandler();
-$endif$
+            }
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
 
-            app.UseCookieAuthentication(options =>
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                options.AutomaticAuthenticate = true;
+                AutomaticAuthenticate = true
             });
 
-            app.UseOpenIdConnectAuthentication(options =>
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-                options.ClientId = Configuration["Authentication:AzureAd:ClientId"];
-                options.Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common";
-                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                ClientId = Configuration["Authentication:AzureAd:ClientId"],
+                Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
+                SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme,
 
-                options.TokenValidationParameters = new TokenValidationParameters
+                TokenValidationParameters = new TokenValidationParameters
                 {
                     // Instead of using the default validation (validating against a single issuer value, as we do in line of business apps),
                     // we inject our own multitenant validation logic
@@ -89,8 +90,8 @@ $endif$
                     // If the app needs access to the entire organization, then add the logic
                     // of validating the Issuer here.
                     // IssuerValidator
-                };
-                options.Events = new OpenIdConnectEvents()
+                },
+                Events = new OpenIdConnectEvents
                 {
                     OnAuthenticationValidated = (context) =>
                     {
@@ -103,7 +104,7 @@ $endif$
                         context.HandleResponse(); // Suppress the exception
                         return Task.FromResult(0);
                     }
-                };
+                }
             });
 
             app.UseMvc(routes =>

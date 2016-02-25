@@ -6,8 +6,8 @@
   <PropertyGroup>
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
-    <DnuBuildCommand>dnu build</DnuBuildCommand>
-    <DnuRestoreCommand>dnu restore </DnuRestoreCommand>
+    <DotNetBuildCommand>dotnet build</DotNetBuildCommand>
+    <DotNetRestoreCommand>dotnet restore</DotNetRestoreCommand>
     <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
     <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
@@ -82,6 +82,7 @@
       <RuleName>WindowsAuth</RuleName>
       <ProjectGuid>A0BD3573-92DA-401C-AEC4-C45A4A0405E1</ProjectGuid>
     </RulesToVerify>
+<!--
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\NoAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>AI</RuleName>
@@ -118,6 +119,7 @@
       <AdditionalRuleFiles2>..\NoAuth\**\*.*</AdditionalRuleFiles2>
       <ProjectGuid>6D670E6A-514A-4782-AD59-28675779EB09</ProjectGuid>
     </RulesToVerify>
+    -->
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\OrganizationalAuth\Single">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>Single</RuleName>
@@ -130,6 +132,7 @@
       <ProjectGuid>8FDB04C1-DCB5-440B-A5AE-F78F543A745C</ProjectGuid>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
     </RulesToVerify>
+    <!--
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\NoAuth">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>AI</RuleName>
@@ -150,6 +153,7 @@
       <AdditionalRuleFiles2>..\NoAuth\**\*.*</AdditionalRuleFiles2>
       <ProjectGuid>0BF8AF1A-7511-4FF8-8DC1-5C55A8BB3A79</ProjectGuid>
     </RulesToVerify>
+    -->
   </ItemGroup>
 
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">
@@ -175,6 +179,7 @@
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$targetframeworkversion\$" Condition="'%(Extension)' == '.xproj'" Replace="4.5" />
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
@@ -233,6 +238,7 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(Guid2)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$targetframeworkversion\$" Condition="'%(Extension)' == '.xproj'" Replace="4.5" />
 
     <!-- remove anything between $if$ and the end of line -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.*" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
@@ -247,10 +253,6 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
-    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
-      <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
-    </GetDotNetFolder>
-
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
 
     <ItemGroup>
@@ -259,10 +261,10 @@
     </ItemGroup>
     <VerifySortedDependencies FileList="@(FilesToVerify)"/>
 
-    <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" />
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)"/>
-    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" />
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" />
+    <Message Text="Running $(DotNetRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) -f $(PackageSourceForRestore)"/>
+    <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" />
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')" />-->
   </Target>
   
@@ -276,10 +278,6 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <GetDotNetFolder Condition="'$(DotNetFolder)' == ''">
-      <Output PropertyName="DotNetFolder" TaskParameter="DotNetPath"/>
-    </GetDotNetFolder>
-
     <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
 
     <ItemGroup Condition="'$(IsTemplate)' == 'true'">
@@ -288,10 +286,10 @@
     </ItemGroup>
     <VerifySortedDependencies FileList="@(FilesToVerify)" Condition="'$(IsTemplate)' == 'true'"/>
 
-    <Message Text="Running $(DnuRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'" />
-    <Message Text="Running $(DnuBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetFolder)$(DnuBuildCommand)" Condition="'$(IsTemplate)' == 'true'" />
+    <Message Text="Running $(DotNetRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" Condition="'$(IsTemplate)' == 'true'"/>
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')"/>-->
   </Target>
 

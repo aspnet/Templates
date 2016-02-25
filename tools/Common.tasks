@@ -50,9 +50,9 @@
                 <![CDATA[
                 try
                 {
-                    string runtimeRoot = ".dnx";
+                    string runtimeRoot = ".nuget";
                     string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    var packageFolder = Path.Combine(userProfile, ".dnx","packages");
+                    var packageFolder = Path.Combine(userProfile, ".nuget","packages");
                     PackageFolderPath = new TaskItem(packageFolder);
                 }
                 catch(Exception ex)
@@ -66,62 +66,6 @@
             </Code>
         </Task>
     </UsingTask> 
-    <UsingTask
-        TaskName="GetDotNetFolder"
-        TaskFactory="CodeTaskFactory"
-        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
-        <ParameterGroup>
-            <DotNetPath ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
-        </ParameterGroup>
-        <Task>
-            <Using Namespace="System" />
-            <Using Namespace="Microsoft.Build.Framework" />
-            <Using Namespace="Microsoft.Build.Utilities" />
-            <Code Type="Fragment" Language="cs">
-                <![CDATA[
-                try
-                {
-                    string dnxHome = Environment.GetEnvironmentVariable("DNX_HOME");
-                    if (string.IsNullOrEmpty(dnxHome))
-                    {
-                        dnxHome = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".dnx");
-                    }
-                    dnxHome = Environment.ExpandEnvironmentVariables(dnxHome);
-                    string defaultAlias = Path.Combine(dnxHome, "alias", "default.txt");
-                    if (!File.Exists(defaultAlias))
-                    {
-                        Log.LogError("Unable to locate default alias {0}.", defaultAlias);
-                    }
-                    else 
-                    {
-                        using (var file = File.OpenText(defaultAlias))
-                        {
-                            string runtime = file.ReadToEnd().Trim();
-                            Log.LogMessage(@"Checking for runtime folder at {0}\runtimes\{1}\bin", dnxHome, runtime);
-                            var runtimeBin = Path.Combine(dnxHome, "runtimes", runtime, "bin");
-                            if (!Directory.Exists(runtimeBin))
-                            {
-                                Log.LogError("{0} was specified in {1}, but it was not installed.", runtimeBin, defaultAlias);
-                            }
-                            else
-                            {
-                                runtimeBin += @"\";
-                                DotNetPath = new TaskItem(runtimeBin);
-                            }
-                        }
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Log.LogError("Error getting DotNet folder");
-                    Log.LogErrorFromException(ex);
-                }
-                
-                return !Log.HasLoggedErrors;
-                ]]>
-            </Code>
-        </Task>
-    </UsingTask>
     <UsingTask
         TaskName="RegexReplace"
         TaskFactory="CodeTaskFactory"

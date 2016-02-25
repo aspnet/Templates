@@ -32,18 +32,9 @@
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
+        <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <TemplatePackages>$(MSBuildThisFileDirectory)\TemplatePackages.txt</TemplatePackages>
-        <DependencyListFilename>PackageList.generated.txt</DependencyListFilename>
-        <MergedDependencyListPath>$(TemplatesBin)\PackageList.generated.txt</MergedDependencyListPath>
-        <CopyPackagesListPath>$(TemplatesBin)\CopyPackageList.generated.txt</CopyPackagesListPath>
-        <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
-        <WarnOnMissingPackage Condition="'$(WarnOnMissingPackage)' == ''">false</WarnOnMissingPackage>
-        <FailOnLowerVersion Condition="'$(FailOnLowerVersion)' == ''">true</FailOnLowerVersion>
-    </PropertyGroup>
-    
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
         <!-- Visual Studio 14 properties -->
         <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
@@ -93,11 +84,9 @@
         <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)" PackageType="$(PackageType)">
             <Output PropertyName="PackageSource" TaskParameter="PackageSource"/>
         </GetPackageSource>
-        
         <PropertyGroup>
             <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
             <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</PackageSource>
-
             <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>

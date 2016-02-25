@@ -3,6 +3,7 @@
 packages/**
 .nuget/**
 .dnx/**
+.build/**
 **/.vs/**
 *.user
 project.lock.json

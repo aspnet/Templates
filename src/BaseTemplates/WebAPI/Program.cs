@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
 
 namespace $safeprojectname$
 {
@@ -13,15 +13,15 @@ namespace $safeprojectname$
         // Entry point for the application.
         public static void Main(string[] args)
         {
-            var hostingConfiguration = WebApplicationConfiguration.GetDefault(args);
-
-            var application = new WebApplicationBuilder()
-                .UseServerFactory("Microsoft.AspNet.Server.Kestrel")
-                .UseConfiguration(hostingConfiguration)
+            var host = new WebHostBuilder()
+                .UseServer("Microsoft.AspNetCore.Server.Kestrel")
+                .UseApplicationBasePath(Directory.GetCurrentDirectory())
+                .UseDefaultConfiguration()
+                .UseIISPlatformHandlerUrl()
                 .UseStartup<Startup>()
                 .Build();
 
-            application.Run();
+            host.Run();
         }
     }
 }
