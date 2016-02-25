@@ -15,6 +15,6 @@ var AUTHORS='Microsoft Open Technologies, Inc.'
 default BASE_DIR='${Directory.GetCurrentDirectory()}'
 default TOOLS_DIR='${Path.Combine(BASE_DIR, "tools")}'
 
-#verifytemplates 
+#verify 
 exec program='cmd' commandline='/c ${TOOLS_DIR}\BuildAndVerify.cmd' workingdir='${BASE_DIR}'
 
