@@ -128,7 +128,7 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
-    <!-- StarterWeb AI Files -->
+    <!-- StarterWeb AI Files 
     <LooseFiles Include="
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
@@ -150,7 +150,7 @@
               Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
-    </LooseFiles>
+    </LooseFiles> -->
 
     <!-- WebAPI Common Auth Files -->
     <LooseFiles Include="
@@ -174,7 +174,7 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
-    <!-- WebAPI AI Files -->
+    <!-- WebAPI AI Files
     <LooseFiles Include="
               Rules\WebAPI\AI\NoAuth\project.json;
               Rules\WebAPI\AI\NoAuth\appsettings.json;
@@ -184,7 +184,7 @@
               Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
-    </LooseFiles>
+    </LooseFiles> -->
   </ItemGroup>
 
   <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip" DependsOnTargets="SetupPackageSource">
