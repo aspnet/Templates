@@ -9,7 +9,7 @@
     <ProjectGuid>$guid1$</ProjectGuid>
     <RootNamespace>$safeprojectname$</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\bin\$(MSBuildProjectName)\</OutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\</OutputPath>
     <TargetFrameworkVersion>v$targetframeworkversion$</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
