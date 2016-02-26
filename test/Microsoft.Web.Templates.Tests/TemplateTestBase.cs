@@ -6,10 +6,10 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.AspNet.TestHost;
 using Microsoft.Dnx.Runtime;
-using Microsoft.Dnx.Runtime.Infrastructure;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Microsoft.Web.Templates.Tests
 {
@@ -45,17 +45,22 @@ namespace Microsoft.Web.Templates.Tests
                 TemplateName);
 
             var hostingEnvironment = new HostingEnvironment();
-            hostingEnvironment.Initialize(applicationBasePath, environmentName: null);
+            hostingEnvironment.Initialize(applicationBasePath, new WebHostOptions(), configuration: null);
             try
             {
                 CallContextServiceLocator.Locator.ServiceProvider = new WrappingServiceProvider(provider, environment, hostingEnvironment);
                 var assemblyProvider = CreateAssemblyProvider(TemplateName);
                 var builder = TestServer.CreateBuilder()
                     .UseStartup(TemplateName)
-                    .UseServices(services => 
+                    .UseServices(services =>
                     {
-                        services.AddInstance<IHostingEnvironment>(hostingEnvironment);
-                        services.AddInstance(assemblyProvider);
+#if DNX451
+                        AppDomain.CurrentDomain.SetData("APP_CONTEXT_BASE_DIRECTORY", applicationBasePath);
+#endif
+                        //Debugger.Launch();
+                        services.AddSingleton<IApplicationEnvironment>(environment);
+                        services.AddSingleton<IHostingEnvironment>(hostingEnvironment);
+                        services.AddSingleton(assemblyProvider);
                     });
                 return new TestServer(builder);
             }

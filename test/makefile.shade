@@ -15,7 +15,7 @@ default Configuration='${E("Configuration")}'
 var VERSION='0.1' 
 var FULL_VERSION='0.1' 
 var AUTHORS='Microsoft Open Technologies, Inc.' 
- 
+
 use-standard-lifecycle
 
 #repo-initialize target='initialize'
@@ -27,9 +27,14 @@ exec program='cmd' commandline='/C dnu restore${restore_options} -f ${package_so
 exec program='dnu' commandline='restore${restore_options} -f ${package_source} -f https://www.nuget.org/api/v2/' if='IsMono' workingdir='${testFolder}'
 
 #xunit-test target='test'
-  k-test each='var projectFile in Files.Include("test/**/project.json")'
+k-test each='var projectFile in Files.Include("test/**/project.json")'
 
 functions @{
     string E(string key) { return Environment.GetEnvironmentVariable(key); }
     void E(string key, string value) { Environment.SetEnvironmentVariable(key, value); }
 }
+macro name='Dnx' command='string' dnxDir='string'
+    k
+
+macro name='Dnx' command='string' dnxDir='string' dnvmUse='string'
+    k
