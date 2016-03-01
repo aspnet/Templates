@@ -6,6 +6,8 @@
     },
 
     "frameworks": {
-        "netstandard1.5": { }
+        "netstandard1.5": {
+          "imports": "dotnet5.5"
+        }
     }
 }

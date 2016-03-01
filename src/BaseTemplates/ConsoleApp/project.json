@@ -9,6 +9,8 @@
     },
 
     "frameworks": {
-        "netstandardapp1.5": { }
+        "netstandardapp1.5": {
+          "imports": "dnxcore50"
+        }
     }
 }
