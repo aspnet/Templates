@@ -23,7 +23,7 @@
     <VSTemplate>
       <TargetName/>
       <SearchPath/>
-      <UpdateReferences>true</UpdateReferences>
+      <UpdatePackageReferences>true</UpdatePackageReferences>
     </VSTemplate>
   </ItemDefinitionGroup>
   <!--This item group contains templates which are to be built-->
@@ -31,12 +31,10 @@
     <VSTemplate Include="ClassLibrary.vstemplate">
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
       <SearchPath>ClassLibrary\;$(ResourcesPath);Common\</SearchPath>
-      <UpdateReferences>false</UpdateReferences>
     </VSTemplate>
     <VSTemplate Include="DNXClassLibrary.vstemplate">
       <TargetName>DNXClassLibrary</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
-      <UpdateReferences>false</UpdateReferences>
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
@@ -46,6 +44,7 @@
       <TargetName>DNXConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
+    <!--
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
       <SearchPath>EmptyWeb\;$(ResourcesPath);Common\</SearchPath>
@@ -58,10 +57,12 @@
       <TargetName>$(WebAPITemplateName)</TargetName>
       <SearchPath>WebAPI\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
+    -->
   </ItemGroup>
   <Target Name="BuildAllTemplates" DependsOnTargets="SetupPackageSource;GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
       <TargetName>%(VSTemplateItem.TargetName)</TargetName>
+      <UpdatePackageReferences>%(VSTemplateItem.UpdatePackageReferences)</UpdatePackageReferences>
       <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>
     </PropertyGroup>
     <RemoveDir Directories="$(TempPath)" />
@@ -84,8 +85,8 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="'$(UseExactPackageVersions)' == 'true' and '$(UpdateReferences)' == 'true'"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true' and '$(UpdateReferences)' == 'true'"/>
+    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' == 'true')"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' != 'true')"/>
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
