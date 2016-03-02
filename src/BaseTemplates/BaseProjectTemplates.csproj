@@ -44,7 +44,6 @@
       <TargetName>DNXConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
-    <!--
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
       <SearchPath>EmptyWeb\;$(ResourcesPath);Common\</SearchPath>
@@ -57,7 +56,6 @@
       <TargetName>$(WebAPITemplateName)</TargetName>
       <SearchPath>WebAPI\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
-    -->
   </ItemGroup>
   <Target Name="BuildAllTemplates" DependsOnTargets="SetupPackageSource;GetTemplateItemsFromVSTemplates" Inputs="@(VSTemplateItem)" Outputs="$(TemplatesOutputPath)%(TargetName).zip">
     <PropertyGroup>
