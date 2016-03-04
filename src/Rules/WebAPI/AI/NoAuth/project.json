@@ -6,10 +6,10 @@
   },
 
   "dependencies": {
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$else$
+    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.AspNetCore.HttpOverrides": "1.0.0-*",
     "Microsoft.AspNetCore.IISPlatformHandler": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$endif$
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",

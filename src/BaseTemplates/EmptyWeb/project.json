@@ -5,10 +5,10 @@
     "preserveCompilationContext": true
   },
 
-  "dependencies": {$if$ ($aspnet_useplatformhandler$ == false)
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",$else$
+  "dependencies": {
+    "Microsoft.AspNetCore.HttpOverrides": "1.0.0-*",
     "Microsoft.AspNetCore.IISPlatformHandler": "1.0.0-*",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",$endif$
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "NETStandard.Library": "1.0.0-*"
   },
 
