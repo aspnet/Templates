@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace $safeprojectname$
 {
@@ -76,7 +77,8 @@ $endif$
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"],
-                SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme
+                SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme,
+                ResponseType = OpenIdConnectResponseTypes.IdToken
             });
 
             app.UseMvc(routes =>

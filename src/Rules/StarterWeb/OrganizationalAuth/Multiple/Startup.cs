@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 namespace $safeprojectname$
@@ -77,6 +78,7 @@ $endif$
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
                 SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme,
+                ResponseType = OpenIdConnectResponseTypes.IdToken,
 
                 TokenValidationParameters = new TokenValidationParameters
                 {
