@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,8 +23,13 @@ namespace $safeprojectname$
         {$if$ ($aspnet_useplatformhandler$ == false)
 $else$
             app.UseIISPlatformHandler();
+$endif$
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
-$endif$            app.Run(async (context) =>
+            app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
             });
