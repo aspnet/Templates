@@ -44,7 +44,6 @@
   },
 
   "tools": {
-    "dotnet-aspnet-codegenerator":  "1.0.0-*",
     "dotnet-publish-iis": "1.0.0-*",
     "dotnet-razor-tooling": "1.0.0-*"
   },
