@@ -11,14 +11,6 @@
       "environmentVariables" : {
         "ASPNET_ENVIRONMENT": "Development"
       }
-    },
-    "web": {
-      "commandName" : "web",
-      "launchBrowser": true,
-      "launchUrl": "api/values",
-      "environmentVariables" : {
-        "ASPNET_ENVIRONMENT": "Development"
-      }
     }
   }
 }
