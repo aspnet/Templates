@@ -91,11 +91,10 @@ $endif$
                 // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
                 try
                 {
-                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                        .CreateScope())
+                    using (var context = new ApplicationDbContext(
+                        app.ApplicationServices.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
                     {
-                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                             .Database.Migrate();
+                        context.Database.Migrate();
                     }
                 }
                 catch { }
