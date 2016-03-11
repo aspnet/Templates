@@ -1,6 +1,5 @@
 ﻿{
   "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
-  "version": "1.0.0-*",
   "compilationOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
@@ -38,11 +37,6 @@
 
   "exclude": [
     "node_modules"
-  ],
-
-  "publishExclude": [
-    "**.user",
-    "**.vspscc"
   ],
 
   "scripts": {
