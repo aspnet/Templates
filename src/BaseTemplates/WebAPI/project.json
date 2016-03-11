@@ -1,5 +1,4 @@
 ﻿{
-  "version": "1.0.0-*",
   "compilationOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
@@ -39,11 +38,6 @@
 
   "exclude": [
     "node_modules"
-  ],
-
-  "publishExclude": [
-    "**.user",
-    "**.vspscc"
   ],
 
   "scripts": {
