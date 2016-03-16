@@ -59,7 +59,7 @@ $endif$
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                Audience = Configuration["Authentication:AzureAd:TenantId"]
+                Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
             });
 
             app.UseMvc();
