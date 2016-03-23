@@ -19,14 +19,14 @@ namespace $safeprojectname$.Controllers
 
         public async Task<IActionResult> SignOut()
         {
-            var callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
+            var callbackUrl = Url.Action("SignedOut", "Account", values: null, protocol: Request.Scheme);
             await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.Authentication.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = callbackUrl });
             return new EmptyResult();
         }
 
-        public IActionResult SignOutCallback()
+        public IActionResult SignedOut()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
