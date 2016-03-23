@@ -83,7 +83,6 @@ $endif$
             {
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
-                SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme,
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
                 ResponseType = OpenIdConnectResponseTypes.IdToken,
 
