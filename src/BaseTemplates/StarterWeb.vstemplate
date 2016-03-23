@@ -2429,10 +2429,10 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="site.min.css">site.min.css</ProjectItem>
         </Folder>
         <Folder Name="images" TargetFolderName="images">
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner1.png">banner1.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner2.png">banner2.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner3.png">banner3.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner4.png">banner4.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner1.svg">banner1.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner2.svg">banner2.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner3.svg">banner3.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner4.svg">banner4.svg</ProjectItem>
         </Folder>
         <Folder Name="js" TargetFolderName="js">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.js">site.js</ProjectItem>
