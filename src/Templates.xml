@@ -216,7 +216,7 @@
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthCommon">
-          <AddFile Destination="Views\Account\SignOutCallback.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml"/>
+          <AddFile Destination="Views\Account\SignedOut.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\OrganizationalAuth\Common\project.json"/>

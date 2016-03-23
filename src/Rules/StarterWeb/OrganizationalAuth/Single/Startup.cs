@@ -40,6 +40,8 @@ namespace $safeprojectname$
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddAuthentication(SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,17 +68,13 @@ $endif$
             }
             app.UseStaticFiles();
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AutomaticAuthenticate = true
-            });
+            app.UseCookieAuthentication();
 
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                PostLogoutRedirectUri = Configuration["Authentication:AzureAd:PostLogoutRedirectUri"],
-                SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme,
+                CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
                 ResponseType = OpenIdConnectResponseTypes.IdToken
             });
 

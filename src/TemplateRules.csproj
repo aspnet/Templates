@@ -97,7 +97,7 @@
     <!-- StarterWeb Org Auth Common Files -->
     <LooseFiles Include="
               Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
-              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\project.json">
       <TargetName>$(Rules)</TargetName>
