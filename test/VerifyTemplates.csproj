@@ -8,8 +8,8 @@
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
     <DotNetBuildCommand>dotnet build</DotNetBuildCommand>
     <DotNetRestoreCommand>dotnet restore</DotNetRestoreCommand>
-    <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
-    <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
+    <TemplatesTestPath>$(IntermediateOutputPath)\Test\</TemplatesTestPath>
+    <TemplatesTestRulesPath>$(IntermediateOutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
