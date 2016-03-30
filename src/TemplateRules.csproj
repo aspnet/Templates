@@ -84,6 +84,8 @@
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\IndividualAuth\wwwroot\css\site.css;
+              Rules\StarterWeb\IndividualAuth\wwwroot\css\site.min.css;
               Rules\StarterWeb\IndividualAuth\appsettings.json;
               Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
