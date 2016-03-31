@@ -12,6 +12,6 @@
   },
 
   "frameworks": {
-    "netcoreapp1.0": {}
+    "netstandardapp1.5": {}
   }
 }
