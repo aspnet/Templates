@@ -1,13 +1,13 @@
 ﻿{
-    "version": "1.0.0-*",
+  "version": "1.0.0-*",
 
-    "dependencies": {
-        "NETStandard.Library": "1.0.0-rc2-23830"
-    },
+  "dependencies": {
+    "NETStandard.Library": "1.0.0-rc2-23830"
+  },
 
-    "frameworks": {
-        "netstandard1.5": {
-          "imports": "dotnet5.5"
-        }
+  "frameworks": {
+    "netstandard1.5": {
+      "imports": "dotnet5.5"
     }
+  }
 }
