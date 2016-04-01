@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Verify.tasks" />
 
-  <Target Name="Verify" DependsOnTargets="VerifyTemplates;WriteDropFile"/>
+  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;WriteDropFile"/>
 
   <Target Name="VerifyTemplates" DependsOnTargets="Build">
      <ItemGroup>
@@ -12,8 +12,8 @@
     <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);PackageSource=$(PackageSource)"/>
   </Target>
 
-  <Target Name="UnitTest">
-    <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>
+  <Target Name="UnitTest" DependsOnTargets="SetupPackageSource" Condition="'$(RunTemplateUnitTests)' == 'true'">
+    <Exec Command="test\runTests.cmd -f $(PackageSourceForRestore)"/>
   </Target>
   
   <Target Name="WriteDropFile" DependsOnTargets="SetupPackageSource" Condition="'$(IsOfficialBuild)' == 'true'">

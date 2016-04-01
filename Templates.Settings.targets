@@ -33,6 +33,7 @@
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
+        <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">

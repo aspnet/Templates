@@ -1,9 +1,14 @@
 @echo off
 
-call %TemplatesTest%\sqltestUtil.cmd :create
+pushd %~dp0
+call sqltestUtil.cmd :create
 
-%TemplatesRoot%\packages\Sake\tools\Sake.exe -I %TemplatesRoot%\packages\KoreBuild\build -f test\makefile.shade
+dotnet restore %*
+dotnet build
+dotnet test Microsoft.Web.Templates.Web.Tests
 
-call %TemplatesTest%\sqltestUtil.cmd :delete
+call sqltestUtil.cmd :delete
+
+popd
 
 exit /b 0
