@@ -6,7 +6,7 @@
       <PreviewImage>Resources\Empty.png</PreviewImage>
       <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
       <Description>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <Options>
@@ -24,7 +24,7 @@
       <PreviewImage>Resources\WebAPI.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
       <Description>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <Options>
@@ -44,7 +44,7 @@
       <PreviewImage>Resources\WebApplication.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
       <Description>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <Options>
@@ -65,7 +65,7 @@
       <PreviewImage>Resources\Empty.png</PreviewImage>
       <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
       <Description>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebDesktop</RequiredContext>
       <Options>
@@ -83,7 +83,7 @@
       <PreviewImage>Resources\WebAPI.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
       <Description>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebDesktop</RequiredContext>
       <Options>
@@ -103,7 +103,7 @@
       <PreviewImage>Resources\WebApplication.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
       <Description>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Description>
-      <LearnMoreLink>http://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
       <UIFilters>DotNetCoreProject</UIFilters>
       <RequiredContext>WebDesktop</RequiredContext>
       <Options>
