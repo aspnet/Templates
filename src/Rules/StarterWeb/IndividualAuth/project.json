@@ -16,8 +16,8 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
-    "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",$if$ ($context$ == WebCore)
+    "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-*",$endif$
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
@@ -46,9 +46,9 @@ $if$ ($context$ == WebCore) $else$
     "win7-x64": { }
   },
 $endif$
-  "tools": {
+  "tools": {$if$ ($context$ == WebCore) $else$
     "dotnet-aspnet-codegenerator": "1.0.0-*",
-    "dotnet-ef": "1.0.0-*",
+    "dotnet-ef": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*",
     "dotnet-razor-tooling": "1.0.0-*"
   },
