@@ -84,6 +84,8 @@
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
+              Rules\StarterWeb\IndividualAuth\wwwroot\css\site.css;
+              Rules\StarterWeb\IndividualAuth\wwwroot\css\site.min.css;
               Rules\StarterWeb\IndividualAuth\appsettings.json;
               Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
@@ -97,7 +99,7 @@
     <!-- StarterWeb Org Auth Common Files -->
     <LooseFiles Include="
               Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
-              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\project.json">
       <TargetName>$(Rules)</TargetName>
@@ -212,6 +214,8 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
@@ -227,6 +231,7 @@
       <FilesToVerify Remove="**\*.min.js"/>
       <FilesToVerify Remove="**\*.min.css"/>
       <FilesToVerify Remove="**\*.png"/>
+      <FilesToVerify Remove="**\*.svg"/>
     </ItemGroup>
     <VerifyWhitespace FileList="@(FilesToVerify)"/>
     <VerifyBOM FileList="@(FilesToVerify)"/>

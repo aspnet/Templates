@@ -8,8 +8,8 @@
     <ZipCommand>$(TemplatesTools)\7za.exe x </ZipCommand>
     <DotNetBuildCommand>dotnet build</DotNetBuildCommand>
     <DotNetRestoreCommand>dotnet restore</DotNetRestoreCommand>
-    <TemplatesTestPath>$(OutputPath)\Test\</TemplatesTestPath>
-    <TemplatesTestRulesPath>$(OutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
+    <TemplatesTestPath>$(IntermediateOutputPath)\Test\</TemplatesTestPath>
+    <TemplatesTestRulesPath>$(IntermediateOutputPath)\Test\Rules\Rules\</TemplatesTestRulesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.RegexReplace" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks.dll"  />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
@@ -185,10 +185,10 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(ProjectGuid)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid2\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="$(Guid2)" />
 
+    <!-- remove anything inside the between the $else and $endif$ -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$else\$.*?\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" Options="Singleline" />
     <!-- remove anything between $if$ and the end of line -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.*" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
-    <!-- remove anything inside the between the $if$ and $else$ -->
-    <RegexReplace Files="@(ExtractedFiles)" Find=".*?\$else\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
     <!-- remove any trailing $endif$ -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
 
@@ -240,10 +240,10 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$year\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="2015" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$targetframeworkversion\$" Condition="'%(Extension)' == '.xproj'" Replace="4.5" />
 
+    <!-- remove anything inside the between the $else and $endif$ -->
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$else\$.*?\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" Options="Singleline" />
     <!-- remove anything between $if$ and the end of line -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.*" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
-    <!-- remove anything inside the between the $if$ and $else$ -->
-    <RegexReplace Files="@(ExtractedFiles)" Find=".*?\$else\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
     <!-- remove any trailing $endif$ -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
 

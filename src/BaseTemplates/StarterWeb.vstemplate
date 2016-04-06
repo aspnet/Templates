@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET Core 1 Preview Web Application</Name>
-    <Description>A project for creating an ASP.NET Core 1 Preview Starter Web Application</Description>
+    <Name>ASP.NET Core Web Application</Name>
+    <Description>A project for creating an ASP.NET Core Starter Web Application</Description>
     <Icon>WebApplication.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
@@ -2429,10 +2429,10 @@
           <ProjectItem ReplaceParameters="false" TargetFileName="site.min.css">site.min.css</ProjectItem>
         </Folder>
         <Folder Name="images" TargetFolderName="images">
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner1.png">banner1.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner2.png">banner2.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner3.png">banner3.png</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="banner4.png">banner4.png</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner1.svg">banner1.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner2.svg">banner2.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner3.svg">banner3.svg</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="banner4.svg">banner4.svg</ProjectItem>
         </Folder>
         <Folder Name="js" TargetFolderName="js">
           <ProjectItem ReplaceParameters="false" TargetFileName="site.js">site.js</ProjectItem>
@@ -2445,11 +2445,11 @@
             <Folder Name="dist" TargetFolderName="dist">
               <Folder Name="css" TargetFolderName="css">
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.css">bootstrap-theme.css</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.css.map">bootstrap-theme.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.min.css">bootstrap-theme.min.css</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.min.css.map">bootstrap-theme.min.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.css">bootstrap.css</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.css.map">bootstrap.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.min.css.map">bootstrap.min.css.map</ProjectItem>
               </Folder>
               <Folder Name="fonts" TargetFolderName="fonts">
                 <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.eot">glyphicons-halflings-regular.eot</ProjectItem>
@@ -2467,7 +2467,7 @@
           </Folder>
           <Folder Name="jquery" TargetFolderName="jquery">
             <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="MIT-LICENSE.txt">MIT-LICENSE.txt</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="LICENCE.txt">LICENSE.txt</ProjectItem>
             <Folder Name="dist" TargetFolderName="dist">
               <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>

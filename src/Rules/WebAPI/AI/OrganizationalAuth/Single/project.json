@@ -8,28 +8,36 @@
   "dependencies": {
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
-    "Microsoft.AspNetCore.HttpOverrides": "1.0.0-*",
-    "Microsoft.AspNetCore.IISPlatformHandler": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
-    "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
-    "NETStandard.Library": "1.0.0-*"
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",$if$ ($context$ == WebCore)
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "__NetCorePlatformVersion__"
+    }$endif$
   },
 
-  "frameworks": {
-    "netstandardapp1.5": {
+  "frameworks": {$if$ ($context$ == WebCore)
+    "netcoreapp1.0": {
       "imports": [
         "dnxcore50",
         "portable-net45+win8"
       ]
-    }
+    }$else$
+    "$netframeworkversion$": { }$endif$
   },
-
+$if$ ($context$ == WebCore) $else$
+  "runtimes": {
+    "win7-x86": { },
+    "win7-x64": { }
+  },
+$endif$
   "content": [
     "wwwroot",
     "Views",

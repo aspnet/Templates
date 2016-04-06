@@ -9,3 +9,5 @@ packages/**
 project.lock.json
 Templates.BranchSettings.targets
 **/.vscode
+test/**/bin/**
+test/**/obj/**

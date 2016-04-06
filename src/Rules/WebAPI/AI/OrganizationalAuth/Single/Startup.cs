@@ -4,20 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace $safeprojectname$
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile(source =>
                 {
                     source.Path = "appsettings.json";
@@ -52,14 +52,7 @@ namespace $safeprojectname$
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();$if$ ($aspnet_useplatformhandler$ == false)
-$else$
-            app.UseIISPlatformHandler();
-$endif$
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -70,7 +63,7 @@ $endif$
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                Audience = Configuration["Authentication:AzureAd:TenantId"]
+                Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
             });
 
             app.UseMvc();

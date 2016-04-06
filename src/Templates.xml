@@ -4,9 +4,11 @@
     <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
       <PreviewImage>Resources\Empty.png</PreviewImage>
-      <Summary>An empty project template for creating an ASP.NET Core 1 application. This template does not have any content in it.</Summary>
-      <Description>An empty project template for creating an ASP.NET Core 1 application. This template does not have any content in it.</Description>
-      <UIFilters>DNXProject</UIFilters>
+      <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
+      <Description>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebCore</RequiredContext>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -20,9 +22,11 @@
     <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
       <Icon>Resources\WebAPI.png</Icon>
       <PreviewImage>Resources\WebAPI.png</PreviewImage>
-      <Summary>A project template for creating RESTful HTTP services that can reach a broad range of clients including browsers and mobile devices.</Summary>
-      <Description>A project template for creating RESTful HTTP services that can reach a broad range of clients including browsers and mobile devices.</Description>
-      <UIFilters>DNXProject</UIFilters>
+      <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
+      <Description>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebCore</RequiredContext>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -38,9 +42,11 @@
     <Template Name="Web Application" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
       <Icon>Resources\WebApplication.png</Icon>
       <PreviewImage>Resources\WebApplication.png</PreviewImage>
-      <Summary>A project template for creating an ASP.NET Core 1 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Summary>
-      <Description>A project template for creating an ASP.NET Core 1 application. The template uses ASP.NET MVC and can be used to build Web Applications and RESTful HTTP Services.</Description>
-      <UIFilters>DNXProject</UIFilters>
+      <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
+      <Description>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebCore</RequiredContext>
       <Options>
         <Authentication Default="IndividualAuth">
           <NoAuth />
@@ -54,6 +60,64 @@
       </Options>
     </Template>
 
+    <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
+      <Icon>Resources\Empty.png</Icon>
+      <PreviewImage>Resources\Empty.png</PreviewImage>
+      <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
+      <Description>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebDesktop</RequiredContext>
+      <Options>
+        <Authentication Default="NoAuth">
+          <NoAuth />
+        </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
+      </Options>
+    </Template>
+
+    <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
+      <Icon>Resources\WebAPI.png</Icon>
+      <PreviewImage>Resources\WebAPI.png</PreviewImage>
+      <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
+      <Description>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebDesktop</RequiredContext>
+      <Options>
+        <Authentication Default="NoAuth">
+          <WindowsAuth />
+          <OrgAuth />
+          <NoAuth />
+        </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
+      </Options>
+    </Template>
+
+    <Template Name="Web Application" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
+      <Icon>Resources\WebApplication.png</Icon>
+      <PreviewImage>Resources\WebApplication.png</PreviewImage>
+      <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
+      <Description>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Description>
+      <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
+      <UIFilters>DotNetCoreProject</UIFilters>
+      <RequiredContext>WebDesktop</RequiredContext>
+      <Options>
+        <Authentication Default="IndividualAuth">
+          <NoAuth />
+          <WindowsAuth />
+          <IndividualAuth />
+          <OrgAuth />
+        </Authentication>
+        <AzureResources>
+          <AzureWebsite/>
+        </AzureResources>
+      </Options>
+    </Template>
   </UI>
 
   <BaseTemplates>
@@ -210,13 +274,15 @@
           <AddFile Destination="Views\Manage\VerifyPhoneNumber.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml"/>
           <AddFile Destination="Views\Shared\_ValidationScriptsPartial.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml"/>
+          <ReplaceFile Destination="wwwroot\css\site.css" Source="Rules\StarterWeb\IndividualAuth\wwwroot\css\site.css"/>
+          <ReplaceFile Destination="wwwroot\css\site.min.css" Source="Rules\StarterWeb\IndividualAuth\wwwroot\css\site.min.css"/>
           <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml"/>
           <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\IndividualAuth\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthCommon">
-          <AddFile Destination="Views\Account\SignOutCallback.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignOutCallback.cshtml"/>
+          <AddFile Destination="Views\Account\SignedOut.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\OrganizationalAuth\Common\project.json"/>

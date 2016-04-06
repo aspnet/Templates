@@ -27,12 +27,15 @@
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'release'">$(ReleasePackageType)</PackageType>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
+        <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
+        <ExternalPackageSubPath>artifacts\coherence\ext</ExternalPackageSubPath>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
+        <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -44,6 +47,8 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-rc1</ApplicationInsightsPackageVersion>
+        <NetCoreSemanticVersion Condition="'$(NetCoreSemanticVersion)' == ''">-rc2-23931</NetCoreSemanticVersion>
+        <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -58,40 +63,30 @@
         <BaseIntermediateOutputPath>$(TemplatesIntermediate)</BaseIntermediateOutputPath>
     </PropertyGroup>
     
-    <ItemGroup>
-        <TestTemplates Include="$(TemplatesBin)\test\ClassLibrary"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.IndividualAuth"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Single"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.Multiple"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.WindowsAuth"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.IndividualAuth"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.Single"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.Multiple"/>
-        <TestTemplates Include="$(TemplatesBin)\test\StarterWeb.AI.WindowsAuth"/>
-        <TestTemplates Include="$(TemplatesBin)\test\ConsoleApp"/>
-        <TestTemplates Include="$(TemplatesBin)\test\EmptyWeb"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.Single"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.WindowsAuth"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI.Single"/>
-        <TestTemplates Include="$(TemplatesBin)\test\WebAPI.AI.WindowsAuth"/>
-    </ItemGroup>
-    
     <Target Name="SetupPackageSource">
-        <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)" PackageType="$(PackageType)">
-            <Output PropertyName="PackageSource" TaskParameter="PackageSource"/>
+        <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)">
+            <Output PropertyName="SetupPackageSource" TaskParameter="PackageSource"/>
         </GetPackageSource>
         <PropertyGroup>
-            <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</PackageSource>
-            <PackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</PackageSource>
-            <PackageSourceForRestore>$(PackageSource)</PackageSourceForRestore>
+        <!--
+            <PackageSource>\\aspnetci\drops\Coherence-Signed\dev\15749\artifacts\Signed\Packages</PackageSource>
+            --><PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
+            <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
+            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
+            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
+            <PackageSourceForRestore Condition="'$(PackageSource)' != ''">$(PackageSource)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(PackageSourceExternal)' != ''">$(PackageSourceForRestore) -f $(PackageSourceExternal)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(PackageSourceForRestore)' == ''">$(RemotePackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(RoslynPackageSource)' != ''">$(PackageSourceForRestore) -f $(RoslynPackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore>$(PackageSourceForRestore) -f https://api.nuget.org/v3/index.json</PackageSourceForRestore>
         </PropertyGroup>
+        
+        <Message Text="SetupPackageSource: $(SetupPackageSource)"/>
+        <Message Text="PackageSource: $(PackageSource)"/>
+        <Message Text="PackageSourceExternal: $(PackageSourceExternal)"/>
+        <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
+        
     </Target>
 </Project>

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET Core 1 Preview Empty Web Application</Name>
-    <Description>A project for creating an empty ASP.NET Core 1 Preview web application</Description>
+    <Name>ASP.NET Core Empty Web Application</Name>
+    <Description>A project for creating an empty ASP.NET Core web application</Description>
     <Icon>Empty.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
