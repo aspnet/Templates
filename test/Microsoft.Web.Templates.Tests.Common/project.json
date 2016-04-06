@@ -9,16 +9,16 @@
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*",
     "Microsoft.AspNetCore.TestHost": "1.0.0-*",
-    "Microsoft.Framework.Configuration": "1.0.0-*"
+    "Microsoft.Framework.Configuration": "1.0.0-*",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0-rc2-23931"
+    }
   },
   "frameworks": {
-    "netstandardapp1.5": {
-      "dependencies": {
-        "Microsoft.Dnx.Compilation.CSharp.Common": "1.0.0-*",
-        "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-*",
-        "dotnet-test-xunit": "1.0.0-dev-*"
-      },
+    "netcoreapp1.0": {
       "imports": [
+        "netstandardapp1.5",
         "dnxcore50",
         "portable-net451+win8"
       ]
