@@ -18,7 +18,7 @@
   
   <Target Name="WriteDropFile" DependsOnTargets="SetupPackageSource" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
-      <LinesToWrite Include="$(PackageSourceSigned)"/>
+      <LinesToWrite Include="$(PackageSource)"/>
       <LinesToWrite Include="$(PackageSourceExternal)"/>
       <LinesToWrite Include="$(SetupDrop)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
