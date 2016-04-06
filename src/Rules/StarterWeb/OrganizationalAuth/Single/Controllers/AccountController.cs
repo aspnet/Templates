@@ -14,7 +14,7 @@ namespace $safeprojectname$.Controllers
         public IActionResult SignIn()
         {
             return Challenge(
-                OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
+                new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
         public async Task<IActionResult> SignOut()

@@ -53,14 +53,7 @@ namespace $safeprojectname$
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();$if$ ($aspnet_useplatformhandler$ == false)
-$else$
-            app.UseIISPlatformHandler();
-$endif$
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -98,7 +91,7 @@ $endif$
                 },
                 Events = new OpenIdConnectEvents
                 {
-                    OnAuthenticationValidated = (context) =>
+                    OnTicketReceived = (context) =>
                     {
                         // If your authentication logic is based on users then add your logic here
                         return Task.FromResult(0);

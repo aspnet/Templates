@@ -15,8 +15,8 @@ namespace $safeprojectname$
             var host = new WebHostBuilder()
                 .UseServer("Microsoft.AspNetCore.Server.Kestrel")
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseDefaultConfiguration(args)
-                .UseIISPlatformHandlerUrl()
+                .UseDefaultHostingConfiguration(args)
+                .UseIIS()
                 .UseStartup<Startup>()
                 .Build();
 
