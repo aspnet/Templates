@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -15,19 +14,19 @@ namespace $safeprojectname$.Controllers
         public IActionResult SignIn()
         {
             return Challenge(
-                OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties { RedirectUri = "/" });
+                new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
         public async Task<IActionResult> SignOut()
         {
-            var callbackUrl = Url.Action("SignOutCallback", "Account", values: null, protocol: Request.Scheme);
+            var callbackUrl = Url.Action("SignedOut", "Account", values: null, protocol: Request.Scheme);
             await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.Authentication.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = callbackUrl });
             return new EmptyResult();
         }
 
-        public IActionResult SignOutCallback()
+        public IActionResult SignedOut()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {

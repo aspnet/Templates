@@ -2,29 +2,26 @@
 using WebAPI;
 using Xunit;
 using System.Net;
+using System.Net.Http;
 
 namespace Microsoft.Web.Templates.Tests
 {
-    public class WebAPITests : TemplateTestBase
+    public class WebAPITests : IClassFixture<TemplateTestFixure<WebAPI.Startup>>
     {
-        private static readonly string _templateName = "WebAPI";
+        public HttpClient Client { get; private set; }
+        private TemplateTestFixure<WebAPI.Startup> _fixture;
 
-        protected override string TemplateName
+        public WebAPITests(TemplateTestFixure<WebAPI.Startup> fixture) : base()
         {
-            get
-            {
-                return _templateName;
-            }
+            _fixture = fixture;
+            this.Client = _fixture.Client;
         }
 
         [Fact]
         public async void Verify_Api_Get_Values()
         {
-            var server = CreateServer();
-            var client = server.CreateClient();
-
             // Act
-            var getReponse = await client.GetAsync("http://localhost/api/values");
+            var getReponse = await Client.GetAsync("http://localhost/api/values");
             var responseContent = await getReponse.Content.ReadAsStringAsync();
 
             // Assert
@@ -35,11 +32,8 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Api_Get_Value()
         {
-            var server = CreateServer();
-            var client = server.CreateClient();
-
             // Act
-            var getReponse = await client.GetAsync("http://localhost/api/values/5");
+            var getReponse = await Client.GetAsync("http://localhost/api/values/5");
             var responseContent = await getReponse.Content.ReadAsStringAsync();
 
             // Assert

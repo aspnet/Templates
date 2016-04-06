@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "warningsAsErrors": false
+  },
+  "dependencies": {
+    "Microsoft.AspNetCore.Hosting": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*",
+    "Microsoft.AspNetCore.TestHost": "1.0.0-*",
+    "Microsoft.Framework.Configuration": "1.0.0-*",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0-rc2-23931"
+    }
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "netstandardapp1.5",
+        "dnxcore50",
+        "portable-net451+win8"
+      ]
+    }
+  }
+}

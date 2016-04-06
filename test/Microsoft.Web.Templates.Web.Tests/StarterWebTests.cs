@@ -1,43 +1,37 @@
 ﻿using System.Net;
+using System.Net.Http;
 using Xunit;
 
 namespace Microsoft.Web.Templates.Tests
 {
-    public class StarterWebAITests : TemplateTestBase
+    public class StarterWebTests : IClassFixture<TemplateTestFixure<StarterWeb.Startup>>
     {
-        private static readonly string _templateName = "StarterWeb.AI";
+        public HttpClient Client { get; private set; }
+        private TemplateTestFixure<StarterWeb.Startup> _fixture;
 
-        protected override string TemplateName
+        public StarterWebTests(TemplateTestFixure<StarterWeb.Startup> fixture) : base()
         {
-            get
-            {
-                return _templateName;
-            }
+            _fixture = fixture;
+            this.Client = _fixture.Client;
         }
 
         [Fact]
         public async void Verify_Home_Index_Get()
         {
-            var server = CreateServer();
-            var client = server.CreateClient();
-
             // Act
-            var getReponse = await client.GetAsync("http://localhost");
+            var getReponse = await Client.GetAsync("http://localhost");
             var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, getReponse.StatusCode);
-            Assert.Contains("Home Page - " + _templateName, reponseContent);
+            Assert.Contains("Home Page - StarterWeb", reponseContent);
         }
 
         [Fact]
         public async void Verify_Home_About_Get()
         {
-            var server = CreateServer();
-            var client = server.CreateClient();
-
             // Act
-            var getReponse = await client.GetAsync("http://localhost/Home/About");
+            var getReponse = await Client.GetAsync("http://localhost/Home/About");
             var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
             // Assert
@@ -48,11 +42,8 @@ namespace Microsoft.Web.Templates.Tests
         [Fact]
         public async void Verify_Home_Contact_Get()
         {
-            var server = CreateServer();
-            var client = server.CreateClient();
-
             // Act
-            var getReponse = await client.GetAsync("http://localhost/Home/Contact");
+            var getReponse = await Client.GetAsync("http://localhost/Home/Contact");
             var reponseContent = await getReponse.Content.ReadAsStringAsync();
 
             // Assert

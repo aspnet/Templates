@@ -20,15 +20,7 @@ namespace $safeprojectname$
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
-        {$if$ ($aspnet_useplatformhandler$ == false)
-$else$
-            app.UseIISPlatformHandler();
-$endif$
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
-
+        {
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");

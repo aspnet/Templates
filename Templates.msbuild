@@ -9,16 +9,17 @@
      <ItemGroup>
       <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
     </ItemGroup>
-    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);PackageSource=$(PackageSource)"/>
+    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);SetupPackageSource=$(SetupPackageSource)"/>
   </Target>
 
-  <Target Name="UnitTest">
-    <Exec Command="SET PackageSource=$(PackageSource)&amp;test\runTests.cmd"/>
+  <Target Name="UnitTest" DependsOnTargets="SetupPackageSource" Condition="'$(RunTemplateUnitTests)' == 'true'">
+    <Exec Command="test\runTests.cmd -f $(PackageSourceForRestore)"/>
   </Target>
   
   <Target Name="WriteDropFile" DependsOnTargets="SetupPackageSource" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
       <LinesToWrite Include="$(PackageSource)"/>
+      <LinesToWrite Include="$(PackageSourceExternal)"/>
       <LinesToWrite Include="$(SetupDrop)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
@@ -31,6 +32,6 @@
     </ItemGroup>
     <Message Text="Coherence Build = '$(CoherenceBuildNumber)'" Condition="'$(CoherenceBuildNumber)' != ''"/>
     <MakeDir Directories="$(TemplatesBin)"/>
-    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration);PackageSource=$(PackageSource)"/>
+    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration);SetupPackageSource=$(SetupPackageSource)"/>
   </Target>
 </Project>

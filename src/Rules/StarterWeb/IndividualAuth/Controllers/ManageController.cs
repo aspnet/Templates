@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -293,7 +292,7 @@ namespace $safeprojectname$.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
-            return Challenge(provider, properties);
+            return Challenge(properties, provider);
         }
 
         //

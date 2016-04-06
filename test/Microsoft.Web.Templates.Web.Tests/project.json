@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0-*",
+
+  "compilationOptions": {
+    "preserveCompilationContext": true
+  },
+  "dependencies": {
+    "EmptyWeb": "1.0.0",
+    "StarterWeb": "1.0.0",
+    "StarterWeb.IndividualAuth": "1.0.0",
+    "WebAPI": "1.0.0",
+    "Microsoft.AspNetCore.Hosting": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*",
+    "Microsoft.AspNetCore.TestHost": "1.0.0-*",
+    "Microsoft.Framework.Configuration": "1.0.0-*",
+    "Microsoft.Web.Templates.Tests.Common": "1.0.0-*",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0-rc2-23931"
+    },
+    "xunit": "2.1.0"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "netstandardapp1.5",
+        "dnxcore50",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "dotnet-test-xunit": "1.0.0-dev-*"
+      }
+    }
+  },
+  "testRunner": "xunit"
+}

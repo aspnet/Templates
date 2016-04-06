@@ -5,7 +5,6 @@
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
         <ParameterGroup>
             <SetupDrop ParameterType="System.String" Required="true" />
-            <PackageType ParameterType="System.String" Required="true" />
             <PackageSource ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
         </ParameterGroup>
         <Task>
@@ -20,7 +19,7 @@
                     using(var file = File.OpenText(Path.Combine(SetupDrop,"DropSources.txt")))
                     {
                         var line = file.ReadLine();
-                        var coherenceDrop = Path.Combine(line.Split()[1], PackageType);
+                        var coherenceDrop = line.Split(':')[1].Trim();
                         PackageSource = new TaskItem(coherenceDrop);
                     }
                 }
@@ -75,6 +74,7 @@
             <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="True"/>
             <Find ParameterType="System.String" Required="True" />
             <Replace ParameterType="System.String"/>
+            <Options ParameterType="System.String" Required="False"/>
         </ParameterGroup>
         <Task>
             <Using Namespace="System" />
@@ -100,7 +100,10 @@
                         FileAttributes oldAttributes = File.GetAttributes(fileName);
                         File.SetAttributes(fileName, oldAttributes & ~FileAttributes.ReadOnly);
                         string content = File.ReadAllText(fileName);
-                        string newContent = Regex.Replace(content, Find, Replace);
+                        RegexOptions option = RegexOptions.None;
+                        Enum.TryParse<RegexOptions>(Options, out option);
+
+                        string newContent = Regex.Replace(content, Find, Replace, option);
                         File.WriteAllText(fileName, newContent, System.Text.Encoding.GetEncoding(Encoding));
                         File.SetAttributes(fileName, oldAttributes);
                     }

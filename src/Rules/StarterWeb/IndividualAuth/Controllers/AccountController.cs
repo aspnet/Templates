@@ -114,7 +114,7 @@ namespace $safeprojectname$.Controllers
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
@@ -147,7 +147,7 @@ namespace $safeprojectname$.Controllers
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return Challenge(provider, properties);
+            return Challenge(properties, provider);
         }
 
         //
@@ -187,7 +187,7 @@ namespace $safeprojectname$.Controllers
                 // If the user does not have an account, then ask the user to create an account.
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
-                var email = info.ExternalPrincipal.FindFirstValue(ClaimTypes.Email);
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
         }
@@ -274,7 +274,7 @@ namespace $safeprojectname$.Controllers
                 //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 //var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                 //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                //   "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
                 //return View("ForgotPasswordConfirmation");
             }
 
