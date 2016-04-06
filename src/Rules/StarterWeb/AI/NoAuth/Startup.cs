@@ -18,7 +18,11 @@ namespace $safeprojectname$
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile(source =>
+                {
+                    source.Path = "appsettings.json";
+                    source.ReloadOnChange = true;
+                })
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
@@ -27,7 +31,7 @@ namespace $safeprojectname$
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }

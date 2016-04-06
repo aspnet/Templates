@@ -20,7 +20,11 @@ namespace $safeprojectname$
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile(source =>
+                {
+                    source.Path = "appsettings.json";
+                    source.ReloadOnChange = true;
+                })
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -31,7 +35,7 @@ namespace $safeprojectname$
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }
