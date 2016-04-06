@@ -47,7 +47,8 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-rc1</ApplicationInsightsPackageVersion>
-        <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0-rc2-23931</NetCorePlatformVersion>
+        <NetCoreSemanticVersion Condition="'$(NetCoreSemanticVersion)' == ''">-rc2-23931</NetCoreSemanticVersion>
+        <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
