@@ -52,8 +52,6 @@ namespace $safeprojectname$
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
             });
