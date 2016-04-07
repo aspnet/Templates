@@ -23,7 +23,7 @@ namespace $safeprojectname$
                     source.Path = "appsettings.json";
                     source.ReloadOnChange = true;
                 })
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
