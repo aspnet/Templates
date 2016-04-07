@@ -122,11 +122,13 @@
 
   <BaseTemplates>
     <BaseTemplate ID="Microsoft.DNX.CSharp.EmptyWeb"
-              VSTemplatePath="DNXEmptyWeb.vstemplate">
+              VSTemplatePath="DNXEmptyWeb.vstemplate"
+              DefaultContext="WebCore">
    </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
-              VSTemplatePath="DNXStarterWeb.vstemplate">
+              VSTemplatePath="DNXStarterWeb.vstemplate"
+              DefaultContext="WebCore">
         <ApplyRules Option="WindowsAuth">
               <RunRule RuleID="StarterWebWindowsAuth" />
         </ApplyRules>
@@ -183,7 +185,8 @@
     </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
-              VSTemplatePath="DNXWebAPI.vstemplate">
+              VSTemplatePath="DNXWebAPI.vstemplate"
+              DefaultContext="WebCore">
         <ApplyRules Option="WindowsAuth">
               <RunRule RuleID="WebAPICommonAuth" />
               <RunRule RuleID="WebAPIWindowsAuth" />
