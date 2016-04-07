@@ -53,11 +53,6 @@ namespace $safeprojectname$
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
