@@ -20,7 +20,7 @@
       "type": "platform",
       "version": "__NetCorePlatformVersion__"
     },$endif$
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
