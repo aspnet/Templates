@@ -28,7 +28,7 @@ namespace $safeprojectname$
             if (env.IsEnvironment("Development"))
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                builder.SetProjectPath(env.ContentRootPath).AddUserSecrets();
 
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
@@ -60,8 +60,6 @@ namespace $safeprojectname$
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
             });

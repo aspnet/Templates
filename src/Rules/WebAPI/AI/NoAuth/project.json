@@ -31,8 +31,8 @@
   },
 $if$ ($context$ == WebCore) $else$
   "runtimes": {
-    "win7-x86": { },
-    "win7-x64": { }
+    "win7-x64": { },
+    "win7-x86": { }
   },
 $endif$
   "tools": {
