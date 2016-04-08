@@ -28,7 +28,7 @@ namespace $safeprojectname$
             if (env.IsEnvironment("Development"))
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                builder.SetProjectPath(env.ContentRootPath).AddUserSecrets();
 
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
