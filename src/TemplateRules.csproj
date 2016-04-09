@@ -189,7 +189,7 @@
     </LooseFiles> -->
   </ItemGroup>
 
-  <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip" DependsOnTargets="SetupPackageSource">
+  <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
     <PropertyGroup>
       <TargetName>%(LooseFiles.TargetName)</TargetName>
       <TempPath>$(IntermediateOutputPath)$(TargetName)\</TempPath>

@@ -47,8 +47,6 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion>1.0.0-rc1</ApplicationInsightsPackageVersion>
-        <NetCoreSemanticVersion Condition="'$(NetCoreSemanticVersion)' == ''">-rc2-23931</NetCoreSemanticVersion>
-        <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -63,14 +61,30 @@
         <BaseIntermediateOutputPath>$(TemplatesIntermediate)</BaseIntermediateOutputPath>
     </PropertyGroup>
     
+    <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
+        <ItemGroup Condition="'$(PackageSourceExternal)' != ''">
+          <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
+        </ItemGroup>
+
+        <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
+            <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <PropertyGroup>
+            <!-- The below is a fallback version for external non CI builds -->
+            <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
+            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+        </PropertyGroup>
+
+        <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
+    </Target>
+    
     <Target Name="SetupPackageSource">
         <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)">
             <Output PropertyName="SetupPackageSource" TaskParameter="PackageSource"/>
         </GetPackageSource>
         <PropertyGroup>
-        <!--
-            <PackageSource>\\aspnetci\drops\Coherence-Signed\dev\15749\artifacts\Signed\Packages</PackageSource>
-            --><PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
+            <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
             <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
             <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
             <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>

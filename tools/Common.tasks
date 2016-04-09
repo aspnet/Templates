@@ -192,4 +192,42 @@
             </Code>
         </Task>
     </UsingTask>
+    <UsingTask
+        TaskName="GetFileSemanticVersion"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <Filename ParameterType="System.String" Required="true" />
+            <SemanticVersion ParameterType="Microsoft.Build.Framework.ITaskItem" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <using Namespace="System.IO" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Using Namespace="System.Text.RegularExpressions" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                try
+                {
+                    string semVer = string.Empty;
+                    var ex = new Regex(@".*?(?<semver>-.*)");
+                    var match = ex.Match(Filename);
+                    if (match.Success)
+                    {
+                        semVer = match.Groups["semver"].Captures[0].Value;
+                    }
+                    SemanticVersion = new TaskItem(semVer);
+                }
+                catch(Exception ex)
+                {
+                    Log.LogError("Error determining semantic version of " + Filename);
+                    Log.LogErrorFromException(ex);
+                }
+                
+                return !Log.HasLoggedErrors;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask> 
 </Project>
