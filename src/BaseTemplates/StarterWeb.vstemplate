@@ -2445,9 +2445,11 @@
             <Folder Name="dist" TargetFolderName="dist">
               <Folder Name="css" TargetFolderName="css">
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.css">bootstrap-theme.css</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.css.map">bootstrap-theme.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.min.css">bootstrap-theme.min.css</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap-theme.min.css.map">bootstrap-theme.min.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.css">bootstrap.css</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.css.map">bootstrap.css.map</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="bootstrap.min.css.map">bootstrap.min.css.map</ProjectItem>
               </Folder>
@@ -2467,7 +2469,7 @@
           </Folder>
           <Folder Name="jquery" TargetFolderName="jquery">
             <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="LICENCE.txt">LICENSE.txt</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE.txt">LICENSE.txt</ProjectItem>
             <Folder Name="dist" TargetFolderName="dist">
               <ProjectItem ReplaceParameters="false" TargetFileName="jquery.js">jquery.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.js">jquery.min.js</ProjectItem>
