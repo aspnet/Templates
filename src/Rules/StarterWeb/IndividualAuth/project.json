@@ -56,7 +56,8 @@ $endif$
   "content": [
     "wwwroot",
     "Views",
-    "appsettings.json"
+    "appsettings.json",
+    "web.config"
   ],
 
   "exclude": [
