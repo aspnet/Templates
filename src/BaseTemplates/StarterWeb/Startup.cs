@@ -62,5 +62,5 @@ namespace $safeprojectname$
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-   }
+    }
 }
