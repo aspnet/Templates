@@ -5,7 +5,7 @@
   },
 
   "dependencies": {
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",

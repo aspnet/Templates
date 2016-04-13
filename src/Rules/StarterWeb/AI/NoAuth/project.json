@@ -9,7 +9,7 @@
       "type": "build",
       "version": "__AspNetCorePlatformVersion__"
     },$endif$
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0-*",
@@ -21,7 +21,7 @@
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",,$if$ ($context$ == WebCore)
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",$if$ ($context$ == WebCore)
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "__NetCorePlatformVersion__"

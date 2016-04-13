@@ -82,7 +82,6 @@
       <RuleName>WindowsAuth</RuleName>
       <ProjectGuid>A0BD3573-92DA-401C-AEC4-C45A4A0405E1</ProjectGuid>
     </RulesToVerify>
-<!--
     <RulesToVerify Include="$(TemplatesTestRulesPath)StarterWeb\AI\NoAuth">
       <BaseTemplate>StarterWeb</BaseTemplate>
       <RuleName>AI</RuleName>
@@ -119,7 +118,6 @@
       <AdditionalRuleFiles2>..\NoAuth\**\*.*</AdditionalRuleFiles2>
       <ProjectGuid>6D670E6A-514A-4782-AD59-28675779EB09</ProjectGuid>
     </RulesToVerify>
-    -->
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\OrganizationalAuth\Single">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>Single</RuleName>
@@ -132,7 +130,6 @@
       <ProjectGuid>8FDB04C1-DCB5-440B-A5AE-F78F543A745C</ProjectGuid>
       <CommonAuthRuleFiles>..\CommonAuth\**\*.*</CommonAuthRuleFiles>
     </RulesToVerify>
-    <!--
     <RulesToVerify Include="$(TemplatesTestRulesPath)WebAPI\AI\NoAuth">
       <BaseTemplate>WebAPI</BaseTemplate>
       <RuleName>AI</RuleName>
@@ -153,7 +150,6 @@
       <AdditionalRuleFiles2>..\NoAuth\**\*.*</AdditionalRuleFiles2>
       <ProjectGuid>0BF8AF1A-7511-4FF8-8DC1-5C55A8BB3A79</ProjectGuid>
     </RulesToVerify>
-    -->
   </ItemGroup>
 
   <Target Name="ExtractAllTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\%(Filename).vstemplate">

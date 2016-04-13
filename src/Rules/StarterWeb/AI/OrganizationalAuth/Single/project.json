@@ -10,7 +10,7 @@
       "type": "build",
       "version": "__AspNetCorePlatformVersion__"
     },$endif$
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Authentication.OpenIdConnect": "0.1.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
@@ -28,7 +28,7 @@
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "__NetCorePlatformVersion__"
-    }$endif$
+    },$endif$
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 

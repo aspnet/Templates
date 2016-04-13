@@ -152,7 +152,6 @@
                     <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
               </ApplyRules>
         </ApplyRules>
-        <!--
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="StarterWebAINoAuth" />
@@ -181,7 +180,6 @@
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
-        -->
     </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
@@ -200,7 +198,6 @@
                     <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
               </ApplyRules>
         </ApplyRules>
-        <!--
         <ApplyRules Option="ApplicationInsights">
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="WebAPIAINoAuth" />
@@ -217,7 +214,6 @@
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
-        -->
     </BaseTemplate>
   </BaseTemplates>
 
