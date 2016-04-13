@@ -86,8 +86,8 @@
         <PropertyGroup>
             <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
             <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
-            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
-            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
+            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetcidev/api/v3/index.json</RemotePackageSource>
+            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetcirelease/api/v3/index.json</RemotePackageSource>
             <PackageSourceForRestore Condition="'$(PackageSource)' != ''">$(PackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(PackageSourceExternal)' != ''">$(PackageSourceForRestore) -f $(PackageSourceExternal)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(PackageSourceForRestore)' == ''">$(RemotePackageSource)</PackageSourceForRestore>
