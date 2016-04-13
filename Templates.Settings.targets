@@ -29,6 +29,7 @@
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
         <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
         <ExternalPackageSubPath>artifacts\coherence\ext</ExternalPackageSubPath>
+        <ShipExternalPackageSubPath>artifacts\coherence\ship-ext</ShipExternalPackageSubPath>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights-sdk-labs/</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
@@ -86,10 +87,12 @@
         <PropertyGroup>
             <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
             <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
+            <PackageSourceShipExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ShipExternalPackageSubPath)</PackageSourceShipExternal >
             <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetcidev/api/v3/index.json</RemotePackageSource>
             <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetcirelease/api/v3/index.json</RemotePackageSource>
             <PackageSourceForRestore Condition="'$(PackageSource)' != ''">$(PackageSource)</PackageSourceForRestore>
-            <PackageSourceForRestore Condition="'$(PackageSourceExternal)' != ''">$(PackageSourceForRestore) -f $(PackageSourceExternal)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(PackageSourceExternal)' != '' and Exists('$(PackageSourceExternal)')">$(PackageSourceForRestore) -f $(PackageSourceExternal)</PackageSourceForRestore>
+            <PackageSourceForRestore Condition="'$(PackageSourceShipExternal)' != '' and Exists('$(PackageSourceShipExternal)')">$(PackageSourceForRestore) -f $(PackageSourceShipExternal)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(PackageSourceForRestore)' == ''">$(RemotePackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(ApplicationInsightsPackageSource)' != ''">$(PackageSourceForRestore) -f $(ApplicationInsightsPackageSource)</PackageSourceForRestore>
             <PackageSourceForRestore Condition="'$(AzureAdPackageSource)' != ''">$(PackageSourceForRestore) -f $(AzureAdPackageSource)</PackageSourceForRestore>
@@ -100,7 +103,7 @@
         <Message Text="SetupPackageSource: $(SetupPackageSource)"/>
         <Message Text="PackageSource: $(PackageSource)"/>
         <Message Text="PackageSourceExternal: $(PackageSourceExternal)"/>
+        <Message Text="PackageSourceShipExternal: $(PackageSourceShipExternal)"/>
         <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
-        
     </Target>
 </Project>
