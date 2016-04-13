@@ -33,7 +33,8 @@ $endif$
   },
 
   "content": [
-    "wwwroot"
+    "wwwroot",
+    "web.config"
   ],
 
   "exclude": [
