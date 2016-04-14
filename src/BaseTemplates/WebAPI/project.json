@@ -12,7 +12,7 @@
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",$if$ ($context$ == WebCore)
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*"$if$ ($context$ == WebCore),
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "__NetCorePlatformVersion__"
@@ -22,6 +22,7 @@
   "frameworks": {$if$ ($context$ == WebCore)
     "netcoreapp1.0": {
       "imports": [
+        "dotnet5.6",
         "dnxcore50",
         "portable-net45+win8"
       ]
@@ -41,7 +42,8 @@ $endif$
   "content": [
     "wwwroot",
     "Views",
-    "appsettings.json"
+    "appsettings.json",
+    "web.config"
   ],
 
   "exclude": [

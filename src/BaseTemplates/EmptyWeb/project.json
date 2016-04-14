@@ -16,6 +16,7 @@
   "frameworks": {$if$ ($context$ == WebCore)
     "netcoreapp1.0": {
       "imports": [
+        "dotnet5.6",
         "dnxcore50",
         "portable-net45+win8"
       ]
@@ -33,7 +34,8 @@ $endif$
   },
 
   "content": [
-    "wwwroot"
+    "wwwroot",
+    "web.config"
   ],
 
   "exclude": [
