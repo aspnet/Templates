@@ -216,6 +216,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>

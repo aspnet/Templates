@@ -243,7 +243,7 @@
     <!-- remove anything inside the between the $else and $endif$ -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$else\$.*?\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" Options="Singleline" />
     <!-- remove anything between $if$ and the end of line -->
-    <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$.*" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
+    <RegexReplace Files="@(ExtractedFiles)" Find="\$if\$ \(.*\)" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
     <!-- remove any trailing $endif$ -->
     <RegexReplace Files="@(ExtractedFiles)" Find="\$endif\$" Condition="('%(Extension)' == '.json' or '%(Extension)' == '.cs')" Encoding="ascii" Replace="" />
 

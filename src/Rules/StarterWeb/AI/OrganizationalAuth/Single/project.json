@@ -5,7 +5,11 @@
     "preserveCompilationContext": true
   },
 
-  "dependencies": {
+  "dependencies": {$if$ ($context$ == WebCore)
+    "dotnet-razor-tooling": {
+      "type": "build",
+      "version": "__AspNetCorePlatformVersion__"
+    },$endif$
     "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Authentication.OpenIdConnect": "0.1.0-*",
@@ -45,8 +49,13 @@ $if$ ($context$ == WebCore) $else$
   },
 $endif$
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*",
-    "dotnet-razor-tooling": "1.0.0-*"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"$if$ ($context$ == WebCore),
+    "dotnet-razor-tooling": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": [
+        "portable-net45+win8"
+      ]
+    }$endif$
   },
 
   "content": [

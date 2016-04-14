@@ -4,7 +4,11 @@
     "preserveCompilationContext": true
   },
 
-  "dependencies": {
+  "dependencies": {$if$ ($context$ == WebCore)
+    "dotnet-razor-tooling": {
+      "type": "build",
+      "version": "__AspNetCorePlatformVersion__"
+    },$endif$
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0-*",
@@ -20,7 +24,7 @@
       "type": "platform",
       "version": "__NetCorePlatformVersion__"
     },$endif$
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
@@ -40,8 +44,13 @@ $if$ ($context$ == WebCore) $else$
   },
 $endif$
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*",
-    "dotnet-razor-tooling": "1.0.0-*"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"$if$ ($context$ == WebCore),
+    "dotnet-razor-tooling": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": [
+        "portable-net45+win8"
+      ]
+    }$endif$
   },
 
   "content": [
