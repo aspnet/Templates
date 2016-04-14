@@ -19,7 +19,7 @@ namespace Microsoft.Web.Templates.Tests
         private TestServer _server;
         
         // path from Templates\test\Microsoft.Web.Templates.Tests
-        protected static readonly string TestProjectsPath = Path.Combine("..", "..", "..", "..", "..", "..", "intermediate", "Test");
+        protected static readonly string TestProjectsPath = Path.Combine("..", "..", "..", "..", "..", "intermediate", "Test");
 
         public TemplateTestFixure()
             : this(TestProjectsPath)
