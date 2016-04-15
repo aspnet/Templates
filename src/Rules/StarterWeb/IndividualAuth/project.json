@@ -52,7 +52,13 @@ $if$ ($context$ == WebCore) $else$
   },
 $endif$
   "tools": {$if$ ($context$ == WebCore)
-    "dotnet-aspnet-codegenerator": "1.0.0-*",
+    "dotnet-aspnet-codegenerator": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
+    },
     "dotnet-ef": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"$if$ ($context$ == WebCore),
     "dotnet-razor-tooling": {
