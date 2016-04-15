@@ -38,6 +38,10 @@ $if$ ($context$ == WebCore) $else$
     "win7-x86": { }
   },
 $endif$
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"
+  },
+
   "content": [
     "wwwroot",
     "Views",
