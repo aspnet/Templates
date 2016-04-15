@@ -49,7 +49,7 @@ $endif$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"$if$ ($context$ == WebCore),
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
-      "imports": "portable-net45+win8"
+      "imports": "portable-net45+win8+dnxcore50"
     }$endif$
   },
 
