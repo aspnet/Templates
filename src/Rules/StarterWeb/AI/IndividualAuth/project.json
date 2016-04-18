@@ -6,6 +6,14 @@
   },
 
   "dependencies": {$if$ ($context$ == WebCore)
+    "dotnet-aspnet-codegenerator": {
+      "type": "build",
+      "version": "__AspNetCorePlatformVersion__"
+    },
+    "dotnet-ef": {
+      "type": "build",
+      "version": "__AspNetCorePlatformVersion__"
+    },
     "dotnet-razor-tooling": {
       "type": "build",
       "version": "__AspNetCorePlatformVersion__"
@@ -21,6 +29,7 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.Commands": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",$if$ ($context$ == WebCore) $else$
     "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-*",$endif$
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*",
@@ -60,12 +69,18 @@ $endif$
         "portable-net45+win8"
       ]
     },
-    "dotnet-ef": "1.0.0-*",$endif$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"$if$ ($context$ == WebCore),
+    "dotnet-ef": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    }$endif$
+    },$endif$
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
   },
 
   "content": [
@@ -81,6 +96,6 @@ $endif$
 
   "scripts": {
     "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

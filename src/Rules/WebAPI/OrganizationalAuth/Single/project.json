@@ -39,7 +39,10 @@ $if$ ($context$ == WebCore) $else$
   },
 $endif$
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-*"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
   },
 
   "content": [
@@ -54,6 +57,6 @@ $endif$
   ],
 
   "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
