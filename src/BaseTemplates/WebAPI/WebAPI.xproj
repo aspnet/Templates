@@ -8,8 +8,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>$guid1$</ProjectGuid>
     <RootNamespace>$safeprojectname$</RootNamespace>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">$baseoutputlocation$\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' ">$baseoutputlocation$\</OutputPath>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v$targetframeworkversion$</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
