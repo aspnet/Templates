@@ -1,9 +1,5 @@
 ﻿{
   "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
-  "compilationOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
 
   "dependencies": {$if$ ($context$ == WebCore)
     "dotnet-aspnet-codegenerator": {
@@ -44,22 +40,6 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
-  "frameworks": {$if$ ($context$ == WebCore)
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
-    }$else$
-    "$netframeworkversion$": { }$endif$
-  },
-$if$ ($context$ == WebCore) $else$
-  "runtimes": {
-    "win7-x64": { },
-    "win7-x86": { }
-  },
-$endif$
   "tools": {$if$ ($context$ == WebCore)
     "dotnet-aspnet-codegenerator": {
       "version": "__AspNetCorePlatformVersion__",
@@ -79,6 +59,33 @@ $endif$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
+    }
+  },
+
+  "frameworks": {$if$ ($context$ == WebCore)
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }$else$
+    "$netframeworkversion$": { }$endif$
+  },
+$if$ ($context$ == WebCore) $else$
+  "runtimes": {
+    "win7-x64": { },
+    "win7-x86": { }
+  },
+$endif$
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
     }
   },
 

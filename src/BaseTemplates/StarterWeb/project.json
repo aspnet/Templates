@@ -1,9 +1,4 @@
 ﻿{
-  "compilationOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
-
   "dependencies": {$if$ ($context$ == WebCore)
     "dotnet-razor-tooling": {
       "type": "build",
@@ -27,6 +22,17 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
+  "tools": {$if$ ($context$ == WebCore)
+    "dotnet-razor-tooling": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },$endif$
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
+  },
+
   "frameworks": {$if$ ($context$ == WebCore)
     "netcoreapp1.0": {
       "imports": [
@@ -43,14 +49,14 @@ $if$ ($context$ == WebCore) $else$
     "win7-x86": { }
   },
 $endif$
-  "tools": {$if$ ($context$ == WebCore)
-    "dotnet-razor-tooling": {
-      "version": "__AspNetCorePlatformVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    },$endif$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
     }
   },
 

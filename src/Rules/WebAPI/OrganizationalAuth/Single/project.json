@@ -1,9 +1,5 @@
 ﻿{
   "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
-  "compilationOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
 
   "dependencies": {
     "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
@@ -22,6 +18,13 @@
     }$endif$
   },
 
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
+  },
+
   "frameworks": {$if$ ($context$ == WebCore)
     "netcoreapp1.0": {
       "imports": [
@@ -38,10 +41,14 @@ $if$ ($context$ == WebCore) $else$
     "win7-x86": { }
   },
 $endif$
-  "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
     }
   },
 
