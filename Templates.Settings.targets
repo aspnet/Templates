@@ -47,7 +47,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion>1.0.0-rc1</ApplicationInsightsPackageVersion>
+        <ApplicationInsightsPackageVersion>1.0.0-rc2-beta1</ApplicationInsightsPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -71,10 +71,20 @@
             <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
+        <ItemGroup Condition="'$(PackageSource)' != ''">
+          <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
+        </ItemGroup>
+
+        <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
+            <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
+            <AspNetCorePlatformVersion Condition="'$(AspNetCorePlatformVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePlatformVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>

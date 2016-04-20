@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Verify.tasks" />
 
-  <Target Name="Verify" DependsOnTargets="VerifyTemplates;WriteDropFile"/>
+  <Target Name="Verify" DependsOnTargets="VerifyTemplates;UnitTest;WriteDropFile"/>
 
   <Target Name="VerifyTemplates" DependsOnTargets="Build">
      <ItemGroup>

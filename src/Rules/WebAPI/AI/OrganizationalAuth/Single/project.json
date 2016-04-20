@@ -1,12 +1,8 @@
 ﻿{
   "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
-  "compilationOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
 
   "dependencies": {
-    "Microsoft.ApplicationInsights.AspNet": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
@@ -21,6 +17,13 @@
       "type": "platform",
       "version": "__NetCorePlatformVersion__"
     }$endif$
+  },
+
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
@@ -39,6 +42,17 @@ $if$ ($context$ == WebCore) $else$
     "win7-x86": { }
   },
 $endif$
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
   "content": [
     "wwwroot",
     "Views",
@@ -51,6 +65,6 @@ $endif$
   ],
 
   "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath%" ]
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
