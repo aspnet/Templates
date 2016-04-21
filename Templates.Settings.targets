@@ -74,7 +74,7 @@
           <CoreAppFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
         </ItemGroup>
         <GetFileSemanticVersion Condition="'%(NetStandardFile.Identity)' != '' " Filename="%(NetStandardFile.Filename)">
-            <Output PropertyName="NetStandatdSemanticVersion" TaskParameter="SemanticVersion"/>
+            <Output PropertyName="NetStandardSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <ItemGroup Condition="'$(PackageSource)' != ''">
@@ -89,7 +89,7 @@
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
-            <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">1.5.0$(NetCoreSemanticVersion)</NetStandardPlatformVersion>
+            <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">1.5.0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
             <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
             <AspNetCorePlatformVersion Condition="'$(AspNetCorePlatformVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePlatformVersion>
         </PropertyGroup>
