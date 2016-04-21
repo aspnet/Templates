@@ -64,21 +64,21 @@
     
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(PackageSourceExternal)' != ''">
-          <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
+            <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
         </ItemGroup>
         <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
             <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <ItemGroup Condition="'$(PackageSourceExternal)' != ''">
-          <CoreAppFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
+            <NetStandardFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
         </ItemGroup>
         <GetFileSemanticVersion Condition="'%(NetStandardFile.Identity)' != '' " Filename="%(NetStandardFile.Filename)">
             <Output PropertyName="NetStandardSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <ItemGroup Condition="'$(PackageSource)' != ''">
-          <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
+            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
         </ItemGroup>
         <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
             <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
@@ -95,6 +95,8 @@
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
+        <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
+        <Message Text="AspNetCorePlatformVersion: $(AspNetCorePlatformVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
