@@ -1,8 +1,4 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": true,
-    "anonymousAuthentication": false
-  },
   "profiles": {
     "$safeprojectname$": {
       "commandName": "Project",
