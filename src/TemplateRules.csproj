@@ -108,16 +108,18 @@
 
     <!-- StarterWeb Org Auth Single Org Files -->
     <LooseFiles Include="
-              Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs;
-              Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs">
+              Rules\StarterWeb\OrganizationalAuth\Single\Common\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Single\NoRead\Startup.cs;
+              Rules\StarterWeb\OrganizationalAuth\Single\Read\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
     <!-- StarterWeb Org Auth Multiple Org Files -->
     <LooseFiles Include="
-              Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs;
-              Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs">
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Common\Controllers\AccountController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Multiple\NoRead\Startup.cs;
+              Rules\StarterWeb\OrganizationalAuth\Multiple\Read\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
@@ -143,12 +145,14 @@
               Rules\StarterWeb\AI\IndividualAuth\Startup.cs;
               Rules\StarterWeb\AI\IndividualAuth\project.json;
               Rules\StarterWeb\AI\IndividualAuth\appsettings.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs;
-              Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\project.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\appsettings.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\NoRead\Startup.cs;
+              Rules\StarterWeb\AI\OrganizationalAuth\Single\Read\Startup.cs;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\project.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\appsettings.json;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\NoRead\Startup.cs;
+              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Read\Startup.cs;
               Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>

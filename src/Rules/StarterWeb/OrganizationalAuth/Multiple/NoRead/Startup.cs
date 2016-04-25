@@ -45,7 +45,8 @@ namespace $safeprojectname$
             // Add framework services.
             services.AddMvc();
 
-            services.AddAuthentication(SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+            services.AddAuthentication(
+                SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +73,6 @@ namespace $safeprojectname$
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
-                ResponseType = OpenIdConnectResponseTypes.IdToken,
 
                 TokenValidationParameters = new TokenValidationParameters
                 {
