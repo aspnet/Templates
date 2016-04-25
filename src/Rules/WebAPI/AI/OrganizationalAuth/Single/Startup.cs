@@ -60,7 +60,7 @@ namespace $safeprojectname$
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
+                Audience = Configuration["Authentication:AzureAd:Audience"]
             });
 
             app.UseMvc();

@@ -17,13 +17,11 @@ namespace $safeprojectname$.Controllers
                 new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
-        public async Task<IActionResult> SignOut()
+        public IActionResult SignOut()
         {
             var callbackUrl = Url.Action("SignedOut", "Account", values: null, protocol: Request.Scheme);
-            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.Authentication.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,
-                new AuthenticationProperties { RedirectUri = callbackUrl });
-            return new EmptyResult();
+            return SignOut(new AuthenticationProperties { RedirectUri = callbackUrl },
+                CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
         public IActionResult SignedOut()
