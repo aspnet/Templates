@@ -64,17 +64,22 @@
     
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(PackageSourceExternal)' != ''">
-          <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
+            <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
         </ItemGroup>
-
         <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
             <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
-        <ItemGroup Condition="'$(PackageSource)' != ''">
-          <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
+        <ItemGroup Condition="'$(PackageSourceExternal)' != ''">
+            <NetStandardFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
         </ItemGroup>
+        <GetFileSemanticVersion Condition="'%(NetStandardFile.Identity)' != '' " Filename="%(NetStandardFile.Filename)">
+            <Output PropertyName="NetStandardSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
 
+        <ItemGroup Condition="'$(PackageSource)' != ''">
+            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
+        </ItemGroup>
         <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
             <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
@@ -83,11 +88,15 @@
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
+            <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">1.5.0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
             <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
             <AspNetCorePlatformVersion Condition="'$(AspNetCorePlatformVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePlatformVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
+        <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
+        <Message Text="AspNetCorePlatformVersion: $(AspNetCorePlatformVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
