@@ -30,6 +30,8 @@ namespace $safeprojectname$
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
+
+                builder.AddApplicationInsightsSettings(developerMode: true);
             }
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -41,9 +43,12 @@ namespace $safeprojectname$
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
             services.AddMvc();
 
-            services.AddAuthentication(SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+            services.AddAuthentication(
+                SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,8 @@ namespace $safeprojectname$
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -61,6 +68,8 @@ namespace $safeprojectname$
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseApplicationInsightsExceptionTelemetry();
+
             app.UseStaticFiles();
 
             app.UseCookieAuthentication();
@@ -68,9 +77,10 @@ namespace $safeprojectname$
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
+                ClientSecret = Configuration["Authentication:AzureAd:ClientSecret"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
-                ResponseType = OpenIdConnectResponseTypes.IdToken
+                ResponseType = OpenIdConnectResponseTypes.CodeIdToken
             });
 
             app.UseMvc(routes =>

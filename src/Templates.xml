@@ -140,16 +140,20 @@
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebOrganizationalAuthCommon" />
               <ApplyRules Option="SSO">
-                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingleCommon" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingleNoRead" />
               </ApplyRules>
               <ApplyRules Option="MultiOrg">
-                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultipleCommon" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultipleNoRead" />
               </ApplyRules>
               <ApplyRules Option="SSOR">
-                    <RunRule RuleID="StarterWebOrganizationalAuthSingle" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingleCommon" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthSingleRead" />
               </ApplyRules>
               <ApplyRules Option="MultiOrgR">
-                    <RunRule RuleID="StarterWebOrganizationalAuthMultiple" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultipleCommon" />
+                    <RunRule RuleID="StarterWebOrganizationalAuthMultipleRead" />
               </ApplyRules>
         </ApplyRules>
         <ApplyRules Option="ApplicationInsights">
@@ -167,16 +171,20 @@
             <ApplyRules Option="OrgAuth">
                   <RunRule RuleID="StarterWebAICommonAuth" />
                   <ApplyRules Option="SSO">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleCommon" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleNoRead" />
                   </ApplyRules>
                   <ApplyRules Option="MultiOrg">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleCommon" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleNoRead" />
                   </ApplyRules>
                   <ApplyRules Option="SSOR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingle" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleCommon" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleRead" />
                   </ApplyRules>
                   <ApplyRules Option="MultiOrgR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultiple" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleCommon" />
+                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleRead" />
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
@@ -286,13 +294,23 @@
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\OrganizationalAuth\Common\project.json"/>
       </Rule>
-      <Rule ID="StarterWebOrganizationalAuthSingle">
-          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Controllers\AccountController.cs"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Startup.cs"/>
+      <Rule ID="StarterWebOrganizationalAuthSingleCommon">
+          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Common\Controllers\AccountController.cs"/>
       </Rule>
-      <Rule ID="StarterWebOrganizationalAuthMultiple">
-          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Controllers\AccountController.cs"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Startup.cs"/>
+      <Rule ID="StarterWebOrganizationalAuthSingleNoRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\NoRead\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthSingleRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Read\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthMultipleCommon">
+          <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Common\Controllers\AccountController.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthMultipleNoRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\NoRead\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebOrganizationalAuthMultipleRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Read\Startup.cs"/>
       </Rule>
       <!-- Application Insights StarterWeb rules -->
       <Rule ID="StarterWebAINoAuth">
@@ -315,15 +333,27 @@
           <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\IndividualAuth\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>
       </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthSingle">
+      <Rule ID="StarterWebAIOrganizationalAuthSingleCommon">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Startup.cs"/>
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\appsettings.json"/>
-          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\project.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\appsettings.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\project.json"/>
       </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthMultiple">
+      <Rule ID="StarterWebAIOrganizationalAuthSingleNoRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\NoRead\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthSingleRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Read\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthMultipleCommon">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Startup.cs"/>
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\appsettings.json"/>
-          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\project.json"/>
+          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\appsettings.json"/>
+          <ReplaceFile Destination="project.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\project.json"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthMultipleNoRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\NoRead\Startup.cs"/>
+      </Rule>
+      <Rule ID="StarterWebAIOrganizationalAuthMultipleRead">
+          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Read\Startup.cs"/>
       </Rule>
       <!-- Web API rules -->
       <Rule ID="WebAPICommonAuth">
