@@ -124,6 +124,9 @@
     <BaseTemplate ID="Microsoft.DNX.CSharp.EmptyWeb"
               VSTemplatePath="DNXEmptyWeb.vstemplate"
               DefaultContext="WebCore">
+        <ApplyRules Option="WebDesktop">
+            <RunRule RuleID="ApplyAppConfig" />
+        </ApplyRules>
    </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
@@ -188,6 +191,9 @@
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
+        <ApplyRules Option="WebDesktop">
+            <RunRule RuleID="ApplyAppConfig" />
+        </ApplyRules>
     </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
@@ -221,6 +227,9 @@
                         <RunRule RuleID="WebAPIAIOrganizationalAuthSingle" />
                   </ApplyRules>
             </ApplyRules>
+        </ApplyRules>
+        <ApplyRules Option="WebDesktop">
+            <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
     </BaseTemplate>
   </BaseTemplates>
@@ -377,6 +386,11 @@
           <ReplaceFile Destination="appsettings.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json"/>
           <ReplaceFile Destination="project.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\project.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs"/>
+      </Rule>
+
+      <!-- Apply app.config file for full FX -->
+      <Rule ID="ApplyAppConfig">
+          <AddFile Destination="app.config" Source="Rules\Common\app.config"/>
       </Rule>
   </Rules>
 </TemplateDefinition>

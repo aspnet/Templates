@@ -79,13 +79,13 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
-
+$if$ ($context$ == WebCore)
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true
     }
   },
-
+$endif$
   "content": [
     "wwwroot",
     "Views",

@@ -191,6 +191,13 @@
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
+
+    <!-- Common Files -->
+    <LooseFiles Include="
+              Rules\Common\app.config">
+      <TargetName>$(Rules)</TargetName>
+      <SearchPath>.\</SearchPath>
+    </LooseFiles>
   </ItemGroup>
 
   <Target Name="BuildLooseFiles" Inputs="@(LooseFiles)" Outputs="$(TemplatesOutputPath)%(TargetName).zip" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
