@@ -1,11 +1,11 @@
 ﻿{
-  "dependencies": {
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*"$if$ ($context$ == WebCore),
+  "dependencies": {$if$ ($context$ == WebCore)
     "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "__NetCorePlatformVersion__"
-    }$endif$
+      "version": "__NetCorePlatformVersion__",
+      "type": "platform"
+    },$endif$
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*"
   },
 
   "tools": {
