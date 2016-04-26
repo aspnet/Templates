@@ -33,6 +33,10 @@
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.Extensions.SecretManager.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
     }
   },
 
