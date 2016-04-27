@@ -1,11 +1,11 @@
 ﻿{
-  "dependencies": {
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*"$if$ ($context$ == WebCore),
+  "dependencies": {$if$ ($context$ == WebCore)
     "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "__NetCorePlatformVersion__"
-    }$endif$
+      "version": "__NetCorePlatformVersion__",
+      "type": "platform"
+    },$endif$
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*"
   },
 
   "tools": {
@@ -25,23 +25,18 @@
     }$else$
     "$netframeworkversion$": { }$endif$
   },
-$if$ ($context$ == WebCore) $else$
-  "runtimes": {
-    "win7-x64": { },
-    "win7-x86": { }
-  },
-$endif$
+
   "compilationOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
-
+$if$ ($context$ == WebCore)
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true
     }
   },
-
+$endif$
   "content": [
     "wwwroot",
     "web.config"

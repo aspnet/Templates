@@ -16,7 +16,6 @@ namespace $safeprojectname$
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile(source =>
@@ -37,7 +36,7 @@ namespace $safeprojectname$
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -47,7 +46,8 @@ namespace $safeprojectname$
 
             services.AddMvc();
 
-            services.AddAuthentication(SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+            services.AddAuthentication(
+                SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +67,7 @@ namespace $safeprojectname$
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
@@ -76,9 +77,10 @@ namespace $safeprojectname$
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 ClientId = Configuration["Authentication:AzureAd:ClientId"],
+                ClientSecret = Configuration["Authentication:AzureAd:ClientSecret"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
-                ResponseType = OpenIdConnectResponseTypes.IdToken
+                ResponseType = OpenIdConnectResponseTypes.CodeIdToken
             });
 
             app.UseMvc(routes =>

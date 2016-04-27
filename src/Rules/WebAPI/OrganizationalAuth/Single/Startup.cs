@@ -14,7 +14,6 @@ namespace $safeprojectname$
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile(source =>
@@ -34,7 +33,7 @@ namespace $safeprojectname$
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -52,7 +51,7 @@ namespace $safeprojectname$
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                Audience = Configuration["Authentication:AzureAd:AudienceUrl"]
+                Audience = Configuration["Authentication:AzureAd:Audience"]
             });
 
             app.UseMvc();

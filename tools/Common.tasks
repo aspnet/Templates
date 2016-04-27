@@ -136,21 +136,27 @@
             <Code Type="Fragment" Language="cs">
                 <![CDATA[
                 try
-                {   foreach(var taskItem in FileList)
+                {
+                    foreach(var taskItem in FileList)
                     {
                         int lineNumber = 0;
                         int sectionLineNumber = 0;
                         string jsonFile = taskItem.ItemSpec;
                         using (var reader = System.IO.File.OpenText(jsonFile))
                         {
+                            int depth = 0;
                             var packages = new List<string>();
                             bool processing = false;
                             while (!reader.EndOfStream )
                             {
                                 lineNumber++;
-                                var line = reader.ReadLine().Split(':')[0].Trim().Replace("\"", "");
+                                var wholeLine = reader.ReadLine();
+                                var lineParts = wholeLine.Split(':');
+                                var line = lineParts[0].Trim().Replace("\"", "");
+
                                 if (string.Equals(line, "dependencies"))
                                 {
+                                    depth = 1;
                                     processing = true;
                                     sectionLineNumber = lineNumber;
                                     continue;
@@ -159,23 +165,46 @@
                                 {
                                     if (line.StartsWith("}"))
                                     {
-                                        processing = false;
-                                        var sortedPackages = new List<string>(packages);
-                                        sortedPackages.Sort();
-                                        for(int i=0; i < packages.Count; i++)
+                                        depth--;
+
+                                        if (depth == 0)
                                         {
-                                            if (!string.Equals(packages[i], sortedPackages[i]))
+                                            processing = false;
+                                            var sortedPackages = new List<string>(packages);
+                                            sortedPackages.Sort();
+                                            for(int i=0; i < packages.Count; i++)
                                             {
-                                                Log.LogError("Dependencies not sorted in dependency section starting on line {0} in {1} {2} was found, expected {3}.", sectionLineNumber, jsonFile, packages[i], sortedPackages[i]);
+                                                if (!string.Equals(packages[i], sortedPackages[i]))
+                                                {
+                                                    Log.LogError("Dependencies not sorted in dependency section starting on line {0} in {1} {2} was found, expected {3}.", sectionLineNumber, jsonFile, packages[i], sortedPackages[i]);
+                                                }
                                             }
+                                            packages.Clear();
+                                            continue;
                                         }
-                                        packages.Clear();
-                                        continue;
                                     }
                                     // blank lines are ok here as we might be parsing $if$ $else$ in the build, but this will only happen on the CI
-                                    if (!string.IsNullOrEmpty(line))
+                                    else if (!string.IsNullOrEmpty(line))
                                     {
-                                        packages.Add(line);
+                                        if (depth == 1)
+                                        {
+                                            if (string.Equals("Microsoft.NETCore.App", line))
+                                            {
+                                                if (packages.Count != 0)
+                                                {
+                                                    Log.LogError("Microsoft.NETCore.App should be listed first in {0}.", jsonFile);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                packages.Add(line);
+                                            }
+                                        }
+
+                                        if (lineParts.Length > 1 && string.Equals(lineParts[1].Trim(), "{"))
+                                        {
+                                            depth++;
+                                        }
                                     }
                                 }
                             }

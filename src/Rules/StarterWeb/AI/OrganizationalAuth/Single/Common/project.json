@@ -2,29 +2,27 @@
   "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
 
   "dependencies": {$if$ ($context$ == WebCore)
+    "Microsoft.NETCore.App": {
+      "version": "__NetCorePlatformVersion__",
+      "type": "platform"
+    },
     "dotnet-razor-tooling": {
-      "type": "build",
-      "version": "__AspNetCorePlatformVersion__"
+      "version": "__AspNetCorePlatformVersion__",
+      "type": "build"
     },$endif$
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Authentication.OpenIdConnect": "0.1.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0-*",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
-    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",$if$ ($context$ == WebCore)
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "__NetCorePlatformVersion__"
-    },$endif$
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
@@ -34,6 +32,10 @@
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.Extensions.SecretManager.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     }
@@ -49,23 +51,18 @@
     }$else$
     "$netframeworkversion$": { }$endif$
   },
-$if$ ($context$ == WebCore) $else$
-  "runtimes": {
-    "win7-x64": { },
-    "win7-x86": { }
-  },
-$endif$
+
   "compilationOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
-
+$if$ ($context$ == WebCore)
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true
     }
   },
-
+$endif$
   "content": [
     "wwwroot",
     "Views",

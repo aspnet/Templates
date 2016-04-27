@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using $safeprojectname$.Data;
-using $safeprojectname$.Models;
-using $safeprojectname$.Services;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 namespace $safeprojectname$
 {
@@ -33,10 +32,8 @@ namespace $safeprojectname$
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
 
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -49,18 +46,10 @@ namespace $safeprojectname$
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
             services.AddMvc();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddAuthentication(
+                SharedOptions => SharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,32 +63,58 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-
-                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
-                try
-                {
-                    using (var context = new ApplicationDbContext(
-                        app.ApplicationServices.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
-                    {
-                        context.Database.Migrate();
-                    }
-                }
-                catch { }
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            app.UseCookieAuthentication();
 
-            // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            {
+                ClientId = Configuration["Authentication:AzureAd:ClientId"],
+                ClientSecret = Configuration["Authentication:AzureAd:ClientSecret"],
+                Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
+                CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
+                ResponseType = OpenIdConnectResponseTypes.CodeIdToken,
+
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    // Instead of using the default validation (validating against a single issuer value, as we do in line of business apps),
+                    // we inject our own multitenant validation logic
+                    ValidateIssuer = false,
+
+                    // If the app is meant to be accessed by entire organizations, add your issuer validation logic here.
+                    //IssuerValidator = (issuer, securityToken, validationParameters) => {
+                    //    if (myIssuerValidationLogic(issuer)) return issuer;
+                    //}
+                },
+                Events = new OpenIdConnectEvents
+                {
+                    OnTicketReceived = (context) =>
+                    {
+                        // If your authentication logic is based on users then add your logic here
+                        return Task.FromResult(0);
+                    },
+                    OnAuthenticationFailed = (context) =>
+                    {
+                        context.Response.Redirect("/Home/Error");
+                        context.HandleResponse(); // Suppress the exception
+                        return Task.FromResult(0);
+                    },
+                    // If your application needs to do authenticate single users, add your user validation below.
+                    //OnTokenValidated = (context) =>
+                    //{
+                    //    return myUserValidationLogic(context.Ticket.Principal);
+                    //}
+                }
+            });
 
             app.UseMvc(routes =>
             {
