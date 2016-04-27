@@ -3,11 +3,11 @@
     "Microsoft.NETCore.App": {
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
-    },
+    },$endif$
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
-    },$endif$
+    },
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
@@ -22,11 +22,11 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
-  "tools": {$if$ ($context$ == WebCore)
+  "tools": {
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },$endif$
+    },
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
