@@ -5,7 +5,7 @@
     "Microsoft.NETCore.App": {
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
-    },
+    },$endif$
     "dotnet-aspnet-codegenerator": {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
@@ -13,7 +13,7 @@
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
-    },$endif$
+    },
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
@@ -27,8 +27,8 @@
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
-    },$if$ ($context$ == WebCore) $else$
-    "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-*",$endif$
+    },
+    "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
@@ -37,7 +37,7 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
-  "tools": {$if$ ($context$ == WebCore)
+  "tools": {
     "dotnet-aspnet-codegenerator": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": [
@@ -48,7 +48,7 @@
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },$endif$
+    },
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
