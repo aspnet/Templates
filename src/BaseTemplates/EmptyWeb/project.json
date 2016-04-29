@@ -3,16 +3,16 @@
     "Microsoft.NETCore.App": {
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
-    },$endif$
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
+    },$endif$$if$ ($aspnet_useplatformhandler$ == false)$else$
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*"
   },
 
-  "tools": {
+  "tools": {$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    }
+    }$endif$
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
@@ -46,7 +46,7 @@ $endif$
     "node_modules"
   ],
 
-  "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  "scripts": {$if$ ($aspnet_useplatformhandler$ == false)$else$
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
 }

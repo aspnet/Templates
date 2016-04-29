@@ -18,8 +18,8 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$if$ ($aspnet_useplatformhandler$ == false)$else$
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
@@ -47,11 +47,11 @@
     "dotnet-razor-tooling": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },
+    },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },
+    },$endif$
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": [
@@ -99,7 +99,7 @@ $endif$
   ],
 
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
 }
