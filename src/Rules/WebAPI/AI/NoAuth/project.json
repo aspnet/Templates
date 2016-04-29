@@ -34,7 +34,7 @@
     "$netframeworkversion$": { }$endif$
   },
 
-  "compilationOptions": {
+  "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
