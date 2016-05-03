@@ -58,8 +58,7 @@ $endif$
       "Views",
       "appsettings.json",
       "web.config"
-    ],
-    "exclude": [ "node_modules" ]
+    ]
   },
 
   "scripts": {

@@ -39,8 +39,7 @@ $endif$
     "include": [
       "wwwroot",
       "web.config"
-    ],
-    "exclude": [ "node_modules" ]
+    ]
   },
 
   "scripts": {$if$ ($aspnet_useplatformhandler$ == false)$else$
