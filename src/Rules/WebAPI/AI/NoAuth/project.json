@@ -40,21 +40,18 @@
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
+    "gcServer": true
   },
 $endif$
-  "content": [
-    "wwwroot",
-    "Views",
-    "appsettings.json",
-    "web.config"
-  ],
-
-  "exclude": [
-    "node_modules"
-  ],
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "Views",
+      "appsettings.json",
+      "web.config"
+    ],
+    "exclude": [ "node_modules" ]
+  },
 
   "scripts": {$if$ ($aspnet_useplatformhandler$ == false)$else$
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$

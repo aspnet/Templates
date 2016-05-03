@@ -6,25 +6,29 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
-    "dotnet-aspnet-codegenerator": {
-      "version": "__AspNetCorePlatformVersion__",
-      "type": "build"
-    },
-    "dotnet-razor-tooling": {
-      "version": "__AspNetCorePlatformVersion__",
-      "type": "build"
-    },
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$if$ ($aspnet_useplatformhandler$ == false)$else$
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "type": "build"
+    },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "type": "build"
+    },
+    "Microsoft.Extensions.CodeGeneration.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "type": "build"
+    },
+    "Microsoft.Extensions.CodeGenerators.Mvc":  {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
     },
@@ -39,14 +43,7 @@
   },
 
   "tools": {
-    "dotnet-aspnet-codegenerator": {
-      "version": "__AspNetCorePlatformVersion__",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    },
-    "dotnet-razor-tooling": {
+    "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
@@ -55,6 +52,13 @@
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
     "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "__AspNetCorePlatformVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
+    },
+    "Microsoft.Extensions.CodeGeneration.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": [
         "portable-net45+win8+dnxcore50",
@@ -84,21 +88,18 @@
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
+    "gcServer": true
   },
 $endif$
-  "content": [
-    "wwwroot",
-    "Views",
-    "appsettings.json",
-    "web.config"
-  ],
-
-  "exclude": [
-    "node_modules"
-  ],
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "Views",
+      "appsettings.json",
+      "web.config"
+    ],
+    "exclude": [ "node_modules" ]
+  },
 
   "scripts": {
     "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,

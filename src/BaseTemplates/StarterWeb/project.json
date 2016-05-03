@@ -4,12 +4,12 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
-    "dotnet-razor-tooling": {
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "type": "build"
-    },
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",$if$ ($aspnet_useplatformhandler$ == false)$else$
+    },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
@@ -22,7 +22,7 @@
   },
 
   "tools": {
-    "dotnet-razor-tooling": {
+    "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__AspNetCorePlatformVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     }$if$ ($aspnet_useplatformhandler$ == false)$else$,
@@ -49,21 +49,18 @@
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
+    "gcServer": true
   },
 $endif$
-  "content": [
-    "wwwroot",
-    "Views",
-    "appsettings.json",
-    "web.config"
-  ],
-
-  "exclude": [
-    "node_modules"
-  ],
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "Views",
+      "appsettings.json",
+      "web.config"
+    ],
+    "exclude": [ "node_modules" ]
+  },
 
   "scripts": {
     "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
