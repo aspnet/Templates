@@ -11,14 +11,6 @@
       "environmentVariables" : {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "$safeprojectname$": {
-      "commandName" : "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/values",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
     }
   }
 }
