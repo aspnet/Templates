@@ -5,6 +5,9 @@
     "preserveCompilationContext": true
   },
   "dependencies": {
+    "dotnet-test-xunit": "1.0.0-*",
+    "xunit": "2.1.0-rc2-*",
+    "Microsoft.NETCore.Platforms": "1.0.1-*",
     "EmptyWeb": "1.0.0",
     "StarterWeb": "1.0.0",
     "StarterWeb.IndividualAuth": "1.0.0",
@@ -14,20 +17,22 @@
     "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*",
     "Microsoft.AspNetCore.TestHost": "1.0.0-*",
     "Microsoft.Framework.Configuration": "1.0.0-*",
-    "Microsoft.Web.Templates.Tests.Common": "1.0.0-*",
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0-rc2-23931"
-    },
-    "xunit": "2.1.0",
-    "dotnet-test-xunit": "1.0.0-dev-*"
+    "Microsoft.Web.Templates.Tests.Common": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        },
+        "Microsoft.Dnx.Compilation.CSharp.Common": "1.0.0-*",
+        "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-*",
+        "System.Diagnostics.Process": "4.1.0-*"
+      },
       "imports": [
-        "netstandardapp1.5",
         "dnxcore50",
-        "portable-net45+win8"
+        "portable-net451+win8"
       ]
     }
   },
