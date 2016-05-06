@@ -16,7 +16,6 @@
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*",
     "Microsoft.AspNetCore.TestHost": "1.0.0-*",
-    "Microsoft.Framework.Configuration": "1.0.0-*",
     "Microsoft.Web.Templates.Tests.Common": "1.0.0-*"
   },
   "frameworks": {
