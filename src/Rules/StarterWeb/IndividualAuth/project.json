@@ -12,7 +12,7 @@
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "type": "build"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
@@ -20,15 +20,7 @@
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
-      "type": "build"
-    },
-    "Microsoft.Extensions.CodeGeneration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
-      "type": "build"
-    },
-    "Microsoft.Extensions.CodeGenerators.Mvc":  {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "type": "build"
     },
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
@@ -37,35 +29,43 @@
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    },
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    }
   },
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
     "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    },
-    "Microsoft.Extensions.CodeGeneration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": [
         "portable-net45+win8+dnxcore50",
         "portable-net45+win8"
       ]
     },
     "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
     }
   },
 

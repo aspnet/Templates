@@ -11,7 +11,7 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "type": "build"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
@@ -28,15 +28,15 @@
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
     "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     }
   },

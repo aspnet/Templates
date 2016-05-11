@@ -22,11 +22,11 @@
 
   "tools": {$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
     "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "__AspNetCorePlatformVersion__",
+      "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     }
   },

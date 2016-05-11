@@ -78,10 +78,10 @@
         </GetFileSemanticVersion>
 
         <ItemGroup Condition="'$(PackageSource)' != ''">
-            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.*.nupkg"/>
+            <ToolsFile Include="$(PackageSource)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
         </ItemGroup>
-        <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
-            <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        <GetFileSemanticVersion Condition="'%(ToolsFile.Identity)' != '' " Filename="%(ToolsFile.Filename)">
+            <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <PropertyGroup>
@@ -90,13 +90,13 @@
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">1.5.0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
-            <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
-            <AspNetCorePlatformVersion Condition="'$(AspNetCorePlatformVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePlatformVersion>
+            <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
+            <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
-        <Message Text="AspNetCorePlatformVersion: $(AspNetCorePlatformVersion)"/>
+        <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">

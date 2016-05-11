@@ -86,8 +86,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
 
     <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' == 'true')"/>
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' != 'true')"/>
