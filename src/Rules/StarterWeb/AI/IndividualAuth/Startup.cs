@@ -76,17 +76,6 @@ namespace $safeprojectname$
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-
-                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
-                try
-                {
-                    using (var context = new ApplicationDbContext(
-                        app.ApplicationServices.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
-                    {
-                        context.Database.Migrate();
-                    }
-                }
-                catch { }
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
