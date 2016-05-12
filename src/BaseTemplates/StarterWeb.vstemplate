@@ -60,15 +60,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="semver">semver</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="semver.cmd">semver.cmd</ProjectItem>
             </Folder>
-            <Folder Name="ansi-regex" TargetFolderName="ansi-regex">
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-            </Folder>
-            <Folder Name="ansi-styles" TargetFolderName="ansi-styles">
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-            </Folder>
             <Folder Name="archy" TargetFolderName="archy">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
@@ -105,6 +96,39 @@
             <Folder Name="chalk" TargetFolderName="chalk">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name=".bin" TargetFolderName=".bin">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="has-ansi">has-ansi</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="has-ansi.cmd">has-ansi.cmd</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="strip-ansi">strip-ansi</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="strip-ansi.cmd">strip-ansi.cmd</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="supports-color">supports-color</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="supports-color.cmd">supports-color.cmd</ProjectItem>
+                </Folder>
+                <Folder Name="ansi-regex" TargetFolderName="ansi-regex">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="ansi-styles" TargetFolderName="ansi-styles">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="has-ansi" TargetFolderName="has-ansi">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="strip-ansi" TargetFolderName="strip-ansi">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="supports-color" TargetFolderName="supports-color">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="clone" TargetFolderName="clone">
               <ProjectItem ReplaceParameters="false" TargetFileName="clone.js">clone.js</ProjectItem>
@@ -138,6 +162,14 @@
             <Folder Name="defaults" TargetFolderName="defaults">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="clone" TargetFolderName="clone">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="clone.js">clone.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="test.js">test.js</ProjectItem>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="deprecated" TargetFolderName="deprecated">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -171,6 +203,15 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <Folder Name="lib" TargetFolderName="lib">
                 <ProjectItem ReplaceParameters="false" TargetFileName="findup-sync.js">findup-sync.js</ProjectItem>
+              </Folder>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="glob" TargetFolderName="glob">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="common.js">common.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="glob.js">glob.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="sync.js">sync.js</ProjectItem>
+                </Folder>
               </Folder>
             </Folder>
             <Folder Name="first-chunk-stream" TargetFolderName="first-chunk-stream">
@@ -226,6 +267,55 @@
               <Folder Name="lib" TargetFolderName="lib">
                 <ProjectItem ReplaceParameters="false" TargetFileName="globule.js">globule.js</ProjectItem>
               </Folder>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="glob" TargetFolderName="glob">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="glob.js">glob.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="examples" TargetFolderName="examples">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="g.js">g.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="usr-local.js">usr-local.js</ProjectItem>
+                  </Folder>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="00-setup.js">00-setup.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="bash-comparison.js">bash-comparison.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="bash-results.json">bash-results.json</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="cwd-test.js">cwd-test.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="mark.js">mark.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="nocase-nomagic.js">nocase-nomagic.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="pause-resume.js">pause-resume.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="root-nomount.js">root-nomount.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="root.js">root.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="zz-cleanup.js">zz-cleanup.js</ProjectItem>
+                  </Folder>
+                </Folder>
+                <Folder Name="graceful-fs" TargetFolderName="graceful-fs">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="graceful-fs.js">graceful-fs.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="open.js">open.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="ulimit.js">ulimit.js</ProjectItem>
+                  </Folder>
+                </Folder>
+                <Folder Name="inherits" TargetFolderName="inherits">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="inherits.js">inherits.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="minimatch" TargetFolderName="minimatch">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="minimatch.js">minimatch.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="basic.js">basic.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="brace-expand.js">brace-expand.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="caching.js">caching.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="defaults.js">defaults.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="extglob-ending-with-state-char.js">extglob-ending-with-state-char.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="graceful-fs" TargetFolderName="graceful-fs">
               <ProjectItem ReplaceParameters="false" TargetFileName="fs.js">fs.js</ProjectItem>
@@ -250,12 +340,38 @@
                 <ProjectItem ReplaceParameters="false" TargetFileName="PluginError.js">PluginError.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="template.js">template.js</ProjectItem>
               </Folder>
-            </Folder>
-            <Folder Name="has-ansi" TargetFolderName="has-ansi">
-              <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="ansi-regex" TargetFolderName="ansi-regex">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="ansi-styles" TargetFolderName="ansi-styles">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="chalk" TargetFolderName="chalk">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="has-ansi" TargetFolderName="has-ansi">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="strip-ansi" TargetFolderName="strip-ansi">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+                <Folder Name="supports-color" TargetFolderName="supports-color">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="license">license</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="indent-string" TargetFolderName="indent-string">
               <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
@@ -417,6 +533,26 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="minimist" TargetFolderName="minimist">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="example" TargetFolderName="example">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse.js">parse.js</ProjectItem>
+                  </Folder>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="dash.js">dash.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="default_bool.js">default_bool.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="dotted.js">dotted.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="long.js">long.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse.js">parse.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse_modified.js">parse_modified.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="short.js">short.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="whitespace.js">whitespace.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="multipipe" TargetFolderName="multipipe">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -517,17 +653,7 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
             </Folder>
-            <Folder Name="strip-ansi" TargetFolderName="strip-ansi">
-              <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-            </Folder>
             <Folder Name="strip-bom" TargetFolderName="strip-bom">
-              <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-            </Folder>
-            <Folder Name="supports-color" TargetFolderName="supports-color">
               <ProjectItem ReplaceParameters="false" TargetFileName="cli.js">cli.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
@@ -536,6 +662,24 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="through2.js">through2.js</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="readable-stream" TargetFolderName="readable-stream">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="duplex.js">duplex.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="passthrough.js">passthrough.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="readable.js">readable.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="transform.js">transform.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="writable.js">writable.js</ProjectItem>
+                  <Folder Name="lib" TargetFolderName="lib">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_duplex.js">_stream_duplex.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_passthrough.js">_stream_passthrough.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_readable.js">_stream_readable.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_transform.js">_stream_transform.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_writable.js">_stream_writable.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="tildify" TargetFolderName="tildify">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -740,12 +884,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="readme.md">readme.md</ProjectItem>
-            </Folder>
-            <Folder Name="gulp-concat" TargetFolderName="gulp-concat">
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
             </Folder>
             <Folder Name="gulp-util" TargetFolderName="gulp-util">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -1068,6 +1206,24 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="through2.js">through2.js</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="readable-stream" TargetFolderName="readable-stream">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="duplex.js">duplex.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="passthrough.js">passthrough.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="readable.js">readable.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="transform.js">transform.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="writable.js">writable.js</ProjectItem>
+                  <Folder Name="lib" TargetFolderName="lib">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_duplex.js">_stream_duplex.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_passthrough.js">_stream_passthrough.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_readable.js">_stream_readable.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_transform.js">_stream_transform.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_writable.js">_stream_writable.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="vinyl" TargetFolderName="vinyl">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -1315,22 +1471,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
             </Folder>
-            <Folder Name="gulp-cssmin" TargetFolderName="gulp-cssmin">
-              <ProjectItem ReplaceParameters="false" TargetFileName=".npmignore">.npmignore</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName=".travis.yml">.travis.yml</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="gulpfile.js">gulpfile.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="test.js">test.js</ProjectItem>
-              <Folder Name="sample" TargetFolderName="sample">
-                <ProjectItem ReplaceParameters="false" TargetFileName="type.css">type.css</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="type.min.css">type.min.css</ProjectItem>
-                <Folder Name="test" TargetFolderName="test">
-                  <ProjectItem ReplaceParameters="false" TargetFileName="type2.css">type2.css</ProjectItem>
-                </Folder>
-              </Folder>
-            </Folder>
             <Folder Name="gulp-rename" TargetFolderName="gulp-rename">
               <ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName=".gitattributes">.gitattributes</ProjectItem>
@@ -1376,6 +1516,29 @@
                 <ProjectItem ReplaceParameters="false" TargetFileName="PluginError.js">PluginError.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="replaceExtension.js">replaceExtension.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="template.js">template.js</ProjectItem>
+              </Folder>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="minimist" TargetFolderName="minimist">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="example" TargetFolderName="example">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse.js">parse.js</ProjectItem>
+                  </Folder>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="all_bool.js">all_bool.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="bool.js">bool.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="dash.js">dash.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="default_bool.js">default_bool.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="dotted.js">dotted.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="long.js">long.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="num.js">num.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse.js">parse.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="parse_modified.js">parse_modified.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="short.js">short.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="whitespace.js">whitespace.js</ProjectItem>
+                  </Folder>
+                </Folder>
               </Folder>
             </Folder>
             <Folder Name="has-ansi" TargetFolderName="has-ansi">
@@ -1692,6 +1855,24 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="through2.js">through2.js</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="readable-stream" TargetFolderName="readable-stream">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="duplex.js">duplex.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="passthrough.js">passthrough.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="readable.js">readable.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="transform.js">transform.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="writable.js">writable.js</ProjectItem>
+                  <Folder Name="lib" TargetFolderName="lib">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_duplex.js">_stream_duplex.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_passthrough.js">_stream_passthrough.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_readable.js">_stream_readable.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_transform.js">_stream_transform.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_writable.js">_stream_writable.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="uuid" TargetFolderName="uuid">
               <ProjectItem ReplaceParameters="false" TargetFileName=".npmignore">.npmignore</ProjectItem>
@@ -1923,52 +2104,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="readme.md">readme.md</ProjectItem>
-            </Folder>
-            <Folder Name="gulp-uglify" TargetFolderName="gulp-uglify">
-              <ProjectItem ReplaceParameters="false" TargetFileName=".jshintrc">.jshintrc</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName=".npmignore">.npmignore</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName=".travis.yml">.travis.yml</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="CHANGELOG.md">CHANGELOG.md</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE.md">LICENSE.md</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="minifier.js">minifier.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
-              <Folder Name=".idea" TargetFolderName=".idea">
-                <ProjectItem ReplaceParameters="false" TargetFileName=".name">.name</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="atlassian-ide-plugin.xml">atlassian-ide-plugin.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="compiler.xml">compiler.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="encodings.xml">encodings.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="gulp-uglify.iml">gulp-uglify.iml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="jsLibraryMappings.xml">jsLibraryMappings.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="misc.xml">misc.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="modules.xml">modules.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="vcs.xml">vcs.xml</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="workspace.xml">workspace.xml</ProjectItem>
-                <Folder Name="copyright" TargetFolderName="copyright">
-                  <ProjectItem ReplaceParameters="false" TargetFileName="profiles_settings.xml">profiles_settings.xml</ProjectItem>
-                </Folder>
-                <Folder Name="inspectionProfiles" TargetFolderName="inspectionProfiles">
-                  <ProjectItem ReplaceParameters="false" TargetFileName="profiles_settings.xml">profiles_settings.xml</ProjectItem>
-                  <ProjectItem ReplaceParameters="false" TargetFileName="Project_Default.xml">Project_Default.xml</ProjectItem>
-                </Folder>
-                <Folder Name="libraries" TargetFolderName="libraries">
-                  <ProjectItem ReplaceParameters="false" TargetFileName="gulp_uglify_node_modules.xml">gulp_uglify_node_modules.xml</ProjectItem>
-                </Folder>
-                <Folder Name="scopes" TargetFolderName="scopes">
-                  <ProjectItem ReplaceParameters="false" TargetFileName="scope_settings.xml">scope_settings.xml</ProjectItem>
-                </Folder>
-              </Folder>
-              <Folder Name="test" TargetFolderName="test">
-                <ProjectItem ReplaceParameters="false" TargetFileName="comments.js">comments.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="err.js">err.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="injectable.js">injectable.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="minify.js">minify.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="no-compress.js">no-compress.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="null.js">null.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="sourcemap.js">sourcemap.js</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="streams.js">streams.js</ProjectItem>
-              </Folder>
             </Folder>
             <Folder Name="gulp-util" TargetFolderName="gulp-util">
               <ProjectItem ReplaceParameters="false" TargetFileName="index.js">index.js</ProjectItem>
@@ -2288,6 +2423,24 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="through2.js">through2.js</ProjectItem>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="readable-stream" TargetFolderName="readable-stream">
+                  <ProjectItem ReplaceParameters="false" TargetFileName="duplex.js">duplex.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="passthrough.js">passthrough.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="readable.js">readable.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="transform.js">transform.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="writable.js">writable.js</ProjectItem>
+                  <Folder Name="lib" TargetFolderName="lib">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_duplex.js">_stream_duplex.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_passthrough.js">_stream_passthrough.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_readable.js">_stream_readable.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_transform.js">_stream_transform.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="_stream_writable.js">_stream_writable.js</ProjectItem>
+                  </Folder>
+                </Folder>
+              </Folder>
             </Folder>
             <Folder Name="uglify-js" TargetFolderName="uglify-js">
               <ProjectItem ReplaceParameters="false" TargetFileName=".npmignore">.npmignore</ProjectItem>
@@ -2309,6 +2462,54 @@
                 <ProjectItem ReplaceParameters="false" TargetFileName="sourcemap.js">sourcemap.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="transform.js">transform.js</ProjectItem>
                 <ProjectItem ReplaceParameters="false" TargetFileName="utils.js">utils.js</ProjectItem>
+              </Folder>
+              <Folder Name="node_modules" TargetFolderName="node_modules">
+                <Folder Name="source-map" TargetFolderName="source-map">
+                  <ProjectItem ReplaceParameters="false" TargetFileName=".tern-port">.tern-port</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="Makefile.dryice.js">Makefile.dryice.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="false" TargetFileName="package.json">package.json</ProjectItem>
+                  <Folder Name="build" TargetFolderName="build">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="assert-shim.js">assert-shim.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="mini-require.js">mini-require.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="prefix-source-map.jsm">prefix-source-map.jsm</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="prefix-utils.jsm">prefix-utils.jsm</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="suffix-browser.js">suffix-browser.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="suffix-source-map.jsm">suffix-source-map.jsm</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="suffix-utils.jsm">suffix-utils.jsm</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="test-prefix.js">test-prefix.js</ProjectItem>
+                    <ProjectItem ReplaceParameters="false" TargetFileName="test-suffix.js">test-suffix.js</ProjectItem>
+                  </Folder>
+                  <Folder Name="lib" TargetFolderName="lib">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="source-map.js">source-map.js</ProjectItem>
+                    <Folder Name="source-map" TargetFolderName="source-map">
+                      <ProjectItem ReplaceParameters="false" TargetFileName="array-set.js">array-set.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="base64-vlq.js">base64-vlq.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="base64.js">base64.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="binary-search.js">binary-search.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="source-map-consumer.js">source-map-consumer.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="source-map-generator.js">source-map-generator.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="source-node.js">source-node.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="util.js">util.js</ProjectItem>
+                    </Folder>
+                  </Folder>
+                  <Folder Name="test" TargetFolderName="test">
+                    <ProjectItem ReplaceParameters="false" TargetFileName="run-tests.js">run-tests.js</ProjectItem>
+                    <Folder Name="source-map" TargetFolderName="source-map">
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-api.js">test-api.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-array-set.js">test-array-set.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-base64-vlq.js">test-base64-vlq.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-base64.js">test-base64.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-binary-search.js">test-binary-search.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-dog-fooding.js">test-dog-fooding.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-source-map-consumer.js">test-source-map-consumer.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-source-map-generator.js">test-source-map-generator.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-source-node.js">test-source-node.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="test-util.js">test-util.js</ProjectItem>
+                      <ProjectItem ReplaceParameters="false" TargetFileName="util.js">util.js</ProjectItem>
+                    </Folder>
+                  </Folder>
+                </Folder>
               </Folder>
               <Folder Name="tmp" TargetFolderName="tmp">
                 <ProjectItem ReplaceParameters="false" TargetFileName="test-clone.js">test-clone.js</ProjectItem>
