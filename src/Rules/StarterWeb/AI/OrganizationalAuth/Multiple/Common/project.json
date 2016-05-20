@@ -59,7 +59,9 @@
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
-    "gcServer": true
+    "configProperties": {
+      "System.GC.Server": true
+    }
   },
 $endif$
   "publishOptions": {
