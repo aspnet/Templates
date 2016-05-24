@@ -9,7 +9,7 @@
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>19</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.DNX.ConsoleApp</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.DotNet.ConsoleApp</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>ConsoleApp</DefaultName>

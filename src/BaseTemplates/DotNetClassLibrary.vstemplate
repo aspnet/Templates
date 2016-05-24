@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET Core Empty Web Application</Name>
-    <Description>A project for creating an empty ASP.NET Core web application</Description>
-    <Icon>Empty.png</Icon>
+    <Name Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5009"/>
+    <Description Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5010"/>
+    <Icon>LibraryProject.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
-    <SortOrder>16</SortOrder>
+    <SortOrder>18</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.DNX.EmptyWeb</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.DotNet.ClassLibrary</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
-    <DefaultName>WebApplication</DefaultName>
+    <DefaultName>ClassLibrary</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
     <ProjectCollection/>
     <CustomParameters>
-      <CustomParameter Name="$projectwizardname$" Value="EmptyWeb\EmptyWeb.vstemplate" />
+      <CustomParameter Name="$projectwizardname$" Value="ClassLibrary\ClassLibrary.vstemplate" />
       <CustomParameter Name="$nugetfeedsource$" Value="__NUGETFEEDSOURCE__" />
     </CustomParameters>
   </TemplateContent>

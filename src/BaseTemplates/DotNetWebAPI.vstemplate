@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5011"/>
-    <Description Package="{98f77210-a364-4168-bae6-4d46fa7e19fe}" ID="5012"/>
-    <Icon>ConsoleProject.png</Icon>
+    <Name>ASP.NET Core Web API</Name>
+    <Description>A project for creating an ASP.NET Core Web API</Description>
+    <Icon>WebAPI.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
-    <SortOrder>19</SortOrder>
+    <SortOrder>18</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.DNX.ConsoleApp</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.DotNet.WebAPI</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
-    <DefaultName>ConsoleApp</DefaultName>
+    <DefaultName>WebApplication</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
     <ProjectCollection/>
     <CustomParameters>
-      <CustomParameter Name="$projectwizardname$" Value="ConsoleApp\ConsoleApp.vstemplate" />
+      <CustomParameter Name="$projectwizardname$" Value="WebAPI\WebAPI.vstemplate" />
       <CustomParameter Name="$nugetfeedsource$" Value="__NUGETFEEDSOURCE__" />
     </CustomParameters>
   </TemplateContent>
