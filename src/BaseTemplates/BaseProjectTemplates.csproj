@@ -32,16 +32,16 @@
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
       <SearchPath>ClassLibrary\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="DotNetClassLibrary.vstemplate">
-      <TargetName>DotNetClassLibrary</TargetName>
+    <VSTemplate Include="NetCoreClassLibrary.vstemplate">
+      <TargetName>NetCoreClassLibrary</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
       <SearchPath>ConsoleApp\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="DotNetConsoleApp.vstemplate">
-      <TargetName>DotNetConsoleApp</TargetName>
+    <VSTemplate Include="NetCoreConsoleApp.vstemplate">
+      <TargetName>NetCoreConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="EmptyWeb.vstemplate">

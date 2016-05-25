@@ -9,7 +9,7 @@
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>16</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.DotNet.EmptyWeb</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.NetCore.EmptyWeb</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>WebApplication</DefaultName>
