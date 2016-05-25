@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>ASP.NET Core Web API</Name>
-    <Description>A project for creating an ASP.NET Core Web API</Description>
-    <Icon>WebAPI.png</Icon>
+    <Name>ASP.NET Core Web Application</Name>
+    <Description>A project for creating an ASP.NET Core Starter Web Application</Description>
+    <Icon>WebApplication.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
-    <SortOrder>18</SortOrder>
+    <SortOrder>17</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <TemplateID>Microsoft.Visualstudio.DotNet.WebAPI</TemplateID>
+    <TemplateID>Microsoft.Visualstudio.NetCore.StarterWeb</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <CreateInPlace>true</CreateInPlace>
     <DefaultName>WebApplication</DefaultName>
@@ -19,7 +19,7 @@
   <TemplateContent>
     <ProjectCollection/>
     <CustomParameters>
-      <CustomParameter Name="$projectwizardname$" Value="WebAPI\WebAPI.vstemplate" />
+      <CustomParameter Name="$projectwizardname$" Value="StarterWeb\StarterWeb.vstemplate" />
       <CustomParameter Name="$nugetfeedsource$" Value="__NUGETFEEDSOURCE__" />
     </CustomParameters>
   </TemplateContent>
