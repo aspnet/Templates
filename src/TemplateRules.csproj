@@ -24,9 +24,9 @@
       <SearchPath>.\</SearchPath>
     </LooseFiles>
     <LooseFiles Include="
-              DNXStarterWeb.vstemplate;
-              DNXEmptyWeb.vstemplate;
-              DNXWebAPI.vstemplate">
+              DotNetStarterWeb.vstemplate;
+              DotNetEmptyWeb.vstemplate;
+              DotNetWebAPI.vstemplate">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\BaseTemplates</SearchPath>
     </LooseFiles>

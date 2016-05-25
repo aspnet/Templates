@@ -32,16 +32,16 @@
       <TargetName>$(ClassLibraryTemplateName)</TargetName>
       <SearchPath>ClassLibrary\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="DNXClassLibrary.vstemplate">
-      <TargetName>DNXClassLibrary</TargetName>
+    <VSTemplate Include="DotNetClassLibrary.vstemplate">
+      <TargetName>DotNetClassLibrary</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="ConsoleApp.vstemplate">
       <TargetName>$(ConsoleAppTemplateName)</TargetName>
       <SearchPath>ConsoleApp\;$(ResourcesPath);Common\</SearchPath>
     </VSTemplate>
-    <VSTemplate Include="DNXConsoleApp.vstemplate">
-      <TargetName>DNXConsoleApp</TargetName>
+    <VSTemplate Include="DotNetConsoleApp.vstemplate">
+      <TargetName>DotNetConsoleApp</TargetName>
       <SearchPath>$(ResourcesPath)</SearchPath>
     </VSTemplate>
     <VSTemplate Include="EmptyWeb.vstemplate">

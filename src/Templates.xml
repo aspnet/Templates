@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TemplateDefinition Name="ProjectK" Order="8000">
   <UI>
-    <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
+    <Template Name="Empty" BaseTemplateID="Microsoft.DotNet.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
       <PreviewImage>Resources\Empty.png</PreviewImage>
       <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
@@ -19,7 +19,7 @@
       </Options>
     </Template>
 
-    <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
+    <Template Name="Web API" BaseTemplateID="Microsoft.DotNet.CSharp.WebAPI" Order="8020">
       <Icon>Resources\WebAPI.png</Icon>
       <PreviewImage>Resources\WebAPI.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
@@ -39,7 +39,7 @@
       </Options>
     </Template>
 
-    <Template Name="Web Application" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
+    <Template Name="Web Application" BaseTemplateID="Microsoft.DotNet.CSharp.StarterWeb" Order="8030">
       <Icon>Resources\WebApplication.png</Icon>
       <PreviewImage>Resources\WebApplication.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
@@ -60,7 +60,7 @@
       </Options>
     </Template>
 
-    <Template Name="Empty" BaseTemplateID="Microsoft.DNX.CSharp.EmptyWeb" Order="8010">
+    <Template Name="Empty" BaseTemplateID="Microsoft.DotNet.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
       <PreviewImage>Resources\Empty.png</PreviewImage>
       <Summary>An empty project template for creating an ASP.NET Core application. This template does not have any content in it.</Summary>
@@ -78,7 +78,7 @@
       </Options>
     </Template>
 
-    <Template Name="Web API" BaseTemplateID="Microsoft.DNX.CSharp.WebAPI" Order="8020">
+    <Template Name="Web API" BaseTemplateID="Microsoft.DotNet.CSharp.WebAPI" Order="8020">
       <Icon>Resources\WebAPI.png</Icon>
       <PreviewImage>Resources\WebAPI.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with an example Controller for a RESTful HTTP service. This template can also be used for ASP.NET MVC Views and Controllers.</Summary>
@@ -98,7 +98,7 @@
       </Options>
     </Template>
 
-    <Template Name="Web Application" BaseTemplateID="Microsoft.DNX.CSharp.StarterWeb" Order="8030">
+    <Template Name="Web Application" BaseTemplateID="Microsoft.DotNet.CSharp.StarterWeb" Order="8030">
       <Icon>Resources\WebApplication.png</Icon>
       <PreviewImage>Resources\WebApplication.png</PreviewImage>
       <Summary>A project template for creating an ASP.NET Core application with example ASP.NET MVC Views and Controllers. This template can also be used for RESTful HTTP services.</Summary>
@@ -121,16 +121,16 @@
   </UI>
 
   <BaseTemplates>
-    <BaseTemplate ID="Microsoft.DNX.CSharp.EmptyWeb"
-              VSTemplatePath="DNXEmptyWeb.vstemplate"
+    <BaseTemplate ID="Microsoft.DotNet.CSharp.EmptyWeb"
+              VSTemplatePath="DotNetEmptyWeb.vstemplate"
               DefaultContext="WebCore">
         <ApplyRules Option="WebDesktop">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
    </BaseTemplate>
 
-    <BaseTemplate ID="Microsoft.DNX.CSharp.StarterWeb"
-              VSTemplatePath="DNXStarterWeb.vstemplate"
+    <BaseTemplate ID="Microsoft.DotNet.CSharp.StarterWeb"
+              VSTemplatePath="DotNetStarterWeb.vstemplate"
               DefaultContext="WebCore">
         <ApplyRules Option="WindowsAuth">
               <RunRule RuleID="StarterWebWindowsAuth" />
@@ -196,8 +196,8 @@
         </ApplyRules>
     </BaseTemplate>
 
-    <BaseTemplate ID="Microsoft.DNX.CSharp.WebAPI"
-              VSTemplatePath="DNXWebAPI.vstemplate"
+    <BaseTemplate ID="Microsoft.DotNet.CSharp.WebAPI"
+              VSTemplatePath="DotNetWebAPI.vstemplate"
               DefaultContext="WebCore">
         <ApplyRules Option="WindowsAuth">
               <RunRule RuleID="WebAPICommonAuth" />
