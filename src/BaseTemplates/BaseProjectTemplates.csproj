@@ -139,16 +139,24 @@
 
   <Target Name="UpdateTemplateProjectJson" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
     <PropertyGroup>
-      <TempPath>$(IntermediateOutputPath)</TempPath>
+      <TempPath>$(IntermediateOutputPath)ProjectJson\</TempPath>
     </PropertyGroup>
 
+    <MakeDir Directories="$(TempPath)" />
+
     <ItemGroup>
+      <SrcFiles Remove="@(SrcFiles)" />
       <SrcFiles Include="$(TemplateProjectJson)"/>
     </ItemGroup>
 
     <Copy SourceFiles="@(SrcFiles)" DestinationFiles="@(SrcFiles->'$(TempPath)%(Filename)%(Extension)')">
-      <Output ItemName="FilesToReplace" TaskParameter="CopiedFiles"/>
+      <Output ItemName="CopiedProjectJsonFile" TaskParameter="CopiedFiles"/>
     </Copy>
+
+    <ItemGroup>
+      <FilesToReplace Remove="@(FilesToReplace)" />
+      <FilesToReplace Include="@(CopiedProjectJsonFile)" />
+    </ItemGroup>
 
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
@@ -158,7 +166,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(TemplateProjectJson)" />
+    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" />
     <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
     <Copy SourceFiles="@(FilesToReplace)" DestinationFiles="@(FilesToReplace->'$(TemplatesOutputPath)%(Filename)%(Extension)')" />
   </Target>
