@@ -1,0 +1,94 @@
+﻿{
+  "dependencies": {
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
+    "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    },
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    },
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
+    "Microsoft.Extensions.Logging": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-*",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    },
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
+      "version": "__ToolsPackageVersion__",
+      "type": "build"
+    }
+  },
+
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+      },
+      "imports": []
+    },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "__NetCorePlatformVersion__",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "dotnet5.6",
+        "portable-net451+win8"
+      ]
+    }
+  },
+
+  "tools": {
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
+    },
+    "Microsoft.Extensions.SecretManager.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "__ToolsPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "runtimes": {
+    "win7-x64": {},
+    "win7-x86": {}
+  }
+}

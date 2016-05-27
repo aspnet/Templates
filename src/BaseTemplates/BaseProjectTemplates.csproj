@@ -13,6 +13,7 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
+    <TemplateProjectJson>$(TemplatesSource)\project.json</TemplateProjectJson>
     <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
     <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
@@ -136,10 +137,37 @@
     <VerifySortedDependencies FileList="@(FilesToVerify)"/>
   </Target>
 
+  <Target Name="UpdateTemplateProjectJson" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
+    <PropertyGroup>
+      <TempPath>$(IntermediateOutputPath)</TempPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <SrcFiles Include="$(TemplateProjectJson)"/>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(SrcFiles)" DestinationFiles="@(SrcFiles->'$(TempPath)%(Filename)%(Extension)')">
+      <Output ItemName="FilesToReplace" TaskParameter="CopiedFiles"/>
+    </Copy>
+
+    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
+
+    <Message Text="Running $(UpdateJsonCommand) on $(TemplateProjectJson)" />
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" />
+    <Copy SourceFiles="@(FilesToReplace)" DestinationFiles="@(FilesToReplace->'$(TemplatesOutputPath)%(Filename)%(Extension)')" />
+  </Target>
+
   <Target Name="BuildCompiled">
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildAllTemplates" />
+    <CallTarget Targets="UpdateTemplateProjectJson"/>
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
