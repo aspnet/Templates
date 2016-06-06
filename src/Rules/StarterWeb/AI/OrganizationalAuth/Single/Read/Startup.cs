@@ -76,7 +76,7 @@ namespace $safeprojectname$
                 ClientSecret = Configuration["Authentication:AzureAd:ClientSecret"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
-                ResponseType = OpenIdConnectResponseTypes.CodeIdToken
+                ResponseType = OpenIdConnectResponseType.CodeIdToken
             });
 
             app.UseMvc(routes =>
