@@ -43,6 +43,13 @@
   },
 
   "tools": {
+    "BundlerMinifier.Core": {
+      "version": "__BundlerPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net40+sl5+win8+wp8+wpa81"
+      ]
+    },
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
@@ -108,7 +115,8 @@ $endif$
   },
 
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
+    "precompile": [ "dotnet bundlerminifier" ],
+    "prepublish": [ "bower install" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
 }

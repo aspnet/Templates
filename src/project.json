@@ -59,6 +59,13 @@
   },
 
   "tools": {
+    "BundlerMinifier.Core": {
+      "version": "__BundlerPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net40+sl5+win8+wp8+wpa81"
+      ]
+    },
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
