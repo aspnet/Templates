@@ -85,6 +85,13 @@
             <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
+        <ItemGroup Condition="'$(PackageSource)' != ''">
+            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.AspNetCore.Mvc.Razor.*.nupkg"/>
+        </ItemGroup>
+        <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
+            <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
@@ -93,6 +100,8 @@
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">1.6.0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
             <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
             <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
+            <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
+            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
