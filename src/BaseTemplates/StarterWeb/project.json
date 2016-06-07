@@ -77,7 +77,7 @@ $endif$
   },
 
   "scripts": {
-    "precompile": [ "dotnet bundlerminifier" ],
+    "precompile": [ "dotnet bundle" ],
     "prepublish": [ "bower install" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
