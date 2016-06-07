@@ -86,7 +86,7 @@
         </GetFileSemanticVersion>
 
         <ItemGroup Condition="'$(PackageSource)' != ''">
-            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.AspNetCore.Mvc.Razor.*.nupkg"/>
+            <AspNetCoreFile Include="$(PackageSource)\Microsoft.AspNetCore.Mvc.Razor.*.nupkg"/>
         </ItemGroup>
         <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
             <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
