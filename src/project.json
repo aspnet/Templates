@@ -38,11 +38,9 @@
   },
 
   "frameworks": {
-    "net451": {
-      "dependencies": {
-      },
-      "imports": []
-    },
+    "net452": { },
+    "net46": { },
+    "net461": { },
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
