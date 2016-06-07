@@ -107,6 +107,7 @@
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
         <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
+        <Message Text="AspNetCorePackageVersion: $(AspNetCorePackageVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
