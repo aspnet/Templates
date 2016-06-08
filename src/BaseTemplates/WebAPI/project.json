@@ -54,7 +54,7 @@ $endif$
     "include": [
       "wwwroot",
       "Views",
-      "Areas\**\Views",
+      "Areas/**/Views",
       "appsettings.json",
       "web.config"
     ]
