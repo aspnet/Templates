@@ -90,10 +90,5 @@
         "portable-net45+win8"
       ]
     }
-  },
-
-  "runtimes": {
-    "win7-x64": {},
-    "win7-x86": {}
   }
 }
