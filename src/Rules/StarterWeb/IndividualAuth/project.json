@@ -18,9 +18,13 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.Tools": {
+    "Microsoft.EntityFrameworkCore.Design": {
       "version": "__ToolsPackageVersion__",
+      "type": "build"
+    },
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+      "version": "__AspNetCorePackageVersion__",
       "type": "build"
     },
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
@@ -57,13 +61,7 @@
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
     },$endif$
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    },
+    "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
     "Microsoft.Extensions.SecretManager.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
