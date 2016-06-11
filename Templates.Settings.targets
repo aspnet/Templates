@@ -47,7 +47,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion>1.0.0-rc2-final</ApplicationInsightsPackageVersion>
+        <ApplicationInsightsPackageVersion>1.0.0-rc3-final</ApplicationInsightsPackageVersion>
         <BundlerPackageVersion>2.0.231</BundlerPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
