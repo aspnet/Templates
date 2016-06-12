@@ -296,8 +296,6 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
-    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
-
     <ItemGroup>
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="$(TestPath)\project.json"/>
@@ -321,8 +319,6 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
-
     <ItemGroup Condition="'$(IsTemplate)' == 'true'">
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="$(TestPath)\project.json"/>
