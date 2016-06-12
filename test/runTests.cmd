@@ -8,7 +8,7 @@ dotnet build
 
 REM Create the database for the tests
 pushd ..\intermediate\Test\StarterWeb.IndividualAuth
-rem dotnet ef database update
+dotnet ef database update
 popd
 
 dotnet test Microsoft.Web.Templates.Web.Tests

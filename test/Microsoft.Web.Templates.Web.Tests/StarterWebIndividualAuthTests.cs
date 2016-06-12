@@ -71,7 +71,7 @@ namespace Microsoft.Web.Templates.Tests
             Assert.Contains("Create a new account.", reponseContent);
         }
 
-        [Fact(Skip="Disabled")]
+        [Fact]
         public async void Verify_Account_Register_CreateAccount()
         {
             var testUser = GetUniqueUserId();
@@ -142,7 +142,7 @@ namespace Microsoft.Web.Templates.Tests
             Assert.NotEqual(String.Empty, authCookie);
         }
 
-        [Fact(Skip="Disabled")]
+        [Fact]
         public async void Verify_Account_Login_Invalid()
         {
             // Act
