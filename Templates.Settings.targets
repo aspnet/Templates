@@ -130,6 +130,7 @@
         <PropertyGroup>
             <_PackageSourceForRestore >@(PackageSourceForRestore->'-s %(Identity)')</_PackageSourceForRestore >
             <PackageSourceForRestore >$(_PackageSourceForRestore.Replace(';', ' '))</PackageSourceForRestore >
+            <PackageSourceForRestore >$(PackageSourceForRestore) -f $(RemotePackageSource)</PackageSourceForRestore >
         </PropertyGroup>
 
         <Message Text="SetupPackageSource: $(SetupPackageSource)"/>
