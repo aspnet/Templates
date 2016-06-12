@@ -36,7 +36,7 @@
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
-        <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">true</SkipCopyPackages>
+        <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">false</SkipCopyPackages>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
