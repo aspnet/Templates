@@ -235,8 +235,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(PackageSource)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(PackageSource)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(CoherencePackageSources)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
