@@ -112,15 +112,14 @@
         <PropertyGroup>
             <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
             <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
-            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
-            <RemotePackageSource Condition="'$(PackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
+            <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
+            <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
         </PropertyGroup>
 
         <!-- Feeds related to Coherence-Signed depends on the remote stores -->
         <ItemGroup>
             <PackageSourceForRestore Include="$(CoherencePackageSources)" Condition="'$(PackageSource)' != ''"/>
-            <PackageSourceForRestore Include="$(RemotePackageSource)" Condition="'$(RemotePackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(ApplicationInsightsPackageSource)" Condition="'$(ApplicationInsightsPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AzureAdPackageSource)" Condition="'$(AzureAdPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(RoslynPackageSource)" Condition="'$(RoslynPackageSource)' != ''"/>
