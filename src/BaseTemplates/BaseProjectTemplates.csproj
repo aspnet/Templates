@@ -112,8 +112,6 @@
       <FilesToVerify Remove="**\*.ico"/>
       <FilesToVerify Remove="**\*.min.js"/>
       <FilesToVerify Remove="**\*.min.css"/>
-      <FilesToVerify Remove="StarterWeb\node_modules\**\*.*"/>
-      <FilesToVerify Remove="StarterWeb\bower_components\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\jquery*\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\**\*.*"/>
@@ -123,7 +121,6 @@
     <ItemGroup>
       <FilesToVerify Remove="StarterWeb\.bowerrc"/>
       <FilesToVerify Remove="StarterWeb\bower.json"/>
-      <FilesToVerify Remove="StarterWeb\package.json"/>
     </ItemGroup>
     <VerifyBOM FileList="@(FilesToVerify)"/>
     <ItemGroup>

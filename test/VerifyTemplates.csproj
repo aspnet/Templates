@@ -211,7 +211,6 @@
       <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
       <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
-      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
     </ItemGroup>
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(ProjectGuid)" />
@@ -273,7 +272,6 @@
       <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*"/>
       <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*"/>
-      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*"/>
     </ItemGroup>
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
