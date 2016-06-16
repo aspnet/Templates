@@ -19,10 +19,18 @@
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
   "tools": {
+    "BundlerMinifier.Core": {
+      "version": "__BundlerPackageVersion__",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net40+sl5+win8+wp8+wpa81"
+      ]
+    },
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
@@ -46,12 +54,7 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "compile": {
-      "exclude": [
-        "node_modules"
-      ]
-    }
+    "preserveCompilationContext": true
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
@@ -64,13 +67,15 @@ $endif$
     "include": [
       "wwwroot",
       "Views",
+      "Areas/**/Views",
       "appsettings.json",
       "web.config"
     ]
   },
 
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
+    "precompile": [ "dotnet bundle" ],
+    "prepublish": [ "bower install" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
 }

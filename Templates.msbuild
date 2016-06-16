@@ -13,7 +13,7 @@
   </Target>
 
   <Target Name="UnitTest" DependsOnTargets="SetupPackageSource" Condition="'$(RunTemplateUnitTests)' == 'true'">
-    <Exec Command="test\runTests.cmd -f $(PackageSourceForRestore)"/>
+    <Exec Command="test\runTests.cmd $(PackageSourceForRestore)"/>
   </Target>
   
   <Target Name="WriteDropFile" DependsOnTargets="SetupPackageSource" Condition="'$(IsOfficialBuild)' == 'true'">
@@ -26,7 +26,7 @@
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
   </Target>
 
-  <Target Name="Build" DependsOnTargets="SetupPackageSource">
+  <Target Name="Build" DependsOnTargets="CopyPackagesForBuild">
     <ItemGroup>
       <ProjectsToBuild Include="dirs.proj"/>
     </ItemGroup>

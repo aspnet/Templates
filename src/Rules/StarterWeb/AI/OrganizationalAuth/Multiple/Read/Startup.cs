@@ -78,7 +78,7 @@ namespace $safeprojectname$
                 ClientSecret = Configuration["Authentication:AzureAd:ClientSecret"],
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + "Common",
                 CallbackPath = Configuration["Authentication:AzureAd:CallbackPath"],
-                ResponseType = OpenIdConnectResponseTypes.CodeIdToken,
+                ResponseType = OpenIdConnectResponseType.CodeIdToken,
 
                 TokenValidationParameters = new TokenValidationParameters
                 {

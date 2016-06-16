@@ -211,7 +211,6 @@
       <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
       <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
-      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*" Condition="'$(IsRulesPackage)' == 'false'"/>
     </ItemGroup>
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
     <RegexReplace Files="@(ExtractedFiles)" Find="\$guid1\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(ProjectGuid)" />
@@ -237,7 +236,6 @@
   </Target>
   
   <Target Name="InstallNpmPackages">
-    <Exec Command="npm install -g gulp" Condition="!Exists('$(AppData)\npm\gulp') or '$(ForceNpmInstall)' == 'true'" />
     <Exec Command="npm install -g bower" Condition="!Exists('$(AppData)\npm\bower') or '$(ForceNpmInstall)' == 'true'" />
   </Target>
   
@@ -274,7 +272,6 @@
       <ExtractedFiles Remove="@(ExtractedFiles)"/>
       <ExtractedFiles Include="$(TestPath)\**\*.*"/>
       <ExtractedFiles Remove="$(TestPath)\wwwroot\**\*.*"/>
-      <ExtractedFiles Remove="$(TestPath)\node_modules\**\*.*"/>
     </ItemGroup>
 
     <RegexReplace Files="@(ExtractedFiles)" Find="\$safeprojectname\$" Condition="('%(Extension)' == '.cshtml' or '%(Extension)' == '.cs' or '%(Extension)' == '.vstemplate' or '%(Extension)' == '.xproj')" Replace="$(TargetName)" />
@@ -297,16 +294,14 @@
     <RegexReplace Files="@(ExtractedFiles)" Find="\$baseoutputlocation\$" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="src" />
     <RegexReplace Files="@(ExtractedFiles)" Find="Server=\(localdb\)\\\\mssqllocaldb;" Condition="('%(Extension)' == '.json')" Encoding="ascii" Replace="Server=(localdb)\\templatetests;" />
 
-    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd"/>
-
     <ItemGroup>
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="$(TestPath)\project.json"/>
     </ItemGroup>
     <VerifySortedDependencies FileList="@(FilesToVerify)"/>
 
-    <Message Text="Running $(DotNetRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" />
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) -f $(PackageSourceForRestore)"/>
+    <Message Text="Running $(DotNetRestoreCommand) $(PackageSourceForRestore) on $(TestPath)" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) $(PackageSourceForRestore)"/>
     <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" />
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')" />-->
@@ -322,16 +317,14 @@
       <TestPath>$(TemplatesTestPath)$(TargetName)\</TestPath>
     </PropertyGroup>
     
-    <Copy SourceFiles="$(TemplatesTools)\run.txt" DestinationFiles="$(TestPath)run.cmd" Condition="'$(IsTemplate)' == 'true'"/>
-
     <ItemGroup Condition="'$(IsTemplate)' == 'true'">
       <FilesToVerify Remove="@(FilesToVerify)"/>
       <FilesToVerify Include="$(TestPath)\project.json"/>
     </ItemGroup>
     <VerifySortedDependencies FileList="@(FilesToVerify)" Condition="'$(IsTemplate)' == 'true'"/>
 
-    <Message Text="Running $(DotNetRestoreCommand) -f $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'" />
-    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) -f $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'"/>
+    <Message Text="Running $(DotNetRestoreCommand) $(PackageSourceForRestore) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'" />
+    <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'"/>
     <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" Condition="'$(IsTemplate)' == 'true'"/>
     <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')"/>-->

@@ -48,7 +48,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <Options>
-        <Authentication Default="IndividualAuth">
+        <Authentication Default="NoAuth">
           <NoAuth />
           <WindowsAuth />
           <IndividualAuth />
@@ -107,7 +107,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
       <Options>
-        <Authentication Default="IndividualAuth">
+        <Authentication Default="NoAuth">
           <NoAuth />
           <WindowsAuth />
           <IndividualAuth />

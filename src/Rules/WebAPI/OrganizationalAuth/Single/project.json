@@ -16,7 +16,8 @@
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*"
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-*"
   },
 
   "tools": {$if$ ($aspnet_useplatformhandler$ == false)$else$
@@ -43,12 +44,7 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "compile": {
-      "exclude": [
-        "node_modules"
-      ]
-    }
+    "preserveCompilationContext": true
   },
 $if$ ($context$ == WebCore)
   "runtimeOptions": {
@@ -61,6 +57,7 @@ $endif$
     "include": [
       "wwwroot",
       "Views",
+      "Areas/**/Views",
       "appsettings.json",
       "web.config"
     ]

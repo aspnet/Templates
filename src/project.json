@@ -1,21 +1,18 @@
 ﻿{
-  "userSecretsId": "aspnet-$safeprojectname$-$guid2$",
-
-  "dependencies": {$if$ ($context$ == WebCore)
-    "Microsoft.NETCore.App": {
-      "version": "__NetCorePlatformVersion__",
-      "type": "platform"
-    },$endif$
+  "dependencies": {
+    "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-*",
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
-    },$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
+    },
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.Design": {
@@ -33,8 +30,7 @@
     "Microsoft.Extensions.Logging": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-*",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-*",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
@@ -42,6 +38,25 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
+    }
+  },
+
+  "frameworks": {
+    "net452": { },
+    "net46": { },
+    "net461": { },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "__NetCorePlatformVersion__",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "dotnet5.6",
+        "portable-net451+win8"
+      ]
     }
   },
 
@@ -56,11 +71,11 @@
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },$if$ ($aspnet_useplatformhandler$ == false)$else$
+    },
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": "portable-net45+win8+dnxcore50"
-    },$endif$
+    },
     "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
     "Microsoft.Extensions.SecretManager.Tools": {
       "version": "__ToolsPackageVersion__",
@@ -73,43 +88,5 @@
         "portable-net45+win8"
       ]
     }
-  },
-
-  "frameworks": {$if$ ($context$ == WebCore)
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
-    }$else$
-    "$netframeworkversion$": { }$endif$
-  },
-
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
-$if$ ($context$ == WebCore)
-  "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
-$endif$
-  "publishOptions": {
-    "include": [
-      "wwwroot",
-      "Views",
-      "Areas/**/Views",
-      "appsettings.json",
-      "web.config"
-    ]
-  },
-
-  "scripts": {
-    "precompile": [ "dotnet bundle" ],
-    "prepublish": [ "bower install" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
   }
 }
