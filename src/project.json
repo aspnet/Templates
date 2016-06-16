@@ -53,7 +53,6 @@
         }
       },
       "imports": [
-        "dnxcore50",
         "dotnet5.6",
         "portable-net451+win8"
       ]
@@ -65,26 +64,15 @@
       "version": "__BundlerPackageVersion__",
       "imports": [
         "portable-net45+win8+dnxcore50",
-        "portable-net40+sl5+win8+wp8+wpa81"
       ]
     },
-    "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    },
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    },
+    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",
     "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
-    "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    },
+    "Microsoft.Extensions.SecretManager.Tools": "__ToolsPackageVersion__",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "__ToolsPackageVersion__",
       "imports": [
-        "portable-net45+win8+dnxcore50",
         "portable-net45+win8"
       ]
     }
