@@ -60,12 +60,7 @@
   },
 
   "tools": {
-    "BundlerMinifier.Core": {
-      "version": "__BundlerPackageVersion__",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-      ]
-    },
+    "BundlerMinifier.Core": "__BundlerPackageVersion__",
     "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",
     "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
