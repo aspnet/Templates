@@ -22,21 +22,14 @@
   },
 
   "tools": {$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    },$endif$
-    "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "__ToolsPackageVersion__",
-      "imports": "portable-net45+win8+dnxcore50"
-    }
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",$endif$
+    "Microsoft.Extensions.SecretManager.Tools": "__ToolsPackageVersion__"
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
-        "dnxcore50",
         "portable-net45+win8"
       ]
     }$else$
