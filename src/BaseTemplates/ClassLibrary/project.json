@@ -6,7 +6,7 @@
   },
 
   "frameworks": {
-    "netstandard1.5": {
+    "netstandard__NetStandardVersion__": {
       "imports": "dnxcore50"
     }
   }
