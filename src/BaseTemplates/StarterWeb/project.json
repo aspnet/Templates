@@ -4,21 +4,21 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.1.0-*",
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
     },$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
-    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
-    "Microsoft.Extensions.Logging": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0-*",$endif$
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0-*",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0-*",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0-*",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0-*",
+    "Microsoft.Extensions.Logging": "1.1.0-*",
+    "Microsoft.Extensions.Logging.Console": "1.1.0-*",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0-*",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "__VSVER__.0-*"
   },
 
