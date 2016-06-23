@@ -19,7 +19,7 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.Design": {
+    "Microsoft.EntityFrameworkCore.Tools": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
     },
