@@ -436,6 +436,14 @@ namespace $safeprojectname$.Controllers
             }
         }
 
+        //
+        // GET /Account/AccessDenied
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
