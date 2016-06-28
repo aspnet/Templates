@@ -97,7 +97,7 @@
             <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
             <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
             <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
-            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
+            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.1.0$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
