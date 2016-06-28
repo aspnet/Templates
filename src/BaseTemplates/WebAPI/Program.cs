@@ -12,14 +12,15 @@ namespace $safeprojectname$
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())$if$ ($aspnet_useplatformhandler$ == false)$else$
-                .UseIISIntegration()$endif$
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            using (var host = new WebHostBuilder()
+								 .UseKestrel()
+								 .UseContentRoot(Directory.GetCurrentDirectory())$if$ ($aspnet_useplatformhandler$ == false)$else$
+								 .UseIISIntegration()$endif$
+								 .UseStartup<Startup>()
+								 .Build())
+			{
+				host.Run();
+			}
         }
     }
 }
