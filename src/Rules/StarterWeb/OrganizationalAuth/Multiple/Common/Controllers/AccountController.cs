@@ -11,12 +11,18 @@ namespace $safeprojectname$.Controllers
 {
     public class AccountController : Controller
     {
+        //
+        // GET: /Account/SignIn
+        [HttpGet]
         public IActionResult SignIn()
         {
             return Challenge(
                 new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
+        //
+        // GET: /Account/SignOut
+        [HttpGet]
         public IActionResult SignOut()
         {
             var callbackUrl = Url.Action(nameof(SignedOut), "Account", values: null, protocol: Request.Scheme);
@@ -24,6 +30,9 @@ namespace $safeprojectname$.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
+        //
+        // GET: /Account/SignedOut
+        [HttpGet]
         public IActionResult SignedOut()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -32,6 +41,14 @@ namespace $safeprojectname$.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
+            return View();
+        }
+
+        //
+        // GET: /Account/AccessDenied
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
             return View();
         }
     }

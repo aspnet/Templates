@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using $safeprojectname$.Models;
 using $safeprojectname$.Models.AccountViewModels;
 using $safeprojectname$.Services;
@@ -22,16 +23,19 @@ namespace $safeprojectname$.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly string _externalCookieScheme;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
@@ -41,8 +45,11 @@ namespace $safeprojectname$.Controllers
         // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -262,7 +269,7 @@ namespace $safeprojectname$.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -311,7 +318,7 @@ namespace $safeprojectname$.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -436,6 +443,14 @@ namespace $safeprojectname$.Controllers
             }
         }
 
+        //
+        // GET /Account/AccessDenied
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -444,11 +459,6 @@ namespace $safeprojectname$.Controllers
             {
                 ModelState.AddModelError(string.Empty, error.Description);
             }
-        }
-
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return _userManager.GetUserAsync(HttpContext.User);
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

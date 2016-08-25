@@ -23,7 +23,7 @@
       "version": "__AspNetCorePackageVersion__",
       "type": "build"
     },
-    "Microsoft.EntityFrameworkCore.Tools": {
+    "Microsoft.EntityFrameworkCore.Tools.VisualStudio": {
       "version": "__ToolsPackageVersion__",
       "type": "build"
     },
@@ -49,7 +49,7 @@
     "BundlerMinifier.Core": "__BundlerPackageVersion__",
     "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",$endif$
-    "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "__ToolsPackageVersion__",
     "Microsoft.Extensions.SecretManager.Tools": "__ToolsPackageVersion__",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "__ToolsPackageVersion__",
@@ -83,8 +83,7 @@ $endif$
   "publishOptions": {
     "include": [
       "wwwroot",
-      "Views",
-      "Areas/**/Views",
+      "**/*.cshtml",
       "appsettings.json",
       "web.config"
     ]
