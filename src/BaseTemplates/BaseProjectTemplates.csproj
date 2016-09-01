@@ -90,6 +90,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
@@ -167,6 +169,8 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />

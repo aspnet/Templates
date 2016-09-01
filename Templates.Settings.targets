@@ -27,8 +27,8 @@
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'release'">$(ReleasePackageType)</PackageType>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
-        <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
-        <ExternalPackageSubPath>artifacts\coherence\ext</ExternalPackageSubPath>
+        <SignedPackageSubPath>Signed</SignedPackageSubPath>
+        <ExternalPackageSubPath>coherence\ext</ExternalPackageSubPath>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights/api/v3/index.json</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
@@ -68,6 +68,7 @@
             <CoreAppFile Include="$(CoherencePackageSources)\Microsoft.NETCore.App.*.nupkg"/>
             <NetStandardFile Include="$(CoherencePackageSources)\NETStandard.Library.*.nupkg"/>
             <ToolsFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
+            <ScaffoldingToolsFile Include="$(CoherencePackageSources)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
             <AspNetCoreFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Mvc.Razor.*.nupkg"/>
         </ItemGroup>
 
@@ -83,6 +84,10 @@
             <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
+        <GetFileSemanticVersion Condition="'%(ScaffoldingToolsFile .Identity)' != '' " Filename="%(ScaffoldingToolsFile .Filename)">
+            <Output PropertyName="ScaffoldingSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
         <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
             <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
@@ -90,24 +95,27 @@
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
-            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.1$(NetCoreSemanticVersion)</NetCorePlatformVersion>
             <NetStandardVersion Condition="'$(NetStandardVersion)' == ''">1.6</NetStandardVersion>
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
             <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
             <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
+            <ScaffoldingSemanticVersion Condition="'$(PackageSource)' == ''">-*</ScaffoldingSemanticVersion>
+            <ScaffoldingPackageVersion Condition="'$(ScaffoldingPackageVersion)' == ''">1.0.0$(ScaffoldingSemanticVersion)</ScaffoldingPackageVersion>
             <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
-            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.0.0$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
+            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.0.1$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
         <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
         <Message Text="AspNetCorePackageVersion: $(AspNetCorePackageVersion)"/>
+        <Message Text="ScaffoldingPackageVersion: $(ScaffoldingPackageVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
-        <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)">
+        <GetPackageSource Condition="'$(SetupPackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)">
             <Output PropertyName="SetupPackageSource" TaskParameter="PackageSource"/>
         </GetPackageSource>
         <PropertyGroup>
@@ -141,7 +149,7 @@
         <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
     </Target>
 
-    <Target Name="CopyPackagesForBuild" DependsOnTargets="SetupPackageSource" Condition="'$(SetupDrop)' != '' and '$(SkipCopyPackages)' == 'false'">
+    <Target Name="CopyPackagesForBuild" DependsOnTargets="SetupPackageSource" Condition="'$(SetupPackageSource)' != '' and '$(SkipCopyPackages)' == 'false'">
         <RemoveDir Directories="$(CoherencePackageSources)" />
         <MakeDir Directories="$(CoherencePackageSources)" />
 

@@ -7,7 +7,7 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     $if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*"
   },
 
