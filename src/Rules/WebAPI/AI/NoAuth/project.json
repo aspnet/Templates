@@ -17,8 +17,7 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0-*"
   },
 
-  "tools": {$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__"$endif$
+  "tools": {
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
@@ -51,7 +50,6 @@ $endif$
     ]
   },
 
-  "scripts": {$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
+  "scripts": {
   }
 }

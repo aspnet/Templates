@@ -67,7 +67,7 @@
         <ItemGroup Condition="'$(CoherencePackageSources)' != ''">
             <CoreAppFile Include="$(CoherencePackageSources)\Microsoft.NETCore.App.*.nupkg"/>
             <NetStandardFile Include="$(CoherencePackageSources)\NETStandard.Library.*.nupkg"/>
-            <ToolsFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
+            <ToolsFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Razor.Tools.*.nupkg"/>
             <AspNetCoreFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Mvc.Razor.Host.*.nupkg"/>
         </ItemGroup>
 

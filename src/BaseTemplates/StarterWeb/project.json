@@ -24,8 +24,7 @@
 
   "tools": {
     "BundlerMinifier.Core": "__BundlerPackageVersion__",
-    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__"$if$ ($aspnet_useplatformhandler$ == false)$else$,
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__"$endif$
+    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__"
   },
 
   "frameworks": {$if$ ($context$ == WebCore)
@@ -59,7 +58,6 @@ $endif$
   },
 
   "scripts": {
-    "prepublish": [ "bower install", "dotnet bundle" ]$if$ ($aspnet_useplatformhandler$ == false)$else$,
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]$endif$
+    "prepublish": [ "bower install", "dotnet bundle" ]
   }
 }
