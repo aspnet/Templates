@@ -111,8 +111,8 @@
             <Output PropertyName="SetupPackageSource" TaskParameter="PackageSource"/>
         </GetPackageSource>
         <PropertyGroup>
-            <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(SignedPackageSubPath)\$(PackageType)</PackageSource>
-            <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)$(ExternalPackageSubPath)</PackageSourceExternal>
+            <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)\$(SignedPackageSubPath)\$(PackageType)</PackageSource>
+            <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)\$(ExternalPackageSubPath)</PackageSourceExternal>
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
