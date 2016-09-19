@@ -17,7 +17,7 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="EmptyWeb.xproj" ReplaceParameters="true">
+    <Project File="EmptyWeb.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">Program.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>

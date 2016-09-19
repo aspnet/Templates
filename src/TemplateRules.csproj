@@ -227,6 +227,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSdkVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />

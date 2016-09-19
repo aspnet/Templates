@@ -33,10 +33,13 @@
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
+        <DotNetCoreSdkPackageSource Condition="'$(DotNetCoreSdkPackageSource)' == ''">\\cpvsbuild\Drops\Roslyn\Roslyn-Project-System\DotNet-Core-Sdk</DotNetCoreSdkPackageSource>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
         <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">false</SkipCopyPackages>
+        <SetupPackageSource Condition="'$(SetupPackageSource)' == ''">\\aspnetci\drops\Coherence-Signed\1.0.0\21431\artifacts\</SetupPackageSource>
+        <SetupPatchSource Condition="'$(SetupPatchSource)' == ''">\\aspnetci\drops\Coherence-Patch\1.0.1\10055\Signed\PackagesForRelease\</SetupPatchSource>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -66,6 +69,7 @@
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(CoherencePackageSources)' != ''">
             <CoreAppFile Include="$(CoherencePackageSources)\Microsoft.NETCore.App.*.nupkg"/>
+            <CoreSdkFile Include="$(CoherencePackageSources)\Microsoft.NETCore.Web.*.nupkg"/>
             <NetStandardFile Include="$(CoherencePackageSources)\NETStandard.Library.*.nupkg"/>
             <ToolsFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
             <ScaffoldingToolsFile Include="$(CoherencePackageSources)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
@@ -74,6 +78,10 @@
 
         <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
             <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <GetFileSemanticVersion Condition="'%(CoreSdkFile.Identity)' != '' " Filename="%(CoreSdkFile.Filename)">
+            <Output PropertyName="NetCoreSdkSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(NetStandardFile.Identity)' != '' " Filename="%(NetStandardFile.Filename)">
@@ -96,6 +104,8 @@
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.1$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetCoreSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSdkSemanticVersion>
+            <NetCoreSdkVersion Condition="'$(NetCoreSdkVersion)' == ''">1.0.0$(NetCoreSdkSemanticVersion)</NetCoreSdkVersion>
             <NetStandardVersion Condition="'$(NetStandardVersion)' == ''">1.6</NetStandardVersion>
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
@@ -108,10 +118,14 @@
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
+        <Message Text="NetCoreSdkVersion: $(NetCoreSdkVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
         <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
         <Message Text="AspNetCorePackageVersion: $(AspNetCorePackageVersion)"/>
         <Message Text="ScaffoldingPackageVersion: $(ScaffoldingPackageVersion)"/>
+    </Target>
+    
+    <Target Name="FindSource">
     </Target>
     
     <Target Name="SetupPackageSource">
@@ -126,12 +140,17 @@
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
         </PropertyGroup>
 
+        <FindLatestDrop RootPath="$(DotNetCoreSdkPackageSource)" SubFolder="Packages">
+            <Output PropertyName="DotNetCoreSdkPackageSource" TaskParameter="LatestPath"/>
+        </FindLatestDrop>
+
         <!-- Feeds related to Coherence-Signed depends on the remote stores -->
         <ItemGroup>
             <PackageSourceForRestore Include="$(CoherencePackageSources)" Condition="'$(PackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(ApplicationInsightsPackageSource)" Condition="'$(ApplicationInsightsPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AzureAdPackageSource)" Condition="'$(AzureAdPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(RoslynPackageSource)" Condition="'$(RoslynPackageSource)' != ''"/>
+            <PackageSourceForRestore Include="$(DotNetCoreSdkPackageSource)" Condition="'$(DotNetCoreSdkPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AdditionalPackageSourceForRestore)" Condition="'$(AdditionalPackageSourceForRestore)' != ''"/>
             <PackageSourceForRestore Include="https://api.nuget.org/v3/index.json"/>
         </ItemGroup>
@@ -146,6 +165,7 @@
         <Message Text="PackageSource: $(PackageSource)"/>
         <Message Text="PackageSourceExternal: $(PackageSourceExternal)"/>
         <Message Text="CoherencePackageSources: $(CoherencePackageSources)"/>
+        <Message Text="DotNetCoreSdkPackageSource: $(DotNetCoreSdkPackageSource)"/>
         <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
     </Target>
 
@@ -156,7 +176,10 @@
         <!-- Copy Coherence packages locally to speed up restore -->
         <ItemGroup>
             <CoherencePackages Include="$(PackageSource)\*.nupkg;
-                                        $(PackageSourceExternal)\*.nupkg" />
+                                        $(PackageSourceExternal)\*.nupkg;
+                                        $(DotNetCoreSdkPackageSource)\*.nupkg" />
+            <CoherencePackages Include="$(SetupPatchSource)\*.nupkg" 
+                               Exclude="$(SetupPatchSource)\*.*-preview2-update1.nupkg" />
         </ItemGroup>
 
         <Copy SourceFiles="@(CoherencePackages)" DestinationFolder="$(IntermediateOutputPath)\CoherencePackages" SkipUnchangedFiles="true" />

@@ -6,6 +6,9 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
+    "Microsoft.NETCore.Web": {
+      "version": "__NetCoreSdkVersion__"
+    },
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",

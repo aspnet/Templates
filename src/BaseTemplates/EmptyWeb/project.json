@@ -4,6 +4,9 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
+    "Microsoft.NETCore.Web": {
+      "version": "__NetCoreSdkVersion__"
+    },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     $if$ ($aspnet_useplatformhandler$ == false)$else$
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",$endif$

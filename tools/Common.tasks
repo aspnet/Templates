@@ -259,4 +259,41 @@
             </Code>
         </Task>
     </UsingTask> 
+    <UsingTask TaskName="FindLatestDrop" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+        <ParameterGroup>
+            <RootPath ParameterType="System.String" Required="true" />
+            <SubFolder ParameterType="System.String" Required="false" />
+            <LatestPath ParameterType="System.String" Output="true" />
+        </ParameterGroup>
+        <Task>
+            <Reference Include="System.Xml" />
+            <Reference Include="System.Core" />
+            <Using Namespace="System" />
+            <Using Namespace="System.Collections.Generic" />
+            <Using Namespace="System.Diagnostics" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Linq" />
+            <Using Namespace="System.Xml" />
+            <Using Namespace="Microsoft.Build.Framework" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+            try
+            {
+                var dirs = Directory.GetDirectories(RootPath);
+
+                var latestDirValue = dirs.OrderByDescending(o => o).First();
+                SubFolder = SubFolder ?? String.Empty;
+                LatestPath = Path.Combine(RootPath, Convert.ToString(latestDirValue), SubFolder)+"\\";
+            }
+            catch (Exception ex)
+            {
+                Log.LogErrorFromException(ex);
+            }
+            
+            return !Log.HasLoggedErrors;
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
 </Project>

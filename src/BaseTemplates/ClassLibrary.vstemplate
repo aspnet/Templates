@@ -17,7 +17,7 @@
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
-    <Project File="ClassLibrary.xproj" ReplaceParameters="true">
+    <Project File="ClassLibrary.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">

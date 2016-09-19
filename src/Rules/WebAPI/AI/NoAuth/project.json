@@ -4,6 +4,9 @@
       "version": "__NetCorePlatformVersion__",
       "type": "platform"
     },$endif$
+    "Microsoft.NETCore.Web": {
+      "version": "__NetCoreSdkVersion__"
+    },
     "Microsoft.ApplicationInsights.AspNetCore": "__ApplicationInsightsPackageVersion__",
     "Microsoft.AspNetCore.Mvc": "1.0.1-*",
     "Microsoft.AspNetCore.Routing": "1.0.1-*",$if$ ($aspnet_useplatformhandler$ == false)$else$

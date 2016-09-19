@@ -1,13 +1,11 @@
 ﻿{
-  "version": "1.0.0-*",
-
   "dependencies": {
+    "Microsoft.NETCore.Sdk": "__NetStandardSdkVersion__",
     "NETStandard.Library": "__NetStandardPlatformVersion__"
   },
 
   "frameworks": {
     "netstandard__NetStandardVersion__": {
-      "imports": "dnxcore50"
     }
   }
 }
