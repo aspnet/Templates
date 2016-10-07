@@ -1,17 +1,102 @@
 ﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Temporarily simulate an inner build until cross-targeting support for VS is checked in. This needs to be
+       above the import of the props because the SDK.props will only get imported if the TargetFramework is set.-->
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+  </PropertyGroup>
+
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworkIdentifier>.NETCoreApp</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <TargetFrameworks>netcoreapp1.0</TargetFrameworks>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
     <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
-    <None Include="project.json" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.App">
+      <Version>__NetCorePlatformVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.Sdk.Web">
+      <Version>__NetCoreSdkVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc">
+      <Version>__AspNetCorePatchPackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Tools">
+      <Version>__ToolsPackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Routing">
+      <Version>__AspNetCorePatchPackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel">
+      <Version>__AspNetCorePatchPackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions">
+      <Version>__AspNetCoreReleasePackageVersion__</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader">
+      <Version>14.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+$packagereferenceslist$
+  <!--
+  "tools": {
+    "BundlerMinifier.Core": "__BundlerPackageVersion__",
+    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",
+  },
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+    "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "**/*.cshtml",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ]
+  }
+  -->
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

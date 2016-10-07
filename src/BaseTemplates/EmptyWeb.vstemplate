@@ -19,7 +19,6 @@
   <TemplateContent>
     <Project File="EmptyWeb.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true">Program.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true">project.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Startup.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html" OpenInWebBrowser="true">Project_Readme.html</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>

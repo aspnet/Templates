@@ -13,8 +13,7 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <TemplateProjectJson>$(TemplatesSource)\project.json</TemplateProjectJson>
-    <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
+    <TemplateCsproj>$(TemplatesSource)\project.csproj</TemplateCsproj>
     <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.GetVSTemplateItems" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks2.dll" />
@@ -29,22 +28,6 @@
   </ItemDefinitionGroup>
   <!--This item group contains templates which are to be built-->
   <ItemGroup>
-    <VSTemplate Include="ClassLibrary.vstemplate">
-      <TargetName>$(ClassLibraryTemplateName)</TargetName>
-      <SearchPath>ClassLibrary\;$(ResourcesPath);Common\</SearchPath>
-    </VSTemplate>
-    <VSTemplate Include="NetCoreClassLibrary.vstemplate">
-      <TargetName>NetCoreClassLibrary</TargetName>
-      <SearchPath>$(ResourcesPath)</SearchPath>
-    </VSTemplate>
-    <VSTemplate Include="ConsoleApp.vstemplate">
-      <TargetName>$(ConsoleAppTemplateName)</TargetName>
-      <SearchPath>ConsoleApp\;$(ResourcesPath);Common\</SearchPath>
-    </VSTemplate>
-    <VSTemplate Include="NetCoreConsoleApp.vstemplate">
-      <TargetName>NetCoreConsoleApp</TargetName>
-      <SearchPath>$(ResourcesPath)</SearchPath>
-    </VSTemplate>
     <VSTemplate Include="EmptyWeb.vstemplate">
       <TargetName>$(EmptyWebTemplateName)</TargetName>
       <SearchPath>EmptyWeb\;$(ResourcesPath);Common\</SearchPath>
@@ -82,23 +65,16 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate') and '$(IsOfficialBuild)' == 'false'" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NUGETFEEDSOURCE__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(NugetFeedSource)" />
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSdkVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSdkVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
-
-    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' == 'true')"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(CoherencePackageSources)&quot;" Condition="('$(UseExactPackageVersions)' == 'true' and '$(UpdatePackageReferences)' != 'true')"/>
+    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCoreSdkVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
@@ -133,52 +109,40 @@
       <FilesToVerify Remove="Common\Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
-    <ItemGroup>
-      <FilesToVerify Remove="@(FilesToVerify)"/>
-      <FilesToVerify Include="ClassLibrary\project.json"/>
-      <FilesToVerify Include="ConsoleApp\project.json"/>
-    </ItemGroup>
-    <VerifySortedDependencies FileList="@(FilesToVerify)"/>
   </Target>
 
-  <Target Name="UpdateTemplateProjectJson" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
+  <Target Name="UpdateTemplateCsproj" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
     <PropertyGroup>
-      <TempPath>$(IntermediateOutputPath)ProjectJson\</TempPath>
+      <TempPath>$(IntermediateOutputPath)Csproj\</TempPath>
     </PropertyGroup>
 
     <MakeDir Directories="$(TempPath)" />
 
     <ItemGroup>
       <SrcFiles Remove="@(SrcFiles)" />
-      <SrcFiles Include="$(TemplateProjectJson)"/>
+      <SrcFiles Include="$(TemplateCsproj)"/>
     </ItemGroup>
 
     <Copy SourceFiles="@(SrcFiles)" DestinationFiles="@(SrcFiles->'$(TempPath)%(Filename)%(Extension)')">
-      <Output ItemName="CopiedProjectJsonFile" TaskParameter="CopiedFiles"/>
+      <Output ItemName="CopiedCsproj" TaskParameter="CopiedFiles"/>
     </Copy>
 
     <ItemGroup>
       <FilesToReplace Remove="@(FilesToReplace)" />
-      <FilesToReplace Include="@(CopiedProjectJsonFile)" />
+      <FilesToReplace Include="@(CopiedCsproj)" />
     </ItemGroup>
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSdkVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSdkVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ScaffoldingSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCoreSdkVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
 
-    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" />
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(CoherencePackageSources)&quot;" />
     <Copy SourceFiles="@(FilesToReplace)" DestinationFiles="@(FilesToReplace->'$(TemplatesOutputPath)%(Filename)%(Extension)')" />
   </Target>
 
@@ -186,7 +150,9 @@
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildAllTemplates" />
-    <CallTarget Targets="UpdateTemplateProjectJson"/>
+    <!--
+    <CallTarget Targets="UpdateTemplateCsproj"/>
+    -->
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
