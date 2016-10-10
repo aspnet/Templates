@@ -22,8 +22,8 @@
     <PackageReference Include="Microsoft.NETCore.App">
       <Version>__NetCorePlatformVersion__</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.Sdk.Web">
-      <Version>__NetCoreSdkVersion__</Version>
+    <PackageReference Include="Microsoft.NET.Sdk.Web">
+      <Version>__NetSdkVersion__</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics">
       <Version>__AspNetCoreReleasePackageVersion__</Version>
