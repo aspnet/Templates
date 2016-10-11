@@ -159,6 +159,7 @@
                     <RunRule RuleID="StarterWebOrganizationalAuthMultipleRead" />
               </ApplyRules>
         </ApplyRules>
+        <!--
         <ApplyRules Option="ApplicationInsights">
             <RunRule RuleID="ApplicationInsightsReferences" />
             <ApplyRules Option="NoAuth">
@@ -192,6 +193,7 @@
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
+        -->
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -213,7 +215,9 @@
                     <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
               </ApplyRules>
         </ApplyRules>
+        <!--
         <ApplyRules Option="ApplicationInsights">
+            <RunRule RuleID="ApplicationInsightsReferences" />
             <ApplyRules Option="NoAuth">
                   <RunRule RuleID="WebAPIAINoAuth" />
             </ApplyRules>
@@ -229,6 +233,7 @@
                   </ApplyRules>
             </ApplyRules>
         </ApplyRules>
+        -->
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
