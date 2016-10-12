@@ -2,14 +2,14 @@
   <!-- Temporarily simulate an inner build until cross-targeting support for VS is checked in. This needs to be
        above the import of the props because the SDK.props will only get imported if the TargetFramework is set.-->
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>$if$ ($context$ == WebCore)netcoreapp1.0$else$$netframeworkversion$$endif$</TargetFramework>
   </PropertyGroup>
 
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp1.0</TargetFrameworks>
+    <TargetFrameworks>$if$ ($context$ == WebCore)netcoreapp1.0$else$$netframeworkversion$$endif$</TargetFrameworks>
     <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
@@ -18,10 +18,10 @@
     <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App">
       <Version>__NetCorePlatformVersion__</Version>
-    </PackageReference>
+    </PackageReference>$endif$
     <PackageReference Include="Microsoft.NET.Sdk.Web">
       <Version>__NetSdkVersion__</Version>
     </PackageReference>
