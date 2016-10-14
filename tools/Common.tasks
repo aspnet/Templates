@@ -263,7 +263,9 @@
         <ParameterGroup>
             <RootPath ParameterType="System.String" Required="true" />
             <SubFolder ParameterType="System.String" Required="false" />
-            <LatestPath ParameterType="System.String" Output="true" />
+            <LatestRootPath ParameterType="System.String" Output="true" />
+            <LatestSubFolderPath ParameterType="System.String" Output="true" />
+            <Version ParameterType="System.String" Output="true" />
         </ParameterGroup>
         <Task>
             <Reference Include="System.Xml" />
@@ -284,7 +286,9 @@
 
                 var latestDirValue = dirs.Where(o => !o.EndsWith("Latest")).OrderByDescending(o => o).First();
                 SubFolder = SubFolder ?? String.Empty;
-                LatestPath = Path.Combine(RootPath, Convert.ToString(latestDirValue), SubFolder)+"\\";
+                Version = latestDirValue.Substring(latestDirValue.LastIndexOf("\\") + 1);
+                LatestRootPath = Path.Combine(RootPath, Convert.ToString(latestDirValue));
+                LatestSubFolderPath = Path.Combine(LatestRootPath, SubFolder);
             }
             catch (Exception ex)
             {

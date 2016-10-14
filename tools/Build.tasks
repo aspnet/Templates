@@ -211,4 +211,49 @@
             </Code>
         </Task>
     </UsingTask>
+    <UsingTask TaskName="GenerateSemaphore" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <TemplateVersion ParameterType="System.String" Required="true" />
+            <TemplateDropPath ParameterType="System.String" Required="true" />
+            <WebSdkVersion ParameterType="System.String" Required="true" />
+            <WebSdkDropPath ParameterType="System.String" Required="true" />
+<!--
+            <LocalFeedVersion ParameterType="System.String" Required="true" />
+            <LocalFeedDropPath ParameterType="System.String" Required="true" />
+-->
+            <SemaphoreFilePath ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Text" />
+            <Code Type="Fragment" Language="cs">
+              <![CDATA[
+                  var builder = new StringBuilder();
+                  builder.AppendLine("[Semaphore]");
+                  builder.AppendLine(string.Format("Version={0}", TemplateVersion));
+                  builder.AppendLine(string.Format("DropPath={0}", TemplateDropPath));
+                  builder.AppendLine(string.Format("WebSdkVersion={0}", WebSdkVersion));
+                  builder.AppendLine(string.Format("WebSdkDropPath={0}", WebSdkDropPath));
+/*
+                  builder.AppendLine(string.Format("LocalFeedVersion={0}", LocalFeedVersion));
+                  builder.AppendLine(string.Format("LocalFeedDropPath={0}", LocalFeedDropPath));
+*/
+                  var retry = 5;
+                  while (retry > 0)
+                  {
+                    try
+                    {
+                      File.WriteAllText(SemaphoreFilePath, builder.ToString());
+                      break;
+                    }
+                    catch
+                    {
+                      System.Threading.Thread.Sleep(500);
+                      retry--;
+                    }
+                  }
+              ]]>
+            </Code>
+        </Task>
+    </UsingTask>
 </Project>

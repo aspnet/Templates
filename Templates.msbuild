@@ -16,7 +16,7 @@
     <Exec Command="test\runTests.cmd $(PackageSourceForRestore)"/>
   </Target>
   
-  <Target Name="WriteDropFile" DependsOnTargets="SetupPackageSource" Condition="'$(IsOfficialBuild)' == 'true'">
+  <Target Name="WriteDropFile" DependsOnTargets="DeterminePackageVersions" Condition="'$(IsOfficialBuild)' == 'true'">
     <ItemGroup>
       <LinesToWrite Include="$(PackageSource)"/>
       <LinesToWrite Include="$(PackageSourceExternal)"/>
@@ -25,6 +25,7 @@
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
+    <GenerateSemaphore TemplateVersion="$(TemplateVersion)" TemplateDropPath="$(TemplateDropPath)" WebSdkVersion="$(NetSdkVersion)" WebSdkDropPath="$(NetSdkPackageSource)" SemaphoreFilePath="$(SemaphoreDropFile)"/>
   </Target>
 
   <Target Name="Build" DependsOnTargets="CopyPackagesForBuild">
