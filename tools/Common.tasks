@@ -282,7 +282,7 @@
             {
                 var dirs = Directory.GetDirectories(RootPath);
 
-                var latestDirValue = dirs.OrderByDescending(o => o).First();
+                var latestDirValue = dirs.Where(o => !o.EndsWith("Latest")).OrderByDescending(o => o).First();
                 SubFolder = SubFolder ?? String.Empty;
                 LatestPath = Path.Combine(RootPath, Convert.ToString(latestDirValue), SubFolder)+"\\";
             }

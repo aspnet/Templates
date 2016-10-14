@@ -20,6 +20,7 @@
     <ItemGroup>
       <LinesToWrite Include="$(PackageSource)"/>
       <LinesToWrite Include="$(PackageSourceExternal)"/>
+      <LinesToWrite Include="$(NetSdkPackageSource)"/>
       <LinesToWrite Include="$(SetupDrop)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
