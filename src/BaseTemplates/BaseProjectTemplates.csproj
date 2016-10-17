@@ -67,7 +67,7 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetSdkVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
@@ -134,7 +134,7 @@
 
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetSdkVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />

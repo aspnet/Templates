@@ -20,12 +20,20 @@
     <ItemGroup>
       <LinesToWrite Include="$(PackageSource)"/>
       <LinesToWrite Include="$(PackageSourceExternal)"/>
-      <LinesToWrite Include="$(NetSdkPackageSource)"/>
+      <LinesToWrite Include="$(WebSdkPackageSource)"/>
+      <LinesToWrite Include="$(CoreSdkDropPath)"/>
       <LinesToWrite Include="$(SetupDrop)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
-    <GenerateSemaphore TemplateVersion="$(TemplateVersion)" TemplateDropPath="$(TemplateDropPath)" WebSdkVersion="$(NetSdkVersion)" WebSdkDropPath="$(NetSdkPackageSource)" SemaphoreFilePath="$(SemaphoreDropFile)"/>
+    <GenerateSemaphore
+      TemplateVersion="$(TemplateVersion)"
+      TemplateDropPath="$(TemplateDropPath)"
+      WebSdkVersion="$(WebSdkVersion)"
+      WebSdkDropPath="$(WebSdkPackageSource)"
+      CoreSdkVersion="$(CoreSdkVersion)"
+      CoreSdkDropPath="$(CoreSdkDropPath)"
+      SemaphoreFilePath="$(SemaphoreDropFile)"/>
   </Target>
 
   <Target Name="Build" DependsOnTargets="CopyPackagesForBuild">

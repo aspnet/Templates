@@ -23,7 +23,7 @@
       <Version>__NetCorePlatformVersion__</Version>
     </PackageReference>$endif$
     <PackageReference Include="Microsoft.NET.Sdk.Web">
-      <Version>__NetSdkVersion__</Version>
+      <Version>__WebSdkVersion__</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc">
       <Version>__AspNetCorePatchPackageVersion__</Version>
