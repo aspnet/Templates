@@ -142,7 +142,7 @@
     </Target>
     
     <Target Name="SetupPackageSource">
-        <FindLatestDrop RootPath="$(CacheDropFolder)" SubFolder="Signed" Condition="'$(CacheDropPath)' != ''">
+        <FindLatestDrop RootPath="$(CacheDropFolder)" SubFolder="Signed" Condition="'$(CacheDropPath)' == ''">
             <Output PropertyName="CacheDropSigned" TaskParameter="LatestSubFolderPath"/>
             <Output PropertyName="CacheDropPath" TaskParameter="LatestRootPath"/>
         </FindLatestDrop>
