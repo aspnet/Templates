@@ -230,8 +230,8 @@
               <![CDATA[
                   var builder = new StringBuilder();
                   builder.AppendLine("[Semaphore]");
-                  builder.AppendLine(string.Format("Version={0}", TemplateVersion));
-                  builder.AppendLine(string.Format("DropPath={0}", TemplateDropPath));
+                  builder.AppendLine(string.Format("TemplateVersion={0}", TemplateVersion));
+                  builder.AppendLine(string.Format("TemplateDropPath={0}", TemplateDropPath));
                   builder.AppendLine(string.Format("CacheVersion={0}", CacheVersion));
                   builder.AppendLine(string.Format("CacheDropPath={0}", CacheDropPath));
                   builder.AppendLine(string.Format("WebSdkVersion={0}", WebSdkVersion));
