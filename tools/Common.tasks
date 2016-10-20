@@ -283,10 +283,13 @@
             try
             {
                 var dirs = Directory.GetDirectories(RootPath);
-
-                var latestDirValue = dirs.Where(o => !o.EndsWith("Latest")).OrderByDescending(o => o).First();
+                int i;
+                var buildDirs = from d in dirs
+                            where Int32.TryParse(Path.GetFileName(d), out i)
+                            select Convert.ToInt32(Path.GetFileName(d));
+                var latestDirValue = buildDirs.OrderByDescending(o => o).First();
                 SubFolder = SubFolder ?? String.Empty;
-                Version = latestDirValue.Substring(latestDirValue.LastIndexOf("\\") + 1);
+                Version = latestDirValue.ToString();
                 LatestRootPath = Path.Combine(RootPath, Convert.ToString(latestDirValue));
                 LatestSubFolderPath = Path.Combine(LatestRootPath, SubFolder);
             }
