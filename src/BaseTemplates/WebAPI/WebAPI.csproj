@@ -4,7 +4,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>$if$ ($context$ == WebCore)netcoreapp1.0$else$$netframeworkversion$$endif$</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <PreserveCompilationContext>true</PreserveCompilationContext>$if$ ($context$ == WebCoreFullFramework)
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$
   </PropertyGroup>
 
   <ItemGroup>
