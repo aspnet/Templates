@@ -9,6 +9,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
+      <SupportsDocker>true</SupportsDocker>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -27,6 +28,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
+      <SupportsDocker>true</SupportsDocker>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -47,6 +49,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
+      <SupportsDocker>true</SupportsDocker>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
