@@ -5,7 +5,13 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>$if$ ($context$ == WebCore)netcoreapp1.0$else$$netframeworkversion$$endif$</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-  </PropertyGroup>
+  </PropertyGroup>$if$ ($context$ == WebCore)
+
+  <PropertyGroup>
+    <PackageTargetFallback>
+      $(PackageTargetFallback);portable-net45+win8+wpa81+wp8
+    </PackageTargetFallback>
+  </PropertyGroup>$endif$
 
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
