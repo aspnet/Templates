@@ -32,14 +32,7 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-*",
-    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
-      "version": "__ScaffoldingPackageVersion__",
-      "type": "build"
-    },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
-      "version": "__ScaffoldingPackageVersion__",
-      "type": "build"
-    }
+	"Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.0.0-*",
   },
 
   "frameworks": {
@@ -71,6 +64,6 @@
       "imports": [
         "portable-net45+win8"
       ]
-    }
+    },
   }
 }

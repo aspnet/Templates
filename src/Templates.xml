@@ -260,8 +260,14 @@
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ToolsPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
+		  
+		  <!-- scp 2016-10-28 removal
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="__ScaffoldingPackageVersion__"/>
+		  -->
+		  <!-- scp 2016-10-28 add -->
+		  <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
+		  <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
 <!--
   "tools": {
     "BundlerMinifier.Core": "__BundlerPackageVersion__",
