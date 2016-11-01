@@ -9,9 +9,7 @@
   </PropertyGroup>$if$ ($context$ == WebCore)
 
   <PropertyGroup>
-    <PackageTargetFallback>
-      $(PackageTargetFallback);portable-net45+win8+wp8+wpa81;
-    </PackageTargetFallback>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>$endif$
 
   <ItemGroup>
