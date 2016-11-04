@@ -23,6 +23,7 @@
       <LinesToWrite Include="$(WebSdkPackageSource)"/>
       <LinesToWrite Include="$(CoreSdkDropPath)"/>
       <LinesToWrite Include="$(CacheDropPath)"/>
+      <LinesToWrite Include="$(ScaffoldingPackageSource)"/>
       <LinesToWrite Include="Template Version: $(TemplateBuildBranch):$(TemplateVersion)"/>
     </ItemGroup>
     <WriteLinesToFile File="$(CoherenceDropFile)" Lines="@(LinesToWrite)" Overwrite="True"/>
@@ -35,6 +36,8 @@
       WebSdkDropPath="$(WebSdkPackageSource)"
       CoreSdkVersion="$(CoreSdkVersion)"
       CoreSdkDropPath="$(CoreSdkDropPath)"
+      ScaffoldingVersion="$(ScaffoldingPackageVersion)"
+      ScaffoldingDropPath="$(ScaffoldingPackageSource)"
       SemaphoreFilePath="$(SemaphoreDropFile)"/>
   </Target>
 
