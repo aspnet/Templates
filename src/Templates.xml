@@ -15,7 +15,6 @@
           <NoAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
@@ -36,7 +35,6 @@
           <NoAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
@@ -58,7 +56,6 @@
           <OrgAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
@@ -76,7 +73,6 @@
           <NoAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
@@ -96,7 +92,6 @@
           <NoAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
@@ -117,7 +112,6 @@
           <OrgAuth />
         </Authentication>
         <AzureResources>
-          <AzureWebsite/>
         </AzureResources>
       </Options>
     </Template>
