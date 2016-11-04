@@ -70,10 +70,10 @@
 
 $packagereferenceslist$
 
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
   <Target Name="PrepublishScript" BeforeTargets="Publish">
     <Exec Command="bower install" />
     <Exec Command="dotnet bundle" />
   </Target>
-
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
