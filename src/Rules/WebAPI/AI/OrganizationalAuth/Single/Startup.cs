@@ -22,7 +22,7 @@ namespace $safeprojectname$
             if (env.IsEnvironment("Development"))
             {
                 // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
-                //builder.AddUserSecrets();
+                builder.AddUserSecrets();
 
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
