@@ -67,6 +67,11 @@
       <Version>14.0.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="BundlerMinifier.Core">
+      <Version>__BundlerPackageVersion__</Version>
+    </DotNetCliToolReference>
+  </ItemGroup>
 
 $packagereferenceslist$
 

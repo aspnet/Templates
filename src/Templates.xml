@@ -261,7 +261,6 @@
           -->
           <!-- scp 2016-10-28 add -->
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="BundlerMinifier.Core" Version="__BundlerPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFramework.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
 <!--
@@ -334,7 +333,6 @@
           <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreReleasePackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreReleasePackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddToolReference Name="BundlerMinifier.Core" Version="__BundlerPackageVersion_"/>
 <!--
   "tools": {
     "BundlerMinifier.Core": "__BundlerPackageVersion__",
