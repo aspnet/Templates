@@ -174,7 +174,7 @@
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
             <WebSdkPackageSource Condition="'$(WebSdkDropPath)' != ''">$(WebSdkDropPath)\Signed</WebSdkPackageSource>
-            <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''>$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
+            <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
         </PropertyGroup>
 
         <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath">
