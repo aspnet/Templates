@@ -69,33 +69,11 @@
   </ItemGroup>
 
 $packagereferenceslist$
-  <!--
-  "tools": {
-    "BundlerMinifier.Core": "__BundlerPackageVersion__",
-    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",
-  },
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
-    "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
-  "publishOptions": {
-    "include": [
-      "wwwroot",
-      "**/*.cshtml",
-      "appsettings.json",
-      "web.config"
-    ]
-  },
 
-  "scripts": {
-    "prepublish": [ "bower install", "dotnet bundle" ]
-  }
-  -->
+  <Target Name="PrepublishScript" BeforeTargets="Publish">
+    <Exec Command="bower install" />
+    <Exec Command="dotnet bundle" />
+  </Target>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
