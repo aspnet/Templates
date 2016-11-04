@@ -35,25 +35,6 @@
   </ItemGroup>
 
 $packagereferenceslist$
-  <!--
-    "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
-    "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
-    "publishOptions": {
-    "include": [
-      "wwwroot",
-      "**/*.cshtml",
-      "appsettings.json",
-      "web.config"
-    ]
-  },
-  -->
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
