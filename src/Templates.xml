@@ -262,6 +262,7 @@
           <!-- scp 2016-10-28 add -->
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFramework.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
 <!--
   "tools": {
@@ -350,18 +351,22 @@
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleNoRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\NoRead\Startup.cs"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Read\Startup.cs"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleCommon">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Common\Controllers\AccountController.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleNoRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\NoRead\Startup.cs"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Read\Startup.cs"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <!-- Application Insights StarterWeb rules -->
       <Rule ID="StarterWebAINoAuth">
@@ -419,6 +424,7 @@
       <Rule ID="WebAPIAIOrganizationalAuthSingle">
           <ReplaceFile Destination="appsettings.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
       <!-- Common Application Insights rules -->
