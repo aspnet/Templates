@@ -252,7 +252,7 @@
           <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCoreReleasePackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ToolsPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
 
           <!-- scp 2016-10-28 removal
