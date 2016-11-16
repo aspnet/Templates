@@ -88,5 +88,4 @@ $packagereferenceslist$
     <Exec Command="dotnet bundle" />
   </Target>
 -->
-<!-- test comment 2016-11-15 scp -->
 </Project>
