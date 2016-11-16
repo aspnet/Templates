@@ -30,7 +30,7 @@
         <PackageType Condition="'$(TemplateBuildBranch)' == 'release'">$(ReleasePackageType)</PackageType>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
         <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
-        <ExternalPackageSubPath>coherence\ext</ExternalPackageSubPath>
+        <ExternalPackageSubPath>artifacts\coherence\ext</ExternalPackageSubPath>
         <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights/api/v3/index.json</ApplicationInsightsPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
