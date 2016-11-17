@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
@@ -15,45 +15,19 @@
   </ItemGroup>
 
   <ItemGroup>$if$ ($context$ == WebCore)
-    <PackageReference Include="Microsoft.NETCore.App">
-      <Version>__NetCorePlatformVersion__</Version>
-    </PackageReference>$endif$
-    <PackageReference Include="Microsoft.NET.Sdk.Web">
-      <Version>__WebSdkVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc">
-      <Version>__AspNetCorePatchPackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Routing">
-      <Version>__AspNetCorePatchPackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel">
-      <Version>__AspNetCorePatchPackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions">
-      <Version>__AspNetCoreReleasePackageVersion__</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
+    <PackageReference Include="Microsoft.NET.Sdk.Web" Version="__WebSdkVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCoreReleasePackageVersion__" />
   </ItemGroup>
 
 $packagereferenceslist$
