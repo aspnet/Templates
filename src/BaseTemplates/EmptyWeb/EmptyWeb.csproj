@@ -12,7 +12,13 @@
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
     <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
     <Folder Include="wwwroot\" />
-  </ItemGroup>
+  </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>$endif$
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
