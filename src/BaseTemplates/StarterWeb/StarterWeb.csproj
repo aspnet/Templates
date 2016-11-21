@@ -10,6 +10,10 @@
 
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>$endif$$if$ ($aspnet_useusersecrets$ == true)
+
+  <PropertyGroup>
+    <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
   </PropertyGroup>$endif$
 
   <ItemGroup>

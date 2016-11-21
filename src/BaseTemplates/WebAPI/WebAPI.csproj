@@ -6,7 +6,11 @@
     <TargetFramework>$if$ ($context$ == WebCore)netcoreapp1.0$else$$netframeworkversion$$endif$</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>$if$ ($context$ == WebCoreFullFramework)
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$
-  </PropertyGroup>
+  </PropertyGroup>$if$ ($aspnet_useusersecrets$ == true)
+
+  <PropertyGroup>
+    <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
+  </PropertyGroup>$endif$
 
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
