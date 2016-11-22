@@ -411,6 +411,8 @@
           <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\WebAPI\WindowsAuth\Properties\launchSettings.json"/>
       </Rule>
       <Rule ID="WebAPIOrganizationalAuthSingle">
+          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs"/>
       </Rule>
 
