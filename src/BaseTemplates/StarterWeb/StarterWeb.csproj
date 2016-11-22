@@ -45,18 +45,8 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="__BundlerPackageVersion__" />
-  </ItemGroup>
 
 $packagereferenceslist$
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
-<!--
-   <Target Name="BeforePublish">
-    <Exec Command="bower install" />
-    <Exec Command="dotnet bundle" />
-  </Target>
--->
 </Project>

@@ -52,7 +52,6 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">1.0.0</ApplicationInsightsPackageVersion>
-        <BundlerPackageVersion Condition="'$(BundlerPackageVersion)' == ''">2.2.301</BundlerPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
