@@ -9,6 +9,7 @@
 
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
   </PropertyGroup>$endif$$if$ ($aspnet_useusersecrets$ == true)
 
   <PropertyGroup>
@@ -16,12 +17,18 @@
   </PropertyGroup>$endif$
 
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="@(GlobalExclude)" />
-    <EmbeddedResource Include="**\*.resx" Exclude="@(GlobalExclude)" />
-    <Content Include="@(ContentFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(MiscFiles)" />
-    <Content Include="@(PublishFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(MiscFiles)" CopyToPublishDirectory="PreserveNewest" />
-    <None Include="@(MiscFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(ContentFiles)" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="**\*" />
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
     <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.cshtml" Exclude="wwwroot\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.config" Exclude="wwwroot\**\*.config" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.json" Exclude="wwwroot\**\*.json" CopyToPublishDirectory="PreserveNewest" />
+
+    <None Remove="@(Content);@(Compile);@(EmbeddedResource);$(GlobalExclude)" />
+    <Compile Remove="@(Content);$(GlobalExclude)" />
+    <EmbeddedResource Remove="@(Content);$(GlobalExclude)" />
+    <Content Remove="$(GlobalExclude)" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
   <ItemGroup>
