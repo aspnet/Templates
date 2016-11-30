@@ -12,11 +12,11 @@
   </PropertyGroup>$endif$
 
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
-    <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
-    <Content Include="@(ContentFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" />
-    <Content Include="@(PublishFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" CopyToPublishDirectory="PreserveNewest" />
-    <None Include="@(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" />
+    <Compile Include="**\*.cs" Exclude="@(GlobalExclude)" />
+    <EmbeddedResource Include="**\*.resx" Exclude="@(GlobalExclude)" />
+    <Content Include="@(ContentFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(MiscFiles)" />
+    <Content Include="@(PublishFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(MiscFiles)" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="@(MiscFiles)" Exclude="@(GlobalExclude);@(ContentExclude);@(ContentFiles)" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Folder Include="wwwroot\" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
