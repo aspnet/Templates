@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" Sdk="Microsoft.Net.Sdk.Web">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -54,5 +53,4 @@
 
 $packagereferenceslist$
 
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
