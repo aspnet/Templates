@@ -18,9 +18,9 @@
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
     <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
-    <Content Include="$(ContentFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" Condition="'$(ContentFiles)' != ''" />
-    <Content Include="$(PublishFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(PublishFiles)' != ''" />
-    <None Include="$(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(MiscFiles)' != ''" />
+    <Content Include="@(ContentFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" />
+    <Content Include="@(PublishFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="@(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
@@ -37,7 +37,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Tools" Version="__ToolsPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />

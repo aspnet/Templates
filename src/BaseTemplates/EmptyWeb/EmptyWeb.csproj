@@ -10,9 +10,9 @@
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
     <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
-    <Content Include="$(ContentFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" Condition="'$(ContentFiles)' != ''" />
-    <Content Include="$(PublishFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(PublishFiles)' != ''" />
-    <None Include="$(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(MiscFiles)' != ''" />
+    <Content Include="@(ContentFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" />
+    <Content Include="@(PublishFiles)" Exclude="$(GlobalExclude);@(ContentExclude)" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="@(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Folder Include="wwwroot\" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
