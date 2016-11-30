@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0">
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.Net.Sdk.Web">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
@@ -17,8 +17,12 @@
   </PropertyGroup>$endif$
 
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
+    <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
+    <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
+    <Content Include="$(ContentFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" Condition="'$(ContentFiles)' != ''" />
+    <Content Include="$(PublishFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(PublishFiles)' != ''" />
+    <None Include="$(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(MiscFiles)' != ''" />
+    <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
   <ItemGroup>

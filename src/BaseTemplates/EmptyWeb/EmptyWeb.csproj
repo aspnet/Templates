@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0">
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.Net.Sdk.Web">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
@@ -9,8 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
+    <Compile Include="**\*.cs" Exclude="$(GlobalExclude)" />
+    <EmbeddedResource Include="**\*.resx" Exclude="$(GlobalExclude)" />
+    <Content Include="$(ContentFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" Condition="'$(ContentFiles)' != ''" />
+    <Content Include="$(PublishFiles)" Exclude="$(GlobalExclude);$(ContentExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(PublishFiles)' != ''" />
+    <None Include="$(MiscFiles)" Exclude="$(GlobalExclude)" CopyToPublishDirectory="PreserveNewest" Condition="'$(MiscFiles)' != ''" />
+    <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Folder Include="wwwroot\" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
@@ -22,9 +26,6 @@
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
-    <PackageReference Include="Microsoft.NET.Sdk.Web" Version="__WebSdkVersion__">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />
