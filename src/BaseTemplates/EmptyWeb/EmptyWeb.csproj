@@ -7,7 +7,7 @@
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$
   </PropertyGroup>
 
-  <PropertyGroup>  
+  <PropertyGroup>
     <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
   </PropertyGroup>
 
