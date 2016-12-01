@@ -9,12 +9,15 @@
 
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
   </PropertyGroup>$endif$$if$ ($aspnet_useusersecrets$ == true)
 
   <PropertyGroup>
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
   </PropertyGroup>$endif$
+
+  <PropertyGroup>
+    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
+  </PropertyGroup>
 
   <ItemGroup>
     <None Include="**\*" />
