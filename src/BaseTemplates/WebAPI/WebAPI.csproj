@@ -1,5 +1,4 @@
-﻿<Project ToolsVersion="15.0">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.Net.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,9 +11,18 @@
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
   </PropertyGroup>$endif$
 
+  <PropertyGroup>  
+    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
+  </PropertyGroup>
+  
   <ItemGroup>
+    <None Include="**\*" />
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
+    <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.cshtml" Exclude="wwwroot\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.config" Exclude="wwwroot\**\*.config" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.json" Exclude="wwwroot\**\*.json" CopyToPublishDirectory="PreserveNewest" />
     <Folder Include="wwwroot\" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
@@ -26,9 +34,6 @@
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
-    <PackageReference Include="Microsoft.NET.Sdk.Web" Version="__WebSdkVersion__">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
@@ -44,5 +49,4 @@
 
 $packagereferenceslist$
 
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,4 @@
-﻿<Project ToolsVersion="15.0">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.Net.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,6 +9,7 @@
 
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
   </PropertyGroup>$endif$$if$ ($aspnet_useusersecrets$ == true)
 
   <PropertyGroup>
@@ -17,8 +17,13 @@
   </PropertyGroup>$endif$
 
   <ItemGroup>
+    <None Include="**\*" />
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
+    <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.cshtml" Exclude="wwwroot\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.config" Exclude="wwwroot\**\*.config" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="**\*.json" Exclude="wwwroot\**\*.json" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
   <ItemGroup>
@@ -29,12 +34,8 @@
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
-    <PackageReference Include="Microsoft.NET.Sdk.Web" Version="__WebSdkVersion__">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Tools" Version="__ToolsPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />
@@ -50,5 +51,4 @@
 
 $packagereferenceslist$
 
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
