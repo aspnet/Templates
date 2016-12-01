@@ -14,7 +14,7 @@
   <PropertyGroup>  
     <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Include="**\*" />
     <Compile Include="**\*.cs" />
