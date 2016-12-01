@@ -24,11 +24,6 @@
     <Content Include="**\*.cshtml" Exclude="wwwroot\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="**\*.config" Exclude="wwwroot\**\*.config" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="**\*.json" Exclude="wwwroot\**\*.json" CopyToPublishDirectory="PreserveNewest" />
-
-    <None Remove="@(Content);@(Compile);@(EmbeddedResource);$(GlobalExclude)" />
-    <Compile Remove="@(Content);$(GlobalExclude)" />
-    <EmbeddedResource Remove="@(Content);$(GlobalExclude)" />
-    <Content Remove="$(GlobalExclude)" />
   </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
 
   <ItemGroup>
