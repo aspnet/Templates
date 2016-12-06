@@ -154,7 +154,7 @@
             <Output PropertyName="CoherencePatchDropPath" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore>
 
-        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="WebSdkDropPath">
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="WebSdkDropPath" Condition="'$(WebSdkDropPath)' == ''">
             <Output PropertyName="WebSdkDropPath" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore>
 
@@ -176,11 +176,11 @@
             <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
         </PropertyGroup>
 
-        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath">
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath" Condition="$(CoreSdkDropPath) == ''">
             <Output PropertyName="CoreSdkDropPath" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore >
 
-        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkVersion">
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkVersion" Condition="$(CoreSdkVersion) == ''">
             <Output PropertyName="CoreSdkVersion" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore >
 
