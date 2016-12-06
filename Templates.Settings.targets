@@ -176,11 +176,11 @@
             <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
         </PropertyGroup>
 
-        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath" Condition="$(CoreSdkDropPath) == ''">
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath" Condition="'$(CoreSdkDropPath)' == ''">
             <Output PropertyName="CoreSdkDropPath" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore >
 
-        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkVersion" Condition="$(CoreSdkVersion) == ''">
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkVersion" Condition="'$(CoreSdkVersion)' == ''">
             <Output PropertyName="CoreSdkVersion" TaskParameter="PropertyValue"/>
         </GetPropertyFromSemaphore >
 
