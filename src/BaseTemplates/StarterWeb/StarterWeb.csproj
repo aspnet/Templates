@@ -13,21 +13,7 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
-  </PropertyGroup>$endif$
-
-  <PropertyGroup>
-    <GlobalExclude>$(GlobalExclude);bin\**;obj\**;node_modules\**;jspm_packages\**;bower_components\**;**\*.user;**\*.*proj</GlobalExclude>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="**\*" />
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-    <Content Include="wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="**\*.cshtml" Exclude="wwwroot\**\*.cshtml" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="**\*.config" Exclude="wwwroot\**\*.config" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="**\*.json" Exclude="wwwroot\**\*.json" CopyToPublishDirectory="PreserveNewest" />
-  </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
+  </PropertyGroup>$endif$$if$ ($context$ == WebCoreFullFramework)
 
   <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
