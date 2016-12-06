@@ -9,7 +9,7 @@
      <ItemGroup>
       <ProjectsToTest Include="test\VerifyTemplates.csproj"/>
     </ItemGroup>
-    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);CoherenceDropPath=$(CoherenceDropPath)"/>
+    <MSBuild Projects="@(ProjectsToTest)" Targets="Verify" BuildInParallel="true" Properties="Configuration=$(Configuration);CoherenceDropPath=$(CoherenceDropPath);WebSdkDropPath=$(WebSdkDropPath)"/>
   </Target>
 
   <Target Name="UnitTest" DependsOnTargets="SetupPackageSource" Condition="'$(RunTemplateUnitTests)' == 'true'">
@@ -47,6 +47,6 @@
     </ItemGroup>
     <Message Text="Coherence Build = '$(CoherenceBuildNumber)'" Condition="'$(CoherenceBuildNumber)' != ''"/>
     <MakeDir Directories="$(TemplatesBin)"/>
-    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration);CoherenceDropPath=$(CoherenceDropPath)"/>
+    <MSBuild Projects="@(ProjectsToBuild)" Targets="Build" BuildInParallel="true" Properties="Configuration=$(Configuration);CoherenceDropPath=$(CoherenceDropPath);WebSdkDropPath=$(WebSdkDropPath)"/>
   </Target>
 </Project>
