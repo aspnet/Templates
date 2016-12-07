@@ -255,29 +255,10 @@
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
-
-          <!-- scp 2016-10-28 removal
-          <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="__ScaffoldingPackageVersion__"/>
-          -->
-          <!-- scp 2016-10-28 add -->
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
-<!--
-  "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",$endif$
-    "Microsoft.EntityFrameworkCore.Tools": "__ToolsPackageVersion__",
-    "Microsoft.Extensions.SecretManager.Tools": "__ToolsPackageVersion__",
-    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
-      "version": "__ScaffoldingPackageVersion__",
-      "imports": [
-        "portable-net45+win8"
-      ]
-    }
-  },-->
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Data\ApplicationDbContext.cs" Source="Rules\StarterWeb\IndividualAuth\Data\ApplicationDbContext.cs"/>
@@ -304,6 +285,7 @@
           <AddFile Destination="Services\IEmailSender.cs" Source="Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs"/>
           <AddFile Destination="Services\ISmsSender.cs" Source="Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs"/>
           <AddFile Destination="Services\MessageServices.cs" Source="Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs"/>
+          <AddFile Destination="Views\Account\AccessDenied.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\AccessDenied.cshtml"/>
           <AddFile Destination="Views\Account\ConfirmEmail.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml"/>
           <AddFile Destination="Views\Account\ExternalLoginConfirmation.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml"/>
           <AddFile Destination="Views\Account\ExternalLoginFailure.cshtml" Source="Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml"/>
@@ -331,19 +313,13 @@
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\IndividualAuth\Startup.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthCommon">
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
-<!--
-  "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "__ToolsPackageVersion__",$if$ ($aspnet_useplatformhandler$ == false)$else$
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "__ToolsPackageVersion__",$endif$
-    "Microsoft.Extensions.SecretManager.Tools": "__ToolsPackageVersion__"
-  },
-  -->
+          <AddFile Destination="Views\Account\AccessDenied.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\AccessDenied.cshtml"/>
           <AddFile Destination="Views\Account\SignedOut.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleCommon">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Common\Controllers\AccountController.cs"/>

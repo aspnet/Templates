@@ -91,7 +91,6 @@ namespace Microsoft.Web.Templates.Tests
             var postResponse = await Client.PostAsync("http://localhost/Account/Register", requestContent);
             var postResponseContent = await getResponse.Content.ReadAsStringAsync();
 
-            //           Assert.Equal(HttpStatusCode.Redirect, postResponse.StatusCode);
             Assert.Equal("/", GetHeaderValue(postResponse.Headers, "Location"));
 
             // Grab the auth cookie
@@ -166,7 +165,13 @@ namespace Microsoft.Web.Templates.Tests
 
         private string GetHeaderValue(HttpResponseHeaders headers, string name)
         {
-            return headers.GetValues(name).ToList()[0];
+            IEnumerable<string> values;
+            if (headers.TryGetValues(name, out values))
+            {
+                return values.ToList()[0];
+            }
+
+            return null;
         }
 
         private HttpContent CreateLoginPost(string verificationToken, string email, string password, bool rememberMe = false)

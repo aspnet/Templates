@@ -62,6 +62,7 @@
               Rules\StarterWeb\IndividualAuth\Models\ManageViewModels\RemoveLoginViewModel.cs;
               Rules\StarterWeb\IndividualAuth\Models\ManageViewModels\SetPasswordViewModel.cs;
               Rules\StarterWeb\IndividualAuth\Models\ManageViewModels\VerifyPhoneNumberViewModel.cs;
+              Rules\StarterWeb\IndividualAuth\Views\Account\AccessDenied.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ConfirmEmail.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginConfirmation.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Account\ExternalLoginFailure.cshtml;
@@ -97,6 +98,7 @@
     <!-- StarterWeb Org Auth Common Files -->
     <LooseFiles Include="
               Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\AccessDenied.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml">
       <TargetName>$(Rules)</TargetName>
