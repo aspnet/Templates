@@ -21,8 +21,6 @@
     
     <PropertyGroup>
         <IsOfficialBuild Condition="'$(IsOfficialBuild)' == ''">false</IsOfficialBuild>
-        <UseExactPackageVersions Condition="'$(TemplateBuildBranch)' == 'release'">$(IsOfficialBuild)</UseExactPackageVersions>
-        <UseExactPackageVersions Condition="'$(UseExactPackageVersions)' == ''">$(IsOfficialBuild)</UseExactPackageVersions>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
         <TemplateDropPath Condition="'$(DROP_SHARE)' != '' and '$(BUILD_NUMBER)' != ''">$(DROP_SHARE)\$(BUILD_NUMBER)</TemplateDropPath>
@@ -31,23 +29,17 @@
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
         <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
         <ExternalPackageSubPath>artifacts\coherence\ext</ExternalPackageSubPath>
-        <ApplicationInsightsPackageSource Condition="'$(ApplicationInsightsPackageSource)' == ''">https://www.myget.org/F/applicationinsights/api/v3/index.json</ApplicationInsightsPackageSource>
-        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
-        <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
-        <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
-        <CacheDropFolder Condition="'$(CacheDropFolder)' == ''">\\aspnetci\drops\AspNetCoreLocalFeed\dev</CacheDropFolder>
-        <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
         <SemaphoreDropFile>$(TemplatesBin)\templates.sem</SemaphoreDropFile>
         <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
         <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">true</SkipCopyPackages>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
-        <!-- Visual Studio 14 properties -->
-        <TemplatesTargetVersionPath>\dev14</TemplatesTargetVersionPath>
-        <VersionedReferencePath>Dev14</VersionedReferencePath>
-        <TargetVsVersion>VS14</TargetVsVersion>
+    <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '15.0' ">
+        <!-- Visual Studio 15 properties -->
+        <TemplatesTargetVersionPath>\dev15</TemplatesTargetVersionPath>
+        <VersionedReferencePath>Dev15</VersionedReferencePath>
+        <TargetVsVersion>VS15</TargetVsVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -108,7 +100,7 @@
 
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
-            <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
+            <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''"></NetCoreSemanticVersion>
             <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.1$(NetCoreSemanticVersion)</NetCorePlatformVersion>
 
             <WebSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</WebSdkSemanticVersion>
@@ -124,10 +116,10 @@
             <ScaffoldingSemanticVersion Condition="'$(PackageSource)' == ''">-*</ScaffoldingSemanticVersion>
             <ScaffoldingPackageVersion Condition="'$(ScaffoldingPackageVersion)' == ''">1.0.0$(ScaffoldingSemanticVersion)</ScaffoldingPackageVersion>
 
-            <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCorePatchSemanticVersion>
+            <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCorePatchSemanticVersion>
             <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.1$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
 
-            <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreReleaseSemanticVersion>
+            <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
         </PropertyGroup>
 
@@ -141,7 +133,7 @@
     </Target>
     
     <Target Name="SetupPackageSource">
-        <FindLatestDrop RootPath="$(CacheDropFolder)" SubFolder="Signed" Condition="'$(CacheDropPath)' == ''">
+        <FindLatestDrop RootPath="$(CacheDropFolder)" SubFolder="Signed" Condition="'$(CacheDropPath)' == '' and '$(CacheDropFolder)' != ''">
             <Output PropertyName="CacheDropSigned" TaskParameter="LatestSubFolderPath"/>
             <Output PropertyName="CacheDropPath" TaskParameter="LatestRootPath"/>
         </FindLatestDrop>
@@ -187,9 +179,6 @@
         <!-- Feeds related to Coherence-Signed depends on the remote stores -->
         <ItemGroup>
             <PackageSourceForRestore Include="$(CoherencePackageSources)" Condition="'$(PackageSource)' != ''"/>
-            <PackageSourceForRestore Include="$(ApplicationInsightsPackageSource)" Condition="'$(ApplicationInsightsPackageSource)' != ''"/>
-            <PackageSourceForRestore Include="$(AzureAdPackageSource)" Condition="'$(AzureAdPackageSource)' != ''"/>
-            <PackageSourceForRestore Include="$(RoslynPackageSource)" Condition="'$(RoslynPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(WebSdkPackageSource)" Condition="'$(WebSdkPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(ScaffoldingPackageSource)" Condition="'$(ScaffoldingPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AdditionalPackageSourceForRestore)" Condition="'$(AdditionalPackageSourceForRestore)' != ''"/>

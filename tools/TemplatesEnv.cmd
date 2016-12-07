@@ -10,7 +10,7 @@ if not defined DNX_PACKAGES (
     set DNX_PACKAGES=%~dp0\..\packages
 )
 
-set "TemplatesVSVersion=14.0"
+set "TemplatesVSVersion=15.0"
 set "TemplatesRoot=%~dp0"
 set "TemplatesRoot=%TemplatesRoot:~0,-7%"
 set "TemplatesBin=%TemplatesRoot%\artifacts\build"
