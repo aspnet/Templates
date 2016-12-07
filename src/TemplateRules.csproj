@@ -9,7 +9,6 @@
     <Rules>Rules</Rules>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <UpdateJsonCommand>$(TemplatesTools)\updateJson.cmd</UpdateJsonCommand>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
@@ -91,7 +90,6 @@
               Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
-              Rules\StarterWeb\IndividualAuth\project.json;
               Rules\StarterWeb\IndividualAuth\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
@@ -102,8 +100,7 @@
               Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\AccessDenied.cshtml;
               Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml;
-              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml;
-              Rules\StarterWeb\OrganizationalAuth\Common\project.json">
+              Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
@@ -138,20 +135,16 @@
     <LooseFiles Include="
               Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml;
-              Rules\StarterWeb\AI\NoAuth\project.json;
               Rules\StarterWeb\AI\NoAuth\appsettings.json;
               Rules\StarterWeb\AI\NoAuth\Startup.cs;
               Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml;
               Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\AI\IndividualAuth\Startup.cs;
-              Rules\StarterWeb\AI\IndividualAuth\project.json;
               Rules\StarterWeb\AI\IndividualAuth\appsettings.json;
-              Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\project.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Single\NoRead\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Single\Read\Startup.cs;
-              Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\project.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\appsettings.json;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\NoRead\Startup.cs;
               Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Read\Startup.cs;
@@ -175,19 +168,15 @@
     </LooseFiles>
 
     <!-- WebAPI Org Auth Single Org Files -->
-    <LooseFiles Include="
-              Rules\WebAPI\OrganizationalAuth\Single\project.json;
-              Rules\WebAPI\OrganizationalAuth\Single\Startup.cs">
+    <LooseFiles Include="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
 
     <!-- WebAPI AI Files -->
     <LooseFiles Include="
-              Rules\WebAPI\AI\NoAuth\project.json;
               Rules\WebAPI\AI\NoAuth\appsettings.json;
               Rules\WebAPI\AI\NoAuth\Startup.cs;
-              Rules\WebAPI\AI\OrganizationalAuth\Single\project.json;
               Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json;
               Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs">
       <TargetName>$(Rules)</TargetName>
@@ -225,20 +214,16 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate') and '$(IsOfficialBuild)' == 'false'" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NUGETFEEDSOURCE__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(NugetFeedSource)" />
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(NetStandardSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(ToolsSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCorePackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreSemanticVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(AspNetCoreSemanticVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__BundlerPackageVersion__" Condition="('%(Filename)%(Extension)' == 'project.json')" Encoding="ascii" Replace="$(BundlerPackageVersion)" />
-
-    <Message Text="Running $(UpdateJsonCommand) on $(TempPath)" Condition="'$(UseExactPackageVersions)' == 'true'"/>
-    <Exec WorkingDirectory="$(TempPath)" Command="$(UpdateJsonCommand) &quot;$(CoherencePackageSources)&quot;" Condition="'$(UseExactPackageVersions)' == 'true'"/>
+    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(WebSdkVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(NetStandardVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />

@@ -211,4 +211,55 @@
             </Code>
         </Task>
     </UsingTask>
+    <UsingTask TaskName="GenerateSemaphore" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <TemplateVersion ParameterType="System.String" Required="true" />
+            <TemplateDropPath ParameterType="System.String" Required="true" />
+            <WebSdkVersion ParameterType="System.String" Required="true" />
+            <WebSdkDropPath ParameterType="System.String" Required="true" />
+            <CoreSdkVersion ParameterType="System.String" Required="true" />
+            <CoreSdkDropPath ParameterType="System.String" Required="true" />
+            <CacheVersion ParameterType="System.String" Required="true" />
+            <CacheDropPath ParameterType="System.String" Required="true" />
+            <ScaffoldingVersion ParameterType="System.String" Required="true" />
+            <ScaffoldingDropPath ParameterType="System.String" Required="true" />
+            <SemaphoreFilePath ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Text" />
+            <Code Type="Fragment" Language="cs">
+              <![CDATA[
+                  var builder = new StringBuilder();
+                  builder.AppendLine("[Semaphore]");
+                  builder.AppendLine(string.Format("TemplateVersion={0}", TemplateVersion));
+                  builder.AppendLine(string.Format("TemplateDropPath={0}", TemplateDropPath));
+                  builder.AppendLine(string.Format("CacheVersion={0}", CacheVersion));
+                  builder.AppendLine(string.Format("CacheDropPath={0}", CacheDropPath));
+                  builder.AppendLine(string.Format("WebSdkVersion={0}", WebSdkVersion));
+                  builder.AppendLine(string.Format("WebSdkDropPath={0}", WebSdkDropPath));
+                  builder.AppendLine(string.Format("CoreSdkVersion={0}", CoreSdkVersion));
+                  builder.AppendLine(string.Format("CoreSdkDropPath={0}", CoreSdkDropPath));
+                  builder.AppendLine(string.Format("ScaffoldingVersion={0}", ScaffoldingVersion));
+                  builder.AppendLine(string.Format("ScaffoldingDropPath={0}", ScaffoldingDropPath));
+
+
+                  var retry = 5;
+                  while (retry > 0)
+                  {
+                    try
+                    {
+                      File.WriteAllText(SemaphoreFilePath, builder.ToString());
+                      break;
+                    }
+                    catch
+                    {
+                      System.Threading.Thread.Sleep(500);
+                      retry--;
+                    }
+                  }
+              ]]>
+            </Code>
+        </Task>
+    </UsingTask>
 </Project>

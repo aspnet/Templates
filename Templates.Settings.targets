@@ -25,6 +25,8 @@
         <UseExactPackageVersions Condition="'$(UseExactPackageVersions)' == ''">$(IsOfficialBuild)</UseExactPackageVersions>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">$(BUILD_NUMBER)</TemplateVersion>
         <TemplateVersion Condition="'$(TemplateVersion)' == ''">Local</TemplateVersion>
+        <TemplateDropPath Condition="'$(DROP_SHARE)' != '' and '$(BUILD_NUMBER)' != ''">$(DROP_SHARE)\$(BUILD_NUMBER)</TemplateDropPath>
+        <TemplateDropPath Condition="'$(TemplateDropPath)' == ''">$(MSBuildThisFileDirectory)</TemplateDropPath>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'release'">$(ReleasePackageType)</PackageType>
         <PackageType Condition="'$(TemplateBuildBranch)' == 'dev'">$(DevPackageType)</PackageType>
         <SignedPackageSubPath>artifacts\Signed</SignedPackageSubPath>
@@ -33,10 +35,12 @@
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/azureadwebstackrelease/api/v3/index.json</AzureAdPackageSource>
         <AzureAdPackageSource Condition="'$(AzureAdPackageSource)' == '' and '$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/azureadwebstacknightly/api/v3/index.json</AzureAdPackageSource>
         <RoslynPackageSource Condition="'$(RoslynPackageSource)' == ''">https://www.myget.org/F/roslyn-nightly</RoslynPackageSource>
+        <CacheDropFolder Condition="'$(CacheDropFolder)' == ''">\\aspnetci\drops\AspNetCoreLocalFeed\dev</CacheDropFolder>
         <ForceNpmInstall Condition="'$(ForceNpmInstall)' == ''">false</ForceNpmInstall>
         <CoherenceDropFile>$(TemplatesBin)\Packages.source.txt</CoherenceDropFile>
+        <SemaphoreDropFile>$(TemplatesBin)\templates.sem</SemaphoreDropFile>
         <RunTemplateUnitTests Condition="'$(RunTemplateUnitTests)' == ''">true</RunTemplateUnitTests>
-        <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">false</SkipCopyPackages>
+        <SkipCopyPackages Condition="'$(SkipCopyPackages)' == ''">true</SkipCopyPackages>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TemplatesTargetVersion)' == '14.0' ">
@@ -48,7 +52,6 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">1.0.0</ApplicationInsightsPackageVersion>
-        <BundlerPackageVersion Condition="'$(BundlerPackageVersion)' == ''">2.0.238</BundlerPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -65,14 +68,22 @@
     
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(CoherencePackageSources)' != ''">
-            <CoreAppFile Include="$(CoherencePackageSources)\Microsoft.NETCore.App.*.nupkg"/>
-            <NetStandardFile Include="$(CoherencePackageSources)\NETStandard.Library.*.nupkg"/>
-            <ToolsFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Razor.Tools.*.nupkg"/>
-            <AspNetCoreFile Include="$(CoherencePackageSources)\Microsoft.AspNetCore.Mvc.Razor.Host.*.nupkg"/>
+            <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
+            <WebSdkFile Include="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.nupkg"
+                        Exclude="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.symbols.nupkg"/>
+            <NetStandardFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
+            <ToolsFile Include="$(PackageSource)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
+            <ScaffoldingToolsFile Include="$(ScaffoldingPackageSource)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
+            <AspNetCorePatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.Server.Kestrel.*.nupkg"/>
+            <AspNetCoreReleaseFile Include="$(PackageSource)\Microsoft.AspNetCore.Diagnostics.*.nupkg"/>
         </ItemGroup>
 
         <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
             <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <GetFileSemanticVersion Condition="'%(WebSdkFile.Identity)' != '' " Filename="%(WebSdkFile.Filename)">
+            <Output PropertyName="WebSdkSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(NetStandardFile.Identity)' != '' " Filename="%(NetStandardFile.Filename)">
@@ -83,40 +94,95 @@
             <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
-        <GetFileSemanticVersion Condition="'%(AspNetCoreFile.Identity)' != '' " Filename="%(AspNetCoreFile.Filename)">
-            <Output PropertyName="AspNetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
+        <GetFileSemanticVersion Condition="'%(ScaffoldingToolsFile .Identity)' != '' " Filename="%(ScaffoldingToolsFile .Filename)">
+            <Output PropertyName="ScaffoldingSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <GetFileSemanticVersion Condition="'%(AspNetCorePatchFile.Identity)' != '' " Filename="%(AspNetCorePatchFile.Filename)">
+            <Output PropertyName="AspNetCorePatchSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <GetFileSemanticVersion Condition="'%(AspNetCoreReleaseFile.Identity)' != '' " Filename="%(AspNetCoreReleaseFile.Filename)">
+            <Output PropertyName="AspNetCoreReleaseSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetCoreSemanticVersion>
-            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.0$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.1$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+
+            <WebSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</WebSdkSemanticVersion>
+            <WebSdkVersion Condition="'$(WebSdkVersion)' == ''">1.0.0$(WebSdkSemanticVersion)</WebSdkVersion>
+
             <NetStandardVersion Condition="'$(NetStandardVersion)' == ''">1.6</NetStandardVersion>
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
+
             <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
             <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
-            <AspNetCoreSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreSemanticVersion>
-            <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">1.1.0$(AspNetCoreSemanticVersion)</AspNetCorePackageVersion>
+
+            <ScaffoldingSemanticVersion Condition="'$(PackageSource)' == ''">-*</ScaffoldingSemanticVersion>
+            <ScaffoldingPackageVersion Condition="'$(ScaffoldingPackageVersion)' == ''">1.0.0$(ScaffoldingSemanticVersion)</ScaffoldingPackageVersion>
+
+            <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCorePatchSemanticVersion>
+            <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.1$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
+
+            <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''">-*</AspNetCoreReleaseSemanticVersion>
+            <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
+        <Message Text="WebSdkVersion: $(WebSdkVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
         <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
-        <Message Text="AspNetCorePackageVersion: $(AspNetCorePackageVersion)"/>
+        <Message Text="AspNetCorePatchPackageVersion: $(AspNetCorePatchPackageVersion)"/>
+        <Message Text="AspNetCoreReleasePackageVersion: $(AspNetCoreReleasePackageVersion)"/>
+        <Message Text="ScaffoldingPackageVersion: $(ScaffoldingPackageVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
-        <GetPackageSource Condition="'$(PackageSource)' == '' and '$(SetupDrop)' != ''" SetupDrop="$(SetupDrop)">
-            <Output PropertyName="SetupPackageSource" TaskParameter="PackageSource"/>
-        </GetPackageSource>
+        <FindLatestDrop RootPath="$(CacheDropFolder)" SubFolder="Signed" Condition="'$(CacheDropPath)' == ''">
+            <Output PropertyName="CacheDropSigned" TaskParameter="LatestSubFolderPath"/>
+            <Output PropertyName="CacheDropPath" TaskParameter="LatestRootPath"/>
+        </FindLatestDrop>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="CoherenceDropPath">
+            <Output PropertyName="CoherenceDropPath" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="CoherencePatchDropPath">
+            <Output PropertyName="CoherencePatchDropPath" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="WebSdkDropPath" Condition="'$(WebSdkDropPath)' == ''">
+            <Output PropertyName="WebSdkDropPath" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="Version">
+            <Output PropertyName="CacheVersion" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(CacheDropPath)\aspnetcorelocalfeed.sem" PropertyName="CoherenceCodeGenerationPatchDropPath">
+            <Output PropertyName="CoherenceCodeGenerationPatchDropPath" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore>
+
         <PropertyGroup>
-            <PackageSource Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)\$(SignedPackageSubPath)\$(PackageType)</PackageSource>
-            <PackageSourceExternal Condition="'$(SetupPackageSource)' != ''">$(SetupPackageSource)\$(ExternalPackageSubPath)</PackageSourceExternal>
+            <PackageSource Condition="'$(CoherenceDropPath)' != ''">$(CoherenceDropPath)\$(SignedPackageSubPath)\$(PackageType)</PackageSource>
+            <PackageSourceExternal Condition="'$(CoherenceDropPath)' != ''">$(CoherenceDropPath)\$(ExternalPackageSubPath)</PackageSourceExternal>
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'dev'">https://www.myget.org/F/aspnetvnext/api/v3/index.json</RemotePackageSource>
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
+            <WebSdkPackageSource Condition="'$(WebSdkDropPath)' != ''">$(WebSdkDropPath)\Signed</WebSdkPackageSource>
+            <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
         </PropertyGroup>
+
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath" Condition="'$(CoreSdkDropPath)' == ''">
+            <Output PropertyName="CoreSdkDropPath" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore >
+
+        <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkVersion" Condition="'$(CoreSdkVersion)' == ''">
+            <Output PropertyName="CoreSdkVersion" TaskParameter="PropertyValue"/>
+        </GetPropertyFromSemaphore >
 
         <!-- Feeds related to Coherence-Signed depends on the remote stores -->
         <ItemGroup>
@@ -124,6 +190,8 @@
             <PackageSourceForRestore Include="$(ApplicationInsightsPackageSource)" Condition="'$(ApplicationInsightsPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AzureAdPackageSource)" Condition="'$(AzureAdPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(RoslynPackageSource)" Condition="'$(RoslynPackageSource)' != ''"/>
+            <PackageSourceForRestore Include="$(WebSdkPackageSource)" Condition="'$(WebSdkPackageSource)' != ''"/>
+            <PackageSourceForRestore Include="$(ScaffoldingPackageSource)" Condition="'$(ScaffoldingPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AdditionalPackageSourceForRestore)" Condition="'$(AdditionalPackageSourceForRestore)' != ''"/>
             <PackageSourceForRestore Include="https://api.nuget.org/v3/index.json"/>
         </ItemGroup>
@@ -134,21 +202,29 @@
             <PackageSourceForRestore >$(PackageSourceForRestore) -f $(RemotePackageSource)</PackageSourceForRestore >
         </PropertyGroup>
 
-        <Message Text="SetupPackageSource: $(SetupPackageSource)"/>
+        <Message Text="CacheDropPath: $(CacheDropPath)"/>
         <Message Text="PackageSource: $(PackageSource)"/>
         <Message Text="PackageSourceExternal: $(PackageSourceExternal)"/>
         <Message Text="CoherencePackageSources: $(CoherencePackageSources)"/>
+        <Message Text="WebSdkPackageSource: $(WebSdkPackageSource)"/>
+        <Message Text="ScaffoldingPackageSource: $(ScaffoldingPackageSource)"/>
+        <Message Text="CoreSdkDropPath: $(CoreSdkDropPath)"/>
         <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
     </Target>
 
-    <Target Name="CopyPackagesForBuild" DependsOnTargets="SetupPackageSource" Condition="'$(SetupDrop)' != '' and '$(SkipCopyPackages)' == 'false'">
+    <Target Name="CopyPackagesForBuild" DependsOnTargets="SetupPackageSource" Condition="'$(CoherenceDropPath)' != '' and '$(SkipCopyPackages)' == 'false'">
         <RemoveDir Directories="$(CoherencePackageSources)" />
         <MakeDir Directories="$(CoherencePackageSources)" />
-
+        
         <!-- Copy Coherence packages locally to speed up restore -->
         <ItemGroup>
-            <CoherencePackages Include="$(PackageSource)\*.nupkg;
-                                        $(PackageSourceExternal)\*.nupkg" />
+            <CoherencePackages Include="$(PackageSource)\*.*-preview2-final.nupkg;
+                                        $(PackageSourceExternal)\*.nupkg;
+                                        $(WebSdkPackageSource)\*.nupkg;
+                                        $(ScaffoldingPackageSource)\*.nupkg"
+                               Exclude="$(WebSdkPackageSource)\*.symbols.nupkg"/>
+            <CoherencePackages Include="$(CoherencePatchDropPath)\*.nupkg" 
+                               Exclude="$(CoherencePatchDropPath)\*.*-preview2-update1.nupkg" />
         </ItemGroup>
 
         <Copy SourceFiles="@(CoherencePackages)" DestinationFolder="$(IntermediateOutputPath)\CoherencePackages" SkipUnchangedFiles="true" />
