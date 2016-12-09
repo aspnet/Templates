@@ -247,14 +247,14 @@
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebIndividualAuth">
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
@@ -317,9 +317,9 @@
           <AddFile Destination="Views\Account\SignedOut.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleCommon">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Common\Controllers\AccountController.cs"/>
@@ -388,8 +388,8 @@
           <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\WebAPI\WindowsAuth\Properties\launchSettings.json"/>
       </Rule>
       <Rule ID="WebAPIOrganizationalAuthSingle">
-          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCoreReleasePackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCoreReleasePackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs"/>
       </Rule>
 
