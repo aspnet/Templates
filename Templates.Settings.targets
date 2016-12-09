@@ -60,19 +60,14 @@
     
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(CoherencePackageSources)' != ''">
-            <CoreAppFile Include="$(PackageSourceExternal)\Microsoft.NETCore.App.*.nupkg"/>
             <WebSdkFile Include="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.nupkg"
                         Exclude="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.symbols.nupkg"/>
             <NetStandardFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
-            <ToolsFile Include="$(PackageSource)\Microsoft.AspNetCore.Server.IISIntegration.Tools.*.nupkg"/>
             <ScaffoldingToolsFile Include="$(ScaffoldingPackageSource)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
-            <AspNetCorePatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.Server.Kestrel.*.nupkg"/>
+            <AspNetCorePatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.1.0.*.nupkg"/>
+            <AspNetCoreMvcPatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.Mvc.Abstractions.*.nupkg"/>
             <AspNetCoreReleaseFile Include="$(PackageSource)\Microsoft.AspNetCore.Diagnostics.*.nupkg"/>
         </ItemGroup>
-
-        <GetFileSemanticVersion Condition="'%(CoreAppFile.Identity)' != '' " Filename="%(CoreAppFile.Filename)">
-            <Output PropertyName="NetCoreSemanticVersion" TaskParameter="SemanticVersion"/>
-        </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(WebSdkFile.Identity)' != '' " Filename="%(WebSdkFile.Filename)">
             <Output PropertyName="WebSdkSemanticVersion" TaskParameter="SemanticVersion"/>
@@ -82,16 +77,16 @@
             <Output PropertyName="NetStandardSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
-        <GetFileSemanticVersion Condition="'%(ToolsFile.Identity)' != '' " Filename="%(ToolsFile.Filename)">
-            <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
-        </GetFileSemanticVersion>
-
-        <GetFileSemanticVersion Condition="'%(ScaffoldingToolsFile .Identity)' != '' " Filename="%(ScaffoldingToolsFile .Filename)">
+        <GetFileSemanticVersion Condition="'%(ScaffoldingToolsFile.Identity)' != '' " Filename="%(ScaffoldingToolsFile .Filename)">
             <Output PropertyName="ScaffoldingSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(AspNetCorePatchFile.Identity)' != '' " Filename="%(AspNetCorePatchFile.Filename)">
             <Output PropertyName="AspNetCorePatchSemanticVersion" TaskParameter="SemanticVersion"/>
+        </GetFileSemanticVersion>
+
+        <GetFileSemanticVersion Condition="'%(AspNetCoreMvcPatchFile.Identity)' != '' " Filename="%(AspNetCoreMvcPatchFile.Filename)">
+            <Output PropertyName="AspNetCoreMvcPatchSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(AspNetCoreReleaseFile.Identity)' != '' " Filename="%(AspNetCoreReleaseFile.Filename)">
@@ -101,7 +96,7 @@
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''"></NetCoreSemanticVersion>
-            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.1$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.3$(NetCoreSemanticVersion)</NetCorePlatformVersion>
 
             <WebSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</WebSdkSemanticVersion>
             <WebSdkVersion Condition="'$(WebSdkVersion)' == ''">1.0.0$(WebSdkSemanticVersion)</WebSdkVersion>
@@ -110,14 +105,14 @@
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
 
-            <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
-            <ToolsPackageVersion Condition="'$(ToolsPackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</ToolsPackageVersion>
-
             <ScaffoldingSemanticVersion Condition="'$(PackageSource)' == ''">-*</ScaffoldingSemanticVersion>
             <ScaffoldingPackageVersion Condition="'$(ScaffoldingPackageVersion)' == ''">1.0.0$(ScaffoldingSemanticVersion)</ScaffoldingPackageVersion>
 
             <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCorePatchSemanticVersion>
             <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.1$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
+
+            <AspNetCoreMvcPatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreMvcPatchSemanticVersion>
+            <AspNetCoreMvcPatchPackageVersion Condition="'$(AspNetCoreMvcPatchPackageVersion)' == ''">1.0.2$(AspNetCoreMvcPatchSemanticVersion)</AspNetCoreMvcPatchPackageVersion>
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
@@ -126,8 +121,8 @@
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
         <Message Text="WebSdkVersion: $(WebSdkVersion)"/>
         <Message Text="NetStandardPlatformVersion: $(NetStandardPlatformVersion)"/>
-        <Message Text="ToolsPackageVersion: $(ToolsPackageVersion)"/>
         <Message Text="AspNetCorePatchPackageVersion: $(AspNetCorePatchPackageVersion)"/>
+        <Message Text="AspNetCoreMvcPackageVersion: $(AspNetCoreMvcPatchPackageVersion)"/>
         <Message Text="AspNetCoreReleasePackageVersion: $(AspNetCoreReleasePackageVersion)"/>
         <Message Text="ScaffoldingPackageVersion: $(ScaffoldingPackageVersion)"/>
     </Target>

@@ -13,7 +13,7 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <TemplateCsproj>$(TemplatesSource)\project.csproj</TemplateCsproj>
+    <TemplateCsproj>$(TemplatesSource)\TemplateClosure.csproj</TemplateCsproj>
     <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.GetVSTemplateItems" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks2.dll" />
@@ -70,9 +70,9 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
@@ -136,9 +136,9 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
 
     <Copy SourceFiles="@(FilesToReplace)" DestinationFiles="@(FilesToReplace->'$(TemplatesOutputPath)%(Filename)%(Extension)')" />
@@ -148,9 +148,7 @@
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildAllTemplates" />
-    <!--
     <CallTarget Targets="UpdateTemplateCsproj"/>
-    -->
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />

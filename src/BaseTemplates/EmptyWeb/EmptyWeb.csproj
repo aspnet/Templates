@@ -19,10 +19,10 @@
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCoreReleasePackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCoreMvcPatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCorePatchPackageVersion__" />
   </ItemGroup>
 
 $packagereferenceslist$

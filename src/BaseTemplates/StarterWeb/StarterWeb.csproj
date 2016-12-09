@@ -23,19 +23,19 @@
 
   <ItemGroup>$if$ ($context$ == WebCore)
     <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCoreReleasePackageVersion__" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCoreMvcPatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="__AspNetCoreMvcPatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.1" />
   </ItemGroup>
 
 $packagereferenceslist$

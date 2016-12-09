@@ -220,9 +220,9 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ToolsPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ToolsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
