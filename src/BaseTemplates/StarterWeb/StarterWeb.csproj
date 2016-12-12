@@ -21,8 +21,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>$endif$
 
-  <ItemGroup>$if$ ($context$ == WebCore)
-    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="__AspNetCoreMvcPatchPackageVersion__" />
@@ -34,7 +33,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="__AspNetCorePatchPackageVersion__" />$if$ ($context$ == WebCore)
+    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />$endif$
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.1" />
   </ItemGroup>
 
