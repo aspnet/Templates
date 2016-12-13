@@ -99,21 +99,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="jquery.min.map">jquery.min.map</ProjectItem>
             </Folder>
           </Folder>
-          <Folder Name="jquery-validation" TargetFolderName="jquery-validation">
-            <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE.md">LICENSE.md</ProjectItem>
-            <Folder Name="dist" TargetFolderName="dist">
-              <ProjectItem ReplaceParameters="false" TargetFileName="additional-methods.js">additional-methods.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="additional-methods.min.js">additional-methods.min.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.js">jquery.validate.js</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.min.js">jquery.validate.min.js</ProjectItem>
-            </Folder>
-          </Folder>
-          <Folder Name="jquery-validation-unobtrusive" TargetFolderName="jquery-validation-unobtrusive">
-            <ProjectItem ReplaceParameters="false" TargetFileName=".bower.json">.bower.json</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.unobtrusive.js">jquery.validate.unobtrusive.js</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.unobtrusive.min.js">jquery.validate.unobtrusive.min.js</ProjectItem>
-          </Folder>
         </Folder>
       </Folder>
     </Project>
