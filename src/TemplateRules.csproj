@@ -86,17 +86,7 @@
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\wwwroot\css\site.css;
               Rules\StarterWeb\IndividualAuth\wwwroot\css\site.min.css;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\.bower.json;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\LICENSE.md;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\dist\additional-methods.js;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\dist\additional-methods.min.js;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\dist\jquery.validate.js;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation-unobtrusive\.bower.json;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js;
-              Rules\StarterWeb\IndividualAuth\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js;
               Rules\StarterWeb\IndividualAuth\appsettings.json;
-              Rules\StarterWeb\IndividualAuth\bower.json;
               Rules\StarterWeb\IndividualAuth\Services\IEmailSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\ISmsSender.cs;
               Rules\StarterWeb\IndividualAuth\Services\MessageServices.cs;
