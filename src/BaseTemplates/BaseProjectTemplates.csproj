@@ -91,8 +91,6 @@
       <FilesToVerify Remove="**\*.ico"/>
       <FilesToVerify Remove="**\*.min.js"/>
       <FilesToVerify Remove="**\*.min.css"/>
-      <FilesToVerify Remove="StarterWeb\wwwroot\lib\bootstrap\**\*.*"/>
-      <FilesToVerify Remove="StarterWeb\wwwroot\lib\jquery*\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\lib\**\*.*"/>
       <FilesToVerify Remove="StarterWeb\wwwroot\images\**\*.*"/>
     </ItemGroup>
