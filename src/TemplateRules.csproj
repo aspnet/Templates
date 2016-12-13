@@ -82,7 +82,6 @@
               Rules\StarterWeb\IndividualAuth\Views\Manage\SetPassword.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Manage\VerifyPhoneNumber.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\Shared\_LoginPartial.cshtml;
-              Rules\StarterWeb\IndividualAuth\Views\Shared\_ValidationScriptsPartial.cshtml;
               Rules\StarterWeb\IndividualAuth\Views\_ViewImports.cshtml;
               Rules\StarterWeb\IndividualAuth\wwwroot\css\site.css;
               Rules\StarterWeb\IndividualAuth\wwwroot\css\site.min.css;
