@@ -26,6 +26,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
   </ItemGroup>
 $packagereferenceslist$
 </Project>
