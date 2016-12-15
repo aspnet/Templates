@@ -17,8 +17,8 @@
   </ItemGroup>$endif$
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
   </ItemGroup>
 $packagereferenceslist$
 </Project>

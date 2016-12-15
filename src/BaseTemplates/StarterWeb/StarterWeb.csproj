@@ -21,12 +21,12 @@
   </ItemGroup>$endif$
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
   </ItemGroup>
 $packagereferenceslist$
 </Project>
