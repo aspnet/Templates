@@ -2,7 +2,6 @@
 **/artifacts/**
 packages/**
 .nuget/**
-.dnx/**
 .build/**
 **/.vs/**
 *.user
