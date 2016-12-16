@@ -223,6 +223,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(ApplicationInsightsPatchPackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
