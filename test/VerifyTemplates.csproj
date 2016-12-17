@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Verify" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\Templates.Settings.targets" />
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Templates.msbuild))\tools\Verify.tasks" />
 
   <PropertyGroup>
     <ProjectGuid>{248e0edd-b63b-4e8e-b7d3-166efdd893c0}</ProjectGuid>
@@ -304,7 +303,6 @@
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) $(PackageSourceForRestore)"/>
     <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" />
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" />
-    <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')" />-->
   </Target>
   
   <Target Name="CompileTemplates" Inputs="@(TemplatesToVerify)" Outputs="$(TemplatesTestPath)%(Filename)\bin\Debug\%(Filename).1.0.0.nupkg" DependsOnTargets="ExtractAllTemplates;SetupPackageSource">
@@ -327,7 +325,6 @@
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetRestoreCommand) $(PackageSourceForRestore)" Condition="'$(IsTemplate)' == 'true'"/>
     <Message Text="Running $(DotNetBuildCommand) on $(TestPath)" Condition="'$(IsTemplate)' == 'true'"/>
     <Exec WorkingDirectory="$(TestPath)" Command="$(DotNetBuildCommand)" Condition="'$(IsTemplate)' == 'true'"/>
-    <!--<VerifyJsReferences WwwRootPath="$(TestPath)wwwroot" Condition="Exists('$(TestPath)wwwroot')"/>-->
   </Target>
 
   <Target Name="VerifyTemplates" DependsOnTargets="InstallNpmPackages">
