@@ -1,7 +1,6 @@
 <Project DefaultTargets="Verify" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildThisFileDirectory)\Templates.Settings.targets" />
   <Import Project="$(MSBuildThisFileDirectory)\tools\Build.tasks" />
-  <Import Project="$(MSBuildThisFileDirectory)\tools\Verify.tasks" />
 
   <Target Name="Verify" DependsOnTargets="Build;WriteDropFile"/>
 
