@@ -57,7 +57,7 @@
         <IntermediateOutputPath>$(TemplatesIntermediate)</IntermediateOutputPath>
         <BaseIntermediateOutputPath>$(TemplatesIntermediate)</BaseIntermediateOutputPath>
     </PropertyGroup>
-    
+
     <Target Name="DeterminePackageVersions" DependsOnTargets="SetupPackageSource">
         <ItemGroup Condition="'$(CoherencePackageSources)' != ''">
             <WebSdkFile Include="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.nupkg"
@@ -116,6 +116,9 @@
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
+
+            <ApplicationInsightsPatchSemanticVersion Condition="'$(PackageSource)' == ''">-beta1</ApplicationInsightsPatchSemanticVersion>
+            <ApplicationInsightsPatchPackageVersion Condition="'$(ApplicationInsightsPatchPackageVersion)' == ''">2.0.0$(ApplicationInsightsPatchSemanticVersion)</ApplicationInsightsPatchPackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>

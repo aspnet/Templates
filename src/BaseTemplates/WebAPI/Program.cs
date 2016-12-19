@@ -17,6 +17,7 @@ namespace $safeprojectname$
                 .UseContentRoot(Directory.GetCurrentDirectory())$if$ ($aspnet_useplatformhandler$ == false)$else$
                 .UseIISIntegration()$endif$
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .Build();
 
             host.Run();
