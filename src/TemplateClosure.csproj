@@ -12,9 +12,7 @@
   <ItemGroup>
     <!-- Base StarterWeb and Empty Templates -->
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
-<!-- ApplicationInsights disabled
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
--->
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />

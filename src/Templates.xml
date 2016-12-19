@@ -156,41 +156,6 @@
                     <RunRule RuleID="StarterWebOrganizationalAuthMultipleRead" />
               </ApplyRules>
         </ApplyRules>
-        <!--
-        <ApplyRules Option="ApplicationInsights">
-            <RunRule RuleID="ApplicationInsightsReferences" />
-            <ApplyRules Option="NoAuth">
-                  <RunRule RuleID="StarterWebAINoAuth" />
-            </ApplyRules>
-            <ApplyRules Option="WindowsAuth">
-                  <RunRule RuleID="StarterWebAINoAuth" />
-                  <RunRule RuleID="StarterWebAIWindowsAuth" />
-            </ApplyRules>
-            <ApplyRules Option="IndividualAuth">
-                  <RunRule RuleID="StarterWebAICommonAuth" />
-                  <RunRule RuleID="StarterWebAIIndividualAuth" />
-            </ApplyRules>
-            <ApplyRules Option="OrgAuth">
-                  <RunRule RuleID="StarterWebAICommonAuth" />
-                  <ApplyRules Option="SSO">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleCommon" />
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleNoRead" />
-                  </ApplyRules>
-                  <ApplyRules Option="MultiOrg">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleCommon" />
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleNoRead" />
-                  </ApplyRules>
-                  <ApplyRules Option="SSOR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleCommon" />
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthSingleRead" />
-                  </ApplyRules>
-                  <ApplyRules Option="MultiOrgR">
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleCommon" />
-                        <RunRule RuleID="StarterWebAIOrganizationalAuthMultipleRead" />
-                  </ApplyRules>
-            </ApplyRules>
-        </ApplyRules>
-        -->
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -212,25 +177,6 @@
                     <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
               </ApplyRules>
         </ApplyRules>
-        <!--
-        <ApplyRules Option="ApplicationInsights">
-            <RunRule RuleID="ApplicationInsightsReferences" />
-            <ApplyRules Option="NoAuth">
-                  <RunRule RuleID="WebAPIAINoAuth" />
-            </ApplyRules>
-            <ApplyRules Option="WindowsAuth">
-                  <RunRule RuleID="WebAPIAINoAuth" />
-            </ApplyRules>
-            <ApplyRules Option="OrgAuth">
-                  <ApplyRules Option="SSO">
-                        <RunRule RuleID="WebAPIAIOrganizationalAuthSingle" />
-                  </ApplyRules>
-                  <ApplyRules Option="SSOR">
-                        <RunRule RuleID="WebAPIAIOrganizationalAuthSingle" />
-                  </ApplyRules>
-            </ApplyRules>
-        </ApplyRules>
-        -->
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -342,43 +288,6 @@
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Read\Startup.cs"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
-      <!-- Application Insights StarterWeb rules -->
-      <Rule ID="StarterWebAINoAuth">
-          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\_ViewImports.cshtml"/>
-          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\NoAuth\Views\Shared\_Layout.cshtml"/>
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\NoAuth\appsettings.json"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\NoAuth\Startup.cs"/>
-      </Rule>
-      <Rule ID="StarterWebAIWindowsAuth">
-          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\WindowsAuth\Views\Shared\_Layout.cshtml"/>
-      </Rule>
-      <Rule ID="StarterWebAICommonAuth">
-          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\_ViewImports.cshtml"/>
-          <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\AI\CommonAuth\Views\Shared\_Layout.cshtml"/>
-      </Rule>
-      <Rule ID="StarterWebAIIndividualAuth">
-          <ReplaceFile Destination="Views\_ViewImports.cshtml" Source="Rules\StarterWeb\AI\IndividualAuth\Views\_ViewImports.cshtml"/>
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\IndividualAuth\appsettings.json"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\IndividualAuth\Startup.cs"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthSingleCommon">
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Common\appsettings.json"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthSingleNoRead">
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\NoRead\Startup.cs"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthSingleRead">
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Single\Read\Startup.cs"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthMultipleCommon">
-          <ReplaceFile Destination="appsettings.json" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Common\appsettings.json"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthMultipleNoRead">
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\NoRead\Startup.cs"/>
-      </Rule>
-      <Rule ID="StarterWebAIOrganizationalAuthMultipleRead">
-          <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\AI\OrganizationalAuth\Multiple\Read\Startup.cs"/>
-      </Rule>
       <!-- Web API rules -->
       <Rule ID="WebAPICommonAuth">
           <ReplaceFile Destination="Controllers\ValuesController.cs" Source="Rules\WebAPI\CommonAuth\Controllers\ValuesController.cs"/>
@@ -391,23 +300,6 @@
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs"/>
       </Rule>
-
-      <!-- Application Insights Web API rules -->
-      <Rule ID="WebAPIAINoAuth">
-          <AddFile Destination="appsettings.json" Source="Rules\WebAPI\AI\NoAuth\appsettings.json"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\NoAuth\Startup.cs"/>
-      </Rule>
-      <Rule ID="WebAPIAIOrganizationalAuthSingle">
-          <ReplaceFile Destination="appsettings.json" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\appsettings.json"/>
-          <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\AI\OrganizationalAuth\Single\Startup.cs"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
-      </Rule>
-
-      <!-- Common Application Insights rules -->
-      <Rule ID="ApplicationInsightsReferences">
-          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-      </Rule>
-
       <!-- Apply app.config file for full FX -->
       <Rule ID="ApplyAppConfig">
           <AddFile Destination="app.config" Source="Rules\Common\app.config"/>
