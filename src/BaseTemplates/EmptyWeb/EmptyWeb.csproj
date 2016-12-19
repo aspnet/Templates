@@ -16,7 +16,7 @@
   </ItemGroup>$endif$
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPatchPackageVersion__" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
   </ItemGroup>
 $packagereferenceslist$

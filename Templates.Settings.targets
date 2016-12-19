@@ -43,7 +43,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">1.0.0</ApplicationInsightsPackageVersion>
+        <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">2.0.0-beta1</ApplicationInsightsPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -116,9 +116,6 @@
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
-
-            <ApplicationInsightsPatchSemanticVersion Condition="'$(PackageSource)' == ''">-beta1</ApplicationInsightsPatchSemanticVersion>
-            <ApplicationInsightsPatchPackageVersion Condition="'$(ApplicationInsightsPatchPackageVersion)' == ''">2.0.0$(ApplicationInsightsPatchSemanticVersion)</ApplicationInsightsPatchPackageVersion>
         </PropertyGroup>
 
         <Message Text="NetCorePlatformVersion: $(NetCorePlatformVersion)"/>
