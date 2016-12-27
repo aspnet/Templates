@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TemplateDefinition Name="ProjectK" Order="8000">
+<TemplateDefinition Name="NetCore" Order="8000">
   <UI>
     <Template Name="Empty" BaseTemplateID="Microsoft.NetCore.CSharp.EmptyWeb" Order="8010">
       <Icon>Resources\Empty.png</Icon>
