@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" /> 
   </ItemGroup>
 $packagereferenceslist$
 </Project>
