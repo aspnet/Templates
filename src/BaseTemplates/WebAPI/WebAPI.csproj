@@ -24,7 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
-    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" /> 
+    <PackageReference Include="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" />
   </ItemGroup>
 $packagereferenceslist$
 </Project>
