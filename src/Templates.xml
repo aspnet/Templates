@@ -10,6 +10,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -28,6 +29,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -48,6 +50,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -68,6 +71,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -85,6 +89,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -104,6 +109,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
+      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -120,7 +126,11 @@
   <BaseTemplates>
     <BaseTemplate ID="Microsoft.NetCore.CSharp.EmptyWeb"
               VSTemplatePath="NetCoreEmptyWeb.vstemplate"
-              DefaultContext="WebCore">
+              DefaultContext="WebCore"
+              DefaultPlatform="1.0.3">
+        <ApplyRules>
+            <RunRule RuleID="EmptyReferences" />
+        </ApplyRules>
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -128,15 +138,22 @@
 
     <BaseTemplate ID="Microsoft.NetCore.CSharp.StarterWeb"
               VSTemplatePath="NetCoreStarterWeb.vstemplate"
-              DefaultContext="WebCore">
+              DefaultContext="WebCore"
+              DefaultPlatform="1.0.3">
+        <ApplyRules Option="NoAuth">
+            <RunRule RuleID="StarterWebNoAuthReferences" />
+        </ApplyRules>
         <ApplyRules Option="WindowsAuth">
+              <RunRule RuleID="StarterWebNoAuthReferences" />
               <RunRule RuleID="StarterWebWindowsAuth" />
         </ApplyRules>
         <ApplyRules Option="IndividualAuth">
+              <RunRule RuleID="StarterWebIndividualAuthReferences" />
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebIndividualAuth" />
         </ApplyRules>
         <ApplyRules Option="OrgAuth">
+              <RunRule RuleID="StarterWebOrganizationalAuthReferences" />
               <RunRule RuleID="StarterWebCommonAuth" />
               <RunRule RuleID="StarterWebOrganizationalAuthCommon" />
               <ApplyRules Option="SSO">
@@ -163,12 +180,18 @@
 
     <BaseTemplate ID="Microsoft.NetCore.CSharp.WebAPI"
               VSTemplatePath="NetCoreWebAPI.vstemplate"
-              DefaultContext="WebCore">
+              DefaultContext="WebCore"
+              DefaultPlatform="1.0.3">
+        <ApplyRules Option="NoAuth">
+              <RunRule RuleID="WebAPINoAuthReferences" />
+        </ApplyRules>
         <ApplyRules Option="WindowsAuth">
+              <RunRule RuleID="WebAPINoAuthReferences" />
               <RunRule RuleID="WebAPICommonAuth" />
               <RunRule RuleID="WebAPIWindowsAuth" />
         </ApplyRules>
         <ApplyRules Option="OrgAuth">
+              <RunRule RuleID="WebAPIOrganizationalAuthReferences" />
               <RunRule RuleID="WebAPICommonAuth" />
               <ApplyRules Option="SSO">
                     <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
@@ -193,18 +216,6 @@
           <ReplaceFile Destination="Views\Shared\_Layout.cshtml" Source="Rules\StarterWeb\CommonAuth\Views\Shared\_Layout.cshtml"/>
       </Rule>
       <Rule ID="StarterWebIndividualAuth">
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\AccountController.cs"/>
           <AddFile Destination="Controllers\ManageController.cs" Source="Rules\StarterWeb\IndividualAuth\Controllers\ManageController.cs"/>
           <AddFile Destination="Data\ApplicationDbContext.cs" Source="Rules\StarterWeb\IndividualAuth\Data\ApplicationDbContext.cs"/>
@@ -262,31 +273,24 @@
           <AddFile Destination="Views\Account\SignedOut.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Account\SignedOut.cshtml"/>
           <AddFile Destination="Views\Shared\_LoginPartial.cshtml" Source="Rules\StarterWeb\OrganizationalAuth\Common\Views\Shared\_LoginPartial.cshtml"/>
           <ReplaceFile Destination="Controllers\HomeController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Common\Controllers\HomeController.cs"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleCommon">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Common\Controllers\AccountController.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleNoRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\NoRead\Startup.cs"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthSingleRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Single\Read\Startup.cs"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleCommon">
           <AddFile Destination="Controllers\AccountController.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Common\Controllers\AccountController.cs"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleNoRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\NoRead\Startup.cs"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <Rule ID="StarterWebOrganizationalAuthMultipleRead">
           <ReplaceFile Destination="Startup.cs" Source="Rules\StarterWeb\OrganizationalAuth\Multiple\Read\Startup.cs"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
       <!-- Web API rules -->
       <Rule ID="WebAPICommonAuth">
@@ -296,13 +300,108 @@
           <ReplaceFile Destination="Properties\launchSettings.json" Source="Rules\WebAPI\WindowsAuth\Properties\launchSettings.json"/>
       </Rule>
       <Rule ID="WebAPIOrganizationalAuthSingle">
-          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <ReplaceFile Destination="Startup.cs" Source="Rules\WebAPI\OrganizationalAuth\Single\Startup.cs"/>
       </Rule>
       <!-- Apply app.config file for full FX -->
       <Rule ID="ApplyAppConfig">
           <AddFile Destination="app.config" Source="Rules\Common\app.config"/>
       </Rule>
+
+      <!-- Add Reference Rules - Empty Web -->
+      <Rule ID="EmptyReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+      </Rule>
+
+      <!-- Add Reference Rules - Starter Web (NoAuth) -->
+      <Rule ID="StarterWebNoAuthReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0"/>
+      </Rule>
+
+      <!-- Add Reference Rules - Starter Web (IndAuth) -->
+      <Rule ID="StarterWebIndividualAuthReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0"/>
+          <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+      </Rule>
+
+      <!-- Add Reference Rules - Starter Web (OrgAuth) -->
+      <Rule ID="StarterWebOrganizationalAuthReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
+      </Rule>
+
+      <!-- Add Reference Rules - Web API (NoAuth) -->
+      <Rule ID="WebAPINoAuthReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+      </Rule>
+
+      <!-- Add Reference Rules - Web API (OrgAuth) -->
+      <Rule ID="WebAPIOrganizationalAuthReferences">
+          <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
+      </Rule>
   </Rules>
+
+  <Platforms>
+    <Platform Version="1.0.3" Framework="netcoreapp1.0" />
+    <Platform Version="1.1" Framework="netcoreapp1.1">
+      <Package Name="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
+      <Package Name="Microsoft.AspNetCore" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.0"/>
+      <Package Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="1.1.0"/>
+      <Package Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.0"/>
+      <Package Name="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
+      <Package Name="Microsoft.EntityFrameworkCore.Design" Version="1.1.0" />
+      <Package Name="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.0" />
+      <Package Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.0" />
+      <Package Name="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.0" />
+      <Package Name="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
+      <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final"/>
+      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0" />
+      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+    </Platform>
+  </Platforms>
 </TemplateDefinition>

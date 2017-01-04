@@ -62,7 +62,7 @@
       <FilesToReplace Include="@(CopiedVsTemplateFiles)" />
     </ItemGroup>
 
-    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate') and '$(IsOfficialBuild)' == 'false'" Replace="$(TemplatesTargetVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(TemplatesTargetVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NUGETFEEDSOURCE__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(NugetFeedSource)" />
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
