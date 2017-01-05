@@ -125,7 +125,7 @@
 
   <BaseTemplates>
     <BaseTemplate ID="Microsoft.NetCore.CSharp.EmptyWeb"
-              VSTemplatePath="NetCoreEmptyWeb.vstemplate"
+              VSTemplatePath="EmptyWeb\EmptyWeb.vstemplate"
               DefaultContext="WebCore"
               DefaultPlatform="1.0.3">
         <ApplyRules>
@@ -137,7 +137,7 @@
    </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.NetCore.CSharp.StarterWeb"
-              VSTemplatePath="NetCoreStarterWeb.vstemplate"
+              VSTemplatePath="StarterWeb\StarterWeb.vstemplate"
               DefaultContext="WebCore"
               DefaultPlatform="1.0.3">
         <ApplyRules Option="NoAuth">
@@ -179,7 +179,7 @@
     </BaseTemplate>
 
     <BaseTemplate ID="Microsoft.NetCore.CSharp.WebAPI"
-              VSTemplatePath="NetCoreWebAPI.vstemplate"
+              VSTemplatePath="WebAPI\WebAPI.vstemplate"
               DefaultContext="WebCore"
               DefaultPlatform="1.0.3">
         <ApplyRules Option="NoAuth">
