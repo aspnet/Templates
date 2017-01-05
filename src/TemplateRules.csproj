@@ -22,13 +22,6 @@
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
-    <LooseFiles Include="
-              NetCoreStarterWeb.vstemplate;
-              NetCoreEmptyWeb.vstemplate;
-              NetCoreWebAPI.vstemplate">
-      <TargetName>$(Rules)</TargetName>
-      <SearchPath>.\BaseTemplates</SearchPath>
-    </LooseFiles>
 
     <!-- StarterWeb Common Auth Files -->
     <LooseFiles Include="
