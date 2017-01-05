@@ -10,7 +10,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -29,7 +29,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -50,7 +50,7 @@
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCore</RequiredContext>
       <SupportsDocker>true</SupportsDocker>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -71,7 +71,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784883</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -89,7 +89,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784882</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <WindowsAuth />
@@ -109,7 +109,7 @@
       <LearnMoreLink>https://go.microsoft.com/fwlink/?LinkID=784881</LearnMoreLink>
       <UIFilters>NetCoreProject</UIFilters>
       <RequiredContext>WebCoreFullFramework</RequiredContext>
-      <SupportedPlatforms>1.0.3;1.1</SupportedPlatforms>
+      <SupportedPlatforms>1.0;1.1</SupportedPlatforms>
       <Options>
         <Authentication Default="NoAuth">
           <NoAuth />
@@ -380,7 +380,7 @@
   </Rules>
 
   <Platforms>
-    <Platform Version="1.0.3" Framework="netcoreapp1.0" />
+    <Platform Version="1.0" Framework="netcoreapp1.0" />
     <Platform Version="1.1" Framework="netcoreapp1.1">
       <Package Name="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
       <Package Name="Microsoft.AspNetCore" Version="1.1.0" />
