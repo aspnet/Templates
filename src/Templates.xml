@@ -127,7 +127,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.EmptyWeb"
               VSTemplatePath="EmptyWeb\EmptyWeb.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0.3">
+              DefaultPlatform="1.0">
         <ApplyRules>
             <RunRule RuleID="EmptyReferences" />
         </ApplyRules>
@@ -139,7 +139,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.StarterWeb"
               VSTemplatePath="StarterWeb\StarterWeb.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0.3">
+              DefaultPlatform="1.0">
         <ApplyRules Option="NoAuth">
             <RunRule RuleID="StarterWebNoAuthReferences" />
         </ApplyRules>
@@ -181,7 +181,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.WebAPI"
               VSTemplatePath="WebAPI\WebAPI.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0.3">
+              DefaultPlatform="1.0">
         <ApplyRules Option="NoAuth">
               <RunRule RuleID="WebAPINoAuthReferences" />
         </ApplyRules>
