@@ -321,6 +321,7 @@
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Starter Web (IndAuth) -->
@@ -357,6 +358,7 @@
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Web API (NoAuth) -->
@@ -365,6 +367,7 @@
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Web API (OrgAuth) -->
@@ -376,6 +379,7 @@
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
   </Rules>
 
