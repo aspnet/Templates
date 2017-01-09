@@ -318,6 +318,7 @@
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="__ScaffoldingPackageVersion__" AppliesTo="1.1"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
@@ -332,6 +333,7 @@
           <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="__ScaffoldingPackageVersion__" AppliesTo="1.1"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
@@ -353,6 +355,7 @@
           <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="__ScaffoldingPackageVersion__" AppliesTo="1.1"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
@@ -394,17 +397,18 @@
       <Package Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.0" />
       <Package Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.0"/>
       <Package Name="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-final" />
       <Package Name="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
       <Package Name="Microsoft.EntityFrameworkCore.Design" Version="1.1.0" />
       <Package Name="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.0" />
       <Package Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.0" />
-      <Package Name="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0-msbuild3-final" />
       <Package Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0-msbuild3-final" />
       <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.0" />
       <Package Name="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
       <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final"/>
-      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.1" />
-      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0-msbuild3-final" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
     </Platform>
   </Platforms>
