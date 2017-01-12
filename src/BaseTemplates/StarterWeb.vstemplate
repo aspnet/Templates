@@ -25,7 +25,6 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="bundleconfig.json">bundleconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
       <Folder Name="Controllers" TargetFolderName="Controllers">
         <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
       </Folder>
