@@ -11,13 +11,6 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
-  </PropertyGroup>$endif$$if$ ($context$ == WebCoreFullFramework)
-
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>$endif$
-
+  </PropertyGroup>$endif$
 $packagereferenceslist$
 </Project>
