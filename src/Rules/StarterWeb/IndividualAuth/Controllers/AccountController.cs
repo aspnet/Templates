@@ -206,14 +206,15 @@ namespace $safeprojectname$.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
+            // Get the information about the user from the external login provider
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return View("ExternalLoginFailure");
+            }        
+        
             if (ModelState.IsValid)
             {
-                // Get the information about the user from the external login provider
-                var info = await _signInManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return View("ExternalLoginFailure");
-                }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -229,6 +230,7 @@ namespace $safeprojectname$.Controllers
                 AddErrors(result);
             }
 
+            ViewData["LoginProvider"] = info.LoginProvider;
             ViewData["ReturnUrl"] = returnUrl;
             return View(model);
         }
