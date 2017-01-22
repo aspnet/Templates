@@ -11,13 +11,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
-  </ItemGroup>$if$ ($context$ == WebCoreFullFramework)
-
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>$endif$
-
+  </ItemGroup>
 $packagereferenceslist$
 </Project>

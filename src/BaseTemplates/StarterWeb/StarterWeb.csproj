@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$netframeworkversion$</TargetFramework>$if$ ($context$ == WebCoreFullFramework)
-    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$$if$ ($platformversion$ == 1.1)
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>$endif$
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$
   </PropertyGroup>$if$ ($context$ == WebCore)
 
   <PropertyGroup>
@@ -12,13 +11,6 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
-  </PropertyGroup>$endif$$if$ ($context$ == WebCoreFullFramework)
-
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>$endif$
-
+  </PropertyGroup>$endif$
 $packagereferenceslist$
 </Project>
