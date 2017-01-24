@@ -43,7 +43,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">2.0.0-beta1</ApplicationInsightsPackageVersion>
+        <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">2.0.0</ApplicationInsightsPackageVersion>
         <BrowserLinkPackageVersion Condition="'$(BrowserLinkPackageVersion)' == ''">1.0.1</BrowserLinkPackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
