@@ -407,7 +407,7 @@
       <Package Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="1.1.0"/>
       <Package Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.0" />
       <Package Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.0"/>
-      <Package Name="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
+      <Package Name="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
       <Package Name="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
       <Package Name="Microsoft.EntityFrameworkCore.Design" Version="1.1.0" />
       <Package Name="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.0" />
