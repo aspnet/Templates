@@ -325,6 +325,7 @@
       <Rule ID="EmptyReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
       </Rule>
 
       <!-- Add Reference Rules - Starter Web (NoAuth) -->
@@ -334,6 +335,7 @@
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
@@ -353,6 +355,7 @@
           <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
@@ -370,6 +373,7 @@
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
@@ -381,6 +385,7 @@
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
@@ -390,6 +395,7 @@
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.NETCore.App" Version="__NetCorePlatformVersion__" RequiredContext="WebCore" />
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
@@ -417,6 +423,7 @@
       <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.0" />
       <Package Name="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
       <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final"/>
+      <Package Name="Microsoft.NETCore.App" Version="1.1.0" />
       <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0-msbuild3-final" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
