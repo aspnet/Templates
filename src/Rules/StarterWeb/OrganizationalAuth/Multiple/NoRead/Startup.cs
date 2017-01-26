@@ -52,10 +52,9 @@ namespace $safeprojectname$
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();$if$ ($platformversion$ == 1.1)
-                // To enable Browser Link, uncomment the line below and add the
-                // Microsoft.VisualStudio.Web.BrowserLink package.
-                // Note: Browser Link is not compatible with ASP.NET Core 1.1.0. See
-                // https://go.microsoft.com/fwlink/?linkid=840936 for details.
+
+                // Browser Link is not compatible with ASP.NET Core [1.1.0 - 1.1.1]
+                // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
                 // app.UseBrowserLink();$else$
                 app.UseBrowserLink();$endif$
             }
