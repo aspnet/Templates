@@ -334,7 +334,7 @@
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/ AppliesTo="1.0">
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
 
@@ -354,7 +354,7 @@
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__" PrivateAssets="All"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/ AppliesTo="1.0">
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
           <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
@@ -370,7 +370,7 @@
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/ AppliesTo="1.0">
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
       </Rule>
