@@ -144,9 +144,7 @@
     </LooseFiles>
 
     <!-- Common Files -->
-    <LooseFiles Include="
-              Rules\Common\app.config;
-              Rules\Common\runtimeconfig.template.json">
+    <LooseFiles Include="Rules\Common\app.config">
       <TargetName>$(Rules)</TargetName>
       <SearchPath>.\</SearchPath>
     </LooseFiles>
