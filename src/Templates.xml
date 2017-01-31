@@ -131,9 +131,7 @@
         <ApplyRules>
             <RunRule RuleID="EmptyReferences" />
         </ApplyRules>
-        <ApplyRules Option="WebCore">
-            <RunRule RuleID="ApplyRuntimeConfig" />
-        </ApplyRules>
+        <ApplyRules Option="WebCore" />
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -176,9 +174,7 @@
                     <RunRule RuleID="StarterWebOrganizationalAuthMultipleRead" />
               </ApplyRules>
         </ApplyRules>
-        <ApplyRules Option="WebCore">
-            <RunRule RuleID="ApplyRuntimeConfig" />
-        </ApplyRules>
+        <ApplyRules Option="WebCore" />
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -206,9 +202,7 @@
                     <RunRule RuleID="WebAPIOrganizationalAuthSingle" />
               </ApplyRules>
         </ApplyRules>
-        <ApplyRules Option="WebCore">
-            <RunRule RuleID="ApplyRuntimeConfig" />
-        </ApplyRules>
+        <ApplyRules Option="WebCore" />
         <ApplyRules Option="WebCoreFullFramework">
             <RunRule RuleID="ApplyAppConfig" />
         </ApplyRules>
@@ -314,11 +308,6 @@
       <!-- Apply app.config file for full FX -->
       <Rule ID="ApplyAppConfig">
           <AddFile Destination="app.config" Source="Rules\Common\app.config"/>
-      </Rule>
-
-      <!-- Apply runtimeconfig.template.json file for Core only -->
-      <Rule ID="ApplyRuntimeConfig">
-          <AddFile Destination="runtimeconfig.template.json" Source="Rules\Common\runtimeconfig.template.json"/>
       </Rule>
 
       <!-- Add Reference Rules - Empty Web -->
