@@ -19,6 +19,7 @@ set "TemplatesReferences=%TemplatesRoot%\references"
 set "TemplatesSource=%TemplatesRoot%\src"
 set "TemplatesTest=%TemplatesRoot%\test"
 set "TemplatesTools=%TemplatesRoot%\tools"
+set DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 
 if exist "%TemplatesProgramFiles%\MSBuild\14.0\Bin\msbuild.exe" (
    set TemplatesMSBuildPath="%TemplatesProgramFiles%\MSBuild\14.0\Bin"
