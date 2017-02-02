@@ -221,8 +221,8 @@
             <CoreSdkDropPath ParameterType="System.String" Required="true" />
             <CacheVersion ParameterType="System.String" Required="true" />
             <CacheDropPath ParameterType="System.String" Required="true" />
-            <ScaffoldingVersion ParameterType="System.String" Required="true" />
-            <ScaffoldingDropPath ParameterType="System.String" Required="true" />
+            <ToolsVersion ParameterType="System.String" Required="true" />
+            <ToolsDropPath ParameterType="System.String" Required="true" />
             <SemaphoreFilePath ParameterType="System.String" Required="true" />
         </ParameterGroup>
         <Task>
@@ -240,8 +240,8 @@
                   builder.AppendLine(string.Format("WebSdkDropPath={0}", WebSdkDropPath));
                   builder.AppendLine(string.Format("CoreSdkVersion={0}", CoreSdkVersion));
                   builder.AppendLine(string.Format("CoreSdkDropPath={0}", CoreSdkDropPath));
-                  builder.AppendLine(string.Format("ScaffoldingVersion={0}", ScaffoldingVersion));
-                  builder.AppendLine(string.Format("ScaffoldingDropPath={0}", ScaffoldingDropPath));
+                  builder.AppendLine(string.Format("ToolsVersion={0}", ToolsVersion));
+                  builder.AppendLine(string.Format("ToolsDropPath={0}", ToolsDropPath));
 
 
                   var retry = 5;
