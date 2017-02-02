@@ -13,7 +13,7 @@
     <WebAPITemplateName>WebAPI</WebAPITemplateName>
     <IntermediateOutputPath>$(IntermediateOutputPath)\ProjectTemplates\</IntermediateOutputPath>
     <TemplatesOutputPath>$(OutputPath)\ProjectTemplates\</TemplatesOutputPath>
-    <TemplateCsproj>$(TemplatesSource)\TemplateClosure.csproj</TemplateCsproj>
+    <TemplateClosureFolder>$(TemplatesSource)\Closure</TemplateClosureFolder>
     <ResourcesPath>..\Resources\</ResourcesPath>
   </PropertyGroup>
   <UsingTask TaskName="Microsoft.Web.MsBuildTasks.GetVSTemplateItems" AssemblyFile="$(TemplatesTools)\Microsoft.Web.MsBuildTasks2.dll" />
@@ -66,13 +66,16 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__NUGETFEEDSOURCE__" Condition="('%(Extension)' == '.vstemplate')" Replace="$(NugetFeedSource)" />
 
     <RegexReplace Files="@(FilesToReplace)" Find="__VSVER__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(TemplatesTargetVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCore10PlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCore10PlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCore11PlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCore11PlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Tools10PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools10PackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Tools11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLinkPackageVersion)" />
@@ -110,16 +113,16 @@
     <VerifyUsings FileList="@(FilesToVerify)" RequiredUsings="System;System.Collections.Generic;System.Linq;System.Threading.Tasks"/>
   </Target>
 
-  <Target Name="UpdateTemplateCsproj" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
+  <Target Name="UpdateTemplateClosure" DependsOnTargets="SetupPackageSource;DeterminePackageVersions">
     <PropertyGroup>
-      <TempPath>$(IntermediateOutputPath)Csproj\</TempPath>
+      <TempPath>$(IntermediateOutputPath)Closure\</TempPath>
     </PropertyGroup>
 
     <MakeDir Directories="$(TempPath)" />
 
     <ItemGroup>
       <SrcFiles Remove="@(SrcFiles)" />
-      <SrcFiles Include="$(TemplateCsproj)"/>
+      <SrcFiles Include="$(TemplateClosureFolder)\*.csproj"/>
     </ItemGroup>
 
     <Copy SourceFiles="@(SrcFiles)" DestinationFiles="@(SrcFiles->'$(TempPath)%(Filename)%(Extension)')">
@@ -132,13 +135,16 @@
     </ItemGroup>
 
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__NetCorePlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCorePlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCore10PlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCore10PlatformVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__NetCore11PlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetCore11PlatformVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__WebSdkVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(WebSdkVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__NetStandardPlatformVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(NetStandardPlatformVersion)" />
-    <RegexReplace Files="@(FilesToReplace)" Find="__ScaffoldingPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ScaffoldingPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Tools10PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools10PackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Tools11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLinkPackageVersion)" />
 
@@ -149,7 +155,7 @@
     <MakeDir Directories="$(TemplatesOutputPath)" />
     <CallTarget Targets="VerifyContent" />
     <CallTarget Targets="BuildAllTemplates" />
-    <CallTarget Targets="UpdateTemplateCsproj"/>
+    <CallTarget Targets="UpdateTemplateClosure"/>
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="$(TemplatesOutputPath);$(IntermediateOutputPath)" />
