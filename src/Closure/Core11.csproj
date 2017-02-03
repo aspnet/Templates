@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCore11PlatformVersion__" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__Mvc11PackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-update1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__NetCore11PlatformVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__NetCore11PlatformVersion__" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="__NetCore11PlatformVersion__" />
