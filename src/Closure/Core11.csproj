@@ -5,6 +5,10 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- Base StarterWeb and Empty Templates -->
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCore11PlatformVersion__" />
