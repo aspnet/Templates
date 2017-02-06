@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$netframeworkversion$</TargetFramework>$if$ ($context$ == WebCoreFullFramework)
-    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$$if$ ($platformversion$ == 1.1)
-    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>$endif$
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>$endif$
   </PropertyGroup>$if$ ($context$ == WebCore)
 
   <PropertyGroup>
