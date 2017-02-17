@@ -51,12 +51,8 @@ namespace $safeprojectname$
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();$if$ ($platformversion$ == 1.1)
-
-                // Browser Link is not compatible with Kestrel 1.1.0
-                // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
-                // app.UseBrowserLink();$else$
-                app.UseBrowserLink();$endif$
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
