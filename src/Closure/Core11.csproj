@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="__NetCore11PlatformVersion__"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__NetCore11PlatformVersion__"/>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__NetCore11PlatformVersion__"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__NetCore11PlatformVersion__"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="__NetCore11PlatformVersion__"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="__NetCore11PlatformVersion__"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__NetCore11PlatformVersion__"/>
