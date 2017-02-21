@@ -44,7 +44,8 @@
 
     <PropertyGroup>
         <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">2.0.0</ApplicationInsightsPackageVersion>
-        <BrowserLinkPackageVersion Condition="'$(BrowserLinkPackageVersion)' == ''">1.0.2</BrowserLinkPackageVersion>
+        <BrowserLinkPackageVersion Condition="'$(BrowserLinkPackageVersion)' == ''">1.0.1</BrowserLinkPackageVersion>
+        <BrowserLink11PackageVersion Condition="'$(BrowserLink11PackageVersion)' == ''">1.1.0</BrowserLink11PackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>

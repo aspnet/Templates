@@ -405,7 +405,7 @@
       <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__NetCore11PlatformVersion__" />
       <Package Name="Microsoft.Extensions.Logging.Debug" Version="__NetCore11PlatformVersion__" />
       <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
-      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLink11PackageVersion__" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools11PackageVersion__" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__" />
     </Platform>

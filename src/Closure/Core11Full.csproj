@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__Mvc11PackageVersion__" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__NetCore11PlatformVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__NetCore11PlatformVersion__" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="__NetCore11PlatformVersion__" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLink11PackageVersion__" />
   </ItemGroup>
   <ItemGroup>
     <!-- Auth Packages StarterWeb -->
