@@ -14,8 +14,8 @@ namespace $safeprojectname$
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())$if$ ($aspnet_useplatformhandler$ == false)$else$
-                .UseIISIntegration()$endif$
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
