@@ -64,7 +64,7 @@
             <WebSdkFile Include="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.nupkg"
                         Exclude="$(WebSdkPackageSource)\Microsoft.NET.Sdk.Web.*.symbols.nupkg"/>
             <NetStandardFile Include="$(PackageSourceExternal)\NETStandard.Library.*.nupkg"/>
-            <ScaffoldingToolsFile Include="$(ScaffoldingPackageSource)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
+            <ToolsFile Include="$(ToolsPackageSource)\Microsoft.VisualStudio.Web.CodeGeneration.Tools.*.nupkg"/>
             <AspNetCorePatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.1.0.*.nupkg"/>
             <AspNetCoreMvcPatchFile Include="$(CoherencePatchDropPath)\Microsoft.AspNetCore.Mvc.Abstractions.*.nupkg"/>
             <AspNetCoreReleaseFile Include="$(PackageSource)\Microsoft.AspNetCore.Diagnostics.*.nupkg"/>
@@ -78,8 +78,8 @@
             <Output PropertyName="NetStandardSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
-        <GetFileSemanticVersion Condition="'%(ScaffoldingToolsFile.Identity)' != '' " Filename="%(ScaffoldingToolsFile .Filename)">
-            <Output PropertyName="ScaffoldingSemanticVersion" TaskParameter="SemanticVersion"/>
+        <GetFileSemanticVersion Condition="'%(ToolsFile.Identity)' != '' " Filename="%(ToolsFile.Filename)">
+            <Output PropertyName="ToolsSemanticVersion" TaskParameter="SemanticVersion"/>
         </GetFileSemanticVersion>
 
         <GetFileSemanticVersion Condition="'%(AspNetCorePatchFile.Identity)' != '' " Filename="%(AspNetCorePatchFile.Filename)">
@@ -97,7 +97,8 @@
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''"></NetCoreSemanticVersion>
-            <NetCorePlatformVersion Condition="'$(NetCorePlatformVersion)' == ''">1.0.3$(NetCoreSemanticVersion)</NetCorePlatformVersion>
+            <NetCore10PlatformVersion Condition="'$(NetCore10PlatformVersion)' == ''">1.0.3$(NetCoreSemanticVersion)</NetCore10PlatformVersion>
+            <NetCore11PlatformVersion Condition="'$(NetCore11PlatformVersion)' == ''">1.1.0</NetCore11PlatformVersion>
 
             <WebSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</WebSdkSemanticVersion>
             <WebSdkVersion Condition="'$(WebSdkVersion)' == ''">1.0.0$(WebSdkSemanticVersion)</WebSdkVersion>
@@ -106,14 +107,16 @@
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
 
-            <ScaffoldingSemanticVersion Condition="'$(PackageSource)' == ''">-*</ScaffoldingSemanticVersion>
-            <ScaffoldingPackageVersion Condition="'$(ScaffoldingPackageVersion)' == ''">1.0.0$(ScaffoldingSemanticVersion)</ScaffoldingPackageVersion>
+            <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
+            <Tools10PackageVersion Condition="'$(Tools10PackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</Tools10PackageVersion >
+            <Tools11PackageVersion Condition="'$(Tools11PackageVersion)' == ''">1.1.0$(ToolsSemanticVersion)</Tools11PackageVersion>
 
             <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCorePatchSemanticVersion>
             <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.1$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
 
             <AspNetCoreMvcPatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreMvcPatchSemanticVersion>
             <AspNetCoreMvcPatchPackageVersion Condition="'$(AspNetCoreMvcPatchPackageVersion)' == ''">1.0.2$(AspNetCoreMvcPatchSemanticVersion)</AspNetCoreMvcPatchPackageVersion>
+            <Mvc11PackageVersion Condition="'$(Mvc11PackageVersion)' == ''">1.1.1</Mvc11PackageVersion>
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>
@@ -125,7 +128,11 @@
         <Message Text="AspNetCorePatchPackageVersion: $(AspNetCorePatchPackageVersion)"/>
         <Message Text="AspNetCoreMvcPackageVersion: $(AspNetCoreMvcPatchPackageVersion)"/>
         <Message Text="AspNetCoreReleasePackageVersion: $(AspNetCoreReleasePackageVersion)"/>
-        <Message Text="ScaffoldingPackageVersion: $(ScaffoldingPackageVersion)"/>
+        <Message Text="Tools10PackageVersion: $(Tools10PackageVersion)"/>
+
+        <Message Text="NetCore11PlatformVersion: $(NetCore11PlatformVersion)"/>
+        <Message Text="Mvc11PackageVersion: $(Mvc11PackageVersion)"/>
+        <Message Text="Tools11PackageVersion: $(Tools11PackageVersion)"/>
     </Target>
     
     <Target Name="SetupPackageSource">
@@ -161,7 +168,7 @@
             <RemotePackageSource Condition="'$(TemplateBuildBranch)' == 'release'">https://www.myget.org/F/aspnetrelease/api/v3/index.json</RemotePackageSource>
             <CoherencePackageSources>$(TemplatesIntermediate)\CoherencePackages</CoherencePackageSources>
             <WebSdkPackageSource Condition="'$(WebSdkDropPath)' != ''">$(WebSdkDropPath)\Signed</WebSdkPackageSource>
-            <ScaffoldingPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ScaffoldingPackageSource>
+            <ToolsPackageSource Condition="'$(CoherenceCodeGenerationPatchDropPath)' != ''">$(CoherenceCodeGenerationPatchDropPath)</ToolsPackageSource>
         </PropertyGroup>
 
         <GetPropertyFromSemaphore SemaphorePath="$(WebSdkDropPath)\web-sdk.sem" PropertyName="CoreSdkDropPath" Condition="'$(CoreSdkDropPath)' == ''">
@@ -176,7 +183,7 @@
         <ItemGroup>
             <PackageSourceForRestore Include="$(CoherencePackageSources)" Condition="'$(PackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(WebSdkPackageSource)" Condition="'$(WebSdkPackageSource)' != ''"/>
-            <PackageSourceForRestore Include="$(ScaffoldingPackageSource)" Condition="'$(ScaffoldingPackageSource)' != ''"/>
+            <PackageSourceForRestore Include="$(ToolsPackageSource)" Condition="'$(ToolsPackageSource)' != ''"/>
             <PackageSourceForRestore Include="$(AdditionalPackageSourceForRestore)" Condition="'$(AdditionalPackageSourceForRestore)' != ''"/>
             <PackageSourceForRestore Include="https://api.nuget.org/v3/index.json"/>
         </ItemGroup>
@@ -192,7 +199,7 @@
         <Message Text="PackageSourceExternal: $(PackageSourceExternal)"/>
         <Message Text="CoherencePackageSources: $(CoherencePackageSources)"/>
         <Message Text="WebSdkPackageSource: $(WebSdkPackageSource)"/>
-        <Message Text="ScaffoldingPackageSource: $(ScaffoldingPackageSource)"/>
+        <Message Text="ToolsPackageSource: $(ToolsPackageSource)"/>
         <Message Text="CoreSdkDropPath: $(CoreSdkDropPath)"/>
         <Message Text="PackageSourceFoRestore: $(PackageSourceForRestore)"/>
     </Target>
@@ -206,7 +213,7 @@
             <CoherencePackages Include="$(PackageSource)\*.*-preview2-final.nupkg;
                                         $(PackageSourceExternal)\*.nupkg;
                                         $(WebSdkPackageSource)\*.nupkg;
-                                        $(ScaffoldingPackageSource)\*.nupkg"
+                                        $(ToolsPackageSource)\*.nupkg"
                                Exclude="$(WebSdkPackageSource)\*.symbols.nupkg"/>
             <CoherencePackages Include="$(CoherencePatchDropPath)\*.nupkg" 
                                Exclude="$(CoherencePatchDropPath)\*.*-preview2-update1.nupkg" />

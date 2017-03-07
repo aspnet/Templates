@@ -313,24 +313,24 @@
       <!-- Add Reference Rules - Empty Web -->
       <Rule ID="EmptyReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Starter Web (NoAuth) -->
       <Rule ID="StarterWebNoAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Starter Web (IndAuth) -->
       <Rule ID="StarterWebIndividualAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
@@ -339,20 +339,20 @@
           <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__" PrivateAssets="All" />
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion__" PrivateAssets="All"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__ScaffoldingPackageVersion__" PrivateAssets="All"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__Tools10PackageVersion__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__ScaffoldingPackageVersion__" PrivateAssets="All"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools10PackageVersion__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
-          <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__Tools10PackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Starter Web (OrgAuth) -->
       <Rule ID="StarterWebOrganizationalAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
@@ -360,55 +360,54 @@
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Web API (NoAuth) -->
       <Rule ID="WebAPINoAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
 
       <!-- Add Reference Rules - Web API (OrgAuth) -->
       <Rule ID="WebAPIOrganizationalAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore" Version="__NetCorePlatformVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__ScaffoldingPackageVersion__"/>
-          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__ScaffoldingPackageVersion__"/>
+          <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
+          <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
   </Rules>
 
   <Platforms Default="1.0">
     <Platform Version="1.0" Framework="netcoreapp1.0" />
     <Platform Version="1.1" Framework="netcoreapp1.1">
-      <Package Name="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0-beta1" />
-      <Package Name="Microsoft.AspNetCore" Version="1.1.0" />
-      <Package Name="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.0" />
-      <Package Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.0"/>
-      <Package Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="1.1.0"/>
-      <Package Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.0" />
-      <Package Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.0"/>
-      <Package Name="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
-      <Package Name="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
-      <Package Name="Microsoft.EntityFrameworkCore.Design" Version="1.1.0" />
-      <Package Name="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.0" />
-      <Package Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.0" />
-      <Package Name="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0-msbuild3-final" />
-      <Package Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0-msbuild3-final" />
-      <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.0" />
-      <Package Name="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
-      <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final"/>
-      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
-      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0-msbuild3-final" />
-      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+      <Package Name="Microsoft.AspNetCore" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__NetCore11PlatformVersion__"/>
+      <Package Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__NetCore11PlatformVersion__"/>
+      <Package Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__NetCore11PlatformVersion__"/>
+      <Package Name="Microsoft.AspNetCore.Mvc" Version="__Mvc11PackageVersion__" />
+      <Package Name="Microsoft.AspNetCore.StaticFiles" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.EntityFrameworkCore.Design" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.EntityFrameworkCore.Tools" Version="__Tools11PackageVersion__" />
+      <Package Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__Tools10PackageVersion__" />
+      <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.Extensions.Logging.Debug" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
+      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools11PackageVersion__" />
+      <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__" />
     </Platform>
   </Platforms>
 </TemplateDefinition>
