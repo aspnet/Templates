@@ -45,6 +45,7 @@
     <PropertyGroup>
         <ApplicationInsightsPackageVersion Condition="'$(ApplicationInsightsPackageVersion)' == ''">2.0.0</ApplicationInsightsPackageVersion>
         <BrowserLinkPackageVersion Condition="'$(BrowserLinkPackageVersion)' == ''">1.0.1</BrowserLinkPackageVersion>
+        <BrowserLink11PackageVersion Condition="'$(BrowserLink11PackageVersion)' == ''">1.1.0</BrowserLink11PackageVersion>
         <DefaultNugetFeedSource Condition="'$(NugetFeedSource)' == ''">api.nuget.org=https://api.nuget.org/v3/index.json</DefaultNugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'release' and '$(ReleaseNugetFeedSource)' != ''">$(ReleaseNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
         <NugetFeedSource Condition="'$(NugetFeedSource)' == '' and '$(TemplateBuildBranch)' == 'dev' and '$(DevNugetFeedSource)' != ''">$(DevNugetFeedSource)|$(DefaultNugetFeedSource)</NugetFeedSource>
@@ -97,8 +98,8 @@
         <PropertyGroup>
             <!-- The below is a fallback version for external non CI builds -->
             <NetCoreSemanticVersion Condition="'$(PackageSourceExternal)' == ''"></NetCoreSemanticVersion>
-            <NetCore10PlatformVersion Condition="'$(NetCore10PlatformVersion)' == ''">1.0.3$(NetCoreSemanticVersion)</NetCore10PlatformVersion>
-            <NetCore11PlatformVersion Condition="'$(NetCore11PlatformVersion)' == ''">1.1.0</NetCore11PlatformVersion>
+            <NetCore10PlatformVersion Condition="'$(NetCore10PlatformVersion)' == ''">1.0.4</NetCore10PlatformVersion>
+            <NetCore11PlatformVersion Condition="'$(NetCore11PlatformVersion)' == ''">1.1.1</NetCore11PlatformVersion>
 
             <WebSdkSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</WebSdkSemanticVersion>
             <WebSdkVersion Condition="'$(WebSdkVersion)' == ''">1.0.0$(WebSdkSemanticVersion)</WebSdkVersion>
@@ -107,16 +108,16 @@
             <NetStandardSemanticVersion Condition="'$(PackageSourceExternal)' == ''">-*</NetStandardSemanticVersion>
             <NetStandardPlatformVersion Condition="'$(NetStandardPlatformVersion)' == ''">$(NetStandardVersion).0$(NetStandardSemanticVersion)</NetStandardPlatformVersion>
 
-            <ToolsSemanticVersion Condition="'$(PackageSource)' == ''">-*</ToolsSemanticVersion>
-            <Tools10PackageVersion Condition="'$(Tools10PackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</Tools10PackageVersion >
+            <ToolsSemanticVersion Condition="'$(PackageSource)' == ''"></ToolsSemanticVersion>
+            <Tools10PackageVersion Condition="'$(Tools10PackageVersion)' == ''">1.0.0$(ToolsSemanticVersion)</Tools10PackageVersion>
             <Tools11PackageVersion Condition="'$(Tools11PackageVersion)' == ''">1.1.0$(ToolsSemanticVersion)</Tools11PackageVersion>
 
             <AspNetCorePatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCorePatchSemanticVersion>
-            <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.1$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
+            <AspNetCorePatchPackageVersion Condition="'$(AspNetCorePatchPackageVersion)' == ''">1.0.2$(AspNetCorePatchSemanticVersion)</AspNetCorePatchPackageVersion>
 
             <AspNetCoreMvcPatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreMvcPatchSemanticVersion>
-            <AspNetCoreMvcPatchPackageVersion Condition="'$(AspNetCoreMvcPatchPackageVersion)' == ''">1.0.2$(AspNetCoreMvcPatchSemanticVersion)</AspNetCoreMvcPatchPackageVersion>
-            <Mvc11PackageVersion Condition="'$(Mvc11PackageVersion)' == ''">1.1.1</Mvc11PackageVersion>
+            <AspNetCoreMvcPatchPackageVersion Condition="'$(AspNetCoreMvcPatchPackageVersion)' == ''">1.0.3$(AspNetCoreMvcPatchSemanticVersion)</AspNetCoreMvcPatchPackageVersion>
+            <Mvc11PackageVersion Condition="'$(Mvc11PackageVersion)' == ''">1.1.2</Mvc11PackageVersion>
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
             <AspNetCoreReleasePackageVersion Condition="'$(AspNetCoreReleasePackageVersion)' == ''">1.0.0$(AspNetCoreReleaseSemanticVersion)</AspNetCoreReleasePackageVersion>

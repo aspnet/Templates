@@ -127,7 +127,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.EmptyWeb"
               VSTemplatePath="EmptyWeb\EmptyWeb.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0">
+              DefaultPlatform="1.1">
         <ApplyRules>
             <RunRule RuleID="EmptyReferences" />
         </ApplyRules>
@@ -140,7 +140,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.StarterWeb"
               VSTemplatePath="StarterWeb\StarterWeb.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0">
+              DefaultPlatform="1.1">
         <ApplyRules Option="NoAuth">
             <RunRule RuleID="StarterWebNoAuthReferences" />
         </ApplyRules>
@@ -183,7 +183,7 @@
     <BaseTemplate ID="Microsoft.NetCore.CSharp.WebAPI"
               VSTemplatePath="WebAPI\WebAPI.vstemplate"
               DefaultContext="WebCore"
-              DefaultPlatform="1.0">
+              DefaultPlatform="1.1">
         <ApplyRules Option="NoAuth">
               <RunRule RuleID="WebAPINoAuthReferences" />
         </ApplyRules>
@@ -323,7 +323,7 @@
           <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
 
@@ -343,7 +343,7 @@
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools10PackageVersion__" PrivateAssets="All"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="__Tools10PackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
@@ -359,7 +359,7 @@
           <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" AppliesTo="1.0"/>
+          <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
@@ -386,7 +386,7 @@
       </Rule>
   </Rules>
 
-  <Platforms Default="1.0">
+  <Platforms Default="1.1">
     <Platform Version="1.0" Framework="netcoreapp1.0" />
     <Platform Version="1.1" Framework="netcoreapp1.1">
       <Package Name="Microsoft.AspNetCore" Version="__NetCore11PlatformVersion__" />
@@ -405,7 +405,7 @@
       <Package Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__NetCore11PlatformVersion__" />
       <Package Name="Microsoft.Extensions.Logging.Debug" Version="__NetCore11PlatformVersion__" />
       <Package Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
-      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__NetCore11PlatformVersion__" />
+      <Package Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLink11PackageVersion__" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools11PackageVersion__" />
       <Package Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__" />
     </Platform>

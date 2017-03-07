@@ -79,6 +79,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__ApplicationInsightsPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(ApplicationInsightsPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLinkPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLink11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLink11PackageVersion)" />
 
     <Exec WorkingDirectory="$(TempPath)" Command="$(ZipCommand) $(TemplatesOutputPath)$(TargetName).zip * &gt; nul" />
     <Message Text="$(TargetName).zip" Importance="high" />
@@ -147,6 +148,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLinkPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLinkPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__BrowserLink11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(BrowserLink11PackageVersion)" />
 
     <Copy SourceFiles="@(FilesToReplace)" DestinationFiles="@(FilesToReplace->'$(TemplatesOutputPath)%(Filename)%(Extension)')" />
   </Target>
