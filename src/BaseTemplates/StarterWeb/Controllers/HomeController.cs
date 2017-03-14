@@ -27,9 +27,6 @@ namespace $safeprojectname$.Controllers
             return View();
         }
 
-        public IActionResult Error()
-        {
-            return View();
-        }
+        public IActionResult Error() => View();
     }
 }
