@@ -18,6 +18,9 @@ namespace $safeprojectname$
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
+                .UseDefaultServiceProvider((context, options) => {
+                    options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
+                })
                 .Build();
 
             host.Run();
