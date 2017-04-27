@@ -120,7 +120,7 @@
 
             <AspNetCoreMvcPatchSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreMvcPatchSemanticVersion>
             <AspNetCoreMvcPatchPackageVersion Condition="'$(AspNetCoreMvcPatchPackageVersion)' == ''">1.0.3$(AspNetCoreMvcPatchSemanticVersion)</AspNetCoreMvcPatchPackageVersion>
-            <Mvc10PackageVersion Condition="'$(Mvc10PackageVersion)' == ''">1.0.4</Mvc11PackageVersion>
+            <Mvc10PackageVersion Condition="'$(Mvc10PackageVersion)' == ''">1.0.4</Mvc10PackageVersion>
             <Mvc11PackageVersion Condition="'$(Mvc11PackageVersion)' == ''">1.1.3</Mvc11PackageVersion>
 
             <AspNetCoreReleaseSemanticVersion Condition="'$(PackageSource)' == ''"></AspNetCoreReleaseSemanticVersion>
