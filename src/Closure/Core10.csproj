@@ -13,25 +13,25 @@
     <!-- Base StarterWeb and Empty Templates -->
     <PackageReference Include="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion2__" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCoreMvcPatchPackageVersion__" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__" />
   </ItemGroup>
   <ItemGroup>
     <!-- Auth Packages StarterWeb -->
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion2__"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion2__"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion2__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCorePatchPackageVersion2__"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCorePatchPackageVersion2__"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion2__"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="__Tools10PackageVersion__"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="__Tools10PackageVersion__"/>
     <!-- Auth Packages WebAPI -->
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
   </ItemGroup>
   <ItemGroup>
     <!-- Individual Auth Tools -->
