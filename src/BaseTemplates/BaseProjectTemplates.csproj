@@ -74,6 +74,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools10PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools10PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion2__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion2)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
@@ -144,6 +145,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools10PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools10PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Tools11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion2__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion2)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Extension)' == '.csproj')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />
