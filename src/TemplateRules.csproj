@@ -182,6 +182,7 @@
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools10PackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(Tools10PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Tools11PackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(Tools11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion)" />
+    <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCorePatchPackageVersion2__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCorePatchPackageVersion2)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreMvcPatchPackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreMvcPatchPackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__Mvc11PackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(Mvc11PackageVersion)" />
     <RegexReplace Files="@(FilesToReplace)" Find="__AspNetCoreReleasePackageVersion__" Condition="('%(Filename)%(Extension)' == 'Templates.xml')" Encoding="ascii" Replace="$(AspNetCoreReleasePackageVersion)" />

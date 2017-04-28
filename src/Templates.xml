@@ -320,9 +320,9 @@
       <Rule ID="StarterWebNoAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-update1" PrivateAssets="All" AppliesTo="1.1" />
-          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
@@ -332,15 +332,15 @@
       <Rule ID="StarterWebIndividualAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-update1" PrivateAssets="All" AppliesTo="1.1" />
-          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCoreMvcPatchPackageVersion__" PrivateAssets="All" />
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
-          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCoreMvcPatchPackageVersion__" PrivateAssets="All"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.Design" Version="__AspNetCorePatchPackageVersion2__" PrivateAssets="All" />
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer" Version="__AspNetCorePatchPackageVersion2__"/>
+          <AddReference Name="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="__AspNetCorePatchPackageVersion2__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.EntityFrameworkCore.Tools" Version="__Tools10PackageVersion__" PrivateAssets="All"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
@@ -355,11 +355,11 @@
       <Rule ID="StarterWebOrganizationalAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.Cookies" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__"/>
           <AddReference Name="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-update1" PrivateAssets="All" AppliesTo="1.1" />
-          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCorePatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.StaticFiles" Version="__AspNetCoreMvcPatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.VisualStudio.Web.BrowserLink" Version="__BrowserLinkPackageVersion__"/>
@@ -371,7 +371,7 @@
       <Rule ID="WebAPINoAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddToolReference Name="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="__Tools10PackageVersion__"/>
       </Rule>
@@ -380,8 +380,8 @@
       <Rule ID="WebAPIOrganizationalAuthReferences">
           <AddReference Name="Microsoft.ApplicationInsights.AspNetCore" Version="__ApplicationInsightsPackageVersion__"/>
           <AddReference Name="Microsoft.AspNetCore" Version="__NetCore10PlatformVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCorePatchPackageVersion__"/>
-          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Authentication.JwtBearer" Version="__AspNetCoreMvcPatchPackageVersion__"/>
+          <AddReference Name="Microsoft.AspNetCore.Mvc" Version="__AspNetCorePatchPackageVersion2__"/>
           <AddReference Name="Microsoft.Extensions.Configuration.UserSecrets" Version="__AspNetCorePatchPackageVersion__"/>
           <AddReference Name="Microsoft.Extensions.Logging.Debug" Version="__AspNetCorePatchPackageVersion__"/>
           <AddToolReference Name="Microsoft.Extensions.SecretManager.Tools" Version="__Tools10PackageVersion__"/>
