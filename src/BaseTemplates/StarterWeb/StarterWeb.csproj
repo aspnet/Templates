@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$netframeworkversion$</TargetFramework>
-  </PropertyGroup>$if$ ($context$ == WebCore)
-
-  <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-  </PropertyGroup>$endif$$if$ ($aspnet_useusersecrets$ == true)
+  </PropertyGroup>$if$ ($aspnet_useusersecrets$ == true)
 
   <PropertyGroup>
     <UserSecretsId>aspnet-$safeprojectname$-$guid2$</UserSecretsId>
