@@ -1,9 +1,0 @@
-
-
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <ProjectFiles Include="src\dirs.proj" />
-    </ItemGroup>
-    
-    <Import Project="Root.Traversal.targets"/>
-</Project>

@@ -10,20 +10,30 @@ if not defined DNX_PACKAGES (
     set DNX_PACKAGES=%~dp0\..\packages
 )
 
-set "TemplatesVSVersion=15.0"
+if not defined DOTNET_INSTALL_DIR (
+    set DOTNET_INSTALL_DIR=%LocalAppData%\Microsoft\dotnet\
+)
+
+if not defined DOTNET_VERSION (
+    set DOTNET_VERSION=2.0.1-servicing-006924
+)
+
+if exist "%TemplatesProgramFiles%\Microsoft Visual Studio\Preview\MSBuild\15.0\Bin\MSBuild.exe" (
+    set "TemplatesVSVersion=15.0"
+    set TemplatesMSBuildPath="%TemplatesProgramFiles%\Microsoft Visual Studio\Preview\MSBuild\15.0\Bin"
+) else (
+    set "TemplatesVSVersion=14.0"
+    set TemplatesMSBuildPath="%TemplatesProgramFiles%\MSBuild\14.0\Bin"
+)
+
 set "TemplatesRoot=%~dp0"
 set "TemplatesRoot=%TemplatesRoot:~0,-7%"
-set "TemplatesBin=%TemplatesRoot%\artifacts\build"
-set "TemplatesIntermediate=%TemplatesRoot%\intermediate"
-set "TemplatesReferences=%TemplatesRoot%\references"
-set "TemplatesSource=%TemplatesRoot%\src"
-set "TemplatesTest=%TemplatesRoot%\test"
-set "TemplatesTools=%TemplatesRoot%\tools"
-set DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-
-if exist "%TemplatesProgramFiles%\MSBuild\14.0\Bin\msbuild.exe" (
-   set TemplatesMSBuildPath="%TemplatesProgramFiles%\MSBuild\14.0\Bin"
-)
+set "TemplatesBin=%TemplatesRoot%\bin\"
+set "TemplatesIntermediate=%TemplatesRoot%\obj\"
+set "TemplatesReferences=%TemplatesRoot%\references\"
+set "TemplatesSource=%TemplatesRoot%\src\"
+set "TemplatesTools=%TemplatesRoot%\tools\"
 
 set "PATH=%PATH%;%TemplatesMSBuildPath%"
 set "PATH=%PATH%;%TemplatesTools%"
+set "PATH=%DOTNET_INSTALL_DIR%;%PATH%"
