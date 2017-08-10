@@ -1,8 +1,0 @@
-﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <ProjectFiles Include="BaseTemplates\BaseProjectTemplates.csproj" />
-        <ProjectFiles Include="TemplateRules.csproj" />
-    </ItemGroup>
-
-    <Import Project="..\Root.Traversal.targets" />
-</Project>

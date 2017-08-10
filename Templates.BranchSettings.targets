@@ -1,5 +1,0 @@
-<Project ToolsVersion="4.0" DefaultTargets="Verify" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TemplateBuildBranch>dev</TemplateBuildBranch>
-  </PropertyGroup>
-</Project>
