@@ -15,7 +15,7 @@ if not defined DOTNET_INSTALL_DIR (
 )
 
 if not defined DOTNET_VERSION (
-    set DOTNET_VERSION=2.0.1-servicing-006924
+    set DOTNET_VERSION=2.1.0-preview1-007082
 )
 
 if exist "%TemplatesProgramFiles%\Microsoft Visual Studio\Preview\MSBuild\15.0\Bin\MSBuild.exe" (
